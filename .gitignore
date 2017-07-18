@@ -1,0 +1,7 @@
+# Prerequisites
+*.d
+bin/
+obj/
+*.exe
+
+
