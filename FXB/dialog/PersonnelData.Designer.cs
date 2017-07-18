@@ -1,0 +1,307 @@
+﻿namespace FXB.dialog
+{
+    partial class PersonnelDataDlg
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("节点1");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("房小白", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.AddPersonnelBtn = new System.Windows.Forms.Button();
+            this.ExportBtn = new System.Windows.Forms.Button();
+            this.InquireBtn = new System.Windows.Forms.Button();
+            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.AddDepartmentBtn = new System.Windows.Forms.Button();
+            this.ModifyDepartmentBtn = new System.Windows.Forms.Button();
+            this.RemoveDepartmentBtn = new System.Windows.Forms.Button();
+            this.ReloadBtn = new System.Windows.Forms.Button();
+            this.DepartmentTreeView = new System.Windows.Forms.TreeView();
+            this.groupBox1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.AddPersonnelBtn);
+            this.groupBox1.Controls.Add(this.ExportBtn);
+            this.groupBox1.Controls.Add(this.InquireBtn);
+            this.groupBox1.Controls.Add(this.dateTimePicker4);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.dateTimePicker3);
+            this.groupBox1.Controls.Add(this.checkBox2);
+            this.groupBox1.Controls.Add(this.dateTimePicker2);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(22, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1284, 55);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "查询参数:";
+            // 
+            // AddPersonnelBtn
+            // 
+            this.AddPersonnelBtn.Location = new System.Drawing.Point(1190, 20);
+            this.AddPersonnelBtn.Name = "AddPersonnelBtn";
+            this.AddPersonnelBtn.Size = new System.Drawing.Size(75, 23);
+            this.AddPersonnelBtn.TabIndex = 13;
+            this.AddPersonnelBtn.Text = "新增员工";
+            this.AddPersonnelBtn.UseVisualStyleBackColor = true;
+            // 
+            // ExportBtn
+            // 
+            this.ExportBtn.Location = new System.Drawing.Point(1089, 20);
+            this.ExportBtn.Name = "ExportBtn";
+            this.ExportBtn.Size = new System.Drawing.Size(75, 23);
+            this.ExportBtn.TabIndex = 12;
+            this.ExportBtn.Text = "导出数据";
+            this.ExportBtn.UseVisualStyleBackColor = true;
+            // 
+            // InquireBtn
+            // 
+            this.InquireBtn.Location = new System.Drawing.Point(1010, 20);
+            this.InquireBtn.Name = "InquireBtn";
+            this.InquireBtn.Size = new System.Drawing.Size(75, 23);
+            this.InquireBtn.TabIndex = 11;
+            this.InquireBtn.Text = "查询数据";
+            this.InquireBtn.UseVisualStyleBackColor = true;
+            this.InquireBtn.Click += new System.EventHandler(this.InquireBtn_Click);
+            // 
+            // dateTimePicker4
+            // 
+            this.dateTimePicker4.Location = new System.Drawing.Point(895, 21);
+            this.dateTimePicker4.Name = "dateTimePicker4";
+            this.dateTimePicker4.Size = new System.Drawing.Size(101, 21);
+            this.dateTimePicker4.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(882, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(11, 12);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "-";
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.Location = new System.Drawing.Point(778, 21);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(101, 21);
+            this.dateTimePicker3.TabIndex = 8;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(705, 25);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(78, 16);
+            this.checkBox2.TabIndex = 7;
+            this.checkBox2.Text = "离职日期:";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(586, 21);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(101, 21);
+            this.dateTimePicker2.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(572, 27);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(11, 12);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "-";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(470, 21);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(100, 21);
+            this.dateTimePicker1.TabIndex = 1;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(398, 25);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(78, 16);
+            this.checkBox1.TabIndex = 4;
+            this.checkBox1.Text = "入职日期:";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(296, 21);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(71, 20);
+            this.comboBox1.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(239, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 12);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "在职状态:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(67, 20);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(148, 21);
+            this.textBox1.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "员工工号:";
+            // 
+            // AddDepartmentBtn
+            // 
+            this.AddDepartmentBtn.Location = new System.Drawing.Point(22, 89);
+            this.AddDepartmentBtn.Name = "AddDepartmentBtn";
+            this.AddDepartmentBtn.Size = new System.Drawing.Size(75, 23);
+            this.AddDepartmentBtn.TabIndex = 1;
+            this.AddDepartmentBtn.Text = "新增部门";
+            this.AddDepartmentBtn.UseVisualStyleBackColor = true;
+            this.AddDepartmentBtn.Click += new System.EventHandler(this.AddDepartmentBtn_Click);
+            // 
+            // ModifyDepartmentBtn
+            // 
+            this.ModifyDepartmentBtn.Location = new System.Drawing.Point(103, 89);
+            this.ModifyDepartmentBtn.Name = "ModifyDepartmentBtn";
+            this.ModifyDepartmentBtn.Size = new System.Drawing.Size(75, 23);
+            this.ModifyDepartmentBtn.TabIndex = 2;
+            this.ModifyDepartmentBtn.Text = "修改部门";
+            this.ModifyDepartmentBtn.UseVisualStyleBackColor = true;
+            this.ModifyDepartmentBtn.Click += new System.EventHandler(this.ModifyDepartmentBtn_Click);
+            // 
+            // RemoveDepartmentBtn
+            // 
+            this.RemoveDepartmentBtn.Location = new System.Drawing.Point(184, 89);
+            this.RemoveDepartmentBtn.Name = "RemoveDepartmentBtn";
+            this.RemoveDepartmentBtn.Size = new System.Drawing.Size(75, 23);
+            this.RemoveDepartmentBtn.TabIndex = 3;
+            this.RemoveDepartmentBtn.Text = "删除部门";
+            this.RemoveDepartmentBtn.UseVisualStyleBackColor = true;
+            // 
+            // ReloadBtn
+            // 
+            this.ReloadBtn.Location = new System.Drawing.Point(265, 89);
+            this.ReloadBtn.Name = "ReloadBtn";
+            this.ReloadBtn.Size = new System.Drawing.Size(75, 23);
+            this.ReloadBtn.TabIndex = 4;
+            this.ReloadBtn.Text = "重新加载";
+            this.ReloadBtn.UseVisualStyleBackColor = true;
+            // 
+            // DepartmentTreeView
+            // 
+            this.DepartmentTreeView.Location = new System.Drawing.Point(23, 124);
+            this.DepartmentTreeView.Name = "DepartmentTreeView";
+            treeNode1.Name = "aaa";
+            treeNode1.Text = "节点1";
+            treeNode2.Name = "节点0";
+            treeNode2.Text = "房小白";
+            this.DepartmentTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode2});
+            this.DepartmentTreeView.Size = new System.Drawing.Size(317, 563);
+            this.DepartmentTreeView.TabIndex = 5;
+            // 
+            // PersonnelDataDlg
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1343, 708);
+            this.Controls.Add(this.DepartmentTreeView);
+            this.Controls.Add(this.ReloadBtn);
+            this.Controls.Add(this.RemoveDepartmentBtn);
+            this.Controls.Add(this.ModifyDepartmentBtn);
+            this.Controls.Add(this.AddDepartmentBtn);
+            this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
+            this.Name = "PersonnelDataDlg";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "员工资料";
+            this.Load += new System.EventHandler(this.PersonnelDataDlg_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker dateTimePicker4;
+        private System.Windows.Forms.Button InquireBtn;
+        private System.Windows.Forms.Button ExportBtn;
+        private System.Windows.Forms.Button AddPersonnelBtn;
+        private System.Windows.Forms.Button AddDepartmentBtn;
+        private System.Windows.Forms.Button ModifyDepartmentBtn;
+        private System.Windows.Forms.Button RemoveDepartmentBtn;
+        private System.Windows.Forms.Button ReloadBtn;
+        private System.Windows.Forms.TreeView DepartmentTreeView;
+
+    }
+}
