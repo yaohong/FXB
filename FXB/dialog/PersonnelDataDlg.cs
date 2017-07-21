@@ -19,13 +19,18 @@ namespace FXB.dialog
 
         private void InquireBtn_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void PersonnelDataDlg_Load(object sender, EventArgs e)
         {
             //禁止改变窗口大小
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            //this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            //禁止改变表格的大小
+            dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
         }
 
         private void AddDepartmentBtn_Click(object sender, EventArgs e)
@@ -37,6 +42,9 @@ namespace FXB.dialog
         {
 
         }
+
+
+
 
     }
 }

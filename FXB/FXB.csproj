@@ -56,6 +56,18 @@
     <Compile Include="dialog\MainDlg.Designer.cs">
       <DependentUpon>MainDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyControl\MyDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyControl\MySplitContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyControl\MyTableLayoutPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyControl\MyTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="dialog\PersonnelDataDlg.resx">
@@ -86,6 +98,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
