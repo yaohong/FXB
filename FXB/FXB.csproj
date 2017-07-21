@@ -44,16 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="dialog\PersonnelDataDlg.cs">
+    <Compile Include="Dialog\PersonnelDataDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dialog\PersonnelDataDlg.Designer.cs">
+    <Compile Include="Dialog\PersonnelDataDlg.Designer.cs">
       <DependentUpon>PersonnelDataDlg.cs</DependentUpon>
     </Compile>
-    <Compile Include="dialog\MainDlg.cs">
+    <Compile Include="Dialog\MainDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dialog\MainDlg.Designer.cs">
+    <Compile Include="Dialog\MainDlg.Designer.cs">
       <DependentUpon>MainDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="MyControl\MyDataGridView.cs">
@@ -70,10 +70,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="dialog\PersonnelDataDlg.resx">
+    <EmbeddedResource Include="Dialog\PersonnelDataDlg.resx">
       <DependentUpon>PersonnelDataDlg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="dialog\MainDlg.resx">
+    <EmbeddedResource Include="Dialog\MainDlg.resx">
       <DependentUpon>MainDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
