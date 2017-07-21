@@ -59,6 +59,9 @@
     <Compile Include="MyControl\MyDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MyControl\MyGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MyControl\MySplitContainer.cs">
       <SubType>Component</SubType>
     </Compile>

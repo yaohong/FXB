@@ -35,7 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rootTableLayoutPanel = new FXB.MyControl.MyTableLayoutPanel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new FXB.MyControl.MyGroupBox();
             this.AddPersonnelBtn = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ExportBtn = new System.Windows.Forms.Button();
@@ -124,7 +124,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(75, 20);
+            this.textBox1.Location = new System.Drawing.Point(66, 20);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(148, 21);
             this.textBox1.TabIndex = 1;
@@ -417,7 +417,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private FXB.MyControl.MyGroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
