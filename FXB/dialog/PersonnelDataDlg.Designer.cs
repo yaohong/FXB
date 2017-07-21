@@ -34,8 +34,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.rootTableLayoutPanel = new FXB.MyControl.MyTableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.AddPersonnelBtn = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.ExportBtn = new System.Windows.Forms.Button();
             this.InquireBtn = new System.Windows.Forms.Button();
             this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
@@ -48,33 +50,48 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new FXB.MyControl.MyTableLayoutPanel();
+            this.tableLayoutPanel2 = new FXB.MyControl.MyTableLayoutPanel();
+            this.treeView1 = new FXB.MyControl.MyTreeView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.ReloadBtn = new System.Windows.Forms.Button();
             this.AddDepartmentBtn = new System.Windows.Forms.Button();
             this.ModifyDepartmentBtn = new System.Windows.Forms.Button();
             this.RemoveDepartmentBtn = new System.Windows.Forms.Button();
-            this.ReloadBtn = new System.Windows.Forms.Button();
-            this.splitContainer1 = new FXB.MyControl.MySplitContainer();
-            this.tableLayoutPanel1 = new FXB.MyControl.MyTableLayoutPanel();
-            this.treeView1 = new FXB.MyControl.MyTreeView();
-            this.tableLayoutPanel2 = new FXB.MyControl.MyTableLayoutPanel();
+            this.tableLayoutPanel3 = new FXB.MyControl.MyTableLayoutPanel();
             this.dataGridView1 = new FXB.MyControl.MyDataGridView();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qq = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rootTableLayoutPanel.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // rootTableLayoutPanel
+            // 
+            this.rootTableLayoutPanel.ColumnCount = 1;
+            this.rootTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.rootTableLayoutPanel.Controls.Add(this.groupBox1, 0, 0);
+            this.rootTableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 0, 1);
+            this.rootTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rootTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.rootTableLayoutPanel.Name = "rootTableLayoutPanel";
+            this.rootTableLayoutPanel.RowCount = 2;
+            this.rootTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rootTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rootTableLayoutPanel.Size = new System.Drawing.Size(1350, 700);
+            this.rootTableLayoutPanel.TabIndex = 1;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.AddPersonnelBtn);
+            this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.ExportBtn);
             this.groupBox1.Controls.Add(this.InquireBtn);
             this.groupBox1.Controls.Add(this.dateTimePicker4);
@@ -87,11 +104,11 @@
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(22, 12);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1307, 71);
+            this.groupBox1.Size = new System.Drawing.Size(1344, 51);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "查询参数:";
@@ -104,6 +121,13 @@
             this.AddPersonnelBtn.TabIndex = 13;
             this.AddPersonnelBtn.Text = "新增员工";
             this.AddPersonnelBtn.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(75, 20);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(148, 21);
+            this.textBox1.TabIndex = 1;
             // 
             // ExportBtn
             // 
@@ -207,13 +231,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "在职状态:";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(67, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(148, 21);
-            this.textBox1.TabIndex = 1;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -223,9 +240,76 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "员工工号:";
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 60);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1344, 637);
+            this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.treeView1, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(326, 631);
+            this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.Location = new System.Drawing.Point(3, 37);
+            this.treeView1.Name = "treeView1";
+            treeNode1.Name = "n1";
+            treeNode1.Text = "b1";
+            treeNode2.BackColor = System.Drawing.Color.Transparent;
+            treeNode2.Name = "root";
+            treeNode2.Text = "root";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode2});
+            this.treeView1.Size = new System.Drawing.Size(320, 591);
+            this.treeView1.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.ReloadBtn);
+            this.panel1.Controls.Add(this.AddDepartmentBtn);
+            this.panel1.Controls.Add(this.ModifyDepartmentBtn);
+            this.panel1.Controls.Add(this.RemoveDepartmentBtn);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.MaximumSize = new System.Drawing.Size(330, 40);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(320, 28);
+            this.panel1.TabIndex = 1;
+            // 
+            // ReloadBtn
+            // 
+            this.ReloadBtn.Location = new System.Drawing.Point(245, 3);
+            this.ReloadBtn.Name = "ReloadBtn";
+            this.ReloadBtn.Size = new System.Drawing.Size(75, 23);
+            this.ReloadBtn.TabIndex = 4;
+            this.ReloadBtn.Text = "重新加载";
+            this.ReloadBtn.UseVisualStyleBackColor = true;
+            // 
             // AddDepartmentBtn
             // 
-            this.AddDepartmentBtn.Location = new System.Drawing.Point(34, 89);
+            this.AddDepartmentBtn.Location = new System.Drawing.Point(6, 3);
             this.AddDepartmentBtn.Name = "AddDepartmentBtn";
             this.AddDepartmentBtn.Size = new System.Drawing.Size(75, 23);
             this.AddDepartmentBtn.TabIndex = 1;
@@ -235,7 +319,7 @@
             // 
             // ModifyDepartmentBtn
             // 
-            this.ModifyDepartmentBtn.Location = new System.Drawing.Point(115, 89);
+            this.ModifyDepartmentBtn.Location = new System.Drawing.Point(87, 3);
             this.ModifyDepartmentBtn.Name = "ModifyDepartmentBtn";
             this.ModifyDepartmentBtn.Size = new System.Drawing.Size(75, 23);
             this.ModifyDepartmentBtn.TabIndex = 2;
@@ -245,82 +329,25 @@
             // 
             // RemoveDepartmentBtn
             // 
-            this.RemoveDepartmentBtn.Location = new System.Drawing.Point(196, 89);
+            this.RemoveDepartmentBtn.Location = new System.Drawing.Point(168, 3);
             this.RemoveDepartmentBtn.Name = "RemoveDepartmentBtn";
             this.RemoveDepartmentBtn.Size = new System.Drawing.Size(75, 23);
             this.RemoveDepartmentBtn.TabIndex = 3;
             this.RemoveDepartmentBtn.Text = "删除部门";
             this.RemoveDepartmentBtn.UseVisualStyleBackColor = true;
             // 
-            // ReloadBtn
+            // tableLayoutPanel3
             // 
-            this.ReloadBtn.Location = new System.Drawing.Point(277, 89);
-            this.ReloadBtn.Name = "ReloadBtn";
-            this.ReloadBtn.Size = new System.Drawing.Size(75, 23);
-            this.ReloadBtn.TabIndex = 4;
-            this.ReloadBtn.Text = "重新加载";
-            this.ReloadBtn.UseVisualStyleBackColor = true;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 118);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel1);
-            this.splitContainer1.Panel1MinSize = 0;
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel2);
-            this.splitContainer1.Size = new System.Drawing.Size(1350, 582);
-            this.splitContainer1.SplitterDistance = 331;
-            this.splitContainer1.SplitterWidth = 3;
-            this.splitContainer1.TabIndex = 6;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.treeView1, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.48596F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74.51404F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(331, 582);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // treeView1
-            // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(3, 151);
-            this.treeView1.Name = "treeView1";
-            treeNode1.Name = "n1";
-            treeNode1.Text = "b1";
-            treeNode2.BackColor = System.Drawing.Color.Transparent;
-            treeNode2.Name = "root";
-            treeNode2.Text = "root";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            this.treeView1.Size = new System.Drawing.Size(325, 428);
-            this.treeView1.TabIndex = 0;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.dataGridView1, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1016, 582);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.Controls.Add(this.dataGridView1, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(335, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1006, 631);
+            this.tableLayoutPanel3.TabIndex = 2;
             // 
             // dataGridView1
             // 
@@ -348,7 +375,7 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Bisque;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1010, 576);
+            this.dataGridView1.Size = new System.Drawing.Size(1000, 625);
             this.dataGridView1.TabIndex = 0;
             // 
             // name
@@ -371,25 +398,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 700);
-            this.Controls.Add(this.ReloadBtn);
-            this.Controls.Add(this.RemoveDepartmentBtn);
-            this.Controls.Add(this.ModifyDepartmentBtn);
-            this.Controls.Add(this.AddDepartmentBtn);
-            this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.groupBox1);
-            this.MaximizeBox = false;
+            this.Controls.Add(this.rootTableLayoutPanel);
             this.Name = "PersonnelDataDlg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "员工资料";
             this.Load += new System.EventHandler(this.PersonnelDataDlg_Load);
+            this.rootTableLayoutPanel.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -413,18 +433,20 @@
         private System.Windows.Forms.Button InquireBtn;
         private System.Windows.Forms.Button ExportBtn;
         private System.Windows.Forms.Button AddPersonnelBtn;
-        private System.Windows.Forms.Button AddDepartmentBtn;
-        private System.Windows.Forms.Button ModifyDepartmentBtn;
-        private System.Windows.Forms.Button RemoveDepartmentBtn;
-        private System.Windows.Forms.Button ReloadBtn;
-        private FXB.MyControl.MySplitContainer splitContainer1;
-        private FXB.MyControl.MyTableLayoutPanel tableLayoutPanel2;
         private FXB.MyControl.MyDataGridView dataGridView1;
-        private FXB.MyControl.MyTableLayoutPanel tableLayoutPanel1;
         private FXB.MyControl.MyTreeView treeView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn qq;
         private System.Windows.Forms.DataGridViewTextBoxColumn address;
+        private FXB.MyControl.MyTableLayoutPanel rootTableLayoutPanel;
+        private FXB.MyControl.MyTableLayoutPanel tableLayoutPanel1;
+        private FXB.MyControl.MyTableLayoutPanel tableLayoutPanel2;
+        private FXB.MyControl.MyTableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button ReloadBtn;
+        private System.Windows.Forms.Button AddDepartmentBtn;
+        private System.Windows.Forms.Button ModifyDepartmentBtn;
+        private System.Windows.Forms.Button RemoveDepartmentBtn;
 
     }
 }
