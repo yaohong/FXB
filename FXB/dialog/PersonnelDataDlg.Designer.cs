@@ -28,12 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("b1");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("root", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rootTableLayoutPanel = new FXB.MyControl.MyTableLayoutPanel();
             this.groupBox1 = new FXB.MyControl.MyGroupBox();
             this.AddPersonnelBtn = new System.Windows.Forms.Button();
@@ -53,12 +50,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new FXB.MyControl.MyTableLayoutPanel();
             this.tableLayoutPanel2 = new FXB.MyControl.MyTableLayoutPanel();
-            this.treeView1 = new FXB.MyControl.MyTreeView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ReloadBtn = new System.Windows.Forms.Button();
             this.AddDepartmentBtn = new System.Windows.Forms.Button();
             this.ModifyDepartmentBtn = new System.Windows.Forms.Button();
             this.RemoveDepartmentBtn = new System.Windows.Forms.Button();
+            this.treeView1 = new FXB.MyControl.MyTreeView();
             this.tableLayoutPanel3 = new FXB.MyControl.MyTableLayoutPanel();
             this.dataGridView1 = new FXB.MyControl.MyDataGridView();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -85,7 +82,7 @@
             this.rootTableLayoutPanel.RowCount = 2;
             this.rootTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.rootTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.rootTableLayoutPanel.Size = new System.Drawing.Size(1350, 700);
+            this.rootTableLayoutPanel.Size = new System.Drawing.Size(1398, 779);
             this.rootTableLayoutPanel.TabIndex = 1;
             // 
             // groupBox1
@@ -108,7 +105,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1344, 51);
+            this.groupBox1.Size = new System.Drawing.Size(1392, 51);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "查询参数:";
@@ -217,7 +214,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(296, 21);
+            this.comboBox1.Location = new System.Drawing.Point(295, 20);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(71, 20);
             this.comboBox1.TabIndex = 3;
@@ -252,38 +249,23 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1344, 637);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1392, 716);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.treeView1, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.treeView1, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(326, 631);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(323, 710);
             this.tableLayoutPanel2.TabIndex = 1;
-            // 
-            // treeView1
-            // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(3, 37);
-            this.treeView1.Name = "treeView1";
-            treeNode1.Name = "n1";
-            treeNode1.Text = "b1";
-            treeNode2.BackColor = System.Drawing.Color.Transparent;
-            treeNode2.Name = "root";
-            treeNode2.Text = "root";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            this.treeView1.Size = new System.Drawing.Size(320, 591);
-            this.treeView1.TabIndex = 0;
             // 
             // panel1
             // 
@@ -295,12 +277,12 @@
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.MaximumSize = new System.Drawing.Size(330, 40);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(320, 28);
+            this.panel1.Size = new System.Drawing.Size(330, 34);
             this.panel1.TabIndex = 1;
             // 
             // ReloadBtn
             // 
-            this.ReloadBtn.Location = new System.Drawing.Point(245, 3);
+            this.ReloadBtn.Location = new System.Drawing.Point(245, 7);
             this.ReloadBtn.Name = "ReloadBtn";
             this.ReloadBtn.Size = new System.Drawing.Size(75, 23);
             this.ReloadBtn.TabIndex = 4;
@@ -309,7 +291,7 @@
             // 
             // AddDepartmentBtn
             // 
-            this.AddDepartmentBtn.Location = new System.Drawing.Point(6, 3);
+            this.AddDepartmentBtn.Location = new System.Drawing.Point(3, 7);
             this.AddDepartmentBtn.Name = "AddDepartmentBtn";
             this.AddDepartmentBtn.Size = new System.Drawing.Size(75, 23);
             this.AddDepartmentBtn.TabIndex = 1;
@@ -319,7 +301,7 @@
             // 
             // ModifyDepartmentBtn
             // 
-            this.ModifyDepartmentBtn.Location = new System.Drawing.Point(87, 3);
+            this.ModifyDepartmentBtn.Location = new System.Drawing.Point(84, 7);
             this.ModifyDepartmentBtn.Name = "ModifyDepartmentBtn";
             this.ModifyDepartmentBtn.Size = new System.Drawing.Size(75, 23);
             this.ModifyDepartmentBtn.TabIndex = 2;
@@ -329,12 +311,20 @@
             // 
             // RemoveDepartmentBtn
             // 
-            this.RemoveDepartmentBtn.Location = new System.Drawing.Point(168, 3);
+            this.RemoveDepartmentBtn.Location = new System.Drawing.Point(164, 7);
             this.RemoveDepartmentBtn.Name = "RemoveDepartmentBtn";
             this.RemoveDepartmentBtn.Size = new System.Drawing.Size(75, 23);
             this.RemoveDepartmentBtn.TabIndex = 3;
             this.RemoveDepartmentBtn.Text = "删除部门";
             this.RemoveDepartmentBtn.UseVisualStyleBackColor = true;
+            // 
+            // treeView1
+            // 
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.Location = new System.Drawing.Point(3, 43);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(330, 664);
+            this.treeView1.TabIndex = 2;
             // 
             // tableLayoutPanel3
             // 
@@ -342,18 +332,17 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.Controls.Add(this.dataGridView1, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(335, 3);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(332, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1006, 631);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1057, 710);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Beige;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.name,
@@ -362,20 +351,20 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.NullValue = "0";
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.NullValue = "0";
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.RowHeadersWidth = 50;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Bisque;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Bisque;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1000, 625);
+            this.dataGridView1.Size = new System.Drawing.Size(1051, 704);
             this.dataGridView1.TabIndex = 0;
             // 
             // name
@@ -397,7 +386,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 700);
+            this.ClientSize = new System.Drawing.Size(1398, 779);
             this.Controls.Add(this.rootTableLayoutPanel);
             this.Name = "PersonnelDataDlg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -434,7 +423,6 @@
         private System.Windows.Forms.Button ExportBtn;
         private System.Windows.Forms.Button AddPersonnelBtn;
         private FXB.MyControl.MyDataGridView dataGridView1;
-        private FXB.MyControl.MyTreeView treeView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn qq;
         private System.Windows.Forms.DataGridViewTextBoxColumn address;
@@ -447,6 +435,7 @@
         private System.Windows.Forms.Button AddDepartmentBtn;
         private System.Windows.Forms.Button ModifyDepartmentBtn;
         private System.Windows.Forms.Button RemoveDepartmentBtn;
+        private FXB.MyControl.MyTreeView treeView1;
 
     }
 }

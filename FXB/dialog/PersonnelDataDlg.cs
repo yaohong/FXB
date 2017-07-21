@@ -25,7 +25,10 @@ namespace FXB.dialog
         {
             //禁止改变窗口大小
             //this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.DoubleBuffered = true;
+            //this.DoubleBuffered = true;
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             //禁止改变表格的大小
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridView1.AllowUserToResizeColumns = false;
@@ -41,6 +44,9 @@ namespace FXB.dialog
         {
 
         }
+
+
+
 
 
     }
