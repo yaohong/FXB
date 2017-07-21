@@ -26,7 +26,7 @@ namespace FXB
                 {
                     if (childDlg.WindowState == FormWindowState.Minimized)
                     {
-                        childDlg.WindowState = FormWindowState.Normal;
+                        childDlg.WindowState = FormWindowState.Maximized;
                     }
                     childDlg.Activate();
 

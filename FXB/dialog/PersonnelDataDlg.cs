@@ -23,6 +23,7 @@ namespace FXB.dialog
 
         private void PersonnelDataDlg_Load(object sender, EventArgs e)
         {
+            WindowState = FormWindowState.Maximized;
             //禁止改变窗口大小
             //this.FormBorderStyle = FormBorderStyle.FixedSingle;
             //this.DoubleBuffered = true;
@@ -44,9 +45,6 @@ namespace FXB.dialog
         {
 
         }
-
-
-
 
 
     }
