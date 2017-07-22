@@ -207,6 +207,8 @@ namespace FXB.DataManager
             {
                 throw new ConditionCheckException("不能够加入部门,员工QT级别和部门QT级别对应不上");
             }
+
+
             //添加新的副本
             SqlCommand command = new SqlCommand();
             command.Connection = SqlMgr.Instance().SqlConnect;

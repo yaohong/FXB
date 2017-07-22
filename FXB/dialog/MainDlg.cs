@@ -96,16 +96,23 @@ namespace FXB
                 ProjectDataDlg dlg = new ProjectDataDlg();
                 dlg.MdiParent = this;
                 dlg.Show();
-            } else
+            }
+            else if (dlgName == "QtTaskOperDlg")
+            {
+                QtTaskOperDlg dlg = new QtTaskOperDlg();
+                dlg.MdiParent = this;
+                dlg.Show();
+            }
+            else 
             {
                 MessageBox.Show("未知的窗口名字");
                 Application.Exit();
             }
         }
 
-        private void 生成QT任务ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void QT任务ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            QtMgr.Instance().AddNewQtTask("2017-08");
+            ShowDialog("QtTaskOperDlg");
         }
 
     }

@@ -170,12 +170,23 @@ namespace FXB.Dialog
 
         private void AddClick()
         {
+            QtLevel qtLevel = QtUtil.GetQTLevel(qtLevelSelect.Text);
+            if (qtLevel != QtLevel.None && qtLevel != QtLevel.Salesman)
+            {
+
+                if (QtMgr.Instance().CheckQtKey())
+                {
+                    MessageBox.Show("QT任务已经生成,只能添加普通员工和QT业务员");
+                    return;
+                }
+            }
+
             try
             {
                 EmployeeData newEmployeeData = EmployeeDataMgr.Instance().AddNewEmployee(
                     gonghaoEdit.Text,
                     xingmingEdit.Text,
-                    QtUtil.GetQTLevel(qtLevelSelect.Text),
+                    qtLevel,
                     selectDepartmentId,
                     CheckBoxUtil.cbStateToBool(isOwnerCb.CheckState),
                     zhijiEdit.Text,
@@ -235,12 +246,28 @@ namespace FXB.Dialog
                 jieshaorenEdit.Text != employeeData.Introducer || 
                 beizhuEdit.Text != employeeData.Comment)
             {
+                QtLevel newQtLevel = QtUtil.GetQTLevel(qtLevelSelect.Text);
+                if (employeeData.QTLevel != QtLevel.None)
+                {
+                    if (employeeData.QTLevel != newQtLevel ||
+                        employeeData.DepartmentId != selectDepartmentId ||
+                        employeeData.IsOwner != CheckBoxUtil.cbStateToBool(isOwnerCb.CheckState))
+                    {
+
+                        if (QtMgr.Instance().CheckQtKey())
+                        {
+                            MessageBox.Show("QT任务已经生成,员工的QT相关信息不能修改");
+                            return;
+                        }
+                    }
+                }
+
                 try
                 {
                     EmployeeDataMgr.Instance().ModifyEmployee(
                         employeeData.JobNumber,
                         xingmingEdit.Text,
-                        QtUtil.GetQTLevel(qtLevelSelect.Text),
+                        newQtLevel,
                         selectDepartmentId,
                         CheckBoxUtil.cbStateToBool(isOwnerCb.CheckState),
                         zhijiEdit.Text,

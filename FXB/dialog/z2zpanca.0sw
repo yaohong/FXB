@@ -181,7 +181,7 @@
             this.QT任务ToolStripMenuItem.Name = "QT任务ToolStripMenuItem";
             this.QT任务ToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
             this.QT任务ToolStripMenuItem.Text = "QT任务";
-            this.QT任务ToolStripMenuItem.Click += new System.EventHandler(this.QT任务ToolStripMenuItem_Click);
+            this.QT任务ToolStripMenuItem.Click += new System.EventHandler(this.取QT任务ToolStripMenuItem_Click);
             // 
             // 报表查询ToolStripMenuItem
             // 
