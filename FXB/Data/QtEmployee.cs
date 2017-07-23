@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace FXB.Data
 {
 
-    class QtEmployee
+    public class QtEmployee
     {
         private string jobNumber;
         private Int64 departmentId;

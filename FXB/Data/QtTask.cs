@@ -16,7 +16,7 @@ namespace FXB.Data
         private bool closing;               //QT任务是否结算(点击生成QT提成)
         private QtDepartment rootQtDepartment = null;
         private SortedDictionary<Int64, QtDepartment> allQtDepartment;
-
+        private SortedDictionary<string, QtEmployee> allQtEmployee;
         public static float singleTaskAmount = 10000.0f;
 
         public string QtKey
@@ -37,6 +37,11 @@ namespace FXB.Data
         {
             get { return allQtDepartment; }
         }
+
+        public SortedDictionary<string, QtEmployee> AllQtEmployee
+        {
+            get { return allQtEmployee; }
+        }
         //生成新QT任务的构造函数
         public QtTask(string timeKey)
         {
@@ -45,18 +50,22 @@ namespace FXB.Data
             rootQtDepartment = null;
 
             allQtDepartment = new SortedDictionary<Int64, QtDepartment>();
+            allQtEmployee = new SortedDictionary<string, QtEmployee>();
 
             //用当前的部门结构构造QT部门结构
             DepartmentData rootDepartment = DepartmentDataMgr.Instance().RootDepartment;
-            rootQtDepartment = new QtDepartment(rootDepartment.Id, rootDepartment.QTLevel, rootDepartment.OwnerJobNumber, rootDepartment.Name, 0);
+            rootQtDepartment = rootDepartment.GenerateQtDepartment();
             allQtDepartment[rootDepartment.Id] = rootQtDepartment;
+
+            AddEmployee(rootDepartment);
+
             foreach (var item in rootDepartment.ChildSet)
             {
                 DepartmentData childDepartmentData = DepartmentDataMgr.Instance().AllDepartmentData[item];
                 if (childDepartmentData.QTLevel == QtLevel.Majordomo || childDepartmentData.QTLevel == QtLevel.ZhuchangZongjian)
                 {
                     //只有QT部门才生成QT任务
-                    QtDepartment childQtDepartment = new QtDepartment(childDepartmentData.Id, childDepartmentData.QTLevel, childDepartmentData.OwnerJobNumber, childDepartmentData.Name, rootDepartment.Id);
+                    QtDepartment childQtDepartment = childDepartmentData.GenerateQtDepartment();
                     GenerateQtDepartmentRelation(childQtDepartment);
                     if (!rootQtDepartment.ChildDepartmentIdSet.Add(childDepartmentData.Id))
                     {
@@ -73,7 +82,7 @@ namespace FXB.Data
         {
             //设置子节点
             DepartmentData departmentData = DepartmentDataMgr.Instance().AllDepartmentData[partentQtDepartment.Id];
-
+            AddEmployee(departmentData);
             //遍历子部门
             foreach (var item in departmentData.ChildSet)
             {
@@ -85,7 +94,7 @@ namespace FXB.Data
                     throw new CrashException("部门QT属性错误，生成QT任务失败");
                 }
 
-                QtDepartment childQtDepartment = new QtDepartment(childDepartmentData.Id, childDepartmentData.QTLevel, childDepartmentData.OwnerJobNumber, childDepartmentData.Name, partentQtDepartment.Id);
+                QtDepartment childQtDepartment = childDepartmentData.GenerateQtDepartment();
                 if (!partentQtDepartment.ChildDepartmentIdSet.Add(childQtDepartment.Id))
                 {
                     throw new CrashException("生成QT任务失败2");
@@ -97,15 +106,31 @@ namespace FXB.Data
             }
         }
 
+        private void AddEmployee(DepartmentData departmentData)
+        {
+            //添加管理员
+            if (departmentData.OwnerJobNumber != "")
+            {
+                EmployeeData ownerEmployeeData = EmployeeDataMgr.Instance().AllEmployeeData[departmentData.OwnerJobNumber];
+                allQtEmployee[departmentData.OwnerJobNumber] = ownerEmployeeData.GenerateQtEmployee();
+            }
+
+            //添加员工
+            foreach (var employeeJobNumber in departmentData.EmployeeSet)
+            {
+                EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[employeeJobNumber];
+                allQtEmployee[employeeJobNumber] = employeeData.GenerateQtEmployee();
+            }
+        }
+
         //由DB数据构建QT任务
-        public QtTask(DbQtTaskIndex qtIndexData, SortedDictionary<Int64, DbQtTaskDepartment> qtDepartmentData )
+        public QtTask(DbQtTaskIndex qtIndexData, SortedDictionary<Int64, DbQtTaskDepartment> qtDepartmentData, SortedDictionary<string, DbQtTaskEmployee> qtEmployeeData)
         {
             qtKey = qtIndexData.QtKey;
             closing = qtIndexData.Closing;
             rootQtDepartment = null;
             allQtDepartment = new SortedDictionary<Int64, QtDepartment>();
-
-            //建立部门的上级关系
+            allQtEmployee = new SortedDictionary<string, QtEmployee>();  //建立部门的上级关系
             foreach (var item in qtDepartmentData)
             {
                 GenerateQtDepartmentSuperiorRelation(qtDepartmentData, item.Value);
@@ -118,6 +143,14 @@ namespace FXB.Data
             }
 
             rootQtDepartment = allQtDepartment[qtIndexData.RootqtDepartmentId];
+
+
+            //添加员工信息
+            foreach (var EmployeeItem in qtEmployeeData)
+            {
+                DbQtTaskEmployee dbEmployee = EmployeeItem.Value;
+                allQtEmployee[EmployeeItem.Key] = new QtEmployee(dbEmployee.JobNumber, dbEmployee.DepartmentId, dbEmployee.QtLevel, dbEmployee.IsOwner);
+            }
         }
 
 

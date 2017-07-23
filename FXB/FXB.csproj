@@ -63,6 +63,7 @@
     <Compile Include="Data\JobGradeData.cs" />
     <Compile Include="Data\ProjectData.cs" />
     <Compile Include="Data\QtDepartment.cs" />
+    <Compile Include="Data\QtEmployee.cs" />
     <Compile Include="Data\QtOrder.cs" />
     <Compile Include="Data\QtTask.cs" />
     <Compile Include="Dialog\DepartmentOperDlg.cs">

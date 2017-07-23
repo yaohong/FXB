@@ -108,5 +108,12 @@ namespace FXB.Data
             return layer == 3;
         }
 
+
+
+        public QtDepartment GenerateQtDepartment()
+        {
+            return new QtDepartment(id, qtLevel, ownerJobNumber, name, superiorId);
+        }
+
     }
 }

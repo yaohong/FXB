@@ -88,6 +88,42 @@ namespace FXB.DataManager
             needCompleteTaskAmount = tmpNeedCompleteTaskAmount;
         }
     }
+
+    public class DbQtTaskEmployee
+    {
+        private string jobNumber;
+        private Int64 departmentId;
+        private QtLevel qtLevel;
+        private bool isOwner;
+
+        public string JobNumber
+        {
+            get { return jobNumber; }
+        }
+
+        public Int64 DepartmentId
+        {
+            get { return departmentId; }
+        }
+
+        public QtLevel QtLevel
+        {
+            get { return qtLevel; }
+        }
+
+        public bool IsOwner
+        {
+            get { return isOwner; }
+        }
+        public DbQtTaskEmployee(string tmpJobNumber, Int64 tmpDepartmentId, QtLevel tmpQtLevel, bool tmpIsOwner)
+        {
+            jobNumber = tmpJobNumber;
+            departmentId = tmpDepartmentId;
+            qtLevel = tmpQtLevel;
+            isOwner = tmpIsOwner;
+        }
+
+    }
     class QtMgr
     {
         private static QtMgr ins;
@@ -113,6 +149,7 @@ namespace FXB.DataManager
             //重新从数据库里加载
             SqlDataReader qtIndexReader = null;
             SqlDataReader qtDepartmentReader = null;
+            SqlDataReader qtEmployeeReader = null;
             try
             {
 
@@ -142,7 +179,7 @@ namespace FXB.DataManager
                 SqlCommand qtDepartmentCommand = new SqlCommand();
                 qtDepartmentCommand.Connection = SqlMgr.Instance().SqlConnect;
                 qtDepartmentCommand.CommandType = CommandType.Text;
-                qtDepartmentCommand.CommandText = "select * from qttaskdata";
+                qtDepartmentCommand.CommandText = "select * from qttaskdepartment";
                 qtDepartmentReader = qtDepartmentCommand.ExecuteReader();
                 SortedDictionary<string, SortedDictionary<Int64, DbQtTaskDepartment> > dbAllQtTaskDepartment = new SortedDictionary<string, SortedDictionary<Int64, DbQtTaskDepartment> >();
                 while (qtDepartmentReader.Read())
@@ -176,13 +213,50 @@ namespace FXB.DataManager
                 qtDepartmentReader.Close();
 
 
+                SqlCommand qtEmployeeCommand = new SqlCommand();
+                qtEmployeeCommand.Connection = SqlMgr.Instance().SqlConnect;
+                qtEmployeeCommand.CommandType = CommandType.Text;
+                qtEmployeeCommand.CommandText = "select * from qttaskemployee";
+                qtEmployeeReader = qtEmployeeCommand.ExecuteReader();
+                SortedDictionary<string, SortedDictionary<string, DbQtTaskEmployee>> dbAllQtTaskEmployee = new SortedDictionary<string, SortedDictionary<string, DbQtTaskEmployee>>();
+                while (qtEmployeeReader.Read())
+                {
+                    string jobNumber = qtEmployeeReader.GetString(0);
+                    Int64 qtdepartmentid = qtEmployeeReader.GetInt64(1);
+                    QtLevel qtLevel = (QtLevel)qtEmployeeReader.GetInt32(2);
+                    bool isOwner = qtEmployeeReader.GetBoolean(3);
+                    string qtKey = qtEmployeeReader.GetString(4);
+
+                    SortedDictionary<string, DbQtTaskEmployee> allEmployee;
+                    if (dbAllQtTaskEmployee.ContainsKey(qtKey))
+                    {
+                        allEmployee = dbAllQtTaskEmployee[qtKey];
+                    }
+                    else
+                    {
+                        dbAllQtTaskEmployee[qtKey] = new SortedDictionary<string, DbQtTaskEmployee>();
+                        allEmployee = dbAllQtTaskEmployee[qtKey];
+                    }
+
+                    if (allEmployee.ContainsKey(jobNumber))
+                    {
+                        throw new CrashException("工号重复");
+                    }
+
+                    allEmployee[jobNumber] = new DbQtTaskEmployee(jobNumber, qtdepartmentid, qtLevel, isOwner);
+                }
+                qtEmployeeReader.Close();
+
+
+
                 foreach (var item in dbAllQtTaskIndex)
                 {
                     string qtKey = item.Key;
                     DbQtTaskIndex qtTaskIndexData = item.Value;
 
                     SortedDictionary<Int64, DbQtTaskDepartment> qtTaskDepartmentData = dbAllQtTaskDepartment[qtKey];
-                    QtTask qtTask = new QtTask(qtTaskIndexData, qtTaskDepartmentData);
+                    SortedDictionary<string, DbQtTaskEmployee> qtTaskEmployeeData = dbAllQtTaskEmployee[qtKey];
+                    QtTask qtTask = new QtTask(qtTaskIndexData, qtTaskDepartmentData, qtTaskEmployeeData);
 
                     allQtTask[qtKey] = qtTask;
                 }
@@ -208,6 +282,15 @@ namespace FXB.DataManager
                     if (!qtDepartmentReader.IsClosed)
                     {
                         qtDepartmentReader.Close();
+                    }
+
+                }
+
+                if (qtEmployeeReader != null)
+                {
+                    if (!qtEmployeeReader.IsClosed)
+                    {
+                        qtEmployeeReader.Close();
                     }
 
                 }
@@ -243,12 +326,13 @@ namespace FXB.DataManager
                 command.Parameters.AddWithValue("@rootqtdepartmentid", newQtTask.RootQtDepartment.Id);
                 command.ExecuteNonQuery();
                 Console.WriteLine("insert qtindex success");
+
                 command.Parameters.Clear();
                 foreach (var item in newQtTask.AllQtDepartment)
                 {
                     QtDepartment qtDepartment = item.Value;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = @"INSERT INTO qttaskdata(qtdepartmentid,qtlevel,ownerjobnumber,qtdepartmentname,parentdepartmentid,needcompletetaskamount,qtkey) 
+                    command.CommandText = @"INSERT INTO qttaskdepartment(qtdepartmentid,qtlevel,ownerjobnumber,qtdepartmentname,parentdepartmentid,needcompletetaskamount,qtkey) 
                                             VALUES(@qtdepartmentid, @qtlevel, @ownerjobnumber, @qtdepartmentname, @parentdepartmentid, @needcompletetaskamount, @qtkey)";
                     command.Parameters.AddWithValue("@qtdepartmentid", qtDepartment.Id);
                     command.Parameters.AddWithValue("@qtlevel", (Int32)qtDepartment.QtLevel);
@@ -261,6 +345,22 @@ namespace FXB.DataManager
                     command.Parameters.Clear();
                 }
                 Console.WriteLine("insert qtdepartment success");
+
+                command.Parameters.Clear();
+                foreach (var item in newQtTask.AllQtEmployee)
+                {
+                    QtEmployee qtDepartment = item.Value;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = @"INSERT INTO qttaskemployee(jobnumber,departmentid,qtlevel,isowner,qtkey) 
+                                            VALUES(@jobnumber, @departmentid, @qtlevel, @isowner, @qtkey)";
+                    command.Parameters.AddWithValue("@jobnumber", qtDepartment.JobNumber);
+                    command.Parameters.AddWithValue("@departmentid", (Int32)qtDepartment.DepartmentId);
+                    command.Parameters.AddWithValue("@qtlevel", (Int32)qtDepartment.QtLevel);
+                    command.Parameters.AddWithValue("@isowner", qtDepartment.IsOwner);
+                    command.Parameters.AddWithValue("@qtkey", newQtTask.QtKey);
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                }
 
                 sqlTran.Commit();
                 allQtTask[newQtTask.QtKey] = newQtTask;

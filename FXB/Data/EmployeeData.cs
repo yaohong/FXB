@@ -173,7 +173,10 @@ namespace FXB.Data
 
 
 
-
+        public QtEmployee GenerateQtEmployee()
+        {
+            return new QtEmployee(jobNumber, departmentId, qtLevel, isOwner);
+        }
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////
