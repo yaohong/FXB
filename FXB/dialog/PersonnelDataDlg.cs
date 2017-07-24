@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FXB.Common;
 namespace FXB.dialog
 {
-    public partial class PersonnelDataDlg : Form
+    public partial class PersonnelDataDlg : Form, DbUpdateInterface
     {
         public PersonnelDataDlg()
         {
@@ -48,6 +49,10 @@ namespace FXB.dialog
 
         }
 
+        public void DbRefresh()
+        {
+
+        }
 
     }
 }

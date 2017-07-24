@@ -44,6 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\DbUpdateInterface.cs" />
+    <Compile Include="Data\Define.cs" />
+    <Compile Include="Data\DepartmentData.cs" />
+    <Compile Include="Data\EmployeeData.cs" />
     <Compile Include="Dialog\PersonnelDataDlg.cs">
       <SubType>Form</SubType>
     </Compile>
