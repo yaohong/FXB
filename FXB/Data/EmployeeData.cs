@@ -50,7 +50,7 @@ namespace FXB.Data
         //备注
         private string comment;
         //QT级别
-        private QtLevel qtLevel = 0;
+        private QtLevel qtLevel;
 
 
         public string JobNumber
