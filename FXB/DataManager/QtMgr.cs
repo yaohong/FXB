@@ -92,6 +92,7 @@ namespace FXB.DataManager
     public class DbQtTaskEmployee
     {
         private string jobNumber;
+        private string jobGradeName;
         private Int64 departmentId;
         private QtLevel qtLevel;
         private bool isOwner;
@@ -99,6 +100,11 @@ namespace FXB.DataManager
         public string JobNumber
         {
             get { return jobNumber; }
+        }
+
+        public string JobGradeName
+        {
+            get { return jobGradeName; }
         }
 
         public Int64 DepartmentId
@@ -115,9 +121,10 @@ namespace FXB.DataManager
         {
             get { return isOwner; }
         }
-        public DbQtTaskEmployee(string tmpJobNumber, Int64 tmpDepartmentId, QtLevel tmpQtLevel, bool tmpIsOwner)
+        public DbQtTaskEmployee(string tmpJobNumber, string tmpJobGradeName, Int64 tmpDepartmentId, QtLevel tmpQtLevel, bool tmpIsOwner)
         {
             jobNumber = tmpJobNumber;
+            jobGradeName = tmpJobGradeName;
             departmentId = tmpDepartmentId;
             qtLevel = tmpQtLevel;
             isOwner = tmpIsOwner;
@@ -222,10 +229,11 @@ namespace FXB.DataManager
                 while (qtEmployeeReader.Read())
                 {
                     string jobNumber = qtEmployeeReader.GetString(0);
-                    Int64 qtdepartmentid = qtEmployeeReader.GetInt64(1);
-                    QtLevel qtLevel = (QtLevel)qtEmployeeReader.GetInt32(2);
-                    bool isOwner = qtEmployeeReader.GetBoolean(3);
-                    string qtKey = qtEmployeeReader.GetString(4);
+                    string jobGradeName = qtEmployeeReader.GetString(1);
+                    Int64 qtdepartmentid = qtEmployeeReader.GetInt64(2);
+                    QtLevel qtLevel = (QtLevel)qtEmployeeReader.GetInt32(3);
+                    bool isOwner = qtEmployeeReader.GetBoolean(4);
+                    string qtKey = qtEmployeeReader.GetString(5);
 
                     SortedDictionary<string, DbQtTaskEmployee> allEmployee;
                     if (dbAllQtTaskEmployee.ContainsKey(qtKey))
@@ -243,7 +251,7 @@ namespace FXB.DataManager
                         throw new CrashException("工号重复");
                     }
 
-                    allEmployee[jobNumber] = new DbQtTaskEmployee(jobNumber, qtdepartmentid, qtLevel, isOwner);
+                    allEmployee[jobNumber] = new DbQtTaskEmployee(jobNumber, jobGradeName, qtdepartmentid, qtLevel, isOwner);
                 }
                 qtEmployeeReader.Close();
 
@@ -366,14 +374,15 @@ namespace FXB.DataManager
                 command.Parameters.Clear();
                 foreach (var item in newQtTask.AllQtEmployee)
                 {
-                    QtEmployee qtDepartment = item.Value;
+                    QtEmployee qtEmployee = item.Value;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = @"INSERT INTO qttaskemployee(jobnumber,departmentid,qtlevel,isowner,qtkey) 
-                                            VALUES(@jobnumber, @departmentid, @qtlevel, @isowner, @qtkey)";
-                    command.Parameters.AddWithValue("@jobnumber", qtDepartment.JobNumber);
-                    command.Parameters.AddWithValue("@departmentid", (Int32)qtDepartment.DepartmentId);
-                    command.Parameters.AddWithValue("@qtlevel", (Int32)qtDepartment.QtLevel);
-                    command.Parameters.AddWithValue("@isowner", qtDepartment.IsOwner);
+                    command.CommandText = @"INSERT INTO qttaskemployee(jobnumber,jobgradename,departmentid,qtlevel,isowner,qtkey) 
+                                            VALUES(@jobnumber,@jobgradename, @departmentid, @qtlevel, @isowner, @qtkey)";
+                    command.Parameters.AddWithValue("@jobnumber", qtEmployee.JobNumber);
+                    command.Parameters.AddWithValue("@jobgradename", qtEmployee.JobGradeName);
+                    command.Parameters.AddWithValue("@departmentid", qtEmployee.DepartmentId);
+                    command.Parameters.AddWithValue("@qtlevel", (Int32)qtEmployee.QtLevel);
+                    command.Parameters.AddWithValue("@isowner", qtEmployee.IsOwner);
                     command.Parameters.AddWithValue("@qtkey", newQtTask.QtKey);
                     command.ExecuteNonQuery();
                     command.Parameters.Clear();

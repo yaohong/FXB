@@ -110,6 +110,12 @@ namespace FXB
                 dlg.MdiParent = this;
                 dlg.Show();
             }
+            else if (dlgName == "OrderDataDlg")
+            {
+                OrderDataDlg dlg = new OrderDataDlg();
+                dlg.MdiParent = this;
+                dlg.Show();
+            }
             else 
             {
                 MessageBox.Show("未知的窗口名字");
@@ -125,6 +131,11 @@ namespace FXB
         private void 生成底薪副本ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowDialog("SalaryDuplicateOperDlg");
+        }
+
+        private void 开单录入ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowDialog("OrderDataDlg");
         }
 
     }

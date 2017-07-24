@@ -43,6 +43,7 @@
             this.退单录入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.薪资管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.底薪录入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.生成底薪副本ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.QT任务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.报表查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.员工查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +55,6 @@
             this.qT查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.生成底薪副本ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -148,19 +148,20 @@
             // 开单录入ToolStripMenuItem
             // 
             this.开单录入ToolStripMenuItem.Name = "开单录入ToolStripMenuItem";
-            this.开单录入ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.开单录入ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.开单录入ToolStripMenuItem.Text = "开单录入";
+            this.开单录入ToolStripMenuItem.Click += new System.EventHandler(this.开单录入ToolStripMenuItem_Click);
             // 
             // 回佣录入ToolStripMenuItem
             // 
             this.回佣录入ToolStripMenuItem.Name = "回佣录入ToolStripMenuItem";
-            this.回佣录入ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.回佣录入ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.回佣录入ToolStripMenuItem.Text = "回佣录入";
             // 
             // 退单录入ToolStripMenuItem
             // 
             this.退单录入ToolStripMenuItem.Name = "退单录入ToolStripMenuItem";
-            this.退单录入ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.退单录入ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.退单录入ToolStripMenuItem.Text = "退单录入";
             // 
             // 薪资管理ToolStripMenuItem
@@ -175,8 +176,15 @@
             // 底薪录入ToolStripMenuItem
             // 
             this.底薪录入ToolStripMenuItem.Name = "底薪录入ToolStripMenuItem";
-            this.底薪录入ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.底薪录入ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.底薪录入ToolStripMenuItem.Text = "底薪录入";
+            // 
+            // 生成底薪副本ToolStripMenuItem
+            // 
+            this.生成底薪副本ToolStripMenuItem.Name = "生成底薪副本ToolStripMenuItem";
+            this.生成底薪副本ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.生成底薪副本ToolStripMenuItem.Text = "生成底薪副本";
+            this.生成底薪副本ToolStripMenuItem.Click += new System.EventHandler(this.生成底薪副本ToolStripMenuItem_Click);
             // 
             // QT任务ToolStripMenuItem
             // 
@@ -252,13 +260,6 @@
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
             this.退出ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.退出ToolStripMenuItem.Text = "退出";
-            // 
-            // 生成底薪副本ToolStripMenuItem
-            // 
-            this.生成底薪副本ToolStripMenuItem.Name = "生成底薪副本ToolStripMenuItem";
-            this.生成底薪副本ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.生成底薪副本ToolStripMenuItem.Text = "生成底薪副本";
-            this.生成底薪副本ToolStripMenuItem.Click += new System.EventHandler(this.生成底薪副本ToolStripMenuItem_Click);
             // 
             // main
             // 

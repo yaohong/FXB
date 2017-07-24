@@ -29,8 +29,8 @@ namespace FXB.Data
             qtLevel = tmpQtLevel;
             ownerJobNumber = tmpOwnerJobNumber;
             deparmentName = tmpDeparmentName;
-
             parentDepartmentId = tmpParentDepartmentId;
+
             childDepartmentIdSet = new SortedSet<Int64>();
             needCompleteTaskAmount = 0.0f;
 

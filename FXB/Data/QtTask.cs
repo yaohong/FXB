@@ -159,7 +159,7 @@ namespace FXB.Data
             foreach (var EmployeeItem in qtEmployeeData)
             {
                 DbQtTaskEmployee dbEmployee = EmployeeItem.Value;
-                allQtEmployee[EmployeeItem.Key] = new QtEmployee(dbEmployee.JobNumber, dbEmployee.DepartmentId, dbEmployee.QtLevel, dbEmployee.IsOwner);
+                allQtEmployee[EmployeeItem.Key] = new QtEmployee(dbEmployee.JobNumber, dbEmployee.JobGradeName, dbEmployee.DepartmentId, dbEmployee.QtLevel, dbEmployee.IsOwner);
             }
         }
 

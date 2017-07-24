@@ -223,6 +223,11 @@ namespace FXB.Dialog
             }
         }
 
+        private void generateQtPushbtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }
