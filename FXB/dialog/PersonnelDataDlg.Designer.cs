@@ -121,7 +121,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(66, 20);
+            this.textBox1.Location = new System.Drawing.Point(66, 21);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(148, 21);
             this.textBox1.TabIndex = 1;
@@ -214,7 +214,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(295, 20);
+            this.comboBox1.Location = new System.Drawing.Point(295, 22);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(71, 20);
             this.comboBox1.TabIndex = 3;
