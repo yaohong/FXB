@@ -45,9 +45,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\DbUpdateInterface.cs" />
+    <Compile Include="Common\TextException.cs" />
+    <Compile Include="DataManager\EmployeeDataMgr.cs" />
     <Compile Include="Data\Define.cs" />
     <Compile Include="Data\DepartmentData.cs" />
     <Compile Include="Data\EmployeeData.cs" />
+    <Compile Include="Data\JobGradeData.cs" />
+    <Compile Include="Data\ProjectData.cs" />
     <Compile Include="Dialog\PersonnelDataDlg.cs">
       <SubType>Form</SubType>
     </Compile>

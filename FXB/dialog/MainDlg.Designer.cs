@@ -106,7 +106,7 @@
             // 员工档案ToolStripMenuItem
             // 
             this.员工档案ToolStripMenuItem.Name = "员工档案ToolStripMenuItem";
-            this.员工档案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.员工档案ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.员工档案ToolStripMenuItem.Text = "员工档案";
             this.员工档案ToolStripMenuItem.Click += new System.EventHandler(this.员工档案ToolStripMenuItem_Click);
             // 

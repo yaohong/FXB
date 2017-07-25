@@ -15,6 +15,9 @@ namespace FXB
         public main()
         {
             InitializeComponent();
+            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            long t = Convert.ToInt64(ts.TotalSeconds);
+            int a = 1;
         }
 
         private void 员工档案ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -39,6 +42,7 @@ namespace FXB
             dlg.MdiParent = this;
             dlg.Show();
         }
+
 
 
 
