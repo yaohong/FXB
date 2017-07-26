@@ -43,7 +43,7 @@ namespace FXB.Dialog
         {
             DepartmentOperDlg dlg = new DepartmentOperDlg();
             //dlg.TopLevel = false;
-            dlg.Parent = this;
+            //dlg.Parent = this;
             dlg.ShowDialog();
         }
 

@@ -20,7 +20,6 @@ namespace FXB.Dialog
         private void DepartmentOperDlg_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void button3_Click(object sender, EventArgs e)

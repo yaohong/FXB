@@ -163,6 +163,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DepartmentOperDlg";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "新增部门";
             this.Load += new System.EventHandler(this.DepartmentOperDlg_Load);
             this.ResumeLayout(false);
