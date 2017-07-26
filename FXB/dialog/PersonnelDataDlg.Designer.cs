@@ -364,6 +364,7 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Bisque;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.Size = new System.Drawing.Size(1051, 704);
             this.dataGridView1.TabIndex = 0;
             // 

@@ -23,7 +23,7 @@ namespace FXB.dialog
 
         private void InquireBtn_Click(object sender, EventArgs e)
         {
-            
+            DateTime a = dateTimePicker1.Value;
         }
 
         private void PersonnelDataDlg_Load(object sender, EventArgs e)

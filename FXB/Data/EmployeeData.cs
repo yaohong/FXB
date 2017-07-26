@@ -151,6 +151,8 @@ namespace FXB.Data
         }
         //QT级别
         private QtLevel qtLevel;
+        // 摘要:
+        // QT级别
         public QtLevel QTLevel
         {
             get { return qtLevel; }
