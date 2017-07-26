@@ -52,6 +52,12 @@
     <Compile Include="Data\EmployeeData.cs" />
     <Compile Include="Data\JobGradeData.cs" />
     <Compile Include="Data\ProjectData.cs" />
+    <Compile Include="Dialog\DepartmentOperDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\DepartmentOperDlg.Designer.cs">
+      <DependentUpon>DepartmentOperDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\PersonnelDataDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dialog\DepartmentOperDlg.resx">
+      <DependentUpon>DepartmentOperDlg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\PersonnelDataDlg.resx">
       <DependentUpon>PersonnelDataDlg.cs</DependentUpon>
     </EmbeddedResource>

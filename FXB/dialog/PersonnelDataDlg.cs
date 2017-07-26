@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FXB.Common;
-namespace FXB.dialog
+namespace FXB.Dialog
 {
     public partial class PersonnelDataDlg : Form, DbUpdateInterface
     {
@@ -41,7 +41,10 @@ namespace FXB.dialog
 
         private void AddDepartmentBtn_Click(object sender, EventArgs e)
         {
-
+            DepartmentOperDlg dlg = new DepartmentOperDlg();
+            //dlg.TopLevel = false;
+            dlg.Parent = this;
+            dlg.ShowDialog();
         }
 
         private void ModifyDepartmentBtn_Click(object sender, EventArgs e)

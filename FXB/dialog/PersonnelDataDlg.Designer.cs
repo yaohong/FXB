@@ -1,4 +1,4 @@
-﻿namespace FXB.dialog
+﻿namespace FXB.Dialog
 {
     partial class PersonnelDataDlg
     {
@@ -390,7 +390,7 @@
             this.ClientSize = new System.Drawing.Size(1398, 779);
             this.Controls.Add(this.rootTableLayoutPanel);
             this.Name = "PersonnelDataDlg";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "员工资料";
             this.Load += new System.EventHandler(this.PersonnelDataDlg_Load);
             this.rootTableLayoutPanel.ResumeLayout(false);

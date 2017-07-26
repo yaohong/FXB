@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FXB.dialog;
+using FXB.Dialog;
 namespace FXB
 {
     public partial class main : Form
