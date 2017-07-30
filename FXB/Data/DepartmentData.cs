@@ -9,7 +9,7 @@ namespace FXB.Data
     //部门数据
     class DepartmentData
     {
-        public DepartmentData(UInt32 tmpId, string tmpName, UInt32 tmpSuperiorId, bool tmpIsRoot, QtLevel tmpQtLevel)
+        public DepartmentData(UInt32 tmpId, string tmpName, UInt32 tmpSuperiorId, QtLevel tmpQtLevel)
         {
             if (tmpQtLevel == QtLevel.Salesman)
             {
@@ -20,28 +20,26 @@ namespace FXB.Data
             id = tmpId;
             name = tmpName;
             superiorId = tmpSuperiorId;
-            isRoot = tmpIsRoot;         //根节点只能放一个管理员(小主管，大主管，总监，总经理)
             qtLevel = tmpQtLevel;
         }
         //部门ID
-        private UInt32 id;
+        private Int64 id;
         //上级部门id
-        private UInt32 superiorId;
+        private Int64 superiorId;
         //部门名称
         private string name;
         //部门主管工号
         private string ownerJobNumber;
         //是否是根部门
-        private bool isRoot;
         //部门的QT级别
         private QtLevel qtLevel;
 
-        public UInt32 Id
+        public Int64 Id
         {
             get { return id; }
         }
 
-        public UInt32 SuperiorId
+        public Int64 SuperiorId
         {
             get { return superiorId; }
         }
@@ -55,12 +53,6 @@ namespace FXB.Data
         {
             get { return ownerJobNumber; }
             set { ownerJobNumber = value; }
-        }
-
-
-        public bool IsRoot
-        {
-            get { return isRoot; }
         }
 
         public QtLevel QTLevel

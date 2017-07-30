@@ -11,28 +11,36 @@ using FXB.Common;
 using FXB.Data;
 namespace FXB.Dialog
 {
-    public partial class DepartmentOperDlg : Form
+
+    public partial class EmployeeOperDlg : Form
     {
-        public DepartmentOperDlg()
+        private EditMode mode_;
+        public EmployeeOperDlg(EditMode mode)
         {
+            mode_ = mode;
             InitializeComponent();
         }
 
-        private void DepartmentOperDlg_Load(object sender, EventArgs e)
+        private void EmployeeOperDlg_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            QtUtil.SetComboxValue(qtLevelSelect, CbSetMode.CBSM_Department);
+            QtUtil.SetComboxValue(qtLevelSelect, CbSetMode.CBSM_Employee);
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            QtLevel qtLevel = QtUtil.GetQTLevel(qtLevelSelect, CbSetMode.CBSM_Department);
-            SqlMgr.Instance().Init();
+            QtLevel qtLevel = QtUtil.GetQTLevel(qtLevelSelect, CbSetMode.CBSM_Employee);
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
+
+        private void EmployeeOperDlg_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
     }
 }

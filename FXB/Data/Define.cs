@@ -28,4 +28,10 @@ namespace FXB.Data
         //     总监。
         Majordomo = 4,
     }
+
+    public enum EditMode
+    {
+        EM_ADD = 0,
+        EM_EDIT = 1,
+    }
 }

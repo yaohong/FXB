@@ -118,6 +118,7 @@
             this.AddPersonnelBtn.TabIndex = 13;
             this.AddPersonnelBtn.Text = "新增员工";
             this.AddPersonnelBtn.UseVisualStyleBackColor = true;
+            this.AddPersonnelBtn.Click += new System.EventHandler(this.AddPersonnelBtn_Click);
             // 
             // textBox1
             // 

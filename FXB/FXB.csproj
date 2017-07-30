@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\DbUpdateInterface.cs" />
+    <Compile Include="Common\QtUtil.cs" />
+    <Compile Include="Common\SqlMgr.cs" />
     <Compile Include="Common\TextException.cs" />
     <Compile Include="DataManager\EmployeeDataMgr.cs" />
     <Compile Include="Data\Define.cs" />
@@ -57,6 +59,12 @@
     </Compile>
     <Compile Include="Dialog\DepartmentOperDlg.Designer.cs">
       <DependentUpon>DepartmentOperDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\EmployeeOperDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\EmployeeOperDlg.Designer.cs">
+      <DependentUpon>EmployeeOperDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\PersonnelDataDlg.cs">
       <SubType>Form</SubType>
@@ -89,6 +97,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dialog\DepartmentOperDlg.resx">
       <DependentUpon>DepartmentOperDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\EmployeeOperDlg.resx">
+      <DependentUpon>EmployeeOperDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\PersonnelDataDlg.resx">
       <DependentUpon>PersonnelDataDlg.cs</DependentUpon>

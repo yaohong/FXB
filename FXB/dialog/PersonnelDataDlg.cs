@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FXB.Common;
+using FXB.Data;
 namespace FXB.Dialog
 {
     public partial class PersonnelDataDlg : Form, DbUpdateInterface
@@ -23,7 +24,7 @@ namespace FXB.Dialog
 
         private void InquireBtn_Click(object sender, EventArgs e)
         {
-            DateTime a = dateTimePicker1.Value;
+            string a = dateTimePicker1.Text;
         }
 
         private void PersonnelDataDlg_Load(object sender, EventArgs e)
@@ -55,6 +56,12 @@ namespace FXB.Dialog
         public void DbRefresh()
         {
 
+        }
+
+        private void AddPersonnelBtn_Click(object sender, EventArgs e)
+        {
+            EmployeeOperDlg dlg = new EmployeeOperDlg(EditMode.EM_ADD);
+            dlg.ShowDialog();
         }
 
     }
