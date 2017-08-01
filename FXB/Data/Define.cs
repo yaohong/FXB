@@ -29,9 +29,21 @@ namespace FXB.Data
         Majordomo = 4,
     }
 
+    public class QtString
+    {
+        static readonly public string None = "没有QT级别";
+        static readonly public string Salesman = "业务员";
+        static readonly public string SmallCharge = "小主管";
+        static readonly public string LargeCharge = "大主管";
+        static readonly public string Majordomo = "总监";
+    }
+
     public enum EditMode
     {
         EM_ADD = 0,
         EM_EDIT = 1,
     }
+
+    //职级过滤的函数
+    delegate bool LevelNameFilter(JobGradeData data);
 }

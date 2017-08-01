@@ -106,32 +106,34 @@
             // 员工档案ToolStripMenuItem
             // 
             this.员工档案ToolStripMenuItem.Name = "员工档案ToolStripMenuItem";
-            this.员工档案ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.员工档案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.员工档案ToolStripMenuItem.Text = "员工档案";
             this.员工档案ToolStripMenuItem.Click += new System.EventHandler(this.员工档案ToolStripMenuItem_Click);
             // 
             // 职级档案ToolStripMenuItem
             // 
             this.职级档案ToolStripMenuItem.Name = "职级档案ToolStripMenuItem";
-            this.职级档案ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.职级档案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.职级档案ToolStripMenuItem.Text = "职级档案";
+            this.职级档案ToolStripMenuItem.Click += new System.EventHandler(this.职级档案ToolStripMenuItem_Click);
             // 
             // 项目档案ToolStripMenuItem
             // 
             this.项目档案ToolStripMenuItem.Name = "项目档案ToolStripMenuItem";
-            this.项目档案ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.项目档案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.项目档案ToolStripMenuItem.Text = "项目档案";
+            this.项目档案ToolStripMenuItem.Click += new System.EventHandler(this.项目档案ToolStripMenuItem_Click);
             // 
             // 用户权限ToolStripMenuItem
             // 
             this.用户权限ToolStripMenuItem.Name = "用户权限ToolStripMenuItem";
-            this.用户权限ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.用户权限ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.用户权限ToolStripMenuItem.Text = "用户权限";
             // 
             // 刷新层级关系ToolStripMenuItem
             // 
             this.刷新层级关系ToolStripMenuItem.Name = "刷新层级关系ToolStripMenuItem";
-            this.刷新层级关系ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.刷新层级关系ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.刷新层级关系ToolStripMenuItem.Text = "刷新层级关系";
             // 
             // 单据录入ToolStripMenuItem
@@ -269,6 +271,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "房小白佣金核算系统";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.main_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);

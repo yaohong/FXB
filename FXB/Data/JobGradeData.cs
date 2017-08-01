@@ -7,17 +7,46 @@ using System.Threading.Tasks;
 namespace FXB.Data
 {
     //职级数据
-    class JobGradeData
+    public class JobGradeData
     {
-        //职级id
-        private UInt32 id;
         //级别
+        public JobGradeData(string tmpLevelName, string tmpXuLie, Int32 tmpBaseSalary, string tmpComment)
+        {
+            levelName = tmpLevelName;
+            xuLie = tmpXuLie;
+            baseSalary = tmpBaseSalary;
+            comment = tmpComment;
+        }
         private string levelName;
         //所属序列
         private string xuLie;
         //对应底薪
-        private UInt32 baseSalary;
+        private Int32 baseSalary;
         //备注
         private string comment;
+
+        public string LevelName
+        {
+            get { return levelName; }
+        }
+
+        public string XuLie
+        {
+            get { return xuLie; }
+            set { xuLie = value; }
+        }
+
+
+        public Int32 BaseSalary
+        {
+            get { return baseSalary; }
+            set { baseSalary = value; }
+        }
+
+        public string Comment
+        {
+            get { return comment; }
+            set { comment = value; }
+        }
     }
 }

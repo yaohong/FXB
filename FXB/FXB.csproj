@@ -48,7 +48,9 @@
     <Compile Include="Common\QtUtil.cs" />
     <Compile Include="Common\SqlMgr.cs" />
     <Compile Include="Common\TextException.cs" />
+    <Compile Include="DataManager\DepartmentDataMgr.cs" />
     <Compile Include="DataManager\EmployeeDataMgr.cs" />
+    <Compile Include="DataManager\JobGradeDataMgr.cs" />
     <Compile Include="Data\Define.cs" />
     <Compile Include="Data\DepartmentData.cs" />
     <Compile Include="Data\EmployeeData.cs" />
@@ -60,11 +62,29 @@
     <Compile Include="Dialog\DepartmentOperDlg.Designer.cs">
       <DependentUpon>DepartmentOperDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\DepartmentSelectDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\DepartmentSelectDlg.Designer.cs">
+      <DependentUpon>DepartmentSelectDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\EmployeeOperDlg.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialog\EmployeeOperDlg.Designer.cs">
       <DependentUpon>EmployeeOperDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\JobGradeDataDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\JobGradeDataDlg.Designer.cs">
+      <DependentUpon>JobGradeDataDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\JobGradeOperDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\JobGradeOperDlg.Designer.cs">
+      <DependentUpon>JobGradeOperDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\PersonnelDataDlg.cs">
       <SubType>Form</SubType>
@@ -77,6 +97,12 @@
     </Compile>
     <Compile Include="Dialog\MainDlg.Designer.cs">
       <DependentUpon>MainDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\ProjectDataDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\ProjectDataDlg.Designer.cs">
+      <DependentUpon>ProjectDataDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="MyControl\MyDataGridView.cs">
       <SubType>Component</SubType>
@@ -98,14 +124,26 @@
     <EmbeddedResource Include="Dialog\DepartmentOperDlg.resx">
       <DependentUpon>DepartmentOperDlg.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\DepartmentSelectDlg.resx">
+      <DependentUpon>DepartmentSelectDlg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\EmployeeOperDlg.resx">
       <DependentUpon>EmployeeOperDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\JobGradeDataDlg.resx">
+      <DependentUpon>JobGradeDataDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\JobGradeOperDlg.resx">
+      <DependentUpon>JobGradeOperDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\PersonnelDataDlg.resx">
       <DependentUpon>PersonnelDataDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\MainDlg.resx">
       <DependentUpon>MainDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\ProjectDataDlg.resx">
+      <DependentUpon>ProjectDataDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

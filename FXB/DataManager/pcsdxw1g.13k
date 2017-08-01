@@ -1,0 +1,155 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+using FXB.Data;
+using FXB.Common;
+namespace FXB.DataManager
+{
+    class DepartmentDataMgr
+    {
+        private static DepartmentDataMgr ins;
+        private SortedDictionary<Int64, DepartmentData> allDepartmentData;
+        private DepartmentData rootDepartment;
+        private DepartmentDataMgr()
+        {
+            allDepartmentData = new SortedDictionary<Int64, DepartmentData>();
+            rootDepartment = null;
+        }
+
+        public static DepartmentDataMgr Instance()
+        {
+            if (ins == null)
+            {
+                ins = new DepartmentDataMgr();
+            }
+
+            return ins;
+        }
+
+        public SortedDictionary<Int64, DepartmentData> AllDepartmentData
+        {
+            get { return allDepartmentData; }
+        }
+
+        public DepartmentData RootDepartment
+        {
+            get { return rootDepartment; }
+        }
+
+        //重新load数据
+        public void Load()
+        {
+            allDepartmentData.Clear();
+            //重新从数据库里加载
+            try
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = SqlMgr.Instance().SqlConnect;
+                command.CommandType = CommandType.Text;
+                command.CommandText = "select * from department";
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Int64 id = reader.GetInt64(0);
+                    Int64 nid = reader.GetInt64(1);
+                    string name = reader.GetString(2);
+                    string owner = reader.GetString(3);
+                    Int32 qtLevel = reader.GetInt32(4);
+                    AddDepartmentToCache(id, nid, name, owner, (QtLevel)qtLevel);
+                }
+
+                InitRelation();
+                if (CheckRelation(rootDepartment.Id, allDepartmentData.Count) != 0)
+                {
+                    throw new TextException("部门关系错误");
+                }
+
+                SetLayer(rootDepartment.Id, 0);
+            }
+            catch (Exception e)
+            {
+                allDepartmentData.Clear();
+                rootDepartment = null;
+                throw;
+            }
+
+        }
+
+        //将部门数据设置到树
+        public void SetTreeView(TreeView view)
+        {
+            view.Nodes.Clear();
+            view.Nodes.Add(rootDepartment.Id.ToString(), rootDepartment.Name);
+        }
+
+        public void AddDepartmentToCache(Int64 id, Int64 nid, string name, string owner, QtLevel qtlevel)
+        {
+            if (allDepartmentData.ContainsKey(id))
+            {
+                throw new TextException(string.Format("部门ID重复:{0}", id));
+            }
+
+            DepartmentData newDepartment = new DepartmentData(id, name, nid, qtlevel);
+            newDepartment.OwnerJobNumber = owner;
+            if (0 == newDepartment.SuperiorId)
+            {
+                //根部门
+                if (rootDepartment != null)
+                {
+                    throw new TextException("只能有一个根部门");
+                }
+                rootDepartment = newDepartment;
+            }
+
+            allDepartmentData.Add(id, newDepartment);
+
+        }
+
+        public void AddNewDepartment(Int64 nid, string name, string owner, QtLevel qtLevel)
+        {
+            //添加新的副本
+        }
+
+        private void InitRelation()
+        {
+            foreach (var item in allDepartmentData)
+            {
+                if (item.Value.SuperiorId == 0)
+                {
+                    continue;
+                }
+
+                DepartmentData superDepartmentData = allDepartmentData[item.Value.SuperiorId];
+                superDepartmentData.ChildSet.Add(item.Key);
+            }
+
+        }
+
+
+        private int CheckRelation(Int64 departmentId, int count)
+        {
+            DepartmentData data = allDepartmentData[departmentId];
+            foreach (var item in data.ChildSet)
+            {
+                count = CheckRelation(item, count);
+            }
+            return --count;
+        }
+
+        private void SetLayer(Int64 departmentId, Int32 layer)
+        {
+            DepartmentData data = allDepartmentData[departmentId];
+            data.Layer = layer++;
+            foreach (var item in data.ChildSet)
+            {
+                SetLayer(item, layer);
+            }
+
+        }
+    }
+}

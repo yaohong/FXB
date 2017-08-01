@@ -29,7 +29,7 @@ namespace FXB.Dialog
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            QtLevel qtLevel = QtUtil.GetQTLevel(qtLevelSelect, CbSetMode.CBSM_Employee);
+            QtLevel qtLevel = QtUtil.GetQTLevel(qtLevelSelect.Text);
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)

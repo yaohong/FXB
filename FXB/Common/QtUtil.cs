@@ -19,11 +19,11 @@ namespace FXB.Common
         {
             if (mode == CbSetMode.CBSM_Employee)
             {
-                cb.Items.Insert(0, "没有QT级别");
-                cb.Items.Insert(1, "业务员");
-                cb.Items.Insert(2, "小主管");
-                cb.Items.Insert(3, "大主管");
-                cb.Items.Insert(4, "总监");
+                cb.Items.Insert(0, QtString.None);
+                cb.Items.Insert(1, QtString.Salesman);
+                cb.Items.Insert(2, QtString.SmallCharge);
+                cb.Items.Insert(3, QtString.LargeCharge);
+                cb.Items.Insert(4, QtString.Majordomo);
 
                 cb.SelectedIndex = 0;
                 return;
@@ -31,10 +31,10 @@ namespace FXB.Common
 
             if (mode == CbSetMode.CBSM_Department)
             {
-                cb.Items.Insert(0, "没有QT级别");
-                cb.Items.Insert(1, "小主管");
-                cb.Items.Insert(2, "大主管");
-                cb.Items.Insert(3, "总监");
+                cb.Items.Insert(0, QtString.None);
+                cb.Items.Insert(1, QtString.SmallCharge);
+                cb.Items.Insert(2, QtString.LargeCharge);
+                cb.Items.Insert(3, QtString.Majordomo);
 
                 cb.SelectedIndex = 0;
                 return;
@@ -42,66 +42,52 @@ namespace FXB.Common
         }
 
 
-        static public QtLevel GetQTLevel(ComboBox cb, CbSetMode mode)
+        static public QtLevel GetQTLevel(string str)
         {
-            QtLevel level = QtLevel.None;
-            if (mode == CbSetMode.CBSM_Employee)
+            if (str == QtString.None)
             {
-                if (cb.SelectedIndex == 0)
-                {
-                    level = QtLevel.None;
-                } 
-                else if (cb.SelectedIndex == 1)
-                {
-                    level = QtLevel.Salesman;
-                } 
-                else if (cb.SelectedIndex == 2)
-                {
-                    level = QtLevel.SmallCharge;
-                } 
-                else if (cb.SelectedIndex == 3)
-                {
-                    level = QtLevel.LargeCharge;
-                } 
-                else if (cb.SelectedIndex == 4)
-                {
-                    level = QtLevel.Majordomo;
-                }
-                else
-                {
-                    throw (new TextException("错误的QT索引"));
-                }
-            } 
-            else if (mode == CbSetMode.CBSM_Department)
+                return QtLevel.None;
+            } else if (str == QtString.Salesman)
             {
-                if (cb.SelectedIndex == 0)
-                {
-                    level = QtLevel.None;
-                }
-                else if (cb.SelectedIndex == 1)
-                {
-                    level = QtLevel.SmallCharge;
-                }
-                else if (cb.SelectedIndex == 2)
-                {
-                    level = QtLevel.LargeCharge;
-                }
-                else if (cb.SelectedIndex == 3)
-                {
-                    level = QtLevel.Majordomo;
-                }
-                else
-                {
-                    throw (new TextException("错误的QT索引"));
-                }
-            }
-            else
+                return QtLevel.Salesman;
+            } else if (str == QtString.SmallCharge)
             {
-                throw (new TextException("错误的cb类型"));
+                return QtLevel.SmallCharge;
+            } else if (str == QtString.LargeCharge)
+            {
+                return QtLevel.LargeCharge;
+            } else if (str == QtString.Majordomo)
+            {
+                return QtLevel.Majordomo;
             }
 
+            throw new TextException("错误QT级别字符串");
+        }
 
-            return level;
+        static public string GetQTLevelString(QtLevel level)
+        {
+            if (level == QtLevel.None)
+            {
+                return QtString.None;
+            }
+            else if (level == QtLevel.Salesman)
+            {
+                return QtString.Salesman;
+            }
+            else if (level == QtLevel.SmallCharge)
+            {
+                return QtString.SmallCharge;
+            }
+            else if (level == QtLevel.LargeCharge)
+            {
+                return QtString.LargeCharge;
+            }
+            else if (level == QtLevel.Majordomo)
+            {
+                return QtString.Majordomo;
+            }
+
+            throw new TextException("错误QT级别字符串");
         }
     }
 }

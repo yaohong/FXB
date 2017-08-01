@@ -18,8 +18,8 @@ namespace FXB.MyControl
 
             solidBrush = new SolidBrush(this.RowHeadersDefaultCellStyle.ForeColor);
 
-            //this.RowsDefaultCellStyle.BackColor = Color.Bisque;
-            //this.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
+            this.RowsDefaultCellStyle.BackColor = Color.Bisque;
+            this.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
         }
 
         protected override void OnRowPostPaint(DataGridViewRowPostPaintEventArgs e)

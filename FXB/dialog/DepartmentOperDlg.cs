@@ -9,30 +9,239 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FXB.Common;
 using FXB.Data;
+using FXB.DataManager;
 namespace FXB.Dialog
 {
     public partial class DepartmentOperDlg : Form
     {
-        public DepartmentOperDlg()
+        private EditMode mode;
+        private DepartmentData selectDepartment;
+        private Int64 newDepartmentId;
+        public DepartmentOperDlg(EditMode tmpMode, DepartmentData tmpSelectDepartment)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             InitializeComponent();
+
+            mode = tmpMode;
+            selectDepartment = tmpSelectDepartment;
+
+            newDepartmentId = 0;
+        }
+
+        public Int64 NewDepartmentId
+        {
+            get { return newDepartmentId; }
         }
 
         private void DepartmentOperDlg_Load(object sender, EventArgs e)
         {
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            QtUtil.SetComboxValue(qtLevelSelect, CbSetMode.CBSM_Department);
+            if (mode == EditMode.EM_ADD)
+            {
+                AddInit();
+            } 
+            else
+            {
+                EditInit();
+            } 
+            
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            QtLevel qtLevel = QtUtil.GetQTLevel(qtLevelSelect, CbSetMode.CBSM_Department);
-            SqlMgr.Instance().Init();
+            if (mode == EditMode.EM_ADD)
+            {
+                AddClick();
+            }
+            else
+            {
+                EditClick();
+            }
+            
+        }
+
+        private void AddClick()
+        {
+            if (shangjiIdEdit.Text == "" || shangjiBumenEdit.Text == "")
+            {
+                MessageBox.Show("上级部门信息不能为空");
+                return;
+            }
+
+            if (bumenNameEdit.Text == "")
+            {
+                MessageBox.Show("部门名字不能为空");
+                return;
+            }
+            DialogResult result = MessageBox.Show(string.Format("当前QT等级设置为:{0},设置之后不能修改.", qtLevelSelect.Text), "警告", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            QtLevel qtLevel = QtUtil.GetQTLevel(qtLevelSelect.Text);
+            try
+            {
+                DepartmentData newDepartmentData = DepartmentDataMgr.Instance().AddNewDepartment(selectDepartment, bumenNameEdit.Text, bumenzhuguanEdit.Text, qtLevel);
+                this.DialogResult = DialogResult.OK;
+                newDepartmentId = newDepartmentData.Id;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void EditClick()
+        {
+            if (bumenNameEdit.Text == "")
+            {
+                MessageBox.Show("部门名字不能为空");
+                return;
+            }
+
+            string newBumenName = bumenNameEdit.Text;
+            string newBumenOwner = bumenzhuguanEdit.Text;
+
+            if (newBumenName != selectDepartment.Name || newBumenOwner != selectDepartment.OwnerJobNumber)
+            {
+                try
+                {
+                    DepartmentDataMgr.Instance().ModifyDepartment(selectDepartment.Id, newBumenName, newBumenOwner);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                this.DialogResult = DialogResult.OK;
+                Close();
+            }
+            else
+            {
+                this.DialogResult = DialogResult.Cancel;
+                Close();
+            }
+            
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void DepartmentOperDlg_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            selectDepartment = null;
+        }
+
+        private void departmentSelectBtn_Click(object sender, EventArgs e)
+        {
+            //
+            if (mode == EditMode.EM_EDIT)
+            {
+                return;
+            }
+            DepartmentSelectDlg dlg = new DepartmentSelectDlg();
+            dlg.ShowDialog();
+            if (dlg.SelectDepartment != null)
+            {
+                if (dlg.SelectDepartment.IsMaxLayer())
+                {
+                    MessageBox.Show("只能有四层部门");
+                    dlg.SelectDepartment = null;
+                    return;
+                }
+                selectDepartment = dlg.SelectDepartment;
+                dlg.SelectDepartment = null;
+
+                AddInit();
+            }
+        }
+
+        private void AddInit()
+        {
+            qtLevelSelect.Items.Clear();
+            this.Text = "添加部门";
+            if (selectDepartment != null)
+            {
+                shangjiBumenEdit.Text = selectDepartment.Name;
+                shangjiIdEdit.Text = selectDepartment.Id.ToString();
+                if (selectDepartment.QTLevel != QtLevel.None)
+                {
+                    if (selectDepartment.Layer == 0)
+                    {
+                        //父节点是根节点
+                        qtLevelSelect.Items.Insert(0, QtString.None);
+                        qtLevelSelect.Items.Insert(1, QtString.Majordomo);
+
+                    }
+                    else if (selectDepartment.Layer == 1)
+                    {
+                        //父节点是总监级别,只能设置能大主管
+                        qtLevelSelect.Items.Insert(0, QtString.LargeCharge);
+                    }
+                    else if (selectDepartment.Layer == 2)
+                    {
+                        //父节点是大主管级别,只能设置成小主管
+                        qtLevelSelect.Items.Insert(0, QtString.SmallCharge);
+                    }
+                    else
+                    {
+                        //不会走到这个分支
+                    }
+                }
+                else
+                {
+                    //父节点没有QT级别
+                    if (selectDepartment.Layer == 0)
+                    {
+                        //父节点是根节点,可以选择总结级别和没有QT级别
+                        qtLevelSelect.Items.Insert(0, QtString.None);
+                        qtLevelSelect.Items.Insert(1, QtString.Majordomo);
+                    }
+                    else
+                    {
+                        //子节点不能设置QT级别
+                        qtLevelSelect.Items.Insert(0, QtString.None);
+                    }
+                }
+            }
+            else
+            {
+                QtUtil.SetComboxValue(qtLevelSelect, CbSetMode.CBSM_Department);
+            }
+
+            qtLevelSelect.SelectedIndex = 0;
+        }
+
+
+        void EditInit()
+        {
+            departmentSelectBtn.Enabled = false;
+            qtLevelSelect.Enabled = false;
+
+
+            //获取选择部门的上级部门
+            if (selectDepartment.SuperiorId == 0)
+            {
+                //根目录了
+                shangjiIdEdit.Text = "";
+                shangjiBumenEdit.Text = "";
+            }
+            else
+            {
+                DepartmentData parentDepartment = DepartmentDataMgr.Instance().AllDepartmentData[selectDepartment.SuperiorId];
+                shangjiIdEdit.Text = parentDepartment.Id.ToString();
+                shangjiBumenEdit.Text = parentDepartment.Name;
+            }
+
+            bumenNameEdit.Text = selectDepartment.Name;
+            bumenzhuguanEdit.Text = selectDepartment.OwnerJobNumber;
+
+
+            qtLevelSelect.Items.Clear();
+            qtLevelSelect.Items.Insert(0, QtUtil.GetQTLevelString(selectDepartment.QTLevel));
+            qtLevelSelect.SelectedIndex = 0;
         }
     }
 }

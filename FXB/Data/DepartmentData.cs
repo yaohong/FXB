@@ -7,9 +7,9 @@ using FXB.Common;
 namespace FXB.Data
 {
     //部门数据
-    class DepartmentData
+    public class DepartmentData
     {
-        public DepartmentData(UInt32 tmpId, string tmpName, UInt32 tmpSuperiorId, QtLevel tmpQtLevel)
+        public DepartmentData(Int64 tmpId, string tmpName, Int64 tmpSuperiorId, QtLevel tmpQtLevel)
         {
             if (tmpQtLevel == QtLevel.Salesman)
             {
@@ -21,6 +21,10 @@ namespace FXB.Data
             name = tmpName;
             superiorId = tmpSuperiorId;
             qtLevel = tmpQtLevel;
+
+            childSet = new SortedSet<Int64>();
+
+            layer = -1;
         }
         //部门ID
         private Int64 id;
@@ -34,6 +38,9 @@ namespace FXB.Data
         //部门的QT级别
         private QtLevel qtLevel;
 
+        private SortedSet<Int64> childSet;
+
+        Int32 layer;
         public Int64 Id
         {
             get { return id; }
@@ -47,6 +54,7 @@ namespace FXB.Data
         public string Name
         {
             get { return name; }
+            set { name = value; }
         }
 
         public string OwnerJobNumber
@@ -58,6 +66,36 @@ namespace FXB.Data
         public QtLevel QTLevel
         {
             get {return qtLevel;}
+        }
+
+        public SortedSet<Int64> ChildSet
+        {
+            get { return childSet; }
+        }
+
+        public Int32 Layer
+        {
+            get { return layer; }
+            set
+            {
+                if (layer != -1)
+                {
+                    throw new TextException("层级只能设置一次");
+                }
+
+                if (value < 0 || value > 3)
+                {
+                    //部门关系只能有四层
+                    throw new TextException("错误的层级值");
+                }
+               
+                layer = value;
+            }
+        }
+
+        public bool IsMaxLayer()
+        {
+            return layer == 3;
         }
     }
 }

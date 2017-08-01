@@ -52,15 +52,15 @@ namespace FXB.Data
             set { jobState = value; }
         }
         //入职时间
-        private DateTime entryTime;
-        public DateTime EnteryTime
+        private UInt32 entryTime;
+        public UInt32 EnteryTime
         {
             get { return entryTime; }
             set { entryTime = value; }
         }
         //离职时间
-        private DateTime dimissionTime;
-        public DateTime DimissionTime
+        private UInt32 dimissionTime;
+        public UInt32 DimissionTime
         {
             get { return dimissionTime; }
             set { dimissionTime = value; }
@@ -73,8 +73,8 @@ namespace FXB.Data
             set { idCard = value; }
         }
         //生日
-        private DateTime birthday;
-        public DateTime Birthday
+        private UInt32 birthday;
+        public UInt32 Birthday
         {
             get { return birthday; }
             set { birthday = value; }

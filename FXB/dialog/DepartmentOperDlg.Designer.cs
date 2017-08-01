@@ -36,7 +36,7 @@
             this.bumenNameEdit = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.bumenzhuguanEdit = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.departmentSelectBtn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.saveBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
@@ -110,14 +110,15 @@
             this.bumenzhuguanEdit.Size = new System.Drawing.Size(114, 21);
             this.bumenzhuguanEdit.TabIndex = 7;
             // 
-            // button1
+            // departmentSelectBtn
             // 
-            this.button1.Location = new System.Drawing.Point(216, 48);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "..";
-            this.button1.UseVisualStyleBackColor = true;
+            this.departmentSelectBtn.Location = new System.Drawing.Point(216, 48);
+            this.departmentSelectBtn.Name = "departmentSelectBtn";
+            this.departmentSelectBtn.Size = new System.Drawing.Size(42, 23);
+            this.departmentSelectBtn.TabIndex = 8;
+            this.departmentSelectBtn.Text = "..";
+            this.departmentSelectBtn.UseVisualStyleBackColor = true;
+            this.departmentSelectBtn.Click += new System.EventHandler(this.departmentSelectBtn_Click);
             // 
             // button2
             // 
@@ -176,7 +177,7 @@
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.departmentSelectBtn);
             this.Controls.Add(this.bumenzhuguanEdit);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.bumenNameEdit);
@@ -190,6 +191,7 @@
             this.Name = "DepartmentOperDlg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "新增部门";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DepartmentOperDlg_FormClosed);
             this.Load += new System.EventHandler(this.DepartmentOperDlg_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -206,7 +208,7 @@
         private System.Windows.Forms.TextBox bumenNameEdit;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox bumenzhuguanEdit;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button departmentSelectBtn;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.Button cancelBtn;
