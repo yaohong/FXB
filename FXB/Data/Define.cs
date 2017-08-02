@@ -46,4 +46,5 @@ namespace FXB.Data
 
     //职级过滤的函数
     delegate bool LevelNameFilter(JobGradeData data);
+    delegate bool ProjectFilter(ProjectData data);
 }

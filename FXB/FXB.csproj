@@ -51,6 +51,7 @@
     <Compile Include="DataManager\DepartmentDataMgr.cs" />
     <Compile Include="DataManager\EmployeeDataMgr.cs" />
     <Compile Include="DataManager\JobGradeDataMgr.cs" />
+    <Compile Include="DataManager\ProjectDataMgr.cs" />
     <Compile Include="Data\Define.cs" />
     <Compile Include="Data\DepartmentData.cs" />
     <Compile Include="Data\EmployeeData.cs" />

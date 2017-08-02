@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using FXB.DataManager;
 namespace FXB.Dialog
 {
     public partial class ProjectDataDlg : Form
@@ -27,6 +27,8 @@ namespace FXB.Dialog
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            ProjectDataMgr.Instance().SetDataGridView(dataGridView1);
         }
 
         private void inquireBtn_Click(object sender, EventArgs e)
@@ -60,11 +62,11 @@ namespace FXB.Dialog
             comment.Width = 300;
             dataGridView1.Columns.Add(comment);
 
-            DataGridViewCheckBoxColumn state = new DataGridViewCheckBoxColumn();
-            state.Name = "state";
-            state.HeaderText = "是否可用";
-            state.Width = 80;
-            dataGridView1.Columns.Add(state);
+            DataGridViewCheckBoxColumn available = new DataGridViewCheckBoxColumn();
+            available.Name = "available";
+            available.HeaderText = "是否可用";
+            available.Width = 80;
+            dataGridView1.Columns.Add(available);
         }
     }
 }
