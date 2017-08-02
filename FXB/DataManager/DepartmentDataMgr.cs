@@ -72,12 +72,12 @@ namespace FXB.DataManager
                 }
 
                 SetLayer(rootDepartment.Id, 0);
+                QtCheck(rootDepartment.Id);
             }
             catch (Exception e)
             {
-                allDepartmentData.Clear();
-                rootDepartment = null;
-                throw;
+                MessageBox.Show(e.Message);
+                Application.Exit();
             }
             finally
             {
@@ -270,6 +270,76 @@ namespace FXB.DataManager
                 SetLayer(item, layer);
             }
 
+        }
+
+
+        private void QtCheck(Int64 departmentId)
+        {
+            DepartmentData data = allDepartmentData[departmentId];
+            foreach (var item in data.ChildSet)
+            {
+                DepartmentData childData = allDepartmentData[item];
+                QtLevel childQtLevel = childData.QTLevel;
+                if (data.QTLevel == QtLevel.None)
+                {
+                    if (data.Layer == 0)
+                    {
+
+                        if (childQtLevel != QtLevel.None && childQtLevel != QtLevel.Majordomo && childQtLevel != QtLevel.ZhuchangZongjian)
+                        {
+                            throw new TextException("Qt关系错误1");
+                        }
+                    }
+                    else
+                    {
+                        if (childQtLevel != QtLevel.None)
+                        {
+                            throw new TextException("Qt关系错误2");
+                        }
+                    }
+                }
+                else if (data.QTLevel == QtLevel.ZhuchangZongjian)
+                {
+                    if (childQtLevel != QtLevel.ZhuchangZhuguan)
+                    {
+                        throw new TextException("Qt关系错误3");
+                    }
+                }
+                else if (data.QTLevel == QtLevel.ZhuchangZhuguan)
+                {
+                    if (childData.ChildSet.Count != 0)
+                    {
+                        throw new TextException("Qt关系错误4");
+                    }
+                }
+                else if (data.QTLevel == QtLevel.Majordomo)
+                {
+                    if (childQtLevel != QtLevel.LargeCharge)
+                    {
+                        throw new TextException("Qt关系错误5");
+                    }
+                }
+                else if (data.QTLevel == QtLevel.LargeCharge)
+                {
+                    if (childQtLevel != QtLevel.SmallCharge)
+                    {
+                        throw new TextException("Qt关系错误6");
+                    }
+                }
+                else if (data.QTLevel == QtLevel.SmallCharge)
+                {
+                    if (childData.ChildSet.Count != 0)
+                    {
+                        throw new TextException("Qt关系错误7");
+                    }
+                }
+                else
+                {
+                    throw new TextException("Qt关系错误8");
+                }
+
+                QtCheck(item);
+            }
         }
     }
 }

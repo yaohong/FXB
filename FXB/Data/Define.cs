@@ -38,10 +38,10 @@ namespace FXB.Data
     public class QtString
     {
         static readonly public string None = "没有QT级别";
-        static readonly public string Salesman = "业务员";
-        static readonly public string SmallCharge = "小主管";
-        static readonly public string LargeCharge = "大主管";
-        static readonly public string Majordomo = "总监";
+        static readonly public string Salesman = "QT业务员";
+        static readonly public string SmallCharge = "QT小主管";
+        static readonly public string LargeCharge = "QT大主管";
+        static readonly public string Majordomo = "QT总监";
 
         static readonly public string ZhuchangZhuanyuan = "驻场专员";
         static readonly public string ZhuchangZhuguan = "驻场主管";

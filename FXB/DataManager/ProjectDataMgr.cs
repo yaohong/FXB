@@ -59,8 +59,8 @@ namespace FXB.DataManager
             }
             catch (Exception e)
             {
-                allProjectData.Clear();
-                throw;
+                MessageBox.Show(e.Message);
+                Application.Exit();
             }
             finally
             {

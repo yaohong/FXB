@@ -58,8 +58,8 @@ namespace FXB.DataManager
             }
             catch (Exception e)
             {
-                allJobGradeData.Clear();
-                throw;
+                MessageBox.Show(e.Message);
+                Application.Exit();
             }
             finally
             {
