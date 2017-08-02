@@ -195,25 +195,23 @@ namespace FXB.DataManager
             }
         }
 
-        public void SetDataGridView(DataGridView gridView, ProjectFilter filter)
+        public void SetDataGridView(DataGridView gridView, DataFilter filter)
         {
-            //gridView.Rows.Clear();
-            //foreach (var item in allJobGradeData)
-            //{
-            //    JobGradeData data = item.Value;
-            //    if (filter(data))
-            //    {
-            //        int lineIndex = gridView.Rows.Add();
+            gridView.Rows.Clear();
+            foreach (var item in allProjectData)
+            {
+                ProjectData data = item.Value;
+                if (filter(data))
+                {
+                    int lineIndex = gridView.Rows.Add();
 
-            //        gridView.Rows[lineIndex].Cells["zhiji"].Value = item.Value.LevelName;
-            //        gridView.Rows[lineIndex].Cells["xulie"].Value = item.Value.XuLie;
-            //        gridView.Rows[lineIndex].Cells["dixin"].Value = item.Value.BaseSalary;
-            //        gridView.Rows[lineIndex].Cells["beizhu"].Value = item.Value.Comment;
-            //    }
-
-
-
-            //}
+                    gridView.Rows[lineIndex].Cells["name"].Value = item.Value.Name;
+                    gridView.Rows[lineIndex].Cells["code"].Value = item.Value.Code;
+                    gridView.Rows[lineIndex].Cells["address"].Value = item.Value.Address;
+                    gridView.Rows[lineIndex].Cells["comment"].Value = item.Value.Comment;
+                    gridView.Rows[lineIndex].Cells["available"].Value = item.Value.IsAvailable;
+                }
+            }
         }
     }
 }

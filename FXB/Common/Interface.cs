@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace FXB.Common
 {
-    interface DbUpdateInterface
+    interface DBUpdateInterface
     {
         void DbRefresh();
+    }
+
+
+    interface BasicDataInterface
+    {
+        
     }
 }

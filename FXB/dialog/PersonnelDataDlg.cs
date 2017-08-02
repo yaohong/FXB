@@ -12,7 +12,7 @@ using FXB.Data;
 using FXB.DataManager;
 namespace FXB.Dialog
 {
-    public partial class PersonnelDataDlg : Form, DbUpdateInterface
+    public partial class PersonnelDataDlg : Form, DBUpdateInterface
     {
         public PersonnelDataDlg()
         {

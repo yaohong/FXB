@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using FXB.Common;
 namespace FXB.Data
 {
     //职级数据
-    public class JobGradeData
+    public class JobGradeData : BasicDataInterface
     {
         //级别
         public JobGradeData(string tmpLevelName, string tmpXuLie, Int32 tmpBaseSalary, string tmpComment)

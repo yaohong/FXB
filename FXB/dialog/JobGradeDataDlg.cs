@@ -12,7 +12,7 @@ using FXB.Data;
 using FXB.Common;
 namespace FXB.Dialog
 {
-    public partial class JobGradeDataDlg : Form, DbUpdateInterface
+    public partial class JobGradeDataDlg : Form, DBUpdateInterface
     {
         public JobGradeDataDlg()
         {
@@ -35,8 +35,9 @@ namespace FXB.Dialog
         }
 
         //职级过滤的函数
-        private bool levelNameInquire(JobGradeData data)
+        private bool levelNameInquire(BasicDataInterface bd)
         {
+            JobGradeData data = bd as JobGradeData;
             if (keyEdit.Text == "")
             {
                 return true;

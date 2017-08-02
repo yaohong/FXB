@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using FXB.Common;
 namespace FXB.Data
 {
-    public class ProjectData
+    public class ProjectData : BasicDataInterface
     {
         public ProjectData(string tmpName, string tmpCode, string tmpAddress, string tmpComment, bool tmpIsAvailable)
         {

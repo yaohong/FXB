@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using FXB.Common;
 namespace FXB.Data
 {
     //qt级别
@@ -45,6 +45,5 @@ namespace FXB.Data
     }
 
     //职级过滤的函数
-    delegate bool LevelNameFilter(JobGradeData data);
-    delegate bool ProjectFilter(ProjectData data);
+    delegate bool DataFilter(BasicDataInterface data);
 }

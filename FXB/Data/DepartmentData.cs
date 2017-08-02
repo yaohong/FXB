@@ -7,7 +7,7 @@ using FXB.Common;
 namespace FXB.Data
 {
     //部门数据
-    public class DepartmentData
+    public class DepartmentData : BasicDataInterface
     {
         public DepartmentData(Int64 tmpId, string tmpName, Int64 tmpSuperiorId, QtLevel tmpQtLevel)
         {

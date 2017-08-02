@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\DbUpdateInterface.cs" />
+    <Compile Include="Common\Interface.cs" />
     <Compile Include="Common\QtUtil.cs" />
     <Compile Include="Common\SqlMgr.cs" />
     <Compile Include="Common\TextException.cs" />

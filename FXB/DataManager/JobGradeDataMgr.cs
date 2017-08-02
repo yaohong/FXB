@@ -200,7 +200,7 @@ namespace FXB.DataManager
             }
         }
 
-        public void SetDataGridView(DataGridView gridView, LevelNameFilter filter)
+        public void SetDataGridView(DataGridView gridView,  DataFilter filter)
         {
             gridView.Rows.Clear();
             foreach (var item in allJobGradeData)
