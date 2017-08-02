@@ -49,12 +49,12 @@ namespace FXB.DataManager
                 reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    string name = reader.GetString(0);
-                    string code = reader.GetString(1);
+                    string code = reader.GetString(0);
+                    string name = reader.GetString(1);
                     string address = reader.GetString(2);
                     string comment = reader.GetString(3);
                     bool availbale = reader.GetBoolean(4);
-                    AddProjectToCache(name, code, address, comment, availbale);
+                    AddProjectToCache(code, name, address, comment, availbale);
                 }
             }
             catch (Exception e)
@@ -72,41 +72,41 @@ namespace FXB.DataManager
             }
         }
 
-        private ProjectData AddProjectToCache(string name, string code, string address, string comment, bool availbale)
+        private ProjectData AddProjectToCache(string code, string name, string address, string comment, bool availbale)
         {
-            if (allProjectData.ContainsKey(name))
+            if (allProjectData.ContainsKey(code))
             {
                 throw new TextException(string.Format("项目重复:{0}", name));
             }
 
-            ProjectData newProject = new ProjectData(name, code, address, comment, availbale);
+            ProjectData newProject = new ProjectData(code, name, address, comment, availbale);
 
-            allProjectData.Add(name, newProject);
+            allProjectData.Add(code, newProject);
             return newProject;
         }
 
 
-        public void AddNewProject(string name, string code, string address, string comment, bool availbale)
+        public void AddNewProject(string code, string name, string address, string comment, bool availbale)
         {
             //添加新的副本
             try
             {
-                if (allProjectData.ContainsKey(name))
+                if (allProjectData.ContainsKey(code))
                 {
-                    throw new TextException(string.Format("项目重复:{0}", name));
+                    throw new TextException(string.Format("项目重复:{0}", code));
                 }
                 SqlCommand command = new SqlCommand();
                 command.Connection = SqlMgr.Instance().SqlConnect;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO project(name,code,address,comment,availbale) VALUES(@name,@code,@address,@comment,@availbale)";
-                command.Parameters.AddWithValue("@name", name);
+                command.CommandText = "INSERT INTO project(code,name,address,comment,availbale) VALUES(@code,@name,@address,@comment,@availbale)";
                 command.Parameters.AddWithValue("@code", code);
+                command.Parameters.AddWithValue("@name", name);
                 command.Parameters.AddWithValue("@address", address);
                 command.Parameters.AddWithValue("@comment", comment);
                 command.Parameters.AddWithValue("@availbale", availbale);
                 command.ExecuteScalar();
 
-                AddProjectToCache(name, code, address, comment, availbale);
+                AddProjectToCache(code, name, address, comment, availbale);
 
             }
             catch (SqlException e1)
@@ -119,23 +119,23 @@ namespace FXB.DataManager
             }
         }
 
-        public void ModifyProject(string name, string newCode, string newAddress, string newComment, bool newAvailbale)
+        public void ModifyProject(string code, string newName, string newAddress, string newComment, bool newAvailbale)
         {
             try
             {
-                ProjectData data = allProjectData[name];
+                ProjectData data = allProjectData[code];
                 SqlCommand command = new SqlCommand();
                 command.Connection = SqlMgr.Instance().SqlConnect;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "update project set code=@code,address=@address,comment=@comment,availbale=@availbale where name=@name";
-                command.Parameters.AddWithValue("@code", newCode);
+                command.CommandText = "update project set name=@name,address=@address,comment=@comment,availbale=@availbale where code=@code";
+                command.Parameters.AddWithValue("@name", newName);
                 command.Parameters.AddWithValue("@address", newAddress);
                 command.Parameters.AddWithValue("@comment", newComment);
                 command.Parameters.AddWithValue("@availbale", newAvailbale);
-                command.Parameters.AddWithValue("@name", name);
+                command.Parameters.AddWithValue("@code", code);
                 command.ExecuteScalar();
 
-                data.Code = newCode;
+                data.Name = newName;
                 data.Address = newAddress;
                 data.Comment = newComment;
                 data.IsAvailable = newAvailbale;
@@ -151,21 +151,21 @@ namespace FXB.DataManager
             }
         }
 
-        public void DeleteJobGrade(string name)
+        public void DeleteProject(string code)
         {
 
             try
             {
-                ProjectData data = allProjectData[name];
+                ProjectData data = allProjectData[code];
                 SqlCommand command = new SqlCommand();
                 command.Connection = SqlMgr.Instance().SqlConnect;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "delete from project where name=@name";
-                command.Parameters.AddWithValue("@name", name);
+                command.CommandText = "delete from project where code=@code";
+                command.Parameters.AddWithValue("@code", code);
                 command.ExecuteScalar();
 
                 //从缓存中删除
-                allProjectData.Remove(name);
+                allProjectData.Remove(code);
 
             }
             catch (SqlException e1)

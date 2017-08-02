@@ -23,11 +23,11 @@ namespace FXB.Dialog
             get { return newLevelName; }
         }
 
-        public JobGradeOperDlg(EditMode tmpMode)
+        public JobGradeOperDlg()
         {
             InitializeComponent();
 
-            mode = tmpMode;
+            mode = EditMode.EM_ADD;
         }
 
         public JobGradeOperDlg(JobGradeData tmpGradeData)
@@ -68,6 +68,7 @@ namespace FXB.Dialog
 
         private void JobGradeOperDlg_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             if (mode == EditMode.EM_ADD)
             {
                 AddInit();
@@ -172,6 +173,11 @@ namespace FXB.Dialog
             }
 
 
+        }
+
+        private void JobGradeOperDlg_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            jobGradeData = null;
         }
     }
 }

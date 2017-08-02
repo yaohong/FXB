@@ -54,6 +54,7 @@ namespace FXB
                 SqlMgr.Instance().Init();
                 DepartmentDataMgr.Instance().Load();
                 JobGradeDataMgr.Instance().Load();
+                ProjectDataMgr.Instance().Load();
             }
             catch (Exception ex)
             {

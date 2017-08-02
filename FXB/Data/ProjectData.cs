@@ -8,7 +8,7 @@ namespace FXB.Data
 {
     public class ProjectData : BasicDataInterface
     {
-        public ProjectData(string tmpName, string tmpCode, string tmpAddress, string tmpComment, bool tmpIsAvailable)
+        public ProjectData(string tmpCode, string tmpName, string tmpAddress, string tmpComment, bool tmpIsAvailable)
         {
             name = tmpName;
             code = tmpCode;
@@ -27,16 +27,18 @@ namespace FXB.Data
         //是否可用
         private bool isAvailable;
 
-        public String Name
-        {
-            get { return name; }
-        }
-
         public String Code
         {
             get { return code; }
-            set { code = value; }
         }
+
+        public String Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+
 
         public String Address
         {

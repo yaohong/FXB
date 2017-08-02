@@ -147,6 +147,7 @@
             this.Name = "JobGradeOperDlg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "职级编辑";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.JobGradeOperDlg_FormClosed);
             this.Load += new System.EventHandler(this.JobGradeOperDlg_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

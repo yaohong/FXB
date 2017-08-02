@@ -108,13 +108,14 @@ namespace FXB.Dialog
                 try
                 {
                     DepartmentDataMgr.Instance().ModifyDepartment(selectDepartment.Id, newBumenName, newBumenOwner);
+                    this.DialogResult = DialogResult.OK;
+                    Close();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-                this.DialogResult = DialogResult.OK;
-                Close();
+                
             }
             else
             {
@@ -139,6 +140,7 @@ namespace FXB.Dialog
             //
             if (mode == EditMode.EM_EDIT)
             {
+                //只有添加模式才能选择上级
                 return;
             }
             DepartmentSelectDlg dlg = new DepartmentSelectDlg();
@@ -151,6 +153,14 @@ namespace FXB.Dialog
                     dlg.SelectDepartment = null;
                     return;
                 }
+
+                if (dlg.SelectDepartment.QTLevel == QtLevel.ZhuchangZhuguan)
+                {
+                    MessageBox.Show("驻场只能有三层部门");
+                    dlg.SelectDepartment = null;
+                    return;
+                }
+
                 selectDepartment = dlg.SelectDepartment;
                 dlg.SelectDepartment = null;
 
@@ -173,21 +183,46 @@ namespace FXB.Dialog
                         //父节点是根节点
                         qtLevelSelect.Items.Insert(0, QtString.None);
                         qtLevelSelect.Items.Insert(1, QtString.Majordomo);
+                        qtLevelSelect.Items.Insert(2, QtString.ZhuchangZongjian);
 
                     }
                     else if (selectDepartment.Layer == 1)
                     {
-                        //父节点是总监级别,只能设置能大主管
-                        qtLevelSelect.Items.Insert(0, QtString.LargeCharge);
+                        //父节点是总监级别,只能设置能大主管或者驻场总监
+                        if (selectDepartment.QTLevel == QtLevel.Majordomo)
+                        {
+                            qtLevelSelect.Items.Insert(0, QtString.LargeCharge);
+                        }
+                        else if (selectDepartment.QTLevel == QtLevel.ZhuchangZongjian)
+                        {
+                            qtLevelSelect.Items.Insert(0, QtString.ZhuchangZhuguan);
+                        }
+                        else
+                        {
+                            MessageBox.Show("部门关系错误1");
+                            Application.Exit();
+                        }
+                        
                     }
                     else if (selectDepartment.Layer == 2)
                     {
-                        //父节点是大主管级别,只能设置成小主管
-                        qtLevelSelect.Items.Insert(0, QtString.SmallCharge);
+                        //父节点是大主管级别或者驻场主管
+                        if (selectDepartment.QTLevel == QtLevel.LargeCharge)
+                        {
+                            qtLevelSelect.Items.Insert(0, QtString.SmallCharge);
+                        } 
+                        else
+                        {
+                            MessageBox.Show("部门关系错误2");
+                            Application.Exit();
+                        }
+                        
                     }
                     else
                     {
                         //不会走到这个分支
+                        MessageBox.Show("部门关系错误3");
+                        Application.Exit();
                     }
                 }
                 else
@@ -195,9 +230,10 @@ namespace FXB.Dialog
                     //父节点没有QT级别
                     if (selectDepartment.Layer == 0)
                     {
-                        //父节点是根节点,可以选择总结级别和没有QT级别
+                        //父节点是根节点,可以选择总结级别和没有QT级别和驻场总监
                         qtLevelSelect.Items.Insert(0, QtString.None);
                         qtLevelSelect.Items.Insert(1, QtString.Majordomo);
+                        qtLevelSelect.Items.Insert(1, QtString.ZhuchangZongjian);
                     }
                     else
                     {

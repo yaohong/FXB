@@ -27,6 +27,12 @@ namespace FXB.Data
         // 摘要: 
         //     总监。
         Majordomo = 4,
+
+
+
+        ZhuchangZhuanyuan = 5,
+        ZhuchangZhuguan = 6,
+        ZhuchangZongjian = 7
     }
 
     public class QtString
@@ -36,6 +42,10 @@ namespace FXB.Data
         static readonly public string SmallCharge = "小主管";
         static readonly public string LargeCharge = "大主管";
         static readonly public string Majordomo = "总监";
+
+        static readonly public string ZhuchangZhuanyuan = "驻场专员";
+        static readonly public string ZhuchangZhuguan = "驻场主管";
+        static readonly public string ZhuchangZongjian = "驻场总监";
     }
 
     public enum EditMode

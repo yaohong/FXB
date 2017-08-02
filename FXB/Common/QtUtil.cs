@@ -24,7 +24,9 @@ namespace FXB.Common
                 cb.Items.Insert(2, QtString.SmallCharge);
                 cb.Items.Insert(3, QtString.LargeCharge);
                 cb.Items.Insert(4, QtString.Majordomo);
-
+                cb.Items.Insert(5, QtString.ZhuchangZhuanyuan);
+                cb.Items.Insert(6, QtString.ZhuchangZhuguan);
+                cb.Items.Insert(7, QtString.ZhuchangZongjian);
                 cb.SelectedIndex = 0;
                 return;
             }
@@ -36,6 +38,8 @@ namespace FXB.Common
                 cb.Items.Insert(2, QtString.LargeCharge);
                 cb.Items.Insert(3, QtString.Majordomo);
 
+                cb.Items.Insert(4, QtString.ZhuchangZhuguan);
+                cb.Items.Insert(5, QtString.ZhuchangZongjian);
                 cb.SelectedIndex = 0;
                 return;
             }
@@ -47,19 +51,36 @@ namespace FXB.Common
             if (str == QtString.None)
             {
                 return QtLevel.None;
-            } else if (str == QtString.Salesman)
+            } 
+            else if (str == QtString.Salesman)
             {
                 return QtLevel.Salesman;
-            } else if (str == QtString.SmallCharge)
+            } 
+            else if (str == QtString.SmallCharge)
             {
                 return QtLevel.SmallCharge;
-            } else if (str == QtString.LargeCharge)
+            } 
+            else if (str == QtString.LargeCharge)
             {
                 return QtLevel.LargeCharge;
-            } else if (str == QtString.Majordomo)
+            } 
+            else if (str == QtString.Majordomo)
             {
                 return QtLevel.Majordomo;
+            } 
+            else if (str == QtString.ZhuchangZhuanyuan)
+            {
+                return QtLevel.ZhuchangZhuanyuan;
             }
+            else if (str == QtString.ZhuchangZhuguan)
+            {
+                return QtLevel.ZhuchangZhuguan;
+            }
+            else if (str == QtString.ZhuchangZongjian)
+            {
+                return QtLevel.ZhuchangZongjian;
+            }
+
 
             throw new TextException("错误QT级别字符串");
         }
@@ -85,6 +106,18 @@ namespace FXB.Common
             else if (level == QtLevel.Majordomo)
             {
                 return QtString.Majordomo;
+            }
+            else if (level == QtLevel.ZhuchangZhuanyuan)
+            {
+                return QtString.ZhuchangZhuanyuan;
+            }
+            else if (level == QtLevel.ZhuchangZhuguan)
+            {
+                return QtString.ZhuchangZhuguan;
+            }
+            else if (level == QtLevel.ZhuchangZongjian)
+            {
+                return QtString.ZhuchangZongjian;
             }
 
             throw new TextException("错误QT级别字符串");

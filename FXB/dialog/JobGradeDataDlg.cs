@@ -30,7 +30,8 @@ namespace FXB.Dialog
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
+            dataGridView1.MultiSelect = false;
+            dataGridView1.ReadOnly = true;
             JobGradeDataMgr.Instance().SetDataGridView(dataGridView1);
         }
 
@@ -90,7 +91,7 @@ namespace FXB.Dialog
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            JobGradeOperDlg dlg = new JobGradeOperDlg(EditMode.EM_ADD);
+            JobGradeOperDlg dlg = new JobGradeOperDlg();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 if (dlg.NewLevelName != "")

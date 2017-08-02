@@ -105,6 +105,12 @@
     <Compile Include="Dialog\ProjectDataDlg.Designer.cs">
       <DependentUpon>ProjectDataDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\ProjectOperDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\ProjectOperDlg.Designer.cs">
+      <DependentUpon>ProjectOperDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyControl\MyDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -145,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\ProjectDataDlg.resx">
       <DependentUpon>ProjectDataDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\ProjectOperDlg.resx">
+      <DependentUpon>ProjectOperDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

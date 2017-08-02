@@ -36,10 +36,13 @@ namespace FXB.Dialog
             //this.DoubleBuffered = true;
 
             //禁止改变表格的大小
+            dataGridView1.AllowUserToAddRows = false;       //不显示插入行
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
-
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+            dataGridView1.ReadOnly = true;
 
             DepartmentDataMgr.Instance().SetTreeView(treeView1);
         }
@@ -56,6 +59,12 @@ namespace FXB.Dialog
                 if (selectDepartment.IsMaxLayer())
                 {
                     MessageBox.Show("只能有四层部门");
+                    return;
+                }
+
+                if (selectDepartment.QTLevel == QtLevel.ZhuchangZhuguan)
+                {
+                    MessageBox.Show("驻场只能有三层部门");
                     return;
                 }
             }
