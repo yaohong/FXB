@@ -93,7 +93,7 @@ namespace FXB.DataManager
             {
                 if (allJobGradeData.ContainsKey(levelName))
                 {
-                    throw new TextException("职级重复添加");
+                    throw new TextException(string.Format("职级重复添加:{0}", levelName));
                 }
                 SqlCommand command = new SqlCommand();
                 command.Connection = SqlMgr.Instance().SqlConnect;

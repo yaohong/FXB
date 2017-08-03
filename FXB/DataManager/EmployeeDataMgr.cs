@@ -41,10 +41,10 @@ namespace FXB.DataManager
                 return allEmployeeData;
             }
         }
-        public void AddEmployeeData(
+        public void AddEmployeeDataToCache(
             string jobNumber,
             string name,
-            UInt32 departmentId,
+            Int64 departmentId,
             string jobGradeName,
             QtLevel qtLevel,
             string phoneNumber,
@@ -67,11 +67,13 @@ namespace FXB.DataManager
         {
             if (allEmployeeData.ContainsKey(jobNumber))
             {
-                throw new TextException("工号重复");
+                throw new TextException(string.Format("工号重复:{0}", jobNumber));
             }
             //检测部门关系
-
-            //写入DB
+            if (!CheckDepartmentRelation(qtLevel, departmentId))
+            {
+                throw new TextException("员工QT级别和部门QT级别对应不上");
+            }
 
             //添加到缓存
             EmployeeData newEmployeeData = new EmployeeData(jobNumber);
@@ -96,6 +98,20 @@ namespace FXB.DataManager
             newEmployeeData.Comment = comment;
             newEmployeeData.QTLevel = qtLevel;
             allEmployeeData.Add(jobNumber, newEmployeeData);
+        }
+
+
+        bool CheckDepartmentRelation(QtLevel roleQtLeve, Int64 departmentId)
+        {
+            if (departmentId == 0)
+            {
+                //没有加入部门
+                return true;
+            }
+
+            DepartmentData ownerDepartmentData = DepartmentDataMgr.Instance().AllDepartmentData[departmentId];
+
+            return false;
         }
     }
 }

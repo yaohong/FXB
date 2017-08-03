@@ -27,8 +27,8 @@ namespace FXB.Data
             set { name = value; }
         }
         //所属部门(部门id)
-        private UInt32 departmentId;
-        public UInt32 DepartmentId
+        private Int64 departmentId;
+        public Int64 DepartmentId
         {
             get { return departmentId; }
             set { departmentId = value; }
