@@ -122,7 +122,7 @@ namespace FXB.Dialog
 
         private void AddPersonnelBtn_Click(object sender, EventArgs e)
         {
-            EmployeeOperDlg dlg = new EmployeeOperDlg(EditMode.EM_ADD);
+            EmployeeOperDlg dlg = new EmployeeOperDlg();
             dlg.ShowDialog();
         }
 

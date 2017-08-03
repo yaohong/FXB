@@ -46,7 +46,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.shenfenzhengEdit = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.shengriTime = new System.Windows.Forms.DateTimePicker();
+            this.shengriEdit = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
             this.xingbieSelect = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -73,7 +73,7 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.beizhuEdit = new System.Windows.Forms.TextBox();
-            this.jobStateCb = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -224,12 +224,12 @@
             this.label9.TabIndex = 18;
             this.label9.Text = "出生日期:";
             // 
-            // shengriTime
+            // shengriEdit
             // 
-            this.shengriTime.Location = new System.Drawing.Point(498, 39);
-            this.shengriTime.Name = "shengriTime";
-            this.shengriTime.Size = new System.Drawing.Size(219, 21);
-            this.shengriTime.TabIndex = 19;
+            this.shengriEdit.Location = new System.Drawing.Point(498, 39);
+            this.shengriEdit.Name = "shengriEdit";
+            this.shengriEdit.Size = new System.Drawing.Size(219, 21);
+            this.shengriEdit.TabIndex = 19;
             // 
             // label10
             // 
@@ -242,7 +242,6 @@
             // 
             // xingbieSelect
             // 
-            this.xingbieSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.xingbieSelect.FormattingEnabled = true;
             this.xingbieSelect.Location = new System.Drawing.Point(498, 67);
             this.xingbieSelect.Name = "xingbieSelect";
@@ -449,22 +448,22 @@
             this.beizhuEdit.Size = new System.Drawing.Size(219, 94);
             this.beizhuEdit.TabIndex = 46;
             // 
-            // jobStateCb
+            // checkBox1
             // 
-            this.jobStateCb.AutoSize = true;
-            this.jobStateCb.Location = new System.Drawing.Point(81, 206);
-            this.jobStateCb.Name = "jobStateCb";
-            this.jobStateCb.Size = new System.Drawing.Size(162, 16);
-            this.jobStateCb.TabIndex = 47;
-            this.jobStateCb.Text = "勾选为在职,不勾选为离职";
-            this.jobStateCb.UseVisualStyleBackColor = true;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(81, 206);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(162, 16);
+            this.checkBox1.TabIndex = 47;
+            this.checkBox1.Text = "勾选为在职,不勾选为离职";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // EmployeeOperDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(747, 364);
-            this.Controls.Add(this.jobStateCb);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.beizhuEdit);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.saveBtn);
@@ -491,7 +490,7 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.xingbieSelect);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.shengriTime);
+            this.Controls.Add(this.shengriEdit);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.shenfenzhengEdit);
             this.Controls.Add(this.label8);
@@ -543,7 +542,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox shenfenzhengEdit;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DateTimePicker shengriTime;
+        private System.Windows.Forms.DateTimePicker shengriEdit;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox xingbieSelect;
         private System.Windows.Forms.Label label11;
@@ -570,6 +569,6 @@
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.TextBox beizhuEdit;
-        private System.Windows.Forms.CheckBox jobStateCb;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

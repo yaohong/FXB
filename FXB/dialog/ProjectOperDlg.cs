@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FXB.Data;
 using FXB.DataManager;
+using FXB.Common;
 namespace FXB.Dialog
 {
     public partial class ProjectOperDlg : Form
@@ -46,35 +47,7 @@ namespace FXB.Dialog
             }
         }
 
-        bool cbStateToBool(CheckState state)
-        {
-            if (state == CheckState.Checked)
-            {
-                return true;
-            }
-            else if (state == CheckState.Unchecked)
-            {
-                return false;
-            }
-            else
-            {
-                return false;
-            }
 
-
-        }
-
-        CheckState boolToCbState(bool bl)
-        {
-            if (bl)
-            {
-                return CheckState.Checked;
-            } 
-            else 
-            {
-                return CheckState.Unchecked;
-            }
-        }
 
 
         private void AddClick()
@@ -100,7 +73,7 @@ namespace FXB.Dialog
 
             try
             {
-                bool isAvailable = cbStateToBool(availableCheckBox.CheckState);
+                bool isAvailable = CheckBoxUtil.cbStateToBool(availableCheckBox.CheckState);
                 ProjectDataMgr.Instance().AddNewProject(codeEdi.Text, nameEdi.Text, addressEdi.Text, commentEdi.Text, isAvailable);
                 newCode = codeEdi.Text;
                 DialogResult = DialogResult.OK;
@@ -135,13 +108,13 @@ namespace FXB.Dialog
             if (nameEdi.Text != projectData.Name ||
                 addressEdi.Text != projectData.Address ||
                 commentEdi.Text != projectData.Comment ||
-                availableCheckBox.CheckState != boolToCbState(projectData.IsAvailable)
+                availableCheckBox.CheckState != CheckBoxUtil.boolToCbState(projectData.IsAvailable)
                 )
             {
                 //發生變更了
                 try
                 {
-                    ProjectDataMgr.Instance().ModifyProject(projectData.Code, nameEdi.Text, addressEdi.Text, commentEdi.Text, cbStateToBool(availableCheckBox.CheckState));
+                    ProjectDataMgr.Instance().ModifyProject(projectData.Code, nameEdi.Text, addressEdi.Text, commentEdi.Text, CheckBoxUtil.cbStateToBool(availableCheckBox.CheckState));
                     DialogResult = DialogResult.OK;
                     Close();
                 }
@@ -190,7 +163,7 @@ namespace FXB.Dialog
             nameEdi.Text = projectData.Name;
             addressEdi.Text = projectData.Address;
             commentEdi.Text = projectData.Comment;
-            availableCheckBox.CheckState = boolToCbState(projectData.IsAvailable);
+            availableCheckBox.CheckState = CheckBoxUtil.boolToCbState(projectData.IsAvailable);
         }
 
         private void ProjectOperDlg_FormClosed(object sender, FormClosedEventArgs e)

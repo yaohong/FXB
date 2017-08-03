@@ -82,7 +82,7 @@ namespace FXB.Data
             get { return birthday; }
             set { birthday = value; }
         }
-        //性别
+        //性别 true男 flase女
         private bool sex;
         public bool Sex
         {

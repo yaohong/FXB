@@ -45,6 +45,21 @@ namespace FXB.Common
             }
         }
 
+        static public int GetComboxIndex(ComboBox cb, QtLevel qtLevel)
+        {
+            for (int i=0; i<cb.Items.Count; i++) 
+            {
+                string strItem = cb.Items[i] as string;
+                string strQtLevel = GetQTLevelString(qtLevel);
+                if (strItem == strQtLevel)
+                {
+                    return i;
+                }
+            }
+
+            throw new TextException("GetComboxIndex qtLevel exception");
+        }
+
 
         static public QtLevel GetQTLevel(string str)
         {

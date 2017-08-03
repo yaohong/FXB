@@ -9,15 +9,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FXB.Common;
 using FXB.Data;
+using FXB.DataManager;
 namespace FXB.Dialog
 {
 
     public partial class EmployeeOperDlg : Form
     {
-        private EditMode mode_;
-        public EmployeeOperDlg(EditMode mode)
+        private EditMode mode;
+        private EmployeeData employeeData;
+        public EmployeeOperDlg()
         {
-            mode_ = mode;
+            mode = EditMode.EM_ADD;
+            InitializeComponent();
+        }
+
+        public EmployeeOperDlg(EmployeeData selectEmployeeData)
+        {
+            mode = EditMode.EM_EDIT;
+            employeeData = selectEmployeeData;
             InitializeComponent();
         }
 
@@ -25,11 +34,57 @@ namespace FXB.Dialog
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             QtUtil.SetComboxValue(qtLevelSelect, CbSetMode.CBSM_Employee);
+            bumenEdit.Enabled = false;
+            zhijiEdit.Enabled = false;
+            xingbieSelect.Items.Insert(0, "男");
+            xingbieSelect.Items.Insert(1, "女");
+
+            if (mode == EditMode.EM_ADD)
+            {
+                AddInit();
+            }
+            else
+            {
+                EditInit();
+            }
+        }
+
+        private void AddInit()
+        {
+
+        }
+
+
+        private void EditInit()
+        {
+            gonghaoEdit.Enabled = false;
+            gonghaoEdit.Text = employeeData.JobNumber;
+            xingmingEdit.Text = employeeData.Name;
+            qtLevelSelect.SelectedIndex = QtUtil.GetComboxIndex(qtLevelSelect, employeeData.QTLevel);
+            bumenEdit.Text = DepartmentUtil.GetDepartmentShowText(employeeData.DepartmentId);
+            zhijiEdit.Text = employeeData.JobGradeName;
+            dianhuaEdit.Text = employeeData.PhoneNumber;
+            ruzhiTime.Value = TimeUtil.TimestampToDatetTime(employeeData.EnteryTime);
+            jobStateCb.CheckState = CheckBoxUtil.boolToCbState(employeeData.JobState);
+            lizhiTime.Value = TimeUtil.TimestampToDatetTime(employeeData.DimissionTime);
+            beizhuEdit.Text = employeeData.Comment;
+
+            shenfenzhengEdit.Text = employeeData.IdCard;
+            shengriTime.Value = TimeUtil.TimestampToDatetTime(employeeData.Birthday);
+            xingbieSelect.SelectedIndex = employeeData.Sex ? 0 : 1;
+            jiguanEdit.Text = employeeData.EthnicAndOrigin;
+            juzhudizhiEdit.Text = employeeData.ResidentialAddress;
+            xueliEdit.Text = employeeData.Education;
+            biyexuexiaoEdit.Text = employeeData.SchoolTag;
+            zhuanyeEdit.Text = employeeData.Specialities;
+            jjlianxirenEdit.Text = employeeData.EmergencyContact;
+            jjDianhuaEdit.Text = employeeData.EmergencyTelephoneNumber;
+            jieshaorenEdit.Text = employeeData.Introducer;
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            QtLevel qtLevel = QtUtil.GetQTLevel(qtLevelSelect.Text);
+            
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -40,6 +95,11 @@ namespace FXB.Dialog
         private void EmployeeOperDlg_FormClosing(object sender, FormClosingEventArgs e)
         {
 
+        }
+
+        private void EmployeeOperDlg_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            employeeData = null;
         }
 
     }

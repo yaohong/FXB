@@ -44,10 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\CheckBoxUtil.cs" />
+    <Compile Include="Common\DepartmentUtil.cs" />
     <Compile Include="Common\Interface.cs" />
     <Compile Include="Common\QtUtil.cs" />
     <Compile Include="Common\SqlMgr.cs" />
     <Compile Include="Common\TextException.cs" />
+    <Compile Include="Common\TimeUtil.cs" />
     <Compile Include="DataManager\DepartmentDataMgr.cs" />
     <Compile Include="DataManager\EmployeeDataMgr.cs" />
     <Compile Include="DataManager\JobGradeDataMgr.cs" />
