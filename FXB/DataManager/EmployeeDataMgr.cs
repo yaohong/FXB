@@ -45,7 +45,8 @@ namespace FXB.DataManager
             string jobNumber,
             string name,
             UInt32 departmentId,
-            UInt32 jobGradeId,
+            string jobGradeName,
+            QtLevel qtLevel,
             string phoneNumber,
             bool jobState,
             UInt32 entryTime,
@@ -61,8 +62,7 @@ namespace FXB.DataManager
             string emergencyContact,
             string emergencyTelephoneNumber,
             string introducer,
-            string comment,
-            QtLevel qtLevel
+            string comment
             )
         {
             if (allEmployeeData.ContainsKey(jobNumber))
@@ -74,11 +74,10 @@ namespace FXB.DataManager
             //写入DB
 
             //添加到缓存
-            EmployeeData newEmployeeData = new EmployeeData();
-            newEmployeeData.JobNumber = jobNumber;
+            EmployeeData newEmployeeData = new EmployeeData(jobNumber);
             newEmployeeData.Name = name;
             newEmployeeData.DepartmentId = departmentId;
-            newEmployeeData.JobGradeId = jobGradeId;
+            newEmployeeData.JobGradeName = jobGradeName;
             newEmployeeData.PhoneNumber = phoneNumber;
             newEmployeeData.JobState = jobState;
             newEmployeeData.EnteryTime = entryTime;

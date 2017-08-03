@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 namespace FXB.Data
 {
     //员工数据
-    class EmployeeData
+    public class EmployeeData
     {
+        public EmployeeData(string tmpJobNumber)
+        {
+            jobNumber = tmpJobNumber;
+        }
         //员工工号
         private string jobNumber;
         public string JobNumber
         {
             get { return jobNumber; }
-            set { jobNumber = value; }
         }
         //员工姓名
         private string name;
@@ -31,11 +34,11 @@ namespace FXB.Data
             set { departmentId = value; }
         }
         //职级(职级id)
-        private UInt32 jobGradeId;
-        public UInt32 JobGradeId
+        private string jobGradeName;
+        public string JobGradeName
         {
-            get { return jobGradeId; }
-            set { jobGradeId = value; }
+            get { return jobGradeName; }
+            set { jobGradeName = value; }
         }
         //电话
         private string phoneNumber;
