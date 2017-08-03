@@ -41,7 +41,7 @@ namespace FXB.DataManager
                 return allEmployeeData;
             }
         }
-        public void AddEmployeeDataToCache(
+        public EmployeeData AddEmployeeDataToCache(
             string jobNumber,
             string name,
             Int64 departmentId,
@@ -98,6 +98,8 @@ namespace FXB.DataManager
             newEmployeeData.Comment = comment;
             newEmployeeData.QTLevel = qtLevel;
             allEmployeeData.Add(jobNumber, newEmployeeData);
+
+            return newEmployeeData;
         }
 
 
