@@ -34,7 +34,7 @@
             this.xingmingEdit = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.bumenEdit = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.selectDepartmentBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.zhijiEdit = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -124,14 +124,15 @@
             this.bumenEdit.Size = new System.Drawing.Size(219, 21);
             this.bumenEdit.TabIndex = 5;
             // 
-            // button1
+            // selectDepartmentBtn
             // 
-            this.button1.Location = new System.Drawing.Point(310, 92);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(34, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.selectDepartmentBtn.Location = new System.Drawing.Point(310, 92);
+            this.selectDepartmentBtn.Name = "selectDepartmentBtn";
+            this.selectDepartmentBtn.Size = new System.Drawing.Size(34, 23);
+            this.selectDepartmentBtn.TabIndex = 6;
+            this.selectDepartmentBtn.Text = "...";
+            this.selectDepartmentBtn.UseVisualStyleBackColor = true;
+            this.selectDepartmentBtn.Click += new System.EventHandler(this.selectDepartmentBtn_Click);
             // 
             // label4
             // 
@@ -503,7 +504,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.zhijiEdit);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.selectDepartmentBtn);
             this.Controls.Add(this.bumenEdit);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.xingmingEdit);
@@ -531,7 +532,7 @@
         private System.Windows.Forms.TextBox xingmingEdit;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox bumenEdit;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button selectDepartmentBtn;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox zhijiEdit;
         private System.Windows.Forms.Button button2;

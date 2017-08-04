@@ -17,6 +17,9 @@ namespace FXB.Dialog
     {
         private EditMode mode;
         private EmployeeData employeeData;
+
+
+        private Int64 selectDepartmentId = 0;
         public EmployeeOperDlg()
         {
             mode = EditMode.EM_ADD;
@@ -38,7 +41,8 @@ namespace FXB.Dialog
             zhijiEdit.Enabled = false;
             xingbieSelect.Items.Insert(0, "男");
             xingbieSelect.Items.Insert(1, "女");
-
+            //xingbieSelect.SelectedIndex = 0;
+            jobStateCb.CheckState = CheckState.Checked;
             if (mode == EditMode.EM_ADD)
             {
                 AddInit();
@@ -85,6 +89,61 @@ namespace FXB.Dialog
         private void saveBtn_Click(object sender, EventArgs e)
         {
             
+            if (gonghaoEdit.Text == "")
+            {
+                MessageBox.Show("工号不能为空");
+                return;
+            }
+            if (xingmingEdit.Text == "")
+            {
+                MessageBox.Show("姓名不能为空");
+                return;
+            }
+            //QT不可能为空
+
+            //部门可以不设置
+            if (zhijiEdit.Text == "")
+            {
+                MessageBox.Show("职级未设置");
+                return;
+            }
+
+            if (dianhuaEdit.Text == "")
+            {
+                MessageBox.Show("电话不能为空");
+                return;
+            }
+
+            if (shenfenzhengEdit.Text == "")
+            {
+                MessageBox.Show("身份证不能为空");
+                return;
+            }
+
+            if (xingbieSelect.SelectedIndex == -1)
+            {
+                MessageBox.Show("性别未设置");
+                return;
+            }
+
+            if (juzhudizhiEdit.Text == "")
+            {
+                MessageBox.Show("居住地址不能为空");
+                return;
+            }
+
+            if (jjlianxirenEdit.Text == "")
+            {
+                MessageBox.Show("紧急联系人不能为空");
+                return;
+            }
+
+            if (jjDianhuaEdit.Text == "")
+            {
+                MessageBox.Show("紧急联系电话不能为空");
+                return;
+            }
+
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -100,6 +159,11 @@ namespace FXB.Dialog
         private void EmployeeOperDlg_FormClosed(object sender, FormClosedEventArgs e)
         {
             employeeData = null;
+        }
+
+        private void selectDepartmentBtn_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
