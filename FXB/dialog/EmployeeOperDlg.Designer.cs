@@ -529,7 +529,6 @@
             this.Name = "EmployeeOperDlg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "员工信息";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmployeeOperDlg_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EmployeeOperDlg_FormClosed);
             this.Load += new System.EventHandler(this.EmployeeOperDlg_Load);
             this.ResumeLayout(false);

@@ -55,7 +55,7 @@ namespace FXB.Common
         }
 
         //检测加入关系
-        public static bool CheckAddInDepartment(QtLevel roleQtLevel, Int64 addIndepartmentId, bool isOwner)
+        public static bool CheckAddInDepartment(string gongHao, QtLevel roleQtLevel, Int64 addIndepartmentId, bool isOwner)
         {
             if (addIndepartmentId == 0)
             {
@@ -79,7 +79,8 @@ namespace FXB.Common
                 }
 
                 //已经有管理员了
-                if (ownerDepartmentData.OwnerJobNumber != "")
+                if (ownerDepartmentData.OwnerJobNumber != "" &&
+                    ownerDepartmentData.OwnerJobNumber != gongHao)
                 {
                     return false;
                 }
@@ -106,7 +107,8 @@ namespace FXB.Common
                     }
 
                     //设置部门主管
-                    if (ownerDepartmentData.OwnerJobNumber != "")
+                    if (ownerDepartmentData.OwnerJobNumber != "" &&
+                        ownerDepartmentData.OwnerJobNumber != gongHao)
                     {
                         //已经有管理员了
                         return false;
@@ -151,7 +153,8 @@ namespace FXB.Common
             if (isOwner)
             {
                 //设置成管理员
-                if (ownerDepartmentData.OwnerJobNumber != "")
+                if (ownerDepartmentData.OwnerJobNumber != "" &&
+                    ownerDepartmentData.OwnerJobNumber != gongHao)
                 {
                     //有管理员了
                     return false;

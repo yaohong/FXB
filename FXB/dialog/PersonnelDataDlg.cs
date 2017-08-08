@@ -108,7 +108,16 @@ namespace FXB.Dialog
         private void AddPersonnelBtn_Click(object sender, EventArgs e)
         {
             EmployeeOperDlg dlg = new EmployeeOperDlg();
-            dlg.ShowDialog();
+            if (dlg.ShowDialog()  == DialogResult.OK)
+            {
+                if (dlg.NewEmployeeId != "")
+                {
+                    EmployeeData newProjectData = EmployeeDataMgr.Instance().AllEmployeeData[dlg.NewEmployeeId];
+                    int newLine = dataGridView1.Rows.Add();
+                    UpdateGridViewRow(dataGridView1.Rows[newLine], newProjectData);
+                }
+
+            }
         }
 
         private void RemoveDepartmentBtn_Click(object sender, EventArgs e)
@@ -249,6 +258,7 @@ namespace FXB.Dialog
             xingbie.Name = "xingbie";
             xingbie.HeaderText = "性别";
             xingbie.Width = 40;
+
             dataGridView1.Columns.Add(xingbie);
 
             DataGridViewTextBoxColumn mingzujiguan = new DataGridViewTextBoxColumn();
@@ -296,7 +306,7 @@ namespace FXB.Dialog
             DataGridViewTextBoxColumn jieshaoren = new DataGridViewTextBoxColumn();
             jieshaoren.Name = "jieshaoren";
             jieshaoren.HeaderText = "介绍人";
-            jieshaoren.Width = 100;
+            jieshaoren.Width = 70;
             dataGridView1.Columns.Add(jieshaoren);
 
             DataGridViewTextBoxColumn beizhu = new DataGridViewTextBoxColumn();
@@ -304,6 +314,55 @@ namespace FXB.Dialog
             beizhu.HeaderText = "备注";
             beizhu.Width = 599;
             dataGridView1.Columns.Add(beizhu);
+        }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            //只能选择一行
+            DataGridViewTextBoxCell selectCell = (DataGridViewTextBoxCell)dataGridView1.SelectedRows[0].Cells["gonghao"];
+            string gonghao = (string)selectCell.Value;
+
+            EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[gonghao];
+            EmployeeOperDlg dlg = new EmployeeOperDlg(employeeData);
+            //JobGradeOperDlg dlg = new JobGradeOperDlg(selectData);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                //更新选中的行
+                UpdateGridViewRow(dataGridView1.SelectedRows[0], employeeData);
+            }
+        }
+
+        private void UpdateGridViewRow(DataGridViewRow row, EmployeeData data)
+        {
+            row.Cells["gonghao"].Value = data.JobNumber;
+            row.Cells["name"].Value = data.Name;
+            row.Cells["qt"].Value = QtUtil.GetQTLevelString(data.QTLevel);
+            row.Cells["departmentName"].Value = DepartmentUtil.GetDepartmentShowText(data.DepartmentId);
+            row.Cells["isOwner"].Value = data.IsOwner;
+            row.Cells["zhiji"].Value = data.JobGradeName;
+
+            row.Cells["dianhua"].Value = data.PhoneNumber;
+            row.Cells["ruzhiTime"].Value = TimeUtil.TimestampToDateTime(data.EnteryTime).ToShortDateString();
+            row.Cells["jobState"].Value = data.JobState;
+            row.Cells["lizhiTime"].Value = TimeUtil.TimestampToDateTime(data.DimissionTime).ToShortDateString();
+
+            row.Cells["shenfenzheng"].Value = data.IdCard;
+            row.Cells["shengriTime"].Value = TimeUtil.TimestampToDateTime(data.Birthday).ToShortDateString();
+            row.Cells["xingbie"].Value = data.Sex ? "男" : "女";
+            row.Cells["mingzujiguan"].Value = data.EthnicAndOrigin;
+            row.Cells["juzhudizhi"].Value = data.ResidentialAddress;
+            row.Cells["xueli"].Value = data.Education;
+            row.Cells["biyexuexiao"].Value = data.SchoolTag;
+            row.Cells["zhuanye"].Value = data.Specialities;
+            row.Cells["jjLianxiren"].Value = data.EmergencyContact;
+            row.Cells["jjLianxidianhua"].Value = data.EmergencyTelephoneNumber;
+            row.Cells["jieshaoren"].Value = data.Introducer;
+            row.Cells["beizhu"].Value = data.Comment;
         }
     }
 }

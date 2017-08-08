@@ -51,7 +51,6 @@
             this.tableLayoutPanel1 = new FXB.MyControl.MyTableLayoutPanel();
             this.tableLayoutPanel2 = new FXB.MyControl.MyTableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ReloadBtn = new System.Windows.Forms.Button();
             this.AddDepartmentBtn = new System.Windows.Forms.Button();
             this.ModifyDepartmentBtn = new System.Windows.Forms.Button();
             this.RemoveDepartmentBtn = new System.Windows.Forms.Button();
@@ -262,12 +261,11 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(323, 710);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(244, 710);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.ReloadBtn);
             this.panel1.Controls.Add(this.AddDepartmentBtn);
             this.panel1.Controls.Add(this.ModifyDepartmentBtn);
             this.panel1.Controls.Add(this.RemoveDepartmentBtn);
@@ -277,16 +275,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(330, 34);
             this.panel1.TabIndex = 1;
-            // 
-            // ReloadBtn
-            // 
-            this.ReloadBtn.Location = new System.Drawing.Point(245, 7);
-            this.ReloadBtn.Name = "ReloadBtn";
-            this.ReloadBtn.Size = new System.Drawing.Size(75, 23);
-            this.ReloadBtn.TabIndex = 4;
-            this.ReloadBtn.Text = "重新加载";
-            this.ReloadBtn.UseVisualStyleBackColor = true;
-            this.ReloadBtn.Visible = false;
             // 
             // AddDepartmentBtn
             // 
@@ -333,11 +321,11 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel3.Controls.Add(this.dataGridView1, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(332, 3);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(253, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1057, 710);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1136, 710);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // dataGridView1
@@ -361,8 +349,9 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Bisque;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1051, 704);
+            this.dataGridView1.Size = new System.Drawing.Size(1130, 704);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             // 
             // PersonnelDataDlg
             // 
@@ -410,7 +399,6 @@
         private FXB.MyControl.MyTableLayoutPanel tableLayoutPanel2;
         private FXB.MyControl.MyTableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button ReloadBtn;
         private System.Windows.Forms.Button AddDepartmentBtn;
         private System.Windows.Forms.Button ModifyDepartmentBtn;
         private System.Windows.Forms.Button RemoveDepartmentBtn;

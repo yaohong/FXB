@@ -16,7 +16,7 @@ namespace FXB.Dialog
     public partial class EmployeeOperDlg : Form
     {
         private EditMode mode;
-        private EmployeeData employeeData;
+        private EmployeeData employeeData = null;
 
 
         private Int64 selectDepartmentId = 0;
@@ -93,6 +93,8 @@ namespace FXB.Dialog
             jjlianxirenEdit.Text = employeeData.EmergencyContact;
             jjDianhuaEdit.Text = employeeData.EmergencyTelephoneNumber;
             jieshaorenEdit.Text = employeeData.Introducer;
+
+            selectDepartmentId = employeeData.DepartmentId;
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -211,17 +213,72 @@ namespace FXB.Dialog
 
         private void EditClick()
         {
-
+            bool selectSex = xingbieSelect.SelectedIndex == 0 ? false : true;
+            if (xingmingEdit.Text != employeeData.Name ||
+                qtLevelSelect.Text != QtUtil.GetQTLevelString(employeeData.QTLevel) || 
+                selectDepartmentId != employeeData.DepartmentId || 
+                isOwnerCb.CheckState != CheckBoxUtil.boolToCbState(employeeData.IsOwner) ||
+                zhijiEdit.Text != employeeData.JobGradeName || 
+                dianhuaEdit.Text != employeeData.PhoneNumber || 
+                TimeUtil.DateTimeToTimestamp(ruzhiTime.Value) != employeeData.EnteryTime || 
+                jobStateCb.CheckState != CheckBoxUtil.boolToCbState(employeeData.JobState) ||
+                TimeUtil.DateTimeToTimestamp(lizhiTime.Value) != employeeData.DimissionTime || 
+                shenfenzhengEdit.Text != employeeData.IdCard || 
+                TimeUtil.DateTimeToTimestamp(shengriTime.Value) != employeeData.Birthday ||
+                selectSex != employeeData.Sex ||
+                jiguanEdit.Text != employeeData.EthnicAndOrigin || 
+                juzhudizhiEdit.Text != employeeData.ResidentialAddress ||
+                xueliEdit.Text != employeeData.Education || 
+                biyexuexiaoEdit.Text != employeeData.SchoolTag ||
+                zhuanyeEdit.Text != employeeData.Specialities ||
+                jjlianxirenEdit.Text != employeeData.EmergencyContact || 
+                jjDianhuaEdit.Text != employeeData.EmergencyTelephoneNumber ||
+                jieshaorenEdit.Text != employeeData.Introducer || 
+                beizhuEdit.Text != employeeData.Comment
+                )
+            try
+            {
+                EmployeeDataMgr.Instance().ModifyEmployee(
+                    employeeData.JobNumber,
+                    xingmingEdit.Text,
+                    QtUtil.GetQTLevel(qtLevelSelect.Text),
+                    selectDepartmentId,
+                    CheckBoxUtil.cbStateToBool(isOwnerCb.CheckState),
+                    zhijiEdit.Text,
+                    dianhuaEdit.Text,
+                    TimeUtil.DateTimeToTimestamp(ruzhiTime.Value),
+                    CheckBoxUtil.cbStateToBool(jobStateCb.CheckState),
+                    TimeUtil.DateTimeToTimestamp(lizhiTime.Value),
+                    beizhuEdit.Text,
+                    shenfenzhengEdit.Text,
+                    TimeUtil.DateTimeToTimestamp(shengriTime.Value),
+                    selectSex,
+                    jiguanEdit.Text,
+                    juzhudizhiEdit.Text,
+                    xueliEdit.Text,
+                    biyexuexiaoEdit.Text,
+                    zhuanyeEdit.Text,
+                    jjlianxirenEdit.Text,
+                    jjDianhuaEdit.Text,
+                    jieshaorenEdit.Text
+                    );
+                this.DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (ConditionCheckException ex1)
+            {
+                MessageBox.Show(ex1.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Application.Exit();
+            }
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void EmployeeOperDlg_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
         }
 
         private void EmployeeOperDlg_FormClosed(object sender, FormClosedEventArgs e)

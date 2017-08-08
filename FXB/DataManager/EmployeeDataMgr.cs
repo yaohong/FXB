@@ -123,9 +123,9 @@ namespace FXB.DataManager
                 throw new CrashException(string.Format("工号重复:{0}", jobNumber));
             }
             //检测部门关系
-            if (!DepartmentUtil.CheckAddInDepartment(qtLevel, departmentId, isOwner))
+            if (!DepartmentUtil.CheckAddInDepartment(jobNumber, qtLevel, departmentId, isOwner))
             {
-                throw new CrashException("不能够加入部门,员工QT级别和部门QT级别对应不上");
+                throw new CrashException("员工和部门关系错误请联系管理员");
             }
 
             //添加到缓存
@@ -157,19 +157,15 @@ namespace FXB.DataManager
             if (departmentId != 0)
             {
                 DepartmentData departmentData = DepartmentDataMgr.Instance().AllDepartmentData[departmentId];
-                if (qtLevel != QtLevel.None &&
-                    qtLevel != QtLevel.Salesman &&
-                    qtLevel != QtLevel.ZhuchangZhuanyuan)
+                if (isOwner)
                 {
-                    //添加管理员
-                    departmentData.OwnerJobNumber = newEmployeeData.JobNumber;
+                    departmentData.OwnerJobNumber = jobNumber;
                 }
                 else
                 {
-                    //添加成员
-                    if (!departmentData.EmployeeSet.Add(newEmployeeData.JobNumber))
+                    if (!departmentData.EmployeeSet.Add(jobNumber))
                     {
-                        throw new CrashException("添加员工失败");
+                        throw new CrashException("添加新员工到部门失败");
                     }
                 }
             }
@@ -207,7 +203,7 @@ namespace FXB.DataManager
                 throw new ConditionCheckException(string.Format("工号重复:{0}", gongHao));
             }
             //检测部门关系
-            if (!DepartmentUtil.CheckAddInDepartment(qtLevel, departmentId, isOwner))
+            if (!DepartmentUtil.CheckAddInDepartment(gongHao, qtLevel, departmentId, isOwner))
             {
                 throw new ConditionCheckException("不能够加入部门,员工QT级别和部门QT级别对应不上");
             }
@@ -256,7 +252,148 @@ namespace FXB.DataManager
 
         }
 
+        public void ModifyEmployee(
+            string gongHao,
+            string newName,
+            QtLevel newQtLevel,
+            Int64 newDepartmentId,
+            bool newIsOwner,
+            string newZhiji,
+            string newDianhua,
+            UInt32 newRuzhiTime,
+            bool newJobState,
+            UInt32 newLizhiTime,
+            string newComment,
+            string newShenfenzheng,
+            UInt32 newShengriTime,
+            bool newSex,
+            string newMingzujiguan,
+            string newJuzhuaddress,
+            string newXueli,
+            string newBiyexuexiao,
+            string newZhuanye,
+            string newJjlianxiren,
+            string newJjdianhua,
+            string newJieshaoren
+            )
+        {
+            EmployeeData employeeData = allEmployeeData[gongHao];
+            
+            //检测部门关系
+            if (!DepartmentUtil.CheckAddInDepartment(gongHao, newQtLevel, newDepartmentId, newIsOwner))
+            {
+                throw new ConditionCheckException("不能够加入部门,员工QT级别和部门QT级别对应不上");
+            }
 
+            SqlCommand command = new SqlCommand();
+            command.Connection = SqlMgr.Instance().SqlConnect;
+            command.CommandType = CommandType.Text;
+            command.CommandText = @"update employee set 
+                                    name=@name,
+                                    qtlevel=@qtlevel,
+                                    departmentId=@departmentId,
+                                    isOwner=@isOwner,
+                                    zhiji=@zhiji,
+                                    dianhua=@dianhua,
+                                    ruzhiTime=@ruzhiTime,
+                                    jobState=@jobState,
+                                    lizhiTime=@lizhiTime,
+                                    comment=@comment,
+                                    shenfenzheng=@shenfenzheng,
+                                    shengriTime=@shengriTime,
+                                    sex=@sex,
+                                    mingzujiguan=@mingzujiguan,
+                                    juzhuaddress=@juzhuaddress,
+                                    xueli=@xueli,
+                                    biyexuexiao=@biyexuexiao,
+                                    zhuanye=@zhuanye,
+                                    jjlianxiren=@jjlianxiren,
+                                    jjdianhua=@jjdianhua,
+                                    jieshaoren=@jieshaoren where gonghao=@gonghao";
+            command.Parameters.AddWithValue("@gonghao", gongHao);
+            command.Parameters.AddWithValue("@name", newName);
+            command.Parameters.AddWithValue("@qtlevel", (Int32)newQtLevel);
+            command.Parameters.AddWithValue("@departmentId", newDepartmentId);
+            command.Parameters.AddWithValue("@isOwner", newIsOwner);
+            command.Parameters.AddWithValue("@zhiji", newZhiji);
+            command.Parameters.AddWithValue("@dianhua", newDianhua);
+            command.Parameters.AddWithValue("@ruzhiTime", (Int32)newRuzhiTime);
+            command.Parameters.AddWithValue("@jobState", newJobState);
+            command.Parameters.AddWithValue("@lizhiTime", (Int32)newLizhiTime);
+            command.Parameters.AddWithValue("@comment", newComment);
+            command.Parameters.AddWithValue("@shenfenzheng", newShenfenzheng);
+            command.Parameters.AddWithValue("@shengriTime", (Int32)newShengriTime);
+            command.Parameters.AddWithValue("@sex", newSex);
+            command.Parameters.AddWithValue("@mingzujiguan", newMingzujiguan);
+            command.Parameters.AddWithValue("@juzhuaddress", newJuzhuaddress);
+            command.Parameters.AddWithValue("@xueli", newXueli);
+            command.Parameters.AddWithValue("@biyexuexiao", newBiyexuexiao);
+            command.Parameters.AddWithValue("@zhuanye", newZhuanye);
+            command.Parameters.AddWithValue("@jjlianxiren", newJjlianxiren);
+            command.Parameters.AddWithValue("@jjdianhua", newJjdianhua);
+            command.Parameters.AddWithValue("@jieshaoren", newJieshaoren);
+            command.ExecuteScalar();
+
+            //从之前的部门离开
+            if (employeeData.DepartmentId != 0)
+            {
+                DepartmentData departmentData = DepartmentDataMgr.Instance().AllDepartmentData[employeeData.DepartmentId];
+                if (employeeData.IsOwner)
+                {
+                    if (departmentData.OwnerJobNumber != gongHao)
+                    {
+                        throw new CrashException("部门关系错误11");
+                    }
+                    departmentData.OwnerJobNumber = "";
+                }
+                else
+                {
+                    if (!departmentData.EmployeeSet.Remove(gongHao))
+                    {
+                        throw new CrashException("部门关系错误22");
+                    }
+                }
+            }
+
+            if (newDepartmentId != 0)
+            {
+                DepartmentData departmentData = DepartmentDataMgr.Instance().AllDepartmentData[newDepartmentId];
+                if (newIsOwner)
+                {
+                    departmentData.OwnerJobNumber = gongHao;
+                }
+                else
+                {
+                    if (!departmentData.EmployeeSet.Add(gongHao))
+                    {
+                        throw new CrashException("添加新员工到部门失败33");
+                    }
+                }
+            }
+
+
+            employeeData.Name = newName;
+            employeeData.DepartmentId = newDepartmentId;
+            employeeData.IsOwner = newIsOwner;
+            employeeData.JobGradeName = newZhiji;
+            employeeData.PhoneNumber = newDianhua;
+            employeeData.JobState = newJobState;
+            employeeData.EnteryTime = newRuzhiTime;
+            employeeData.DimissionTime = newLizhiTime;
+            employeeData.IdCard = newShenfenzheng;
+            employeeData.Birthday = newShengriTime;
+            employeeData.Sex = newSex;
+            employeeData.EthnicAndOrigin = newMingzujiguan;
+            employeeData.ResidentialAddress = newJuzhuaddress;
+            employeeData.Education = newXueli;
+            employeeData.SchoolTag = newBiyexuexiao;
+            employeeData.Specialities = newZhuanye;
+            employeeData.EmergencyContact = newJjlianxiren;
+            employeeData.EmergencyTelephoneNumber = newJjdianhua;
+            employeeData.Introducer = newJieshaoren;
+            employeeData.Comment = newComment;
+            employeeData.QTLevel = newQtLevel;
+        }
 
         public void SetDataGridView(DataGridView gridView)
         {
