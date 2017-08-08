@@ -6,9 +6,19 @@ using System.Threading.Tasks;
 
 namespace FXB.Common
 {
-    class TextException : Exception
+    class CrashException : Exception
     {
-        public TextException(string msg) : base(msg) 
+        public CrashException(string msg) : base(msg) 
+        {
+
+        }
+    }
+
+
+    class ConditionCheckException : Exception
+    {
+        public ConditionCheckException(string msg)
+            : base(msg) 
         {
 
         }

@@ -26,7 +26,7 @@ namespace FXB.Dialog
 
         public string NewEmployeeId
         {
-            get { return newEmployeeId; }
+
         }
         public EmployeeOperDlg()
         {
@@ -170,7 +170,7 @@ namespace FXB.Dialog
         {
             try
             {
-                EmployeeData newEmployeeData = EmployeeDataMgr.Instance().AddNewEmployee(
+                EmployeeData newDepartmentData = EmployeeDataMgr.Instance().AddNewEmployee(
                     gonghaoEdit.Text,
                     xingmingEdit.Text,
                     QtUtil.GetQTLevel(qtLevelSelect.Text),
@@ -192,13 +192,9 @@ namespace FXB.Dialog
                     jjlianxirenEdit.Text,
                     jjDianhuaEdit.Text,
                     jieshaorenEdit.Text);
-                newEmployeeId = newEmployeeData.JobNumber;
                 this.DialogResult = DialogResult.OK;
+                newDepartmentId = newDepartmentData.Id;
                 Close();
-            }
-            catch (ConditionCheckException ex1)
-            {
-                MessageBox.Show(ex1.Message);
             }
             catch (Exception ex)
             {
@@ -229,21 +225,7 @@ namespace FXB.Dialog
 
         private void selectDepartmentBtn_Click(object sender, EventArgs e)
         {
-            DepartmentSelectDlg dlg = new DepartmentSelectDlg();
-            if (DialogResult.OK == dlg.ShowDialog())
-            {
-                selectDepartmentId = dlg.SelectDepartment.Id;
-                bumenEdit.Text = DepartmentUtil.GetDepartmentShowText(selectDepartmentId);
-            }
-        }
 
-        private void levelNameBtn_Click(object sender, EventArgs e)
-        {
-            JobGradeSelectDlg dlg = new JobGradeSelectDlg();
-            if (DialogResult.OK == dlg.ShowDialog())
-            {
-                zhijiEdit.Text = dlg.SelectJobGradeId;
-            }
         }
 
     }

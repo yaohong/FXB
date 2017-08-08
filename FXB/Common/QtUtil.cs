@@ -57,7 +57,7 @@ namespace FXB.Common
                 }
             }
 
-            throw new TextException("GetComboxIndex qtLevel exception");
+            throw new CrashException("GetComboxIndex qtLevel exception");
         }
 
 
@@ -97,7 +97,7 @@ namespace FXB.Common
             }
 
 
-            throw new TextException("错误QT级别字符串");
+            throw new CrashException("错误QT级别字符串");
         }
 
         static public string GetQTLevelString(QtLevel level)
@@ -135,7 +135,7 @@ namespace FXB.Common
                 return QtString.ZhuchangZongjian;
             }
 
-            throw new TextException("错误QT级别字符串");
+            throw new CrashException("错误QT级别字符串");
         }
     }
 }

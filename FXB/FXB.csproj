@@ -47,6 +47,7 @@
     <Compile Include="Common\CheckBoxUtil.cs" />
     <Compile Include="Common\DepartmentUtil.cs" />
     <Compile Include="Common\Interface.cs" />
+    <Compile Include="Common\JobGradeUtil.cs" />
     <Compile Include="Common\QtUtil.cs" />
     <Compile Include="Common\SqlMgr.cs" />
     <Compile Include="Common\TextException.cs" />
@@ -89,6 +90,12 @@
     </Compile>
     <Compile Include="Dialog\JobGradeOperDlg.Designer.cs">
       <DependentUpon>JobGradeOperDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\JobGradeSelectDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\JobGradeSelectDlg.Designer.cs">
+      <DependentUpon>JobGradeSelectDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\PersonnelDataDlg.cs">
       <SubType>Form</SubType>
@@ -145,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\JobGradeOperDlg.resx">
       <DependentUpon>JobGradeOperDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\JobGradeSelectDlg.resx">
+      <DependentUpon>JobGradeSelectDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\PersonnelDataDlg.resx">
       <DependentUpon>PersonnelDataDlg.cs</DependentUpon>

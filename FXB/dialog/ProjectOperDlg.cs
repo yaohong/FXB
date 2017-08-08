@@ -37,6 +37,23 @@ namespace FXB.Dialog
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
+            if (codeEdi.Text == "")
+            {
+                MessageBox.Show("项目编码不能为空");
+                return;
+            }
+
+            if (nameEdi.Text == "")
+            {
+                MessageBox.Show("项目名称不能为空");
+                return;
+            }
+
+            if (addressEdi.Text == "")
+            {
+                MessageBox.Show("项目地址不能为空");
+                return;
+            }
             if (mode == EditMode.EM_ADD)
             {
                 AddClick();
@@ -52,23 +69,7 @@ namespace FXB.Dialog
 
         private void AddClick()
         {
-            if (codeEdi.Text == "")
-            {
-                MessageBox.Show("项目编码不能为空");
-                return;
-            }
 
-            if (nameEdi.Text == "")
-            {
-                MessageBox.Show("项目名称不能为空");
-                return;
-            }
-
-            if (addressEdi.Text == "")
-            {
-                MessageBox.Show("项目地址不能为空");
-                return;
-            }
 
 
             try
@@ -79,31 +80,19 @@ namespace FXB.Dialog
                 DialogResult = DialogResult.OK;
                 Close();
             }
+            catch (ConditionCheckException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                Application.Exit();
             }
         }
 
         private void EditClick()
         {
-            if (codeEdi.Text == "")
-            {
-                MessageBox.Show("项目编码不能为空");
-                return;
-            }
-
-            if (nameEdi.Text == "")
-            {
-                MessageBox.Show("项目名称不能为空");
-                return;
-            }
-
-            if (addressEdi.Text == "")
-            {
-                MessageBox.Show("项目地址不能为空");
-                return;
-            }
 
             if (nameEdi.Text != projectData.Name ||
                 addressEdi.Text != projectData.Address ||
@@ -118,9 +107,14 @@ namespace FXB.Dialog
                     DialogResult = DialogResult.OK;
                     Close();
                 }
+                catch (ConditionCheckException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    Application.Exit();
                 }
             }
             else

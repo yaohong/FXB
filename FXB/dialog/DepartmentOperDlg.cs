@@ -86,9 +86,14 @@ namespace FXB.Dialog
                 newDepartmentId = newDepartmentData.Id;
                 Close();
             }
+            catch (ConditionCheckException ex1)
+            {
+                MessageBox.Show(ex1.Message);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                Application.Exit();
             }
         }
 
@@ -111,9 +116,14 @@ namespace FXB.Dialog
                     this.DialogResult = DialogResult.OK;
                     Close();
                 }
+                catch (ConditionCheckException ex1)
+                {
+                    MessageBox.Show(ex1.Message);
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    Application.Exit();
                 }
                 
             }
@@ -144,7 +154,10 @@ namespace FXB.Dialog
                 return;
             }
             DepartmentSelectDlg dlg = new DepartmentSelectDlg();
-            dlg.ShowDialog();
+            if (DialogResult.OK != dlg.ShowDialog())
+            {
+                return;
+            }
             if (dlg.SelectDepartment != null)
             {
                 if (dlg.SelectDepartment.IsMaxLayer())
@@ -181,9 +194,8 @@ namespace FXB.Dialog
                     if (selectDepartment.Layer == 0)
                     {
                         //父节点是根节点
-                        qtLevelSelect.Items.Insert(0, QtString.None);
-                        qtLevelSelect.Items.Insert(1, QtString.Majordomo);
-                        qtLevelSelect.Items.Insert(2, QtString.ZhuchangZongjian);
+                        MessageBox.Show("部门关系错误0");
+                        Application.Exit();
 
                     }
                     else if (selectDepartment.Layer == 1)

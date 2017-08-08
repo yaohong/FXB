@@ -54,6 +54,7 @@ namespace FXB.Dialog
             {
                 Int64 departmentId = Convert.ToInt64(selectNode.Name);
                 selectDepartment = DepartmentDataMgr.Instance().AllDepartmentData[departmentId];
+                DialogResult = DialogResult.OK;
                 Close();
             }
         }

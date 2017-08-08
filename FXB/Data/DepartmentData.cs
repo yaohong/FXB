@@ -14,7 +14,7 @@ namespace FXB.Data
             if (tmpQtLevel == QtLevel.Salesman)
             {
                 //部门不能设置成业务员级别
-                throw new TextException("部门不能设置为业务员级别");
+                throw new CrashException("部门不能设置为业务员级别");
             }
 
             id = tmpId;
@@ -80,13 +80,13 @@ namespace FXB.Data
             {
                 if (layer != -1)
                 {
-                    throw new TextException("层级只能设置一次");
+                    throw new CrashException("层级只能设置一次");
                 }
 
                 if (value < 0 || value > 3)
                 {
                     //部门关系只能有四层
-                    throw new TextException("错误的层级值");
+                    throw new CrashException("错误的层级值");
                 }
                
                 layer = value;

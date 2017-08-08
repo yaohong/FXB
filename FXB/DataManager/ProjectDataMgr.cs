@@ -76,7 +76,7 @@ namespace FXB.DataManager
         {
             if (allProjectData.ContainsKey(code))
             {
-                throw new TextException(string.Format("项目重复:{0}", name));
+                throw new CrashException(string.Format("项目重复:{0}", name));
             }
 
             ProjectData newProject = new ProjectData(code, name, address, comment, availbale);
@@ -89,93 +89,62 @@ namespace FXB.DataManager
         public void AddNewProject(string code, string name, string address, string comment, bool availbale)
         {
             //添加新的副本
-            try
-            {
-                if (allProjectData.ContainsKey(code))
-                {
-                    throw new TextException(string.Format("项目重复:{0}", code));
-                }
-                SqlCommand command = new SqlCommand();
-                command.Connection = SqlMgr.Instance().SqlConnect;
-                command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO project(code,name,address,comment,availbale) VALUES(@code,@name,@address,@comment,@availbale)";
-                command.Parameters.AddWithValue("@code", code);
-                command.Parameters.AddWithValue("@name", name);
-                command.Parameters.AddWithValue("@address", address);
-                command.Parameters.AddWithValue("@comment", comment);
-                command.Parameters.AddWithValue("@availbale", availbale);
-                command.ExecuteScalar();
 
-                AddProjectToCache(code, name, address, comment, availbale);
+            if (allProjectData.ContainsKey(code))
+            {
+                throw new ConditionCheckException(string.Format("项目重复:{0}", code));
+            }
+            SqlCommand command = new SqlCommand();
+            command.Connection = SqlMgr.Instance().SqlConnect;
+            command.CommandType = CommandType.Text;
+            command.CommandText = "INSERT INTO project(code,name,address,comment,availbale) VALUES(@code,@name,@address,@comment,@availbale)";
+            command.Parameters.AddWithValue("@code", code);
+            command.Parameters.AddWithValue("@name", name);
+            command.Parameters.AddWithValue("@address", address);
+            command.Parameters.AddWithValue("@comment", comment);
+            command.Parameters.AddWithValue("@availbale", availbale);
+            command.ExecuteScalar();
 
-            }
-            catch (SqlException e1)
-            {
-                throw e1;
-            }
-            catch (Exception e2)
-            {
-                throw e2;
-            }
+            AddProjectToCache(code, name, address, comment, availbale);
+
         }
 
         public void ModifyProject(string code, string newName, string newAddress, string newComment, bool newAvailbale)
         {
-            try
-            {
-                ProjectData data = allProjectData[code];
-                SqlCommand command = new SqlCommand();
-                command.Connection = SqlMgr.Instance().SqlConnect;
-                command.CommandType = CommandType.Text;
-                command.CommandText = "update project set name=@name,address=@address,comment=@comment,availbale=@availbale where code=@code";
-                command.Parameters.AddWithValue("@name", newName);
-                command.Parameters.AddWithValue("@address", newAddress);
-                command.Parameters.AddWithValue("@comment", newComment);
-                command.Parameters.AddWithValue("@availbale", newAvailbale);
-                command.Parameters.AddWithValue("@code", code);
-                command.ExecuteScalar();
 
-                data.Name = newName;
-                data.Address = newAddress;
-                data.Comment = newComment;
-                data.IsAvailable = newAvailbale;
+            ProjectData data = allProjectData[code];
+            SqlCommand command = new SqlCommand();
+            command.Connection = SqlMgr.Instance().SqlConnect;
+            command.CommandType = CommandType.Text;
+            command.CommandText = "update project set name=@name,address=@address,comment=@comment,availbale=@availbale where code=@code";
+            command.Parameters.AddWithValue("@name", newName);
+            command.Parameters.AddWithValue("@address", newAddress);
+            command.Parameters.AddWithValue("@comment", newComment);
+            command.Parameters.AddWithValue("@availbale", newAvailbale);
+            command.Parameters.AddWithValue("@code", code);
+            command.ExecuteScalar();
 
-            }
-            catch (SqlException e1)
-            {
-                throw e1;
-            }
-            catch (Exception e2)
-            {
-                throw e2;
-            }
+            data.Name = newName;
+            data.Address = newAddress;
+            data.Comment = newComment;
+            data.IsAvailable = newAvailbale;
+
+
         }
 
         public void DeleteProject(string code)
         {
+            ProjectData data = allProjectData[code];
+            SqlCommand command = new SqlCommand();
+            command.Connection = SqlMgr.Instance().SqlConnect;
+            command.CommandType = CommandType.Text;
+            command.CommandText = "delete from project where code=@code";
+            command.Parameters.AddWithValue("@code", code);
+            command.ExecuteScalar();
 
-            try
-            {
-                ProjectData data = allProjectData[code];
-                SqlCommand command = new SqlCommand();
-                command.Connection = SqlMgr.Instance().SqlConnect;
-                command.CommandType = CommandType.Text;
-                command.CommandText = "delete from project where code=@code";
-                command.Parameters.AddWithValue("@code", code);
-                command.ExecuteScalar();
+            //从缓存中删除
+            allProjectData.Remove(code);
 
-                //从缓存中删除
-                allProjectData.Remove(code);
-
-            }
-            catch (SqlException e1)
-            {
-                throw e1;
-            }
-            catch (Exception e2)
-            {
-                throw e2;
-            }
         }
 
         public void SetDataGridView(DataGridView gridView)

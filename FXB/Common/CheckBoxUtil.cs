@@ -20,7 +20,7 @@ namespace FXB.Common
             }
             else
             {
-                return false;
+                throw new CrashException("checkbox状态错误");
             }
 
 

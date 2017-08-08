@@ -21,7 +21,7 @@ namespace FXB.Dialog
 
         private void JobGradeDataDlg_Load(object sender, EventArgs e)
         {
-            setDataGridViewColumn();
+            JobGradeUtil.setDataGridViewColumn(dataGridView1);
             this.WindowState = FormWindowState.Maximized;
 
             //禁止改变表格的大小
@@ -62,33 +62,6 @@ namespace FXB.Dialog
 
         }
 
-        private void setDataGridViewColumn()
-        {
-            DataGridViewTextBoxColumn zhiji = new DataGridViewTextBoxColumn();
-            zhiji.Name = "zhiji";
-            zhiji.HeaderText = "职级";
-            zhiji.Width = 100;
-            dataGridView1.Columns.Add(zhiji);
-
-            DataGridViewTextBoxColumn xulie = new DataGridViewTextBoxColumn();
-            xulie.Name = "xulie";
-            xulie.HeaderText = "所属序列";
-            xulie.Width = 100;
-            dataGridView1.Columns.Add(xulie);
-
-            DataGridViewTextBoxColumn dixin = new DataGridViewTextBoxColumn();
-            dixin.Name = "dixin";
-            dixin.HeaderText = "对应底薪";
-            dixin.Width = 100;
-            dataGridView1.Columns.Add(dixin);
-
-            DataGridViewTextBoxColumn beizhu = new DataGridViewTextBoxColumn();
-            beizhu.Name = "beizhu";
-            beizhu.HeaderText = "备注";
-            beizhu.Width = 300;
-            dataGridView1.Columns.Add(beizhu);
-        }
-
         private void addBtn_Click(object sender, EventArgs e)
         {
             JobGradeOperDlg dlg = new JobGradeOperDlg();
@@ -123,9 +96,14 @@ namespace FXB.Dialog
                 dataGridView1.Rows.RemoveAt(selectRow.Index);
 
             }
+            catch (ConditionCheckException ex1)
+            {
+                MessageBox.Show(ex1.Message);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                Application.Exit();
             }
         }
 

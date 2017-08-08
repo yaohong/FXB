@@ -148,9 +148,14 @@ namespace FXB.Dialog
                 dataGridView1.Rows.RemoveAt(selectRow.Index);
 
             }
-            catch (Exception ex)
+            catch (ConditionCheckException ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show(ex1.Message);
+                Application.Exit();
             }
         }
     }

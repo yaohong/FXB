@@ -68,7 +68,7 @@ namespace FXB.DataManager
                 InitRelation();
                 if (CheckRelation(rootDepartment.Id, allDepartmentData.Count) != 0)
                 {
-                    throw new CrashException("部门关系错误");
+                    throw new TextException("部门关系错误");
                 }
 
                 SetLayer(rootDepartment.Id, 0);
@@ -116,7 +116,7 @@ namespace FXB.DataManager
         {
             if (allDepartmentData.ContainsKey(id))
             {
-                throw new CrashException(string.Format("部门ID重复:{0}", id));
+                throw new TextException(string.Format("部门ID重复:{0}", id));
             }
 
             DepartmentData newDepartment = new DepartmentData(id, name, nid, qtlevel);
@@ -126,7 +126,7 @@ namespace FXB.DataManager
                 //根部门
                 if (rootDepartment != null)
                 {
-                    throw new CrashException("只能有一个根部门");
+                    throw new TextException("只能有一个根部门");
                 }
                 rootDepartment = newDepartment;
             }
@@ -138,38 +138,62 @@ namespace FXB.DataManager
         public DepartmentData AddNewDepartment(DepartmentData parent, string name, string owner, QtLevel qtLevel)
         {
             //添加新的副本
-            SqlCommand command = new SqlCommand();
-            command.Connection = SqlMgr.Instance().SqlConnect;
-            command.CommandType = CommandType.Text;
-            command.CommandText = "INSERT INTO department(nid,name,owner,qtlevel) output inserted.Id VALUES(@nid,@name,@owner,@qtlevel);select @@identity";
-            command.Parameters.AddWithValue("@nid", parent.Id);
-            command.Parameters.AddWithValue("@name", name);
-            command.Parameters.AddWithValue("@owner", owner);
-            command.Parameters.AddWithValue("@qtlevel", (Int32)qtLevel);
-            Int64 newDepartmentId = (Int64)command.ExecuteScalar();
+            try
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = SqlMgr.Instance().SqlConnect;
+                command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO department(nid,name,owner,qtlevel) output inserted.Id VALUES(@nid,@name,@owner,@qtlevel);select @@identity";
+                command.Parameters.AddWithValue("@nid", parent.Id);
+                command.Parameters.AddWithValue("@name", name);
+                command.Parameters.AddWithValue("@owner", owner);
+                command.Parameters.AddWithValue("@qtlevel", (Int32)qtLevel);
+                Int64 newDepartmentId = (Int64)command.ExecuteScalar();
 
-            DepartmentData newDepartment = AddDepartmentToCache(newDepartmentId, parent.Id, name, owner, qtLevel);
-            newDepartment.Layer = parent.Layer + 1;
-            parent.ChildSet.Add(newDepartment.Id);
+                DepartmentData newDepartment = AddDepartmentToCache(newDepartmentId, parent.Id, name, owner, qtLevel);
+                newDepartment.Layer = parent.Layer + 1;
+                parent.ChildSet.Add(newDepartment.Id);
 
-            QtCheck(rootDepartment.Id);
-            return newDepartment;
+                QtCheck(rootDepartment.Id);
+                return newDepartment;
+
+            }
+            catch (SqlException e1)
+            {
+                throw e1;
+            }
+            catch (Exception e2)
+            {
+                throw e2;
+            }
         }
 
         public void ModifyDepartment(Int64 departmentId, string newBumenName, string newOwner)
         {
-            DepartmentData data = allDepartmentData[departmentId];
-            SqlCommand command = new SqlCommand();
-            command.Connection = SqlMgr.Instance().SqlConnect;
-            command.CommandType = CommandType.Text;
-            command.CommandText = "update department set name=@name,owner=@owner where id=@id";
-            command.Parameters.AddWithValue("@name", newBumenName);
-            command.Parameters.AddWithValue("@owner", newOwner);
-            command.Parameters.AddWithValue("@id", departmentId);
-            command.ExecuteScalar();
+            try
+            {
+                DepartmentData data = allDepartmentData[departmentId];
+                SqlCommand command = new SqlCommand();
+                command.Connection = SqlMgr.Instance().SqlConnect;
+                command.CommandType = CommandType.Text;
+                command.CommandText = "update department set name=@name,owner=@owner where id=@id";
+                command.Parameters.AddWithValue("@name", newBumenName);
+                command.Parameters.AddWithValue("@owner", newOwner);
+                command.Parameters.AddWithValue("@id", departmentId);
+                command.ExecuteScalar();
 
-            data.Name = newBumenName;
-            data.OwnerJobNumber = newOwner;
+                data.Name = newBumenName;
+                data.OwnerJobNumber = newOwner;
+
+            }
+            catch (SqlException e1)
+            {
+                throw e1;
+            }
+            catch (Exception e2)
+            {
+                throw e2;
+            }
         }
 
         public void DeleteDepartment(Int64 departmentId)
@@ -177,29 +201,39 @@ namespace FXB.DataManager
             DepartmentData departmentData = allDepartmentData[departmentId];
             if (departmentData.Layer == 0)
             {
-                throw new ConditionCheckException("根目录不能删除");
+                throw new TextException("根目录不能删除");
             }
 
             if (departmentData.ChildSet.Count != 0)
             {
-                throw new ConditionCheckException("部门还有子部门，不能删除");
+                throw new TextException("部门还有子部门，不能删除");
             }
 
             DepartmentData parent = allDepartmentData[departmentData.SuperiorId];
 
-            SqlCommand command = new SqlCommand();
-            command.Connection = SqlMgr.Instance().SqlConnect;
-            command.CommandType = CommandType.Text;
-            command.CommandText = "delete from department where id=@id";
-            command.Parameters.AddWithValue("@id", departmentId);
-            command.ExecuteScalar();
+            try
+            {
+                SqlCommand command = new SqlCommand();
+                command.Connection = SqlMgr.Instance().SqlConnect;
+                command.CommandType = CommandType.Text;
+                command.CommandText = "delete from department where id=@id";
+                command.Parameters.AddWithValue("@id", departmentId);
+                command.ExecuteScalar();
 
-            //从上级的子集合里删除
-            parent.ChildSet.Remove(departmentId);
-            //从缓存中删除
-            allDepartmentData.Remove(departmentId);
+                //从上级的子集合里删除
+                parent.ChildSet.Remove(departmentId);
+                //从缓存中删除
+                allDepartmentData.Remove(departmentId);
 
-            
+            }
+            catch (SqlException e1)
+            {
+                throw e1;
+            }
+            catch (Exception e2)
+            {
+                throw e2;
+            }
         }
 
         private void InitRelation()
@@ -254,14 +288,14 @@ namespace FXB.DataManager
 
                         if (childQtLevel != QtLevel.None && childQtLevel != QtLevel.Majordomo && childQtLevel != QtLevel.ZhuchangZongjian)
                         {
-                            throw new CrashException("Qt关系错误1");
+                            throw new TextException("Qt关系错误1");
                         }
                     }
                     else
                     {
                         if (childQtLevel != QtLevel.None)
                         {
-                            throw new CrashException("Qt关系错误2");
+                            throw new TextException("Qt关系错误2");
                         }
                     }
                 }
@@ -269,40 +303,40 @@ namespace FXB.DataManager
                 {
                     if (childQtLevel != QtLevel.ZhuchangZhuguan)
                     {
-                        throw new CrashException("Qt关系错误3");
+                        throw new TextException("Qt关系错误3");
                     }
                 }
                 else if (data.QTLevel == QtLevel.ZhuchangZhuguan)
                 {
                     if (childData.ChildSet.Count != 0)
                     {
-                        throw new CrashException("Qt关系错误4");
+                        throw new TextException("Qt关系错误4");
                     }
                 }
                 else if (data.QTLevel == QtLevel.Majordomo)
                 {
                     if (childQtLevel != QtLevel.LargeCharge)
                     {
-                        throw new CrashException("Qt关系错误5");
+                        throw new TextException("Qt关系错误5");
                     }
                 }
                 else if (data.QTLevel == QtLevel.LargeCharge)
                 {
                     if (childQtLevel != QtLevel.SmallCharge)
                     {
-                        throw new CrashException("Qt关系错误6");
+                        throw new TextException("Qt关系错误6");
                     }
                 }
                 else if (data.QTLevel == QtLevel.SmallCharge)
                 {
                     if (childData.ChildSet.Count != 0)
                     {
-                        throw new CrashException("Qt关系错误7");
+                        throw new TextException("Qt关系错误7");
                     }
                 }
                 else
                 {
-                    throw new CrashException("Qt关系错误8");
+                    throw new TextException("Qt关系错误8");
                 }
 
                 QtCheck(item);

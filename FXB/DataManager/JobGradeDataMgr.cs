@@ -76,7 +76,7 @@ namespace FXB.DataManager
         {
             if (allJobGradeData.ContainsKey(levelName))
             {
-                throw new TextException(string.Format("职级重复:{0}", levelName));
+                throw new CrashException(string.Format("职级重复:{0}", levelName));
             }
 
             JobGradeData newJobGrade = new JobGradeData(levelName, xuLie, baseSalary, comment);
@@ -89,90 +89,58 @@ namespace FXB.DataManager
         public void AddNewJobGrade(string levelName, string xuLie, Int32 baseSalary, string comment)
         {
             //添加新的副本
-            try
-            {
-                if (allJobGradeData.ContainsKey(levelName))
-                {
-                    throw new TextException(string.Format("职级重复添加:{0}", levelName));
-                }
-                SqlCommand command = new SqlCommand();
-                command.Connection = SqlMgr.Instance().SqlConnect;
-                command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO jobgrade(levelName,xuLie,baseSalary,comment) VALUES(@levelName,@xuLie,@baseSalary,@comment)";
-                command.Parameters.AddWithValue("@levelName", levelName);
-                command.Parameters.AddWithValue("@xuLie", xuLie);
-                command.Parameters.AddWithValue("@baseSalary", baseSalary);
-                command.Parameters.AddWithValue("@comment", comment);
-                command.ExecuteScalar();
 
-                AddJobGradeToCache(levelName, xuLie, baseSalary, comment);
+            if (allJobGradeData.ContainsKey(levelName))
+            {
+                throw new ConditionCheckException(string.Format("职级重复添加:{0}", levelName));
+            }
+            SqlCommand command = new SqlCommand();
+            command.Connection = SqlMgr.Instance().SqlConnect;
+            command.CommandType = CommandType.Text;
+            command.CommandText = "INSERT INTO jobgrade(levelName,xuLie,baseSalary,comment) VALUES(@levelName,@xuLie,@baseSalary,@comment)";
+            command.Parameters.AddWithValue("@levelName", levelName);
+            command.Parameters.AddWithValue("@xuLie", xuLie);
+            command.Parameters.AddWithValue("@baseSalary", baseSalary);
+            command.Parameters.AddWithValue("@comment", comment);
+            command.ExecuteScalar();
 
-            }
-            catch (SqlException e1)
-            {
-                throw e1;
-            }
-            catch (Exception e2)
-            {
-                throw e2;
-            }
+            AddJobGradeToCache(levelName, xuLie, baseSalary, comment);
+
+
         }
 
         public void ModifyJobGrade(string zhiji, string newXulie, Int32 newDixin, string newComment)
         {
-            try
-            {
-                JobGradeData data = allJobGradeData[zhiji];
-                SqlCommand command = new SqlCommand();
-                command.Connection = SqlMgr.Instance().SqlConnect;
-                command.CommandType = CommandType.Text;
-                command.CommandText = "update jobgrade set xuLie=@xuLie,baseSalary=@baseSalary,comment=@comment where levelName=@levelName";
-                command.Parameters.AddWithValue("@xuLie", newXulie);
-                command.Parameters.AddWithValue("@baseSalary", newDixin);
-                command.Parameters.AddWithValue("@comment", newComment);
-                command.Parameters.AddWithValue("@levelName", zhiji);
-                command.ExecuteScalar();
+            JobGradeData data = allJobGradeData[zhiji];
+            SqlCommand command = new SqlCommand();
+            command.Connection = SqlMgr.Instance().SqlConnect;
+            command.CommandType = CommandType.Text;
+            command.CommandText = "update jobgrade set xuLie=@xuLie,baseSalary=@baseSalary,comment=@comment where levelName=@levelName";
+            command.Parameters.AddWithValue("@xuLie", newXulie);
+            command.Parameters.AddWithValue("@baseSalary", newDixin);
+            command.Parameters.AddWithValue("@comment", newComment);
+            command.Parameters.AddWithValue("@levelName", zhiji);
+            command.ExecuteScalar();
 
-                data.XuLie = newXulie;
-                data.BaseSalary = newDixin;
-                data.Comment = newComment;
-
-            }
-            catch (SqlException e1)
-            {
-                throw e1;
-            }
-            catch (Exception e2)
-            {
-                throw e2;
-            }
+            data.XuLie = newXulie;
+            data.BaseSalary = newDixin;
+            data.Comment = newComment;
         }
 
         public void DeleteJobGrade(string zhiji)
         {
             
-            try
-            {
-                JobGradeData data = allJobGradeData[zhiji];
-                SqlCommand command = new SqlCommand();
-                command.Connection = SqlMgr.Instance().SqlConnect;
-                command.CommandType = CommandType.Text;
-                command.CommandText = "delete from jobgrade where levelName=@levelName";
-                command.Parameters.AddWithValue("@levelName", zhiji);
-                command.ExecuteScalar();
+            JobGradeData data = allJobGradeData[zhiji];
+            SqlCommand command = new SqlCommand();
+            command.Connection = SqlMgr.Instance().SqlConnect;
+            command.CommandType = CommandType.Text;
+            command.CommandText = "delete from jobgrade where levelName=@levelName";
+            command.Parameters.AddWithValue("@levelName", zhiji);
+            command.ExecuteScalar();
 
-                //从缓存中删除
-                allJobGradeData.Remove(zhiji);
+            //从缓存中删除
+            allJobGradeData.Remove(zhiji);
 
-            }
-            catch (SqlException e1)
-            {
-                throw e1;
-            }
-            catch (Exception e2)
-            {
-                throw e2;
-            }
         }
 
         public void SetDataGridView(DataGridView gridView)

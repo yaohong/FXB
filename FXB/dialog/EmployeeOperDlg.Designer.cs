@@ -37,7 +37,7 @@
             this.selectDepartmentBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.zhijiEdit = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.levelNameBtn = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.ruzhiTime = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
@@ -150,14 +150,15 @@
             this.zhijiEdit.Size = new System.Drawing.Size(219, 21);
             this.zhijiEdit.TabIndex = 8;
             // 
-            // button2
+            // levelNameBtn
             // 
-            this.button2.Location = new System.Drawing.Point(310, 120);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(34, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "...";
-            this.button2.UseVisualStyleBackColor = true;
+            this.levelNameBtn.Location = new System.Drawing.Point(310, 120);
+            this.levelNameBtn.Name = "levelNameBtn";
+            this.levelNameBtn.Size = new System.Drawing.Size(34, 23);
+            this.levelNameBtn.TabIndex = 9;
+            this.levelNameBtn.Text = "...";
+            this.levelNameBtn.UseVisualStyleBackColor = true;
+            this.levelNameBtn.Click += new System.EventHandler(this.levelNameBtn_Click);
             // 
             // label5
             // 
@@ -501,7 +502,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.ruzhiTime);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.levelNameBtn);
             this.Controls.Add(this.zhijiEdit);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.selectDepartmentBtn);
@@ -535,7 +536,7 @@
         private System.Windows.Forms.Button selectDepartmentBtn;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox zhijiEdit;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button levelNameBtn;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker ruzhiTime;
         private System.Windows.Forms.Label label6;

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FXB.Data;
 using FXB.DataManager;
+using FXB.Common;
 namespace FXB.Dialog
 {
     public partial class JobGradeOperDlg : Form
@@ -116,6 +117,9 @@ namespace FXB.Dialog
                 return;
             }
 
+            //检测职级是否重复
+            
+
             try
             {
                 Int32 intDixin = Convert.ToInt32(dixinEdi.Text);
@@ -124,9 +128,14 @@ namespace FXB.Dialog
                 DialogResult = DialogResult.OK;
                 Close();
             }
-            catch (Exception ex)
+            catch (ConditionCheckException ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex1)
+            {
+                MessageBox.Show(ex1.Message);
+                Application.Exit();
             }
         }
 
@@ -161,9 +170,14 @@ namespace FXB.Dialog
                     DialogResult = DialogResult.OK;
                     Close();
                 }
+                catch (ConditionCheckException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    Application.Exit(); 
                 }
             }
             else

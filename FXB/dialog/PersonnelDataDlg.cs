@@ -148,9 +148,14 @@ namespace FXB.Dialog
                 //重新刷新树
                 //DepartmentDataMgr.Instance().SetTreeView(treeView1);
             }
+            catch (ConditionCheckException ex1)
+            {
+                MessageBox.Show(ex1.Message);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                Application.Exit();
             }
         }
 
