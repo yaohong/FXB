@@ -155,5 +155,10 @@ namespace FXB
             }
         }
 
+        private void 生成QT任务ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

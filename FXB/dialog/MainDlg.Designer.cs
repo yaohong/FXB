@@ -44,7 +44,6 @@
             this.薪资管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.底薪录入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.取QT任务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.提成计算ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.报表查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.员工查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.工资查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +54,8 @@
             this.qT查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.生成QT任务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.计算提成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -81,7 +82,6 @@
             this.单据录入ToolStripMenuItem,
             this.薪资管理ToolStripMenuItem,
             this.取QT任务ToolStripMenuItem,
-            this.提成计算ToolStripMenuItem,
             this.报表查询ToolStripMenuItem,
             this.修改密码ToolStripMenuItem,
             this.退出ToolStripMenuItem});
@@ -106,34 +106,34 @@
             // 员工档案ToolStripMenuItem
             // 
             this.员工档案ToolStripMenuItem.Name = "员工档案ToolStripMenuItem";
-            this.员工档案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.员工档案ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.员工档案ToolStripMenuItem.Text = "员工档案";
             this.员工档案ToolStripMenuItem.Click += new System.EventHandler(this.员工档案ToolStripMenuItem_Click);
             // 
             // 职级档案ToolStripMenuItem
             // 
             this.职级档案ToolStripMenuItem.Name = "职级档案ToolStripMenuItem";
-            this.职级档案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.职级档案ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.职级档案ToolStripMenuItem.Text = "职级档案";
             this.职级档案ToolStripMenuItem.Click += new System.EventHandler(this.职级档案ToolStripMenuItem_Click);
             // 
             // 项目档案ToolStripMenuItem
             // 
             this.项目档案ToolStripMenuItem.Name = "项目档案ToolStripMenuItem";
-            this.项目档案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.项目档案ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.项目档案ToolStripMenuItem.Text = "项目档案";
             this.项目档案ToolStripMenuItem.Click += new System.EventHandler(this.项目档案ToolStripMenuItem_Click);
             // 
             // 用户权限ToolStripMenuItem
             // 
             this.用户权限ToolStripMenuItem.Name = "用户权限ToolStripMenuItem";
-            this.用户权限ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.用户权限ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.用户权限ToolStripMenuItem.Text = "用户权限";
             // 
             // 刷新层级关系ToolStripMenuItem
             // 
             this.刷新层级关系ToolStripMenuItem.Name = "刷新层级关系ToolStripMenuItem";
-            this.刷新层级关系ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.刷新层级关系ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.刷新层级关系ToolStripMenuItem.Text = "刷新层级关系";
             // 
             // 单据录入ToolStripMenuItem
@@ -180,15 +180,12 @@
             // 
             // 取QT任务ToolStripMenuItem
             // 
+            this.取QT任务ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.生成QT任务ToolStripMenuItem,
+            this.计算提成ToolStripMenuItem});
             this.取QT任务ToolStripMenuItem.Name = "取QT任务ToolStripMenuItem";
-            this.取QT任务ToolStripMenuItem.Size = new System.Drawing.Size(73, 21);
-            this.取QT任务ToolStripMenuItem.Text = "取QT任务";
-            // 
-            // 提成计算ToolStripMenuItem
-            // 
-            this.提成计算ToolStripMenuItem.Name = "提成计算ToolStripMenuItem";
-            this.提成计算ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
-            this.提成计算ToolStripMenuItem.Text = "提成计算";
+            this.取QT任务ToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
+            this.取QT任务ToolStripMenuItem.Text = "QT任务";
             // 
             // 报表查询ToolStripMenuItem
             // 
@@ -258,6 +255,19 @@
             this.退出ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.退出ToolStripMenuItem.Text = "退出";
             // 
+            // 生成QT任务ToolStripMenuItem
+            // 
+            this.生成QT任务ToolStripMenuItem.Name = "生成QT任务ToolStripMenuItem";
+            this.生成QT任务ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.生成QT任务ToolStripMenuItem.Text = "生成QT任务";
+            this.生成QT任务ToolStripMenuItem.Click += new System.EventHandler(this.生成QT任务ToolStripMenuItem_Click);
+            // 
+            // 计算提成ToolStripMenuItem
+            // 
+            this.计算提成ToolStripMenuItem.Name = "计算提成ToolStripMenuItem";
+            this.计算提成ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.计算提成ToolStripMenuItem.Text = "计算QT提成";
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -299,7 +309,6 @@
         private System.Windows.Forms.ToolStripMenuItem 薪资管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 底薪录入ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 取QT任务ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 提成计算ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 报表查询ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 员工查询ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 工资查询ToolStripMenuItem;
@@ -310,6 +319,8 @@
         private System.Windows.Forms.ToolStripMenuItem qT查询ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 修改密码ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 生成QT任务ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 计算提成ToolStripMenuItem;
     }
 }
 
