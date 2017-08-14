@@ -249,9 +249,20 @@ namespace FXB.DataManager
                     return false;
                 }
             }
-            else
+            else if (ownerDepartmentData.Layer == 1)
             {
-                //所属的部门不是根目录
+                //第一层， QT级别必须为总监，驻场总监，没有QT级别
+                if (roleQtLeve != QtLevel.None &&
+                    roleQtLeve != QtLevel.Majordomo &&
+                    roleQtLeve != QtLevel.ZhuchangZongjian
+                    )
+                {
+                    return false;
+                }
+            } else if (ownerDepartmentData.Layer == 2)
+            {
+                //QT大主管，驻场主管,没有QT级别
+                if (roleQtLeve != QtLevel)
 
             }
 
