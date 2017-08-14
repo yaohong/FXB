@@ -23,7 +23,7 @@ namespace FXB.Data
             qtLevel = tmpQtLevel;
 
             childSet = new SortedSet<Int64>();
-
+            employeeSet = new SortedSet<string>();
             layer = -1;
         }
         //部门ID
@@ -39,6 +39,7 @@ namespace FXB.Data
         private QtLevel qtLevel;
 
         private SortedSet<Int64> childSet;
+        private SortedSet<string> employeeSet; 
 
         Int32 layer;
         public Int64 Id
@@ -71,6 +72,11 @@ namespace FXB.Data
         public SortedSet<Int64> ChildSet
         {
             get { return childSet; }
+        }
+
+        public SortedSet<string> EmployeeSet
+        {
+            get { return employeeSet; }
         }
 
         public Int32 Layer

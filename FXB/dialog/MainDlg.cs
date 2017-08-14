@@ -26,24 +26,25 @@ namespace FXB
 
         private void 员工档案ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form[] allMdiChildren = this.MdiChildren;
-            foreach (Form childDlg in allMdiChildren)
-            {
-                if (childDlg.Name == "PersonnelDataDlg")
-                {
-                    if (childDlg.WindowState == FormWindowState.Minimized)
-                    {
-                        childDlg.WindowState = FormWindowState.Maximized;
-                    }
-                    childDlg.Activate();
+            ShowDialog("PersonnelDataDlg");
+            //Form[] allMdiChildren = this.MdiChildren;
+            //foreach (Form childDlg in allMdiChildren)
+            //{
+            //    if (childDlg.Name == "PersonnelDataDlg")
+            //    {
+            //        if (childDlg.WindowState == FormWindowState.Minimized)
+            //        {
+            //            childDlg.WindowState = FormWindowState.Maximized;
+            //        }
+            //        childDlg.Activate();
 
-                    return;
-                }
-            }
+            //        return;
+            //    }
+            //}
 
-            PersonnelDataDlg dlg = new PersonnelDataDlg();
-            dlg.MdiParent = this;
-            dlg.Show();
+            //PersonnelDataDlg dlg = new PersonnelDataDlg();
+            //dlg.MdiParent = this;
+            //dlg.Show();
         }
 
         private void main_Load(object sender, EventArgs e)
@@ -67,32 +68,56 @@ namespace FXB
 
         private void 职级档案ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form[] allMdiChildren = this.MdiChildren;
-            foreach (Form childDlg in allMdiChildren)
-            {
-                if (childDlg.Name == "JobGradeDataDlg")
-                {
-                    if (childDlg.WindowState == FormWindowState.Minimized)
-                    {
-                        childDlg.WindowState = FormWindowState.Maximized;
-                    }
-                    childDlg.Activate();
+            ShowDialog("JobGradeDataDlg");
+            //Form[] allMdiChildren = this.MdiChildren;
+            //foreach (Form childDlg in allMdiChildren)
+            //{
+            //    if (childDlg.Name == "JobGradeDataDlg")
+            //    {
+            //        if (childDlg.WindowState == FormWindowState.Minimized)
+            //        {
+            //            childDlg.WindowState = FormWindowState.Maximized;
+            //        }
+            //        childDlg.Activate();
 
-                    return;
-                }
-            }
+            //        return;
+            //    }
+            //}
 
-            JobGradeDataDlg dlg = new JobGradeDataDlg();
-            dlg.MdiParent = this;
-            dlg.Show();
+            //JobGradeDataDlg dlg = new JobGradeDataDlg();
+            //dlg.MdiParent = this;
+            //dlg.Show();
         }
 
         private void 项目档案ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ShowDialog("ProjectDataDlg");
+            //Form[] allMdiChildren = this.MdiChildren;
+            //foreach (Form childDlg in allMdiChildren)
+            //{
+            //    if (childDlg.Name == "ProjectDataDlg")
+            //    {
+            //        if (childDlg.WindowState == FormWindowState.Minimized)
+            //        {
+            //            childDlg.WindowState = FormWindowState.Maximized;
+            //        }
+            //        childDlg.Activate();
+
+            //        return;
+            //    }
+            //}
+
+            //ProjectDataDlg dlg = new ProjectDataDlg();
+            //dlg.MdiParent = this;
+            //dlg.Show();
+        }
+
+        private void ShowDialog(string dlgName)
+        {
             Form[] allMdiChildren = this.MdiChildren;
             foreach (Form childDlg in allMdiChildren)
             {
-                if (childDlg.Name == "ProjectDataDlg")
+                if (childDlg.Name == dlgName)
                 {
                     if (childDlg.WindowState == FormWindowState.Minimized)
                     {
@@ -104,16 +129,29 @@ namespace FXB
                 }
             }
 
-            ProjectDataDlg dlg = new ProjectDataDlg();
-            dlg.MdiParent = this;
-            dlg.Show();
+            if (dlgName == "PersonnelDataDlg")
+            {
+                PersonnelDataDlg dlg = new PersonnelDataDlg();
+                dlg.MdiParent = this;
+                dlg.Show();
+            }
+            else if (dlgName == "JobGradeDataDlg")
+            {
+                JobGradeDataDlg dlg = new JobGradeDataDlg();
+                dlg.MdiParent = this;
+                dlg.Show();
+            } 
+            else if (dlgName == "ProjectDataDlg")
+            {
+                ProjectDataDlg dlg = new ProjectDataDlg();
+                dlg.MdiParent = this;
+                dlg.Show();
+            } else
+            {
+                MessageBox.Show("未知的窗口名字");
+                Application.Exit();
+            }
         }
-
-
-
-
-
-
 
     }
 }

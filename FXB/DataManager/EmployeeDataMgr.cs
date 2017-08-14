@@ -121,7 +121,7 @@ namespace FXB.DataManager
                 throw new CrashException(string.Format("工号重复:{0}", jobNumber));
             }
             //检测部门关系
-            if (!CheckDepartmentRelation(qtLevel, departmentId))
+            if (!DepartmentUtil.CheckAddInDepartment(qtLevel, departmentId))
             {
                 throw new CrashException("员工QT级别和部门QT级别对应不上");
             }
@@ -182,7 +182,7 @@ namespace FXB.DataManager
                 throw new ConditionCheckException(string.Format("工号重复:{0}", gongHao));
             }
             //检测部门关系
-            if (!CheckDepartmentRelation(qtLevel, departmentId))
+            if (!DepartmentUtil.CheckAddInDepartment(qtLevel, departmentId))
             {
                 throw new ConditionCheckException("员工QT级别和部门QT级别对应不上");
             }
@@ -232,41 +232,6 @@ namespace FXB.DataManager
         }
 
 
-        bool CheckDepartmentRelation(QtLevel roleQtLeve, Int64 departmentId)
-        {
-            if (departmentId == 0)
-            {
-                //没有加入部门
-                return true;
-            }
 
-            DepartmentData ownerDepartmentData = DepartmentDataMgr.Instance().AllDepartmentData[departmentId];
-            if (ownerDepartmentData.Layer == 0)
-            {
-                //根目录房小白?,QT级别必须是【没有QT级别】
-                if (roleQtLeve != QtLevel.None)
-                {
-                    return false;
-                }
-            }
-            else if (ownerDepartmentData.Layer == 1)
-            {
-                //第一层， QT级别必须为总监，驻场总监，没有QT级别
-                if (roleQtLeve != QtLevel.None &&
-                    roleQtLeve != QtLevel.Majordomo &&
-                    roleQtLeve != QtLevel.ZhuchangZongjian
-                    )
-                {
-                    return false;
-                }
-            } else if (ownerDepartmentData.Layer == 2)
-            {
-                //QT大主管，驻场主管,没有QT级别
-                if (roleQtLeve != QtLevel)
-
-            }
-
-            return true;
-        }
     }
 }

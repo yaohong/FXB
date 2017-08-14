@@ -193,7 +193,7 @@ namespace FXB.Dialog
                 {
                     if (selectDepartment.Layer == 0)
                     {
-                        //父节点是根节点
+                        //父节点是根节点,根节点必须是没有QT级别
                         MessageBox.Show("部门关系错误0");
                         Application.Exit();
 

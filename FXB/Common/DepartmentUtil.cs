@@ -53,5 +53,33 @@ namespace FXB.Common
             }
             
         }
+
+        public static bool CheckAddInDepartment(QtLevel roleQtLeve, Int64 departmentId)
+        {
+            if (departmentId == 0)
+            {
+                //没有加入部门
+                return true;
+            }
+
+            DepartmentData ownerDepartmentData = DepartmentDataMgr.Instance().AllDepartmentData[departmentId];
+            if (ownerDepartmentData.Layer == 0)
+            {
+                //选择的是根目录房小白?,QT级别必须是【没有QT级别】
+                if (roleQtLeve != QtLevel.None)
+                {
+                    return false;
+                }
+
+                //已经有管理员了
+                if (ownerDepartmentData.OwnerJobNumber != "")
+                {
+                    return false;
+                }
+            }
+            
+
+            return true;
+        }
     }
 }
