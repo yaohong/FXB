@@ -150,6 +150,27 @@ namespace FXB.DataManager
             newEmployeeData.QTLevel = qtLevel;
             allEmployeeData.Add(jobNumber, newEmployeeData);
 
+            //添加到部门
+            if (departmentId != 0)
+            {
+                DepartmentData departmentData = DepartmentDataMgr.Instance().AllDepartmentData[departmentId];
+                if (qtLevel != QtLevel.None &&
+                    qtLevel != QtLevel.Salesman &&
+                    qtLevel != QtLevel.ZhuchangZhuanyuan)
+                {
+                    //添加管理员
+                    departmentData.OwnerJobNumber = newEmployeeData.JobNumber;
+                }
+                else
+                {
+                    //添加成员
+                    if (!departmentData.EmployeeSet.Add(newEmployeeData.JobNumber))
+                    {
+                        throw new CrashException("添加员工失败");
+                    }
+                }
+            }
+
             return newEmployeeData;
         }
 
@@ -224,27 +245,6 @@ namespace FXB.DataManager
                 AddEmployeeToCache(
                     gongHao, name, departmentId, zhiji, qtLevel, dianhua, jobState, ruzhiTime, lizhiTime, shenfenzheng, shengriTime, sex,
                     mingzujiguan, juzhuaddress, xueli, biyexuexiao, zhuanye, jjlianxiren, jjdianhua, jieshaoren, comment);
-
-            //添加到部门
-            if (departmentId != 0)
-            {
-                DepartmentData departmentData = DepartmentDataMgr.Instance().AllDepartmentData[departmentId];
-                if (qtLevel != QtLevel.None &&
-                    qtLevel != QtLevel.Salesman &&
-                    qtLevel != QtLevel.ZhuchangZhuanyuan)
-                {
-                    //添加管理员
-                    departmentData.OwnerJobNumber = newEmployeeData.JobNumber;
-                }
-                else
-                {
-                    //添加成员
-                    if (!departmentData.EmployeeSet.Add(newEmployeeData.JobNumber))
-                    {
-                        throw new CrashException("添加员工失败");
-                    }
-                }
-            }
 
             return newEmployeeData;
 

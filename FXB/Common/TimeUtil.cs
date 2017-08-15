@@ -8,14 +8,14 @@ namespace FXB.Common
 {
     public class TimeUtil
     {
-        public static DateTime TimestampToDatetTime(UInt32 time)
+        public static DateTime TimestampToDateTime(UInt32 time)
         {
             System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
             DateTime dt = startTime.AddSeconds(time);
             return dt;
         }
 
-        public static UInt32 DatetTimeToTimestamp(DateTime dateTime)
+        public static UInt32 DateTimeToTimestamp(DateTime dateTime)
         {
             System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
             long timeStamp = (long)(dateTime - startTime).TotalSeconds;

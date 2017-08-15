@@ -50,7 +50,7 @@ namespace FXB.Dialog
             jobStateCb.CheckState = CheckState.Checked;
             xingbieSelect.Items.Insert(0, "男");
             xingbieSelect.Items.Insert(1, "女");
-            //xingbieSelect.SelectedIndex = 0;
+            xingbieSelect.SelectedIndex = 0;
             if (mode == EditMode.EM_ADD)
             {
                 AddInit();
@@ -76,13 +76,13 @@ namespace FXB.Dialog
             bumenEdit.Text = DepartmentUtil.GetDepartmentShowText(employeeData.DepartmentId);
             zhijiEdit.Text = employeeData.JobGradeName;
             dianhuaEdit.Text = employeeData.PhoneNumber;
-            ruzhiTime.Value = TimeUtil.TimestampToDatetTime(employeeData.EnteryTime);
+            ruzhiTime.Value = TimeUtil.TimestampToDateTime(employeeData.EnteryTime);
             jobStateCb.CheckState = CheckBoxUtil.boolToCbState(employeeData.JobState);
-            lizhiTime.Value = TimeUtil.TimestampToDatetTime(employeeData.DimissionTime);
+            lizhiTime.Value = TimeUtil.TimestampToDateTime(employeeData.DimissionTime);
             beizhuEdit.Text = employeeData.Comment;
 
             shenfenzhengEdit.Text = employeeData.IdCard;
-            shengriTime.Value = TimeUtil.TimestampToDatetTime(employeeData.Birthday);
+            shengriTime.Value = TimeUtil.TimestampToDateTime(employeeData.Birthday);
             xingbieSelect.SelectedIndex = employeeData.Sex ? 0 : 1;
             jiguanEdit.Text = employeeData.EthnicAndOrigin;
             juzhudizhiEdit.Text = employeeData.ResidentialAddress;
@@ -177,12 +177,12 @@ namespace FXB.Dialog
                     selectDepartmentId,
                     zhijiEdit.Text,
                     dianhuaEdit.Text,
-                    TimeUtil.DatetTimeToTimestamp(ruzhiTime.Value),
+                    TimeUtil.DateTimeToTimestamp(ruzhiTime.Value),
                     CheckBoxUtil.cbStateToBool(jobStateCb.CheckState),
-                    TimeUtil.DatetTimeToTimestamp(lizhiTime.Value),
+                    TimeUtil.DateTimeToTimestamp(lizhiTime.Value),
                     beizhuEdit.Text,
                     shenfenzhengEdit.Text,
-                    TimeUtil.DatetTimeToTimestamp(shengriTime.Value),
+                    TimeUtil.DateTimeToTimestamp(shengriTime.Value),
                     xingbieSelect.SelectedIndex == 0 ? true : false,
                     jiguanEdit.Text, 
                     juzhudizhiEdit.Text,
