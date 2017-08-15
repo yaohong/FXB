@@ -18,8 +18,10 @@ namespace FXB
         public main()
         {
             InitializeComponent();
-            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            long t = Convert.ToInt64(ts.TotalSeconds);
+            //SortedSet<int> s = new SortedSet<int>();
+            //bool a = s.Add(1);
+            //a = s.Add(2);
+            //a = s.Add(1);
         }
 
 

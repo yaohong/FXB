@@ -54,7 +54,7 @@ namespace FXB.Common
             
         }
 
-        public static bool CheckAddInDepartment(QtLevel roleQtLeve, Int64 departmentId)
+        public static bool CheckAddInDepartment(QtLevel roleQtLevel, Int64 departmentId)
         {
             if (departmentId == 0)
             {
@@ -65,8 +65,8 @@ namespace FXB.Common
             DepartmentData ownerDepartmentData = DepartmentDataMgr.Instance().AllDepartmentData[departmentId];
             if (ownerDepartmentData.Layer == 0)
             {
-                //选择的是根目录房小白?,QT级别必须是【没有QT级别】
-                if (roleQtLeve != QtLevel.None)
+                //选择的是根目录房小白,QT级别必须是【没有QT级别】
+                if (roleQtLevel != QtLevel.None)
                 {
                     return false;
                 }
@@ -76,8 +76,63 @@ namespace FXB.Common
                 {
                     return false;
                 }
+
+                return true;
             }
-            
+
+            //选择的QT部门
+            if (ownerDepartmentData.QTLevel != QtLevel.None)
+            {
+                //员工没有QT级别
+                if (roleQtLevel == QtLevel.None)
+                {
+                    return false;
+                }
+
+                if (roleQtLevel == ownerDepartmentData.QTLevel)
+                {
+                    //设置部门主管
+                    if (ownerDepartmentData.OwnerJobNumber != "")
+                    {
+                        //已经有管理员了
+                        return false;
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    if (ownerDepartmentData.QTLevel == QtLevel.SmallCharge &&
+                        roleQtLevel == QtLevel.Salesman)
+                    {
+                        //给小主管添加业务员
+                        return true;
+                    }
+
+                    if (ownerDepartmentData.QTLevel == QtLevel.ZhuchangZhuguan && 
+                        roleQtLevel == QtLevel.ZhuchangZhuanyuan)
+                    {
+                        //给驻场主管添加驻场专员
+                        return true;
+                    }
+
+                    return false;
+                }
+            }
+
+
+
+            //非QT部门
+            if (roleQtLevel != QtLevel.None)
+            {
+                return false;
+            }
+
+            if (ownerDepartmentData.ChildSet.Count > 0)
+            {
+                //有子部门了不能添加
+                return false;
+            }
 
             return true;
         }

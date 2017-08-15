@@ -145,8 +145,6 @@ namespace FXB.Dialog
             {
                 DepartmentDataMgr.Instance().DeleteDepartment(departmentId);
                 n.Remove();
-                //重新刷新树
-                //DepartmentDataMgr.Instance().SetTreeView(treeView1);
             }
             catch (ConditionCheckException ex1)
             {

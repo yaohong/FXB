@@ -138,6 +138,11 @@ namespace FXB.DataManager
         public DepartmentData AddNewDepartment(DepartmentData parent, string name, string owner, QtLevel qtLevel)
         {
             //添加新的副本
+            if (parent.EmployeeSet.Count > 0)
+            {
+                throw new ConditionCheckException("部门已经有员工，不能添加子部门");
+            }
+
             SqlCommand command = new SqlCommand();
             command.Connection = SqlMgr.Instance().SqlConnect;
             command.CommandType = CommandType.Text;
@@ -183,6 +188,16 @@ namespace FXB.DataManager
             if (departmentData.ChildSet.Count != 0)
             {
                 throw new ConditionCheckException("部门还有子部门，不能删除");
+            }
+
+            if (departmentData.OwnerJobNumber != "")
+            {
+                throw new ConditionCheckException("部门还有管理员，不能删除");
+            }
+
+            if (departmentData.EmployeeSet.Count != 0 )
+            {
+                throw new ConditionCheckException("部门还有还有员工，不能删除");
             }
 
             DepartmentData parent = allDepartmentData[departmentData.SuperiorId];

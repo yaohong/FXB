@@ -61,7 +61,15 @@ namespace FXB.Data
         public string OwnerJobNumber
         {
             get { return ownerJobNumber; }
-            set { ownerJobNumber = value; }
+            set 
+            { 
+                if (ownerJobNumber != "")
+                {
+                    throw new CrashException("重复设置部门主管");
+                }
+
+                ownerJobNumber = value; 
+            }
         }
 
         public QtLevel QTLevel
@@ -102,6 +110,11 @@ namespace FXB.Data
         public bool IsMaxLayer()
         {
             return layer == 3;
+        }
+
+        public void AddEmployee(string jobNumber)
+        {
+
         }
     }
 }

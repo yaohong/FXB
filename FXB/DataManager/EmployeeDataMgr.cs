@@ -123,7 +123,7 @@ namespace FXB.DataManager
             //检测部门关系
             if (!DepartmentUtil.CheckAddInDepartment(qtLevel, departmentId))
             {
-                throw new CrashException("员工QT级别和部门QT级别对应不上");
+                throw new CrashException("不能够加入部门,员工QT级别和部门QT级别对应不上");
             }
 
             //添加到缓存
@@ -184,7 +184,7 @@ namespace FXB.DataManager
             //检测部门关系
             if (!DepartmentUtil.CheckAddInDepartment(qtLevel, departmentId))
             {
-                throw new ConditionCheckException("员工QT级别和部门QT级别对应不上");
+                throw new ConditionCheckException("不能够加入部门,员工QT级别和部门QT级别对应不上");
             }
             //添加新的副本
             SqlCommand command = new SqlCommand();
@@ -225,6 +225,26 @@ namespace FXB.DataManager
                     gongHao, name, departmentId, zhiji, qtLevel, dianhua, jobState, ruzhiTime, lizhiTime, shenfenzheng, shengriTime, sex,
                     mingzujiguan, juzhuaddress, xueli, biyexuexiao, zhuanye, jjlianxiren, jjdianhua, jieshaoren, comment);
 
+            //添加到部门
+            if (departmentId != 0)
+            {
+                DepartmentData departmentData = DepartmentDataMgr.Instance().AllDepartmentData[departmentId];
+                if (qtLevel != QtLevel.None &&
+                    qtLevel != QtLevel.Salesman &&
+                    qtLevel != QtLevel.ZhuchangZhuanyuan)
+                {
+                    //添加管理员
+                    departmentData.OwnerJobNumber = newEmployeeData.JobNumber;
+                }
+                else
+                {
+                    //添加成员
+                    if (!departmentData.EmployeeSet.Add(newEmployeeData.JobNumber))
+                    {
+                        throw new CrashException("添加员工失败");
+                    }
+                }
+            }
 
             return newEmployeeData;
 
