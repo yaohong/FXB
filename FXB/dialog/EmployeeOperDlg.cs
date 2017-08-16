@@ -48,8 +48,8 @@ namespace FXB.Dialog
             bumenEdit.Enabled = false;
             zhijiEdit.Enabled = false;
             jobStateCb.CheckState = CheckState.Checked;
-            xingbieSelect.Items.Insert(0, "男");
-            xingbieSelect.Items.Insert(1, "女");
+            xingbieSelect.Items.Insert(0, "女");
+            xingbieSelect.Items.Insert(1, "男");
             xingbieSelect.SelectedIndex = 0;
             if (mode == EditMode.EM_ADD)
             {
@@ -84,7 +84,7 @@ namespace FXB.Dialog
 
             shenfenzhengEdit.Text = employeeData.IdCard;
             shengriTime.Value = TimeUtil.TimestampToDateTime(employeeData.Birthday);
-            xingbieSelect.SelectedIndex = employeeData.Sex ? 0 : 1;
+            xingbieSelect.SelectedIndex = employeeData.Sex ? 1 : 0;
             jiguanEdit.Text = employeeData.EthnicAndOrigin;
             juzhudizhiEdit.Text = employeeData.ResidentialAddress;
             xueliEdit.Text = employeeData.Education;
@@ -185,7 +185,7 @@ namespace FXB.Dialog
                     beizhuEdit.Text,
                     shenfenzhengEdit.Text,
                     TimeUtil.DateTimeToTimestamp(shengriTime.Value),
-                    xingbieSelect.SelectedIndex == 0 ? true : false,
+                    xingbieSelect.SelectedIndex == 0 ? false : true,
                     jiguanEdit.Text, 
                     juzhudizhiEdit.Text,
                     xueliEdit.Text,
