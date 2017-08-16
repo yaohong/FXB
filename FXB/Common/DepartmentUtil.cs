@@ -54,7 +54,8 @@ namespace FXB.Common
             
         }
 
-        public static bool CheckAddInDepartment(string jobNumber, QtLevel roleQtLevel, Int64 addIndepartmentId)
+        //检测加入关系
+        public static bool CheckAddInDepartment(QtLevel roleQtLevel, Int64 addIndepartmentId, bool isOwner)
         {
             if (addIndepartmentId == 0)
             {
@@ -65,6 +66,12 @@ namespace FXB.Common
             DepartmentData ownerDepartmentData = DepartmentDataMgr.Instance().AllDepartmentData[addIndepartmentId];
             if (ownerDepartmentData.Layer == 0)
             {
+                if (!isOwner)
+                {
+                    //不是管理员
+                    return false;
+                }
+
                 //选择的是根目录房小白,QT级别必须是【没有QT级别】
                 if (roleQtLevel != QtLevel.None)
                 {
@@ -72,11 +79,11 @@ namespace FXB.Common
                 }
 
                 //已经有管理员了
-                if (ownerDepartmentData.OwnerJobNumber != "" && 
-                    ownerDepartmentData.OwnerJobNumber != jobNumber)
+                if (ownerDepartmentData.OwnerJobNumber != "")
                 {
                     return false;
                 }
+
 
                 return true;
             }
@@ -92,9 +99,14 @@ namespace FXB.Common
 
                 if (roleQtLevel == ownerDepartmentData.QTLevel)
                 {
+                    //非节点部门不能是普通员工
+                    if (!isOwner)
+                    {
+                        return false;
+                    }
+
                     //设置部门主管
-                    if (ownerDepartmentData.OwnerJobNumber != "" &&
-                        ownerDepartmentData.OwnerJobNumber != jobNumber)
+                    if (ownerDepartmentData.OwnerJobNumber != "")
                     {
                         //已经有管理员了
                         return false;
@@ -104,6 +116,12 @@ namespace FXB.Common
                 }
                 else
                 {
+                    //只能是非管理员
+                    if (isOwner)
+                    {
+                        return false;
+                    }
+
                     if (ownerDepartmentData.QTLevel == QtLevel.SmallCharge &&
                         roleQtLevel == QtLevel.Salesman)
                     {
@@ -130,11 +148,10 @@ namespace FXB.Common
                 return false;
             }
 
-            if (ownerDepartmentData.ChildSet.Count > 0)
+            if (isOwner)
             {
-                //有子部门了
-                if (ownerDepartmentData.OwnerJobNumber != "" &&
-                    ownerDepartmentData.OwnerJobNumber != jobNumber)
+                //设置成管理员
+                if (ownerDepartmentData.OwnerJobNumber != "")
                 {
                     //有管理员了
                     return false;
@@ -142,8 +159,16 @@ namespace FXB.Common
 
                 return true;
             }
+            else
+            {
+                if (ownerDepartmentData.ChildSet.Count > 0)
+                {
+                    //部门有子部门了
+                    return false;
+                }
 
-            return true;
+                return true;
+            }
         }
     }
 }

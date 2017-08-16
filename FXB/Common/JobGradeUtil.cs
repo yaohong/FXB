@@ -9,31 +9,31 @@ namespace FXB.Common
 {
     class JobGradeUtil
     {
-        static public void setDataGridViewColumn(DataGridView dataGridView)
+        static public void setDataGridViewColumn(DataGridView view)
         {
             DataGridViewTextBoxColumn zhiji = new DataGridViewTextBoxColumn();
             zhiji.Name = "zhiji";
             zhiji.HeaderText = "职级";
             zhiji.Width = 100;
-            dataGridView.Columns.Add(zhiji);
+            view.Columns.Add(zhiji);
 
             DataGridViewTextBoxColumn xulie = new DataGridViewTextBoxColumn();
             xulie.Name = "xulie";
             xulie.HeaderText = "所属序列";
             xulie.Width = 100;
-            dataGridView.Columns.Add(xulie);
+            view.Columns.Add(xulie);
 
             DataGridViewTextBoxColumn dixin = new DataGridViewTextBoxColumn();
             dixin.Name = "dixin";
             dixin.HeaderText = "对应底薪";
             dixin.Width = 100;
-            dataGridView.Columns.Add(dixin);
+            view.Columns.Add(dixin);
 
             DataGridViewTextBoxColumn beizhu = new DataGridViewTextBoxColumn();
             beizhu.Name = "beizhu";
             beizhu.HeaderText = "备注";
             beizhu.Width = 300;
-            dataGridView.Columns.Add(beizhu);
+            view.Columns.Add(beizhu);
         }
     }
 }

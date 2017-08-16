@@ -33,6 +33,14 @@ namespace FXB.Data
             get { return departmentId; }
             set { departmentId = value; }
         }
+
+        //是否是部门主管
+        private bool isOwner;
+        public bool IsOwner
+        {
+            get { return isOwner; }
+            set { isOwner = value; }
+        }
         //职级(职级id)
         private string jobGradeName;
         public string JobGradeName

@@ -58,9 +58,6 @@
             this.treeView1 = new FXB.MyControl.MyTreeView();
             this.tableLayoutPanel3 = new FXB.MyControl.MyTableLayoutPanel();
             this.dataGridView1 = new FXB.MyControl.MyDataGridView();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qq = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rootTableLayoutPanel.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -348,10 +345,6 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige;
             this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.name,
-            this.qq,
-            this.address});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
@@ -368,24 +361,8 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Bisque;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.Size = new System.Drawing.Size(1051, 704);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "名字";
-            this.name.Name = "name";
-            // 
-            // qq
-            // 
-            this.qq.HeaderText = "QQ";
-            this.qq.Name = "qq";
-            // 
-            // address
-            // 
-            this.address.HeaderText = "地址";
-            this.address.Name = "address";
             // 
             // PersonnelDataDlg
             // 
@@ -428,9 +405,6 @@
         private System.Windows.Forms.Button ExportBtn;
         private System.Windows.Forms.Button AddPersonnelBtn;
         private FXB.MyControl.MyDataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qq;
-        private System.Windows.Forms.DataGridViewTextBoxColumn address;
         private FXB.MyControl.MyTableLayoutPanel rootTableLayoutPanel;
         private FXB.MyControl.MyTableLayoutPanel tableLayoutPanel1;
         private FXB.MyControl.MyTableLayoutPanel tableLayoutPanel2;

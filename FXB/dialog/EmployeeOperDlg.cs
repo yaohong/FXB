@@ -74,6 +74,7 @@ namespace FXB.Dialog
             xingmingEdit.Text = employeeData.Name;
             qtLevelSelect.SelectedIndex = QtUtil.GetComboxIndex(qtLevelSelect, employeeData.QTLevel);
             bumenEdit.Text = DepartmentUtil.GetDepartmentShowText(employeeData.DepartmentId);
+            isOwnerCb.CheckState = CheckBoxUtil.boolToCbState(employeeData.IsOwner);
             zhijiEdit.Text = employeeData.JobGradeName;
             dianhuaEdit.Text = employeeData.PhoneNumber;
             ruzhiTime.Value = TimeUtil.TimestampToDateTime(employeeData.EnteryTime);
@@ -175,6 +176,7 @@ namespace FXB.Dialog
                     xingmingEdit.Text,
                     QtUtil.GetQTLevel(qtLevelSelect.Text),
                     selectDepartmentId,
+                    CheckBoxUtil.cbStateToBool(isOwnerCb.CheckState),
                     zhijiEdit.Text,
                     dianhuaEdit.Text,
                     TimeUtil.DateTimeToTimestamp(ruzhiTime.Value),

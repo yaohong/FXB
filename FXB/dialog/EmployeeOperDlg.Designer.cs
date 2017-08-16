@@ -74,6 +74,7 @@
             this.cancelBtn = new System.Windows.Forms.Button();
             this.beizhuEdit = new System.Windows.Forms.TextBox();
             this.jobStateCb = new System.Windows.Forms.CheckBox();
+            this.isOwnerCb = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -137,7 +138,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(39, 130);
+            this.label4.Location = new System.Drawing.Point(39, 156);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 12);
             this.label4.TabIndex = 7;
@@ -145,14 +146,14 @@
             // 
             // zhijiEdit
             // 
-            this.zhijiEdit.Location = new System.Drawing.Point(80, 121);
+            this.zhijiEdit.Location = new System.Drawing.Point(80, 148);
             this.zhijiEdit.Name = "zhijiEdit";
             this.zhijiEdit.Size = new System.Drawing.Size(219, 21);
             this.zhijiEdit.TabIndex = 8;
             // 
             // levelNameBtn
             // 
-            this.levelNameBtn.Location = new System.Drawing.Point(310, 120);
+            this.levelNameBtn.Location = new System.Drawing.Point(310, 146);
             this.levelNameBtn.Name = "levelNameBtn";
             this.levelNameBtn.Size = new System.Drawing.Size(34, 23);
             this.levelNameBtn.TabIndex = 9;
@@ -163,7 +164,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 184);
+            this.label5.Location = new System.Drawing.Point(16, 210);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 12);
             this.label5.TabIndex = 10;
@@ -171,7 +172,7 @@
             // 
             // ruzhiTime
             // 
-            this.ruzhiTime.Location = new System.Drawing.Point(80, 175);
+            this.ruzhiTime.Location = new System.Drawing.Point(80, 201);
             this.ruzhiTime.Name = "ruzhiTime";
             this.ruzhiTime.Size = new System.Drawing.Size(219, 21);
             this.ruzhiTime.TabIndex = 11;
@@ -179,7 +180,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 210);
+            this.label6.Location = new System.Drawing.Point(15, 236);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 12);
             this.label6.TabIndex = 12;
@@ -188,7 +189,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 237);
+            this.label7.Location = new System.Drawing.Point(16, 263);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(59, 12);
             this.label7.TabIndex = 14;
@@ -196,7 +197,7 @@
             // 
             // lizhiTime
             // 
-            this.lizhiTime.Location = new System.Drawing.Point(80, 228);
+            this.lizhiTime.Location = new System.Drawing.Point(80, 254);
             this.lizhiTime.Name = "lizhiTime";
             this.lizhiTime.Size = new System.Drawing.Size(219, 21);
             this.lizhiTime.TabIndex = 15;
@@ -286,7 +287,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(39, 157);
+            this.label13.Location = new System.Drawing.Point(39, 183);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(35, 12);
             this.label13.TabIndex = 26;
@@ -294,7 +295,7 @@
             // 
             // dianhuaEdit
             // 
-            this.dianhuaEdit.Location = new System.Drawing.Point(80, 148);
+            this.dianhuaEdit.Location = new System.Drawing.Point(80, 174);
             this.dianhuaEdit.Name = "dianhuaEdit";
             this.dianhuaEdit.Size = new System.Drawing.Size(219, 21);
             this.dianhuaEdit.TabIndex = 27;
@@ -416,7 +417,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(39, 300);
+            this.label21.Location = new System.Drawing.Point(39, 326);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(35, 12);
             this.label21.TabIndex = 43;
@@ -424,7 +425,7 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(498, 326);
+            this.saveBtn.Location = new System.Drawing.Point(498, 355);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 44;
@@ -434,7 +435,7 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(642, 326);
+            this.cancelBtn.Location = new System.Drawing.Point(642, 355);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 45;
@@ -444,7 +445,7 @@
             // 
             // beizhuEdit
             // 
-            this.beizhuEdit.Location = new System.Drawing.Point(80, 258);
+            this.beizhuEdit.Location = new System.Drawing.Point(80, 284);
             this.beizhuEdit.Multiline = true;
             this.beizhuEdit.Name = "beizhuEdit";
             this.beizhuEdit.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -454,18 +455,29 @@
             // jobStateCb
             // 
             this.jobStateCb.AutoSize = true;
-            this.jobStateCb.Location = new System.Drawing.Point(81, 206);
+            this.jobStateCb.Location = new System.Drawing.Point(81, 232);
             this.jobStateCb.Name = "jobStateCb";
             this.jobStateCb.Size = new System.Drawing.Size(162, 16);
             this.jobStateCb.TabIndex = 47;
             this.jobStateCb.Text = "勾选为在职,不勾选为离职";
             this.jobStateCb.UseVisualStyleBackColor = true;
             // 
+            // isOwnerCb
+            // 
+            this.isOwnerCb.AutoSize = true;
+            this.isOwnerCb.Location = new System.Drawing.Point(80, 123);
+            this.isOwnerCb.Name = "isOwnerCb";
+            this.isOwnerCb.Size = new System.Drawing.Size(186, 16);
+            this.isOwnerCb.TabIndex = 49;
+            this.isOwnerCb.Text = "勾选为主管,不勾选为普通职员";
+            this.isOwnerCb.UseVisualStyleBackColor = true;
+            // 
             // EmployeeOperDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(747, 364);
+            this.ClientSize = new System.Drawing.Size(747, 402);
+            this.Controls.Add(this.isOwnerCb);
             this.Controls.Add(this.jobStateCb);
             this.Controls.Add(this.beizhuEdit);
             this.Controls.Add(this.cancelBtn);
@@ -573,5 +585,6 @@
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.TextBox beizhuEdit;
         private System.Windows.Forms.CheckBox jobStateCb;
+        private System.Windows.Forms.CheckBox isOwnerCb;
     }
 }

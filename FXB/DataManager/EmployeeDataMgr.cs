@@ -49,24 +49,25 @@ namespace FXB.DataManager
                     string name = reader.GetString(1);
                     QtLevel qtLevel = (QtLevel)reader.GetInt32(2);
                     Int64 departmentId = reader.GetInt64(3);
-                    string zhiji = reader.GetString(4);
-                    string dianhua = reader.GetString(5);
-                    UInt32 ruzhiTime = (UInt32)reader.GetInt32(6);
-                    bool jobState = reader.GetBoolean(7);
-                    UInt32 lizhiTime = (UInt32)reader.GetInt32(8);
-                    string beizhu = reader.GetString(9);
-                    string shenfenzheng = reader.GetString(10);
-                    UInt32 shengriTime = (UInt32)reader.GetInt32(11);
-                    bool sex = reader.GetBoolean(12);
-                    string mingzujiguan = reader.GetString(13);
-                    string juzhudizhi = reader.GetString(14);
-                    string xueli = reader.GetString(15);
-                    string biyexuexiao = reader.GetString(16);
-                    string zhuanye = reader.GetString(17);
-                    string jjlianxiren = reader.GetString(18);
-                    string jjdianhua = reader.GetString(19);
-                    string jieshaoren = reader.GetString(20);
-                    AddEmployeeToCache(gonghao, name, departmentId, zhiji, qtLevel, dianhua, jobState, ruzhiTime, lizhiTime, shenfenzheng, shengriTime, sex,
+                    bool isOwner = reader.GetBoolean(4);
+                    string zhiji = reader.GetString(5);
+                    string dianhua = reader.GetString(6);
+                    UInt32 ruzhiTime = (UInt32)reader.GetInt32(7);
+                    bool jobState = reader.GetBoolean(8);
+                    UInt32 lizhiTime = (UInt32)reader.GetInt32(9);
+                    string beizhu = reader.GetString(10);
+                    string shenfenzheng = reader.GetString(11);
+                    UInt32 shengriTime = (UInt32)reader.GetInt32(12);
+                    bool sex = reader.GetBoolean(13);
+                    string mingzujiguan = reader.GetString(14);
+                    string juzhudizhi = reader.GetString(15);
+                    string xueli = reader.GetString(16);
+                    string biyexuexiao = reader.GetString(17);
+                    string zhuanye = reader.GetString(18);
+                    string jjlianxiren = reader.GetString(19);
+                    string jjdianhua = reader.GetString(20);
+                    string jieshaoren = reader.GetString(21);
+                    AddEmployeeToCache(gonghao, name, departmentId, isOwner, zhiji, qtLevel, dianhua, jobState, ruzhiTime, lizhiTime, shenfenzheng, shengriTime, sex,
                         mingzujiguan, juzhudizhi, xueli, biyexuexiao, zhuanye, jjlianxiren, jjdianhua, jieshaoren, beizhu);
                 }
             }
@@ -96,6 +97,7 @@ namespace FXB.DataManager
             string jobNumber,
             string name,
             Int64 departmentId,
+            bool isOwner,
             string jobGradeName,
             QtLevel qtLevel,
             string phoneNumber,
@@ -121,7 +123,7 @@ namespace FXB.DataManager
                 throw new CrashException(string.Format("工号重复:{0}", jobNumber));
             }
             //检测部门关系
-            if (!DepartmentUtil.CheckAddInDepartment(jobNumber, qtLevel, departmentId))
+            if (!DepartmentUtil.CheckAddInDepartment(qtLevel, departmentId, isOwner))
             {
                 throw new CrashException("不能够加入部门,员工QT级别和部门QT级别对应不上");
             }
@@ -130,6 +132,7 @@ namespace FXB.DataManager
             EmployeeData newEmployeeData = new EmployeeData(jobNumber);
             newEmployeeData.Name = name;
             newEmployeeData.DepartmentId = departmentId;
+            newEmployeeData.IsOwner = isOwner;
             newEmployeeData.JobGradeName = jobGradeName;
             newEmployeeData.PhoneNumber = phoneNumber;
             newEmployeeData.JobState = jobState;
@@ -179,6 +182,7 @@ namespace FXB.DataManager
             string name,
             QtLevel qtLevel,
             Int64 departmentId,
+            bool isOwner,
             string zhiji,
             string dianhua,
             UInt32 ruzhiTime,
@@ -203,7 +207,7 @@ namespace FXB.DataManager
                 throw new ConditionCheckException(string.Format("工号重复:{0}", gongHao));
             }
             //检测部门关系
-            if (!DepartmentUtil.CheckAddInDepartment(gongHao, qtLevel, departmentId))
+            if (!DepartmentUtil.CheckAddInDepartment(qtLevel, departmentId, isOwner))
             {
                 throw new ConditionCheckException("不能够加入部门,员工QT级别和部门QT级别对应不上");
             }
@@ -212,16 +216,17 @@ namespace FXB.DataManager
             command.Connection = SqlMgr.Instance().SqlConnect;
             command.CommandType = CommandType.Text;
             command.CommandText = @"INSERT INTO employee
-                (gonghao,name,qtlevel,departmentId,zhiji,dianhua,ruzhiTime,jobState,
+                (gonghao,name,qtlevel,departmentId,isOwner,zhiji,dianhua,ruzhiTime,jobState,
                 lizhiTime,comment,shenfenzheng,shengriTime,sex,mingzujiguan,
                 juzhuaddress,xueli,biyexuexiao,zhuanye,jjlianxiren,jjdianhua,jieshaoren)
-                    VALUES(@gonghao,@name,@qtlevel,@departmentId,@zhiji,@dianhua,@ruzhiTime,
+                    VALUES(@gonghao,@name,@qtlevel,@departmentId, @isOwner, @zhiji,@dianhua,@ruzhiTime,
                 @jobState,@lizhiTime,@comment,@shenfenzheng,@shengriTime,@sex,@mingzujiguan,
                 @juzhuaddress,@xueli,@biyexuexiao,@zhuanye,@jjlianxiren,@jjdianhua,@jieshaoren)";
             command.Parameters.AddWithValue("@gonghao", gongHao);
             command.Parameters.AddWithValue("@name", name);
             command.Parameters.AddWithValue("@qtlevel", (Int32)qtLevel);
             command.Parameters.AddWithValue("@departmentId", departmentId);
+            command.Parameters.AddWithValue("@isOwner", isOwner);
             command.Parameters.AddWithValue("@zhiji", zhiji);
             command.Parameters.AddWithValue("@dianhua", dianhua);
             command.Parameters.AddWithValue("@ruzhiTime", (Int32)ruzhiTime);
@@ -243,7 +248,7 @@ namespace FXB.DataManager
 
             EmployeeData newEmployeeData = 
                 AddEmployeeToCache(
-                    gongHao, name, departmentId, zhiji, qtLevel, dianhua, jobState, ruzhiTime, lizhiTime, shenfenzheng, shengriTime, sex,
+                    gongHao, name, departmentId, isOwner, zhiji, qtLevel, dianhua, jobState, ruzhiTime, lizhiTime, shenfenzheng, shengriTime, sex,
                     mingzujiguan, juzhuaddress, xueli, biyexuexiao, zhuanye, jjlianxiren, jjdianhua, jieshaoren, comment);
 
             return newEmployeeData;
@@ -251,6 +256,42 @@ namespace FXB.DataManager
 
         }
 
+
+
+        public void SetDataGridView(DataGridView gridView)
+        {
+            gridView.Rows.Clear();
+            foreach (var item in allEmployeeData)
+            {
+                EmployeeData data = item.Value;
+                int lineIndex = gridView.Rows.Add();
+
+                gridView.Rows[lineIndex].Cells["gonghao"].Value = item.Value.JobNumber;
+                gridView.Rows[lineIndex].Cells["name"].Value = item.Value.Name;
+                gridView.Rows[lineIndex].Cells["qt"].Value = QtUtil.GetQTLevelString(item.Value.QTLevel);
+                gridView.Rows[lineIndex].Cells["departmentName"].Value = DepartmentUtil.GetDepartmentShowText(item.Value.DepartmentId);
+                gridView.Rows[lineIndex].Cells["isOwner"].Value = item.Value.IsOwner;
+                gridView.Rows[lineIndex].Cells["zhiji"].Value = item.Value.JobGradeName;
+
+                gridView.Rows[lineIndex].Cells["dianhua"].Value = item.Value.PhoneNumber;
+                gridView.Rows[lineIndex].Cells["ruzhiTime"].Value = TimeUtil.TimestampToDateTime(item.Value.EnteryTime).ToShortDateString();
+                gridView.Rows[lineIndex].Cells["jobState"].Value = item.Value.JobState;
+                gridView.Rows[lineIndex].Cells["lizhiTime"].Value = TimeUtil.TimestampToDateTime(item.Value.DimissionTime).ToShortDateString();
+
+                gridView.Rows[lineIndex].Cells["shenfenzheng"].Value = item.Value.IdCard;
+                gridView.Rows[lineIndex].Cells["shengriTime"].Value = TimeUtil.TimestampToDateTime(item.Value.Birthday).ToShortDateString();
+                gridView.Rows[lineIndex].Cells["xingbie"].Value = item.Value.Sex ? "男" : "女";
+                gridView.Rows[lineIndex].Cells["mingzujiguan"].Value = item.Value.EthnicAndOrigin;
+                gridView.Rows[lineIndex].Cells["juzhudizhi"].Value = item.Value.ResidentialAddress;
+                gridView.Rows[lineIndex].Cells["xueli"].Value = item.Value.Education;
+                gridView.Rows[lineIndex].Cells["biyexuexiao"].Value = item.Value.SchoolTag;
+                gridView.Rows[lineIndex].Cells["zhuanye"].Value = item.Value.Specialities;
+                gridView.Rows[lineIndex].Cells["jjLianxiren"].Value = item.Value.EmergencyContact;
+                gridView.Rows[lineIndex].Cells["jjLianxidianhua"].Value = item.Value.EmergencyTelephoneNumber;
+                gridView.Rows[lineIndex].Cells["jieshaoren"].Value = item.Value.Introducer;
+                gridView.Rows[lineIndex].Cells["beizhu"].Value = item.Value.Comment;
+            }
+        }
 
 
     }

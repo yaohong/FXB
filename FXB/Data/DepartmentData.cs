@@ -64,12 +64,6 @@ namespace FXB.Data
             get { return ownerJobNumber; }
             set 
             { 
-                if (ownerJobNumber != "" &&
-                    ownerJobNumber != value)
-                {
-                    throw new CrashException("重复设置部门主管");
-                }
-
                 ownerJobNumber = value; 
             }
         }

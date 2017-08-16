@@ -135,7 +135,7 @@ namespace FXB.DataManager
             return newDepartment;
         }
 
-        public DepartmentData AddNewDepartment(DepartmentData parent, string name, string owner, QtLevel qtLevel)
+        public DepartmentData AddNewDepartment(DepartmentData parent, string name, QtLevel qtLevel)
         {
             //添加新的副本
             if (parent.EmployeeSet.Count > 0)
@@ -149,11 +149,11 @@ namespace FXB.DataManager
             command.CommandText = "INSERT INTO department(nid,name,owner,qtlevel) output inserted.Id VALUES(@nid,@name,@owner,@qtlevel);select @@identity";
             command.Parameters.AddWithValue("@nid", parent.Id);
             command.Parameters.AddWithValue("@name", name);
-            command.Parameters.AddWithValue("@owner", owner);
+            command.Parameters.AddWithValue("@owner", "");
             command.Parameters.AddWithValue("@qtlevel", (Int32)qtLevel);
             Int64 newDepartmentId = (Int64)command.ExecuteScalar();
 
-            DepartmentData newDepartment = AddDepartmentToCache(newDepartmentId, parent.Id, name, owner, qtLevel);
+            DepartmentData newDepartment = AddDepartmentToCache(newDepartmentId, parent.Id, name, "", qtLevel);
             newDepartment.Layer = parent.Layer + 1;
             parent.ChildSet.Add(newDepartment.Id);
 
@@ -161,20 +161,18 @@ namespace FXB.DataManager
             return newDepartment;
         }
 
-        public void ModifyDepartment(Int64 departmentId, string newBumenName, string newOwner)
+        public void ModifyDepartment(Int64 departmentId, string newBumenName)
         {
             DepartmentData data = allDepartmentData[departmentId];
             SqlCommand command = new SqlCommand();
             command.Connection = SqlMgr.Instance().SqlConnect;
             command.CommandType = CommandType.Text;
-            command.CommandText = "update department set name=@name,owner=@owner where id=@id";
+            command.CommandText = "update department set name=@name where id=@id";
             command.Parameters.AddWithValue("@name", newBumenName);
-            command.Parameters.AddWithValue("@owner", newOwner);
             command.Parameters.AddWithValue("@id", departmentId);
             command.ExecuteScalar();
 
             data.Name = newBumenName;
-            data.OwnerJobNumber = newOwner;
         }
 
         public void DeleteDepartment(Int64 departmentId)

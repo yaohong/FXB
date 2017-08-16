@@ -43,8 +43,9 @@ namespace FXB.Dialog
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
             dataGridView1.ReadOnly = true;
-
+            SetDataGridViewColumn();
             DepartmentDataMgr.Instance().SetTreeView(treeView1);
+            EmployeeDataMgr.Instance().SetDataGridView(dataGridView1);
         }
 
         private void AddDepartmentBtn_Click(object sender, EventArgs e)
@@ -166,6 +167,143 @@ namespace FXB.Dialog
                 //n.Name = selectDepartment.Name;
                 n.Text = selectDepartment.Name;
             }
+        }
+
+
+        private void SetDataGridViewColumn()
+        {
+            DataGridViewTextBoxColumn gonghao = new DataGridViewTextBoxColumn();
+            gonghao.Name = "gonghao";
+            gonghao.HeaderText = "工号";
+            gonghao.Width = 100;
+            dataGridView1.Columns.Add(gonghao);
+
+            DataGridViewTextBoxColumn name = new DataGridViewTextBoxColumn();
+            name.Name = "name";
+            name.HeaderText = "姓名";
+            name.Width = 70;
+            dataGridView1.Columns.Add(name);
+
+            DataGridViewTextBoxColumn qt = new DataGridViewTextBoxColumn();
+            qt.Name = "qt";
+            qt.HeaderText = "QT级别";
+            qt.Width = 100;
+            dataGridView1.Columns.Add(qt);
+
+            DataGridViewTextBoxColumn departmentName = new DataGridViewTextBoxColumn();
+            departmentName.Name = "departmentName";
+            departmentName.HeaderText = "部门";
+            departmentName.Width = 250;
+            dataGridView1.Columns.Add(departmentName);
+
+            DataGridViewCheckBoxColumn isOwner = new DataGridViewCheckBoxColumn();
+            isOwner.Name = "isOwner";
+            isOwner.HeaderText = "主管";
+            isOwner.Width = 40;
+            dataGridView1.Columns.Add(isOwner);
+
+
+            DataGridViewTextBoxColumn zhiji = new DataGridViewTextBoxColumn();
+            zhiji.Name = "zhiji";
+            zhiji.HeaderText = "职级";
+            zhiji.Width = 60;
+            dataGridView1.Columns.Add(zhiji);
+
+            DataGridViewTextBoxColumn dianhua = new DataGridViewTextBoxColumn();
+            dianhua.Name = "dianhua";
+            dianhua.HeaderText = "电话";
+            dianhua.Width = 80;
+            dataGridView1.Columns.Add(dianhua);
+
+            DataGridViewTextBoxColumn ruzhiTime = new DataGridViewTextBoxColumn();
+            ruzhiTime.Name = "ruzhiTime";
+            ruzhiTime.HeaderText = "入职时间";
+            ruzhiTime.Width = 80;
+            dataGridView1.Columns.Add(ruzhiTime);
+
+            DataGridViewCheckBoxColumn jobState = new DataGridViewCheckBoxColumn();
+            jobState.Name = "jobState";
+            jobState.HeaderText = "在职状态";
+            jobState.Width = 60;
+            dataGridView1.Columns.Add(jobState);
+
+            DataGridViewTextBoxColumn lizhiTime = new DataGridViewTextBoxColumn();
+            lizhiTime.Name = "lizhiTime";
+            lizhiTime.HeaderText = "离职时间";
+            lizhiTime.Width = 80;
+            dataGridView1.Columns.Add(lizhiTime);
+
+            DataGridViewTextBoxColumn shenfenzheng = new DataGridViewTextBoxColumn();
+            shenfenzheng.Name = "shenfenzheng";
+            shenfenzheng.HeaderText = "身份证";
+            shenfenzheng.Width = 120;
+            dataGridView1.Columns.Add(shenfenzheng);
+
+            DataGridViewTextBoxColumn shengriTime = new DataGridViewTextBoxColumn();
+            shengriTime.Name = "shengriTime";
+            shengriTime.HeaderText = "生日";
+            shengriTime.Width = 80;
+            dataGridView1.Columns.Add(shengriTime);
+
+            DataGridViewTextBoxColumn xingbie = new DataGridViewTextBoxColumn();
+            xingbie.Name = "xingbie";
+            xingbie.HeaderText = "性别";
+            xingbie.Width = 40;
+            dataGridView1.Columns.Add(xingbie);
+
+            DataGridViewTextBoxColumn mingzujiguan = new DataGridViewTextBoxColumn();
+            mingzujiguan.Name = "mingzujiguan";
+            mingzujiguan.HeaderText = "名族籍贯";
+            mingzujiguan.Width = 80;
+            dataGridView1.Columns.Add(mingzujiguan);
+
+            DataGridViewTextBoxColumn juzhudizhi = new DataGridViewTextBoxColumn();
+            juzhudizhi.Name = "juzhudizhi";
+            juzhudizhi.HeaderText = "居住地址";
+            juzhudizhi.Width = 150;
+            dataGridView1.Columns.Add(juzhudizhi);
+
+            DataGridViewTextBoxColumn xueli = new DataGridViewTextBoxColumn();
+            xueli.Name = "xueli";
+            xueli.HeaderText = "学历";
+            xueli.Width = 60;
+            dataGridView1.Columns.Add(xueli);
+
+            DataGridViewTextBoxColumn biyexuexiao = new DataGridViewTextBoxColumn();
+            biyexuexiao.Name = "biyexuexiao";
+            biyexuexiao.HeaderText = "毕业学校";
+            biyexuexiao.Width = 80;
+            dataGridView1.Columns.Add(biyexuexiao);
+
+            DataGridViewTextBoxColumn zhuanye = new DataGridViewTextBoxColumn();
+            zhuanye.Name = "zhuanye";
+            zhuanye.HeaderText = "专业";
+            zhuanye.Width = 80;
+            dataGridView1.Columns.Add(zhuanye);
+
+            DataGridViewTextBoxColumn jjLianxiren = new DataGridViewTextBoxColumn();
+            jjLianxiren.Name = "jjLianxiren";
+            jjLianxiren.HeaderText = "紧急联系人";
+            jjLianxiren.Width = 70;
+            dataGridView1.Columns.Add(jjLianxiren);
+
+            DataGridViewTextBoxColumn jjLianxidianhua = new DataGridViewTextBoxColumn();
+            jjLianxidianhua.Name = "jjLianxidianhua";
+            jjLianxidianhua.HeaderText = "紧急联系电话";
+            jjLianxidianhua.Width = 80;
+            dataGridView1.Columns.Add(jjLianxidianhua);
+
+            DataGridViewTextBoxColumn jieshaoren = new DataGridViewTextBoxColumn();
+            jieshaoren.Name = "jieshaoren";
+            jieshaoren.HeaderText = "介绍人";
+            jieshaoren.Width = 100;
+            dataGridView1.Columns.Add(jieshaoren);
+
+            DataGridViewTextBoxColumn beizhu = new DataGridViewTextBoxColumn();
+            beizhu.Name = "beizhu";
+            beizhu.HeaderText = "备注";
+            beizhu.Width = 599;
+            dataGridView1.Columns.Add(beizhu);
         }
     }
 }

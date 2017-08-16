@@ -37,7 +37,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.bumenzhuguanEdit = new System.Windows.Forms.TextBox();
             this.departmentSelectBtn = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.saveBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -121,15 +120,6 @@
             this.departmentSelectBtn.UseVisualStyleBackColor = true;
             this.departmentSelectBtn.Click += new System.EventHandler(this.departmentSelectBtn_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(217, 102);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(41, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "..";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // saveBtn
             // 
             this.saveBtn.Location = new System.Drawing.Point(57, 165);
@@ -177,7 +167,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.saveBtn);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.departmentSelectBtn);
             this.Controls.Add(this.bumenzhuguanEdit);
             this.Controls.Add(this.label4);
@@ -210,7 +199,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox bumenzhuguanEdit;
         private System.Windows.Forms.Button departmentSelectBtn;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.Label label5;

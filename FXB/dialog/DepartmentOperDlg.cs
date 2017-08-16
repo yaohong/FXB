@@ -17,7 +17,6 @@ namespace FXB.Dialog
         private EditMode mode;
         private DepartmentData selectDepartment;
         private Int64 newDepartmentId;
-        private string selectJobNumber = "";
         public DepartmentOperDlg(EditMode tmpMode, DepartmentData tmpSelectDepartment)
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -25,7 +24,7 @@ namespace FXB.Dialog
 
             mode = tmpMode;
             selectDepartment = tmpSelectDepartment;
-            selectJobNumber = "";
+
             newDepartmentId = 0;
         }
 
@@ -82,7 +81,7 @@ namespace FXB.Dialog
             QtLevel qtLevel = QtUtil.GetQTLevel(qtLevelSelect.Text);
             try
             {
-                DepartmentData newDepartmentData = DepartmentDataMgr.Instance().AddNewDepartment(selectDepartment, bumenNameEdit.Text, selectJobNumber, qtLevel);
+                DepartmentData newDepartmentData = DepartmentDataMgr.Instance().AddNewDepartment(selectDepartment, bumenNameEdit.Text, qtLevel);
                 this.DialogResult = DialogResult.OK;
                 newDepartmentId = newDepartmentData.Id;
                 Close();
@@ -109,11 +108,11 @@ namespace FXB.Dialog
             string newBumenName = bumenNameEdit.Text;
             //string newBumenOwner = bumenzhuguanEdit.Text;
 
-            if (newBumenName != selectDepartment.Name || selectJobNumber != selectDepartment.OwnerJobNumber)
+            if (newBumenName != selectDepartment.Name)
             {
                 try
                 {
-                    DepartmentDataMgr.Instance().ModifyDepartment(selectDepartment.Id, newBumenName, selectJobNumber);
+                    DepartmentDataMgr.Instance().ModifyDepartment(selectDepartment.Id, newBumenName);
                     this.DialogResult = DialogResult.OK;
                     Close();
                 }
@@ -286,8 +285,6 @@ namespace FXB.Dialog
             bumenNameEdit.Text = selectDepartment.Name;
 
             SetZhuguanText(selectDepartment.OwnerJobNumber);
-
-            selectJobNumber = selectDepartment.OwnerJobNumber;
 
             qtLevelSelect.Items.Clear();
             qtLevelSelect.Items.Insert(0, QtUtil.GetQTLevelString(selectDepartment.QTLevel));
