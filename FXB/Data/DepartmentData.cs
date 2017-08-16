@@ -114,9 +114,5 @@ namespace FXB.Data
             return layer == 3;
         }
 
-        public void AddEmployee(string jobNumber)
-        {
-
-        }
     }
 }
