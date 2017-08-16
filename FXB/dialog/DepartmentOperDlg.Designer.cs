@@ -107,6 +107,7 @@
             // 
             this.bumenzhuguanEdit.Location = new System.Drawing.Point(96, 103);
             this.bumenzhuguanEdit.Name = "bumenzhuguanEdit";
+            this.bumenzhuguanEdit.ReadOnly = true;
             this.bumenzhuguanEdit.Size = new System.Drawing.Size(114, 21);
             this.bumenzhuguanEdit.TabIndex = 7;
             // 

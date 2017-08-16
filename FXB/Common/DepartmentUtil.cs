@@ -54,15 +54,15 @@ namespace FXB.Common
             
         }
 
-        public static bool CheckAddInDepartment(QtLevel roleQtLevel, Int64 departmentId)
+        public static bool CheckAddInDepartment(string jobNumber, QtLevel roleQtLevel, Int64 addIndepartmentId)
         {
-            if (departmentId == 0)
+            if (addIndepartmentId == 0)
             {
-                //没有加入部门
+                //没有选择部门
                 return true;
             }
 
-            DepartmentData ownerDepartmentData = DepartmentDataMgr.Instance().AllDepartmentData[departmentId];
+            DepartmentData ownerDepartmentData = DepartmentDataMgr.Instance().AllDepartmentData[addIndepartmentId];
             if (ownerDepartmentData.Layer == 0)
             {
                 //选择的是根目录房小白,QT级别必须是【没有QT级别】
@@ -72,7 +72,8 @@ namespace FXB.Common
                 }
 
                 //已经有管理员了
-                if (ownerDepartmentData.OwnerJobNumber != "")
+                if (ownerDepartmentData.OwnerJobNumber != "" && 
+                    ownerDepartmentData.OwnerJobNumber != jobNumber)
                 {
                     return false;
                 }
@@ -92,7 +93,8 @@ namespace FXB.Common
                 if (roleQtLevel == ownerDepartmentData.QTLevel)
                 {
                     //设置部门主管
-                    if (ownerDepartmentData.OwnerJobNumber != "")
+                    if (ownerDepartmentData.OwnerJobNumber != "" &&
+                        ownerDepartmentData.OwnerJobNumber != jobNumber)
                     {
                         //已经有管理员了
                         return false;
@@ -130,8 +132,15 @@ namespace FXB.Common
 
             if (ownerDepartmentData.ChildSet.Count > 0)
             {
-                //有子部门了不能添加
-                return false;
+                //有子部门了
+                if (ownerDepartmentData.OwnerJobNumber != "" &&
+                    ownerDepartmentData.OwnerJobNumber != jobNumber)
+                {
+                    //有管理员了
+                    return false;
+                }
+
+                return true;
             }
 
             return true;

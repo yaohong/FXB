@@ -85,7 +85,7 @@ namespace FXB.DataManager
             }
         }
 
-        Dictionary<string, EmployeeData> AllEmployeeData
+        public Dictionary<string, EmployeeData> AllEmployeeData
         {
             get
             {
@@ -121,7 +121,7 @@ namespace FXB.DataManager
                 throw new CrashException(string.Format("工号重复:{0}", jobNumber));
             }
             //检测部门关系
-            if (!DepartmentUtil.CheckAddInDepartment(qtLevel, departmentId))
+            if (!DepartmentUtil.CheckAddInDepartment(jobNumber, qtLevel, departmentId))
             {
                 throw new CrashException("不能够加入部门,员工QT级别和部门QT级别对应不上");
             }
@@ -203,7 +203,7 @@ namespace FXB.DataManager
                 throw new ConditionCheckException(string.Format("工号重复:{0}", gongHao));
             }
             //检测部门关系
-            if (!DepartmentUtil.CheckAddInDepartment(qtLevel, departmentId))
+            if (!DepartmentUtil.CheckAddInDepartment(gongHao, qtLevel, departmentId))
             {
                 throw new ConditionCheckException("不能够加入部门,员工QT级别和部门QT级别对应不上");
             }

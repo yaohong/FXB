@@ -25,6 +25,7 @@ namespace FXB.Data
             childSet = new SortedSet<Int64>();
             employeeSet = new SortedSet<string>();
             layer = -1;
+            ownerJobNumber = "";
         }
         //部门ID
         private Int64 id;
@@ -63,7 +64,8 @@ namespace FXB.Data
             get { return ownerJobNumber; }
             set 
             { 
-                if (ownerJobNumber != "")
+                if (ownerJobNumber != "" &&
+                    ownerJobNumber != value)
                 {
                     throw new CrashException("重复设置部门主管");
                 }

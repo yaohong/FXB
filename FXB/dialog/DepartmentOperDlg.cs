@@ -17,6 +17,7 @@ namespace FXB.Dialog
         private EditMode mode;
         private DepartmentData selectDepartment;
         private Int64 newDepartmentId;
+        private string selectJobNumber = "";
         public DepartmentOperDlg(EditMode tmpMode, DepartmentData tmpSelectDepartment)
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -24,7 +25,7 @@ namespace FXB.Dialog
 
             mode = tmpMode;
             selectDepartment = tmpSelectDepartment;
-
+            selectJobNumber = "";
             newDepartmentId = 0;
         }
 
@@ -81,7 +82,7 @@ namespace FXB.Dialog
             QtLevel qtLevel = QtUtil.GetQTLevel(qtLevelSelect.Text);
             try
             {
-                DepartmentData newDepartmentData = DepartmentDataMgr.Instance().AddNewDepartment(selectDepartment, bumenNameEdit.Text, bumenzhuguanEdit.Text, qtLevel);
+                DepartmentData newDepartmentData = DepartmentDataMgr.Instance().AddNewDepartment(selectDepartment, bumenNameEdit.Text, selectJobNumber, qtLevel);
                 this.DialogResult = DialogResult.OK;
                 newDepartmentId = newDepartmentData.Id;
                 Close();
@@ -106,13 +107,13 @@ namespace FXB.Dialog
             }
 
             string newBumenName = bumenNameEdit.Text;
-            string newBumenOwner = bumenzhuguanEdit.Text;
+            //string newBumenOwner = bumenzhuguanEdit.Text;
 
-            if (newBumenName != selectDepartment.Name || newBumenOwner != selectDepartment.OwnerJobNumber)
+            if (newBumenName != selectDepartment.Name || selectJobNumber != selectDepartment.OwnerJobNumber)
             {
                 try
                 {
-                    DepartmentDataMgr.Instance().ModifyDepartment(selectDepartment.Id, newBumenName, newBumenOwner);
+                    DepartmentDataMgr.Instance().ModifyDepartment(selectDepartment.Id, newBumenName, selectJobNumber);
                     this.DialogResult = DialogResult.OK;
                     Close();
                 }
@@ -268,7 +269,6 @@ namespace FXB.Dialog
             departmentSelectBtn.Enabled = false;
             qtLevelSelect.Enabled = false;
 
-
             //获取选择部门的上级部门
             if (selectDepartment.SuperiorId == 0)
             {
@@ -284,12 +284,27 @@ namespace FXB.Dialog
             }
 
             bumenNameEdit.Text = selectDepartment.Name;
-            bumenzhuguanEdit.Text = selectDepartment.OwnerJobNumber;
 
+            SetZhuguanText(selectDepartment.OwnerJobNumber);
+
+            selectJobNumber = selectDepartment.OwnerJobNumber;
 
             qtLevelSelect.Items.Clear();
             qtLevelSelect.Items.Insert(0, QtUtil.GetQTLevelString(selectDepartment.QTLevel));
             qtLevelSelect.SelectedIndex = 0;
+        }
+
+
+        void SetZhuguanText(string jobNumber)
+        {
+            string zhuguan = "";
+            if (jobNumber != "")
+            {
+                EmployeeData data = EmployeeDataMgr.Instance().AllEmployeeData[jobNumber];
+                zhuguan = data.Name;
+            }
+
+            bumenzhuguanEdit.Text = zhuguan;
         }
     }
 }

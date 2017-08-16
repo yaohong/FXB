@@ -328,6 +328,7 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(330, 664);
             this.treeView1.TabIndex = 2;
+            this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
             // 
             // tableLayoutPanel3
             // 

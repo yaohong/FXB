@@ -94,24 +94,8 @@ namespace FXB.Dialog
 
         private void ModifyDepartmentBtn_Click(object sender, EventArgs e)
         {
-            TreeNode n = treeView1.SelectedNode;
-            if (n == null)
-            {
-                return;
-            }
 
-            Int64 selectDepartmentId = Convert.ToInt64(n.Name);
-            DepartmentData selectDepartment = DepartmentDataMgr.Instance().AllDepartmentData[selectDepartmentId];
-            DepartmentOperDlg dlg = new DepartmentOperDlg(EditMode.EM_EDIT, selectDepartment);
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                //重新刷新树
-                //DepartmentDataMgr.Instance().SetTreeView(treeView1);
-                //只能修改部门名字
-                //n.Name = selectDepartment.Name;
-                n.Text = selectDepartment.Name;
-            }
-
+            ModifyDepartment();
 
         }
 
@@ -157,5 +141,31 @@ namespace FXB.Dialog
             }
         }
 
+        private void treeView1_DoubleClick(object sender, EventArgs e)
+        {
+            ModifyDepartment();
+        }
+
+
+        private void ModifyDepartment()
+        {
+            TreeNode n = treeView1.SelectedNode;
+            if (n == null)
+            {
+                return;
+            }
+
+            Int64 selectDepartmentId = Convert.ToInt64(n.Name);
+            DepartmentData selectDepartment = DepartmentDataMgr.Instance().AllDepartmentData[selectDepartmentId];
+            DepartmentOperDlg dlg = new DepartmentOperDlg(EditMode.EM_EDIT, selectDepartment);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                //重新刷新树
+                //DepartmentDataMgr.Instance().SetTreeView(treeView1);
+                //只能修改部门名字
+                //n.Name = selectDepartment.Name;
+                n.Text = selectDepartment.Name;
+            }
+        }
     }
 }
