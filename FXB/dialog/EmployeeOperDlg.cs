@@ -234,45 +234,50 @@ namespace FXB.Dialog
                 jjlianxirenEdit.Text != employeeData.EmergencyContact || 
                 jjDianhuaEdit.Text != employeeData.EmergencyTelephoneNumber ||
                 jieshaorenEdit.Text != employeeData.Introducer || 
-                beizhuEdit.Text != employeeData.Comment
-                )
-            try
+                beizhuEdit.Text != employeeData.Comment)
             {
-                EmployeeDataMgr.Instance().ModifyEmployee(
-                    employeeData.JobNumber,
-                    xingmingEdit.Text,
-                    QtUtil.GetQTLevel(qtLevelSelect.Text),
-                    selectDepartmentId,
-                    CheckBoxUtil.cbStateToBool(isOwnerCb.CheckState),
-                    zhijiEdit.Text,
-                    dianhuaEdit.Text,
-                    TimeUtil.DateTimeToTimestamp(ruzhiTime.Value),
-                    CheckBoxUtil.cbStateToBool(jobStateCb.CheckState),
-                    TimeUtil.DateTimeToTimestamp(lizhiTime.Value),
-                    beizhuEdit.Text,
-                    shenfenzhengEdit.Text,
-                    TimeUtil.DateTimeToTimestamp(shengriTime.Value),
-                    selectSex,
-                    jiguanEdit.Text,
-                    juzhudizhiEdit.Text,
-                    xueliEdit.Text,
-                    biyexuexiaoEdit.Text,
-                    zhuanyeEdit.Text,
-                    jjlianxirenEdit.Text,
-                    jjDianhuaEdit.Text,
-                    jieshaorenEdit.Text
-                    );
-                this.DialogResult = DialogResult.OK;
+                try
+                {
+                    EmployeeDataMgr.Instance().ModifyEmployee(
+                        employeeData.JobNumber,
+                        xingmingEdit.Text,
+                        QtUtil.GetQTLevel(qtLevelSelect.Text),
+                        selectDepartmentId,
+                        CheckBoxUtil.cbStateToBool(isOwnerCb.CheckState),
+                        zhijiEdit.Text,
+                        dianhuaEdit.Text,
+                        TimeUtil.DateTimeToTimestamp(ruzhiTime.Value),
+                        CheckBoxUtil.cbStateToBool(jobStateCb.CheckState),
+                        TimeUtil.DateTimeToTimestamp(lizhiTime.Value),
+                        beizhuEdit.Text,
+                        shenfenzhengEdit.Text,
+                        TimeUtil.DateTimeToTimestamp(shengriTime.Value),
+                        selectSex,
+                        jiguanEdit.Text,
+                        juzhudizhiEdit.Text,
+                        xueliEdit.Text,
+                        biyexuexiaoEdit.Text,
+                        zhuanyeEdit.Text,
+                        jjlianxirenEdit.Text,
+                        jjDianhuaEdit.Text,
+                        jieshaorenEdit.Text
+                        );
+                    this.DialogResult = DialogResult.OK;
+                    Close();
+                }
+                catch (ConditionCheckException ex1)
+                {
+                    MessageBox.Show(ex1.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    Application.Exit();
+                }
+            }
+            else
+            {
                 Close();
-            }
-            catch (ConditionCheckException ex1)
-            {
-                MessageBox.Show(ex1.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Application.Exit();
             }
         }
 

@@ -23,9 +23,97 @@ namespace FXB.Dialog
             InitializeComponent();
         }
 
+        bool FindEmployeeByDepartment(Int64 departmentId, string gonghao)
+        {
+            DepartmentData data = DepartmentDataMgr.Instance().AllDepartmentData[departmentId];
+            if (data.EmployeeSet.Contains(gonghao))
+            {
+                return true;
+            }
+
+            if (data.OwnerJobNumber == gonghao)
+            {
+                return true;
+            }
+
+            //查看子节点
+            foreach (var item in data.ChildSet)
+            {
+                if (FindEmployeeByDepartment(item, gonghao))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        private bool jobNumberOrNameInquire(BasicDataInterface bd)
+        {
+            EmployeeData data = bd as EmployeeData;
+            if (gonghaoEdi.Text != "")
+            {
+                if (data.JobNumber.IndexOf(gonghaoEdi.Text) == -1 &&
+                    data.Name.IndexOf(gonghaoEdi.Text) == -1)
+                {
+                    return false;
+                }
+
+            }
+
+            if (jobStateCb.SelectedIndex != 0)
+            {
+                if (jobStateCb.SelectedIndex == 1 && !data.JobState)
+                {
+                    return false;
+                }
+
+                if (jobStateCb.SelectedIndex == 2 && data.JobState)
+                {
+                    return false;
+                }
+            }
+
+            if (ruzhiCb.CheckState == CheckState.Checked)
+            {
+                //入职时间做为查询条件了
+                UInt32 minTime = TimeUtil.DateTimeToTimestamp(ruzhiMinTime.Value);
+                UInt32 maxTime = TimeUtil.DateTimeToTimestamp(ruzhiMaxTime.Value);
+                if (data.EnteryTime < minTime || data.EnteryTime > maxTime)
+                {
+                    return false;
+                }
+            }
+
+
+            if (lizhiCb.CheckState == CheckState.Checked)
+            {
+                //入职时间做为查询条件了
+                UInt32 minTime = TimeUtil.DateTimeToTimestamp(lizhiMinTime.Value);
+                UInt32 maxTime = TimeUtil.DateTimeToTimestamp(lizhiMaxTime.Value);
+                if (data.DimissionTime < minTime || data.DimissionTime > maxTime)
+                {
+                    return false;
+                }
+            }
+
+            TreeNode selectNode = departmentTreeView.SelectedNode;
+            if (selectNode != null)
+            {
+                Console.WriteLine("selectNodeText:{0}", selectNode.Text);
+                Int64 departmentId =  Convert.ToInt64(selectNode.Name);
+                if (!FindEmployeeByDepartment(departmentId, data.JobNumber))
+                {
+                    return false;
+                }
+
+            }
+
+            return true;
+        }
         private void InquireBtn_Click(object sender, EventArgs e)
         {
-            string a = dateTimePicker1.Text;
+
+            EmployeeDataMgr.Instance().SetDataGridView(dataGridView1, jobNumberOrNameInquire);
         }
 
         private void PersonnelDataDlg_Load(object sender, EventArgs e)
@@ -34,7 +122,10 @@ namespace FXB.Dialog
             //禁止改变窗口大小
             //this.FormBorderStyle = FormBorderStyle.FixedSingle;
             //this.DoubleBuffered = true;
-
+            jobStateCb.Items.Insert(0, "所有");
+            jobStateCb.Items.Insert(1, "在职");
+            jobStateCb.Items.Insert(2, "离职");
+            jobStateCb.SelectedIndex = 0;
             //禁止改变表格的大小
             dataGridView1.AllowUserToAddRows = false;       //不显示插入行
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -44,13 +135,13 @@ namespace FXB.Dialog
             dataGridView1.MultiSelect = false;
             dataGridView1.ReadOnly = true;
             SetDataGridViewColumn();
-            DepartmentDataMgr.Instance().SetTreeView(treeView1);
+            DepartmentDataMgr.Instance().SetTreeView(departmentTreeView);
             EmployeeDataMgr.Instance().SetDataGridView(dataGridView1);
         }
 
         private void AddDepartmentBtn_Click(object sender, EventArgs e)
         {
-            TreeNode n = treeView1.SelectedNode;
+            TreeNode n = departmentTreeView.SelectedNode;
             DepartmentData selectDepartment = null;
             if (n != null)
             {
@@ -77,7 +168,7 @@ namespace FXB.Dialog
                 {
                     DepartmentData newDepartmentData = DepartmentDataMgr.Instance().AllDepartmentData[dlg.NewDepartmentId];
 
-                    var allTreeNode = treeView1.Nodes.Find(newDepartmentData.SuperiorId.ToString(), true);
+                    var allTreeNode = departmentTreeView.Nodes.Find(newDepartmentData.SuperiorId.ToString(), true);
                     //因为ID是不重复的所以返回的是只有一个数组的元素
                     int childCount = allTreeNode.Count<TreeNode>();
                     if (childCount != 1)
@@ -122,7 +213,7 @@ namespace FXB.Dialog
 
         private void RemoveDepartmentBtn_Click(object sender, EventArgs e)
         {
-            TreeNode n = treeView1.SelectedNode;
+            TreeNode n = departmentTreeView.SelectedNode;
             if (n == null)
             {
                 return;
@@ -159,7 +250,7 @@ namespace FXB.Dialog
 
         private void ModifyDepartment()
         {
-            TreeNode n = treeView1.SelectedNode;
+            TreeNode n = departmentTreeView.SelectedNode;
             if (n == null)
             {
                 return;
@@ -282,25 +373,25 @@ namespace FXB.Dialog
             DataGridViewTextBoxColumn biyexuexiao = new DataGridViewTextBoxColumn();
             biyexuexiao.Name = "biyexuexiao";
             biyexuexiao.HeaderText = "毕业学校";
-            biyexuexiao.Width = 80;
+            biyexuexiao.Width = 100;
             dataGridView1.Columns.Add(biyexuexiao);
 
             DataGridViewTextBoxColumn zhuanye = new DataGridViewTextBoxColumn();
             zhuanye.Name = "zhuanye";
             zhuanye.HeaderText = "专业";
-            zhuanye.Width = 80;
+            zhuanye.Width = 110;
             dataGridView1.Columns.Add(zhuanye);
 
             DataGridViewTextBoxColumn jjLianxiren = new DataGridViewTextBoxColumn();
             jjLianxiren.Name = "jjLianxiren";
             jjLianxiren.HeaderText = "紧急联系人";
-            jjLianxiren.Width = 70;
+            jjLianxiren.Width = 110;
             dataGridView1.Columns.Add(jjLianxiren);
 
             DataGridViewTextBoxColumn jjLianxidianhua = new DataGridViewTextBoxColumn();
             jjLianxidianhua.Name = "jjLianxidianhua";
             jjLianxidianhua.HeaderText = "紧急联系电话";
-            jjLianxidianhua.Width = 80;
+            jjLianxidianhua.Width = 110;
             dataGridView1.Columns.Add(jjLianxidianhua);
 
             DataGridViewTextBoxColumn jieshaoren = new DataGridViewTextBoxColumn();
@@ -364,5 +455,20 @@ namespace FXB.Dialog
             row.Cells["jieshaoren"].Value = data.Introducer;
             row.Cells["beizhu"].Value = data.Comment;
         }
+
+        private void treeView1_Click(object sender, EventArgs e)
+        {
+            
+            EmployeeDataMgr.Instance().SetDataGridView(dataGridView1, jobNumberOrNameInquire);
+        }
+
+        private void departmentTreeView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if ((sender as TreeView) != null)
+            {
+                departmentTreeView.SelectedNode = departmentTreeView.GetNodeAt(e.X, e.Y);
+            } 
+        }
+
     }
 }

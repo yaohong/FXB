@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using FXB.Common;
 namespace FXB.Data
 {
     //员工数据
-    public class EmployeeData
+    public class EmployeeData : BasicDataInterface
     {
         public EmployeeData(string tmpJobNumber)
         {

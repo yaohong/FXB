@@ -34,18 +34,18 @@
             this.rootTableLayoutPanel = new FXB.MyControl.MyTableLayoutPanel();
             this.groupBox1 = new FXB.MyControl.MyGroupBox();
             this.AddPersonnelBtn = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.gonghaoEdi = new System.Windows.Forms.TextBox();
             this.ExportBtn = new System.Windows.Forms.Button();
             this.InquireBtn = new System.Windows.Forms.Button();
-            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.lizhiMaxTime = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.lizhiMinTime = new System.Windows.Forms.DateTimePicker();
+            this.lizhiCb = new System.Windows.Forms.CheckBox();
+            this.ruzhiMaxTime = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ruzhiMinTime = new System.Windows.Forms.DateTimePicker();
+            this.ruzhiCb = new System.Windows.Forms.CheckBox();
+            this.jobStateCb = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new FXB.MyControl.MyTableLayoutPanel();
@@ -54,7 +54,7 @@
             this.AddDepartmentBtn = new System.Windows.Forms.Button();
             this.ModifyDepartmentBtn = new System.Windows.Forms.Button();
             this.RemoveDepartmentBtn = new System.Windows.Forms.Button();
-            this.treeView1 = new FXB.MyControl.MyTreeView();
+            this.departmentTreeView = new FXB.MyControl.MyTreeView();
             this.tableLayoutPanel3 = new FXB.MyControl.MyTableLayoutPanel();
             this.dataGridView1 = new FXB.MyControl.MyDataGridView();
             this.rootTableLayoutPanel.SuspendLayout();
@@ -84,18 +84,18 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.AddPersonnelBtn);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.gonghaoEdi);
             this.groupBox1.Controls.Add(this.ExportBtn);
             this.groupBox1.Controls.Add(this.InquireBtn);
-            this.groupBox1.Controls.Add(this.dateTimePicker4);
+            this.groupBox1.Controls.Add(this.lizhiMaxTime);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.dateTimePicker3);
-            this.groupBox1.Controls.Add(this.checkBox2);
-            this.groupBox1.Controls.Add(this.dateTimePicker2);
+            this.groupBox1.Controls.Add(this.lizhiMinTime);
+            this.groupBox1.Controls.Add(this.lizhiCb);
+            this.groupBox1.Controls.Add(this.ruzhiMaxTime);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.ruzhiMinTime);
+            this.groupBox1.Controls.Add(this.ruzhiCb);
+            this.groupBox1.Controls.Add(this.jobStateCb);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -116,12 +116,12 @@
             this.AddPersonnelBtn.UseVisualStyleBackColor = true;
             this.AddPersonnelBtn.Click += new System.EventHandler(this.AddPersonnelBtn_Click);
             // 
-            // textBox1
+            // gonghaoEdi
             // 
-            this.textBox1.Location = new System.Drawing.Point(66, 21);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(148, 21);
-            this.textBox1.TabIndex = 1;
+            this.gonghaoEdi.Location = new System.Drawing.Point(66, 21);
+            this.gonghaoEdi.Name = "gonghaoEdi";
+            this.gonghaoEdi.Size = new System.Drawing.Size(148, 21);
+            this.gonghaoEdi.TabIndex = 1;
             // 
             // ExportBtn
             // 
@@ -142,12 +142,12 @@
             this.InquireBtn.UseVisualStyleBackColor = true;
             this.InquireBtn.Click += new System.EventHandler(this.InquireBtn_Click);
             // 
-            // dateTimePicker4
+            // lizhiMaxTime
             // 
-            this.dateTimePicker4.Location = new System.Drawing.Point(895, 21);
-            this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(101, 21);
-            this.dateTimePicker4.TabIndex = 10;
+            this.lizhiMaxTime.Location = new System.Drawing.Point(895, 21);
+            this.lizhiMaxTime.Name = "lizhiMaxTime";
+            this.lizhiMaxTime.Size = new System.Drawing.Size(101, 21);
+            this.lizhiMaxTime.TabIndex = 10;
             // 
             // label4
             // 
@@ -158,29 +158,29 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "-";
             // 
-            // dateTimePicker3
+            // lizhiMinTime
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(778, 21);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(101, 21);
-            this.dateTimePicker3.TabIndex = 8;
+            this.lizhiMinTime.Location = new System.Drawing.Point(778, 21);
+            this.lizhiMinTime.Name = "lizhiMinTime";
+            this.lizhiMinTime.Size = new System.Drawing.Size(101, 21);
+            this.lizhiMinTime.TabIndex = 8;
             // 
-            // checkBox2
+            // lizhiCb
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(705, 25);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(78, 16);
-            this.checkBox2.TabIndex = 7;
-            this.checkBox2.Text = "离职日期:";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.lizhiCb.AutoSize = true;
+            this.lizhiCb.Location = new System.Drawing.Point(705, 25);
+            this.lizhiCb.Name = "lizhiCb";
+            this.lizhiCb.Size = new System.Drawing.Size(78, 16);
+            this.lizhiCb.TabIndex = 7;
+            this.lizhiCb.Text = "离职日期:";
+            this.lizhiCb.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker2
+            // ruzhiMaxTime
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(586, 21);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(101, 21);
-            this.dateTimePicker2.TabIndex = 6;
+            this.ruzhiMaxTime.Location = new System.Drawing.Point(586, 21);
+            this.ruzhiMaxTime.Name = "ruzhiMaxTime";
+            this.ruzhiMaxTime.Size = new System.Drawing.Size(101, 21);
+            this.ruzhiMaxTime.TabIndex = 6;
             // 
             // label3
             // 
@@ -191,30 +191,31 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "-";
             // 
-            // dateTimePicker1
+            // ruzhiMinTime
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(470, 21);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(100, 21);
-            this.dateTimePicker1.TabIndex = 1;
+            this.ruzhiMinTime.Location = new System.Drawing.Point(470, 21);
+            this.ruzhiMinTime.Name = "ruzhiMinTime";
+            this.ruzhiMinTime.Size = new System.Drawing.Size(100, 21);
+            this.ruzhiMinTime.TabIndex = 1;
             // 
-            // checkBox1
+            // ruzhiCb
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(398, 25);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(78, 16);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "入职日期:";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.ruzhiCb.AutoSize = true;
+            this.ruzhiCb.Location = new System.Drawing.Point(398, 25);
+            this.ruzhiCb.Name = "ruzhiCb";
+            this.ruzhiCb.Size = new System.Drawing.Size(78, 16);
+            this.ruzhiCb.TabIndex = 4;
+            this.ruzhiCb.Text = "入职日期:";
+            this.ruzhiCb.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // jobStateCb
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(295, 22);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(71, 20);
-            this.comboBox1.TabIndex = 3;
+            this.jobStateCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.jobStateCb.FormattingEnabled = true;
+            this.jobStateCb.Location = new System.Drawing.Point(295, 22);
+            this.jobStateCb.Name = "jobStateCb";
+            this.jobStateCb.Size = new System.Drawing.Size(71, 20);
+            this.jobStateCb.TabIndex = 3;
             // 
             // label2
             // 
@@ -254,7 +255,7 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.treeView1, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.departmentTreeView, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -306,14 +307,16 @@
             this.RemoveDepartmentBtn.UseVisualStyleBackColor = true;
             this.RemoveDepartmentBtn.Click += new System.EventHandler(this.RemoveDepartmentBtn_Click);
             // 
-            // treeView1
+            // departmentTreeView
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(3, 43);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(330, 664);
-            this.treeView1.TabIndex = 2;
-            this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
+            this.departmentTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.departmentTreeView.Location = new System.Drawing.Point(3, 43);
+            this.departmentTreeView.Name = "departmentTreeView";
+            this.departmentTreeView.Size = new System.Drawing.Size(330, 664);
+            this.departmentTreeView.TabIndex = 2;
+            this.departmentTreeView.Click += new System.EventHandler(this.treeView1_Click);
+            this.departmentTreeView.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
+            this.departmentTreeView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.departmentTreeView_MouseDown);
             // 
             // tableLayoutPanel3
             // 
@@ -379,17 +382,17 @@
 
         private FXB.MyControl.MyGroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox gonghaoEdi;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox jobStateCb;
+        private System.Windows.Forms.CheckBox ruzhiCb;
+        private System.Windows.Forms.DateTimePicker ruzhiMinTime;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.DateTimePicker ruzhiMaxTime;
+        private System.Windows.Forms.CheckBox lizhiCb;
+        private System.Windows.Forms.DateTimePicker lizhiMinTime;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker4;
+        private System.Windows.Forms.DateTimePicker lizhiMaxTime;
         private System.Windows.Forms.Button InquireBtn;
         private System.Windows.Forms.Button ExportBtn;
         private System.Windows.Forms.Button AddPersonnelBtn;
@@ -402,7 +405,7 @@
         private System.Windows.Forms.Button AddDepartmentBtn;
         private System.Windows.Forms.Button ModifyDepartmentBtn;
         private System.Windows.Forms.Button RemoveDepartmentBtn;
-        private FXB.MyControl.MyTreeView treeView1;
+        private FXB.MyControl.MyTreeView departmentTreeView;
 
     }
 }
