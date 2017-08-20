@@ -29,24 +29,7 @@ namespace FXB
         private void 员工档案ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowDialog("PersonnelDataDlg");
-            //Form[] allMdiChildren = this.MdiChildren;
-            //foreach (Form childDlg in allMdiChildren)
-            //{
-            //    if (childDlg.Name == "PersonnelDataDlg")
-            //    {
-            //        if (childDlg.WindowState == FormWindowState.Minimized)
-            //        {
-            //            childDlg.WindowState = FormWindowState.Maximized;
-            //        }
-            //        childDlg.Activate();
 
-            //        return;
-            //    }
-            //}
-
-            //PersonnelDataDlg dlg = new PersonnelDataDlg();
-            //dlg.MdiParent = this;
-            //dlg.Show();
         }
 
         private void main_Load(object sender, EventArgs e)
@@ -71,47 +54,11 @@ namespace FXB
         private void 职级档案ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowDialog("JobGradeDataDlg");
-            //Form[] allMdiChildren = this.MdiChildren;
-            //foreach (Form childDlg in allMdiChildren)
-            //{
-            //    if (childDlg.Name == "JobGradeDataDlg")
-            //    {
-            //        if (childDlg.WindowState == FormWindowState.Minimized)
-            //        {
-            //            childDlg.WindowState = FormWindowState.Maximized;
-            //        }
-            //        childDlg.Activate();
-
-            //        return;
-            //    }
-            //}
-
-            //JobGradeDataDlg dlg = new JobGradeDataDlg();
-            //dlg.MdiParent = this;
-            //dlg.Show();
         }
 
         private void 项目档案ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowDialog("ProjectDataDlg");
-            //Form[] allMdiChildren = this.MdiChildren;
-            //foreach (Form childDlg in allMdiChildren)
-            //{
-            //    if (childDlg.Name == "ProjectDataDlg")
-            //    {
-            //        if (childDlg.WindowState == FormWindowState.Minimized)
-            //        {
-            //            childDlg.WindowState = FormWindowState.Maximized;
-            //        }
-            //        childDlg.Activate();
-
-            //        return;
-            //    }
-            //}
-
-            //ProjectDataDlg dlg = new ProjectDataDlg();
-            //dlg.MdiParent = this;
-            //dlg.Show();
         }
 
         private void ShowDialog(string dlgName)
@@ -157,7 +104,7 @@ namespace FXB
 
         private void 生成QT任务ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
         }
 
     }

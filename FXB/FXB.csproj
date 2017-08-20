@@ -56,11 +56,13 @@
     <Compile Include="DataManager\EmployeeDataMgr.cs" />
     <Compile Include="DataManager\JobGradeDataMgr.cs" />
     <Compile Include="DataManager\ProjectDataMgr.cs" />
+    <Compile Include="DataManager\QtMgr.cs" />
     <Compile Include="Data\Define.cs" />
     <Compile Include="Data\DepartmentData.cs" />
     <Compile Include="Data\EmployeeData.cs" />
     <Compile Include="Data\JobGradeData.cs" />
     <Compile Include="Data\ProjectData.cs" />
+    <Compile Include="Data\QtTask.cs" />
     <Compile Include="Dialog\DepartmentOperDlg.cs">
       <SubType>Form</SubType>
     </Compile>

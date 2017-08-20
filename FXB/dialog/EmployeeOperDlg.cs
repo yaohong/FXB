@@ -99,7 +99,6 @@ namespace FXB.Dialog
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            
             if (gonghaoEdit.Text == "")
             {
                 MessageBox.Show("工号不能为空");
