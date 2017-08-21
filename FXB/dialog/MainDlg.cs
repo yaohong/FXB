@@ -42,6 +42,7 @@ namespace FXB
                 JobGradeDataMgr.Instance().Load();
                 ProjectDataMgr.Instance().Load();
                 EmployeeDataMgr.Instance().Load();
+                QtMgr.Instance().Load();
             }
             catch (Exception ex)
             {
@@ -104,7 +105,7 @@ namespace FXB
 
         private void 生成QT任务ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            QtMgr.Instance().AddNewQtTask("2017-08");
         }
 
     }
