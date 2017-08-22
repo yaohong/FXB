@@ -141,11 +141,6 @@ namespace FXB.Dialog
 
         private void AddDepartmentBtn_Click(object sender, EventArgs e)
         {
-            if (QtMgr.Instance().CheckQtKey())
-            {
-                MessageBox.Show("本月QT任务已生成不能调整部门结构");
-                return;
-            }
             TreeNode n = departmentTreeView.SelectedNode;
             DepartmentData selectDepartment = null;
             if (n != null)
@@ -218,11 +213,6 @@ namespace FXB.Dialog
 
         private void RemoveDepartmentBtn_Click(object sender, EventArgs e)
         {
-            if (QtMgr.Instance().CheckQtKey())
-            {
-                MessageBox.Show("本月QT任务已生成不能调整部门结构");
-                return;
-            }
             TreeNode n = departmentTreeView.SelectedNode;
             if (n == null)
             {
@@ -260,12 +250,6 @@ namespace FXB.Dialog
 
         private void ModifyDepartment()
         {
-            if (QtMgr.Instance().CheckQtKey())
-            {
-                MessageBox.Show("本月QT任务已生成不能调整部门结构");
-                return;
-            }
-
             TreeNode n = departmentTreeView.SelectedNode;
             if (n == null)
             {
@@ -485,6 +469,7 @@ namespace FXB.Dialog
                 departmentTreeView.SelectedNode = departmentTreeView.GetNodeAt(e.X, e.Y);
             } 
         }
+
 
     }
 }

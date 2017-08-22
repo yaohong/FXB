@@ -20,6 +20,16 @@ namespace FXB.MyControl
 
             this.RowsDefaultCellStyle.BackColor = Color.Bisque;
             this.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
+
+            //禁止改变表格的大小
+            AllowUserToAddRows = false;       //不显示插入行
+            RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            AllowUserToResizeColumns = false;
+            AllowUserToResizeRows = false;
+            SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            MultiSelect = false;
+            ScrollBars = ScrollBars.Both;
+            ReadOnly = true;
         }
 
         protected override void OnRowPostPaint(DataGridViewRowPostPaintEventArgs e)

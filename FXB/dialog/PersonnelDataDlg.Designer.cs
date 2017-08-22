@@ -30,8 +30,11 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rootTableLayoutPanel = new FXB.MyControl.MyTableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.AddDepartmentBtn = new System.Windows.Forms.Button();
+            this.ModifyDepartmentBtn = new System.Windows.Forms.Button();
+            this.RemoveDepartmentBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new FXB.MyControl.MyGroupBox();
             this.AddPersonnelBtn = new System.Windows.Forms.Button();
             this.gonghaoEdi = new System.Windows.Forms.TextBox();
@@ -48,41 +51,78 @@
             this.jobStateCb = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new FXB.MyControl.MyTableLayoutPanel();
-            this.tableLayoutPanel2 = new FXB.MyControl.MyTableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.AddDepartmentBtn = new System.Windows.Forms.Button();
-            this.ModifyDepartmentBtn = new System.Windows.Forms.Button();
-            this.RemoveDepartmentBtn = new System.Windows.Forms.Button();
             this.departmentTreeView = new FXB.MyControl.MyTreeView();
-            this.tableLayoutPanel3 = new FXB.MyControl.MyTableLayoutPanel();
             this.dataGridView1 = new FXB.MyControl.MyDataGridView();
             this.rootTableLayoutPanel.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // rootTableLayoutPanel
             // 
-            this.rootTableLayoutPanel.ColumnCount = 1;
-            this.rootTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.rootTableLayoutPanel.ColumnCount = 3;
+            this.rootTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.rootTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.rootTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.rootTableLayoutPanel.Controls.Add(this.panel1, 0, 1);
             this.rootTableLayoutPanel.Controls.Add(this.groupBox1, 0, 0);
-            this.rootTableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 0, 1);
+            this.rootTableLayoutPanel.Controls.Add(this.departmentTreeView, 0, 2);
+            this.rootTableLayoutPanel.Controls.Add(this.dataGridView1, 1, 1);
             this.rootTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rootTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.rootTableLayoutPanel.Name = "rootTableLayoutPanel";
-            this.rootTableLayoutPanel.RowCount = 2;
+            this.rootTableLayoutPanel.RowCount = 3;
             this.rootTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.rootTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.rootTableLayoutPanel.Size = new System.Drawing.Size(1398, 779);
+            this.rootTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rootTableLayoutPanel.Size = new System.Drawing.Size(1421, 779);
             this.rootTableLayoutPanel.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.AddDepartmentBtn);
+            this.panel1.Controls.Add(this.ModifyDepartmentBtn);
+            this.panel1.Controls.Add(this.RemoveDepartmentBtn);
+            this.panel1.Location = new System.Drawing.Point(3, 64);
+            this.panel1.MaximumSize = new System.Drawing.Size(330, 40);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(244, 35);
+            this.panel1.TabIndex = 1;
+            // 
+            // AddDepartmentBtn
+            // 
+            this.AddDepartmentBtn.Location = new System.Drawing.Point(3, 7);
+            this.AddDepartmentBtn.Name = "AddDepartmentBtn";
+            this.AddDepartmentBtn.Size = new System.Drawing.Size(75, 23);
+            this.AddDepartmentBtn.TabIndex = 1;
+            this.AddDepartmentBtn.Text = "新增部门";
+            this.AddDepartmentBtn.UseVisualStyleBackColor = true;
+            this.AddDepartmentBtn.Click += new System.EventHandler(this.AddDepartmentBtn_Click);
+            // 
+            // ModifyDepartmentBtn
+            // 
+            this.ModifyDepartmentBtn.Location = new System.Drawing.Point(84, 7);
+            this.ModifyDepartmentBtn.Name = "ModifyDepartmentBtn";
+            this.ModifyDepartmentBtn.Size = new System.Drawing.Size(75, 23);
+            this.ModifyDepartmentBtn.TabIndex = 2;
+            this.ModifyDepartmentBtn.Text = "修改部门";
+            this.ModifyDepartmentBtn.UseVisualStyleBackColor = true;
+            this.ModifyDepartmentBtn.Click += new System.EventHandler(this.ModifyDepartmentBtn_Click);
+            // 
+            // RemoveDepartmentBtn
+            // 
+            this.RemoveDepartmentBtn.Location = new System.Drawing.Point(165, 7);
+            this.RemoveDepartmentBtn.Name = "RemoveDepartmentBtn";
+            this.RemoveDepartmentBtn.Size = new System.Drawing.Size(75, 23);
+            this.RemoveDepartmentBtn.TabIndex = 3;
+            this.RemoveDepartmentBtn.Text = "删除部门";
+            this.RemoveDepartmentBtn.UseVisualStyleBackColor = true;
+            this.RemoveDepartmentBtn.Click += new System.EventHandler(this.RemoveDepartmentBtn_Click);
             // 
             // groupBox1
             // 
+            this.rootTableLayoutPanel.SetColumnSpan(this.groupBox1, 3);
             this.groupBox1.Controls.Add(this.AddPersonnelBtn);
             this.groupBox1.Controls.Add(this.gonghaoEdi);
             this.groupBox1.Controls.Add(this.ExportBtn);
@@ -101,7 +141,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1392, 51);
+            this.groupBox1.Size = new System.Drawing.Size(1415, 55);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "查询参数:";
@@ -235,144 +275,54 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "员工工号:";
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 60);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1392, 716);
-            this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.departmentTreeView, 0, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(244, 710);
-            this.tableLayoutPanel2.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.AddDepartmentBtn);
-            this.panel1.Controls.Add(this.ModifyDepartmentBtn);
-            this.panel1.Controls.Add(this.RemoveDepartmentBtn);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.MaximumSize = new System.Drawing.Size(330, 40);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(330, 34);
-            this.panel1.TabIndex = 1;
-            // 
-            // AddDepartmentBtn
-            // 
-            this.AddDepartmentBtn.Location = new System.Drawing.Point(3, 7);
-            this.AddDepartmentBtn.Name = "AddDepartmentBtn";
-            this.AddDepartmentBtn.Size = new System.Drawing.Size(75, 23);
-            this.AddDepartmentBtn.TabIndex = 1;
-            this.AddDepartmentBtn.Text = "新增部门";
-            this.AddDepartmentBtn.UseVisualStyleBackColor = true;
-            this.AddDepartmentBtn.Click += new System.EventHandler(this.AddDepartmentBtn_Click);
-            // 
-            // ModifyDepartmentBtn
-            // 
-            this.ModifyDepartmentBtn.Location = new System.Drawing.Point(84, 7);
-            this.ModifyDepartmentBtn.Name = "ModifyDepartmentBtn";
-            this.ModifyDepartmentBtn.Size = new System.Drawing.Size(75, 23);
-            this.ModifyDepartmentBtn.TabIndex = 2;
-            this.ModifyDepartmentBtn.Text = "修改部门";
-            this.ModifyDepartmentBtn.UseVisualStyleBackColor = true;
-            this.ModifyDepartmentBtn.Click += new System.EventHandler(this.ModifyDepartmentBtn_Click);
-            // 
-            // RemoveDepartmentBtn
-            // 
-            this.RemoveDepartmentBtn.Location = new System.Drawing.Point(164, 7);
-            this.RemoveDepartmentBtn.Name = "RemoveDepartmentBtn";
-            this.RemoveDepartmentBtn.Size = new System.Drawing.Size(75, 23);
-            this.RemoveDepartmentBtn.TabIndex = 3;
-            this.RemoveDepartmentBtn.Text = "删除部门";
-            this.RemoveDepartmentBtn.UseVisualStyleBackColor = true;
-            this.RemoveDepartmentBtn.Click += new System.EventHandler(this.RemoveDepartmentBtn_Click);
-            // 
             // departmentTreeView
             // 
             this.departmentTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.departmentTreeView.Location = new System.Drawing.Point(3, 43);
+            this.departmentTreeView.Location = new System.Drawing.Point(3, 105);
             this.departmentTreeView.Name = "departmentTreeView";
-            this.departmentTreeView.Size = new System.Drawing.Size(330, 664);
+            this.departmentTreeView.Size = new System.Drawing.Size(248, 671);
             this.departmentTreeView.TabIndex = 2;
             this.departmentTreeView.Click += new System.EventHandler(this.treeView1_Click);
             this.departmentTreeView.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
             this.departmentTreeView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.departmentTreeView_MouseDown);
             // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel3.Controls.Add(this.dataGridView1, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(253, 3);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1136, 710);
-            this.tableLayoutPanel3.TabIndex = 2;
-            // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige;
             this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.rootTableLayoutPanel.SetColumnSpan(this.dataGridView1, 2);
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Location = new System.Drawing.Point(257, 64);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.NullValue = "0";
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.RowHeadersWidth = 50;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Bisque;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Bisque;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.rootTableLayoutPanel.SetRowSpan(this.dataGridView1, 2);
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(1130, 704);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1161, 712);
+            this.dataGridView1.TabIndex = 3;
             // 
             // PersonnelDataDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1398, 779);
+            this.ClientSize = new System.Drawing.Size(1421, 779);
             this.Controls.Add(this.rootTableLayoutPanel);
             this.Name = "PersonnelDataDlg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "员工资料";
             this.Load += new System.EventHandler(this.PersonnelDataDlg_Load);
             this.rootTableLayoutPanel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -396,16 +346,13 @@
         private System.Windows.Forms.Button InquireBtn;
         private System.Windows.Forms.Button ExportBtn;
         private System.Windows.Forms.Button AddPersonnelBtn;
-        private FXB.MyControl.MyDataGridView dataGridView1;
         private FXB.MyControl.MyTableLayoutPanel rootTableLayoutPanel;
-        private FXB.MyControl.MyTableLayoutPanel tableLayoutPanel1;
-        private FXB.MyControl.MyTableLayoutPanel tableLayoutPanel2;
-        private FXB.MyControl.MyTableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button AddDepartmentBtn;
         private System.Windows.Forms.Button ModifyDepartmentBtn;
         private System.Windows.Forms.Button RemoveDepartmentBtn;
         private FXB.MyControl.MyTreeView departmentTreeView;
+        private FXB.MyControl.MyDataGridView dataGridView1;
 
     }
 }

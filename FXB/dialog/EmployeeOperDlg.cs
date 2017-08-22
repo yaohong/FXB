@@ -171,15 +171,15 @@ namespace FXB.Dialog
         private void AddClick()
         {
             QtLevel qtLevel = QtUtil.GetQTLevel(qtLevelSelect.Text);
-            if (qtLevel != QtLevel.None && qtLevel != QtLevel.Salesman)
-            {
+            //if (qtLevel != QtLevel.None && qtLevel != QtLevel.Salesman)
+            //{
 
-                if (QtMgr.Instance().CheckQtKey())
-                {
-                    MessageBox.Show("QT任务已经生成,只能添加普通员工和QT业务员");
-                    return;
-                }
-            }
+            //    if (QtMgr.Instance().CheckQtKey())
+            //    {
+            //        MessageBox.Show("QT任务已经生成,只能添加普通员工和QT业务员");
+            //        return;
+            //    }
+            //}
 
             try
             {
@@ -247,20 +247,20 @@ namespace FXB.Dialog
                 beizhuEdit.Text != employeeData.Comment)
             {
                 QtLevel newQtLevel = QtUtil.GetQTLevel(qtLevelSelect.Text);
-                if (employeeData.QTLevel != QtLevel.None)
-                {
-                    if (employeeData.QTLevel != newQtLevel ||
-                        employeeData.DepartmentId != selectDepartmentId ||
-                        employeeData.IsOwner != CheckBoxUtil.cbStateToBool(isOwnerCb.CheckState))
-                    {
+                //if (employeeData.QTLevel != QtLevel.None)
+                //{
+                //    if (employeeData.QTLevel != newQtLevel ||
+                //        employeeData.DepartmentId != selectDepartmentId ||
+                //        employeeData.IsOwner != CheckBoxUtil.cbStateToBool(isOwnerCb.CheckState))
+                //    {
 
-                        if (QtMgr.Instance().CheckQtKey())
-                        {
-                            MessageBox.Show("QT任务已经生成,员工的QT相关信息不能修改");
-                            return;
-                        }
-                    }
-                }
+                //        if (QtMgr.Instance().CheckQtKey())
+                //        {
+                //            MessageBox.Show("QT任务已经生成,员工的QT相关信息不能修改");
+                //            return;
+                //        }
+                //    }
+                //}
 
                 try
                 {

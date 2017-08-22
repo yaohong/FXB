@@ -54,6 +54,54 @@ namespace FXB.Common
             
         }
 
+
+        public static string GetQtDepartmentShowText(QtTask qtTask, Int64 departmentId)
+        {
+            if (departmentId == 0)
+            {
+                return "";
+            }
+            else
+            {
+                
+                string departmentName = "";
+                while (true)
+                {
+                    QtDepartment departmentData = qtTask.AllQtDepartment[departmentId];
+                    if (departmentData.ParentDepartmentId == 0)
+                    {
+                        //跟部门了
+                        if (departmentName == "")
+                        {
+                            return departmentData.DepartmentName;
+                        }
+                        else
+                        {
+                            return string.Format("{0}|{1}", departmentData.DepartmentName, departmentName);
+                        }
+
+                    }
+                    else
+                    {
+                        if (departmentName == "")
+                        {
+                            departmentName = departmentData.DepartmentName;
+                        }
+                        else
+                        {
+                            departmentName = string.Format("{0}|{1}", departmentData.DepartmentName, departmentName);
+                        }
+
+                        departmentId = departmentData.ParentDepartmentId;
+                    }
+                }
+
+
+
+            }
+
+        }
+
         //检测加入关系
         public static bool CheckAddInDepartment(string gongHao, QtLevel roleQtLevel, Int64 addIndepartmentId, bool isOwner)
         {

@@ -39,8 +39,9 @@ namespace FXB.Dialog
             string qtKey = qtTaskTimeSelect.Text;
             try
             {
-                QtMgr.Instance().AddNewQtTask(qtKey);
+                QtTask newQtTask = QtMgr.Instance().AddNewQtTask(qtKey);
                 qtCb.Items.Insert(0, qtKey);
+                ShowQtTask(newQtTask);
             }
             catch (ConditionCheckException ex)
             {
@@ -56,7 +57,88 @@ namespace FXB.Dialog
 
         private void viewQtTaskBtn_Click(object sender, EventArgs e)
         {
-            
+           if (qtCb.SelectedItem != null)
+           {
+               string qtKey = (string)qtCb.SelectedItem;
+               QtTask selectQtTask = QtMgr.Instance().AllQtTask[qtKey];
+               ShowQtTask(selectQtTask);
+           }
+        }
+
+        private void ShowQtTask(QtTask qtTask)
+        {
+            dataGridView1.Rows.Clear();
+            IterationShowQtTask(qtTask.RootQtDepartment, qtTask);
+            //QtDepartment itemDepartmen = qtTask.RootQtDepartment;
+            //while (itemDepartmen != null)
+            //{
+
+            //}
+            //foreach (var item in qtTask.AllQtDepartment)
+            //{
+            //    QtDepartment qtDepartment = item.Value;
+            //    if (qtDepartment.QtLevel == QtLevel.ZhuchangZongjian ||
+            //        qtDepartment.QtLevel == QtLevel.ZhuchangZhuguan)
+            //    {
+            //        continue;
+            //    }
+            //    int newLine = dataGridView1.Rows.Add();
+                
+            //    dataGridView1.Rows[newLine].Cells["department"].Value = DepartmentUtil.GetQtDepartmentShowText(qtTask, qtDepartment.Id);
+            //    dataGridView1.Rows[newLine].Cells["qtlevel"].Value = QtUtil.GetQTLevelString(qtDepartment.QtLevel);
+            //    string ownerName = "";
+            //    if (qtDepartment.OwnerJobNumber != "")
+            //    {
+            //        EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[qtDepartment.OwnerJobNumber];
+            //        ownerName = employeeData.Name;
+            //    }
+            //    dataGridView1.Rows[newLine].Cells["owner"].Value = ownerName;
+            //    dataGridView1.Rows[newLine].Cells["qtTaskAmount"].Value = Convert.ToString(qtDepartment.NeedCompleteTaskAmount);
+
+            //    if (!qtTask.Closing)
+            //    {
+            //        //没有结算
+            //        dataGridView1.Rows[newLine].Cells["ifSettle"].Value = false;
+            //        dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = "0";
+            //        dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = "0";
+            //    }
+            //}
+        }
+
+        private void IterationShowQtTask(QtDepartment qtDepartment, QtTask qtTask)
+        {
+            if (qtDepartment.QtLevel == QtLevel.ZhuchangZongjian ||
+                qtDepartment.QtLevel == QtLevel.ZhuchangZhuguan)
+            {
+                return;
+            }
+
+            int newLine = dataGridView1.Rows.Add();
+
+            dataGridView1.Rows[newLine].Cells["department"].Value = DepartmentUtil.GetQtDepartmentShowText(qtTask, qtDepartment.Id);
+            dataGridView1.Rows[newLine].Cells["qtlevel"].Value = QtUtil.GetQTLevelString(qtDepartment.QtLevel);
+            string ownerName = "";
+            if (qtDepartment.OwnerJobNumber != "")
+            {
+                EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[qtDepartment.OwnerJobNumber];
+                ownerName = employeeData.Name;
+            }
+            dataGridView1.Rows[newLine].Cells["owner"].Value = ownerName;
+            dataGridView1.Rows[newLine].Cells["qtTaskAmount"].Value = Convert.ToString(qtDepartment.NeedCompleteTaskAmount);
+
+            if (!qtTask.Closing)
+            {
+                //没有结算
+                dataGridView1.Rows[newLine].Cells["ifSettle"].Value = false;
+                dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = "0";
+                dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = "0";
+            }
+
+            foreach (var item in qtDepartment.ChildDepartmentIdSet)
+            {
+                QtDepartment chidQtDepartment = qtTask.AllQtDepartment[item];
+                IterationShowQtTask(chidQtDepartment, qtTask);
+            }
         }
 
         private void SetDataGridViewColumn()
@@ -64,13 +146,13 @@ namespace FXB.Dialog
             DataGridViewTextBoxColumn department = new DataGridViewTextBoxColumn();
             department.Name = "department";
             department.HeaderText = "部门";
-            department.Width = 100;
+            department.Width = 300;
             dataGridView1.Columns.Add(department);
 
             DataGridViewTextBoxColumn qtLevel = new DataGridViewTextBoxColumn();
             qtLevel.Name = "qtlevel";
-            qtLevel.HeaderText = "QT级别";
-            qtLevel.Width = 70;
+            qtLevel.HeaderText = "部门QT级别";
+            qtLevel.Width = 120;
             dataGridView1.Columns.Add(qtLevel);
 
             DataGridViewTextBoxColumn owner = new DataGridViewTextBoxColumn();
@@ -81,10 +163,29 @@ namespace FXB.Dialog
 
             DataGridViewTextBoxColumn needCompleteTaskAmount = new DataGridViewTextBoxColumn();
             needCompleteTaskAmount.Name = "qtTaskAmount";
-            needCompleteTaskAmount.HeaderText = "QT任务";
-            needCompleteTaskAmount.Width = 250;
+            needCompleteTaskAmount.HeaderText = "任务金额";
+            needCompleteTaskAmount.Width = 100;
             dataGridView1.Columns.Add(needCompleteTaskAmount);
 
+            DataGridViewCheckBoxColumn ifSettle = new DataGridViewCheckBoxColumn();
+            ifSettle.Name = "ifSettle";
+            ifSettle.HeaderText = "是否结算";
+            ifSettle.Width = 70;
+            dataGridView1.Columns.Add(ifSettle);
+
+            DataGridViewTextBoxColumn completeTaskAmount = new DataGridViewTextBoxColumn();
+            completeTaskAmount.Name = "completeTaskAmount";
+            completeTaskAmount.HeaderText = "完成金额";
+            completeTaskAmount.Width = 100;
+            dataGridView1.Columns.Add(completeTaskAmount);
+
+            DataGridViewTextBoxColumn prop = new DataGridViewTextBoxColumn();
+            prop.Name = "prop";
+            prop.HeaderText = "提成比例";
+            prop.Width = 100;
+            dataGridView1.Columns.Add(prop);
         }
+
+
     }
 }
