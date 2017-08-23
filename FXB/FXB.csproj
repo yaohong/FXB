@@ -53,12 +53,14 @@
     <Compile Include="Common\TextException.cs" />
     <Compile Include="Common\TimeUtil.cs" />
     <Compile Include="DataManager\DepartmentDataMgr.cs" />
+    <Compile Include="DataManager\DxDuplicateMgr.cs" />
     <Compile Include="DataManager\EmployeeDataMgr.cs" />
     <Compile Include="DataManager\JobGradeDataMgr.cs" />
     <Compile Include="DataManager\ProjectDataMgr.cs" />
     <Compile Include="DataManager\QtMgr.cs" />
     <Compile Include="Data\Define.cs" />
     <Compile Include="Data\DepartmentData.cs" />
+    <Compile Include="Data\DxDuplicate.cs" />
     <Compile Include="Data\EmployeeData.cs" />
     <Compile Include="Data\JobGradeData.cs" />
     <Compile Include="Data\ProjectData.cs" />
@@ -132,6 +134,12 @@
     <Compile Include="Dialog\QtTaskOperDlg.Designer.cs">
       <DependentUpon>QtTaskOperDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\SalaryDuplicateOperDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\SalaryDuplicateOperDlg.Designer.cs">
+      <DependentUpon>SalaryDuplicateOperDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyControl\MyDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -181,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\QtTaskOperDlg.resx">
       <DependentUpon>QtTaskOperDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\SalaryDuplicateOperDlg.resx">
+      <DependentUpon>SalaryDuplicateOperDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

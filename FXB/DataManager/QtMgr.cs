@@ -255,7 +255,24 @@ namespace FXB.DataManager
                     DbQtTaskIndex qtTaskIndexData = item.Value;
 
                     SortedDictionary<Int64, DbQtTaskDepartment> qtTaskDepartmentData = dbAllQtTaskDepartment[qtKey];
-                    SortedDictionary<string, DbQtTaskEmployee> qtTaskEmployeeData = dbAllQtTaskEmployee[qtKey];
+                    if (!dbAllQtTaskDepartment.ContainsKey(qtKey))
+                    {
+                        qtTaskDepartmentData = new SortedDictionary<Int64, DbQtTaskDepartment>();
+                    }
+                    else
+                    {
+                        qtTaskDepartmentData = dbAllQtTaskDepartment[qtKey];
+                    }
+
+                    SortedDictionary<string, DbQtTaskEmployee> qtTaskEmployeeData;
+                    if (!dbAllQtTaskEmployee.ContainsKey(qtKey))
+                    {
+                        qtTaskEmployeeData = new SortedDictionary<string, DbQtTaskEmployee>();
+                    }
+                    else
+                    {
+                        qtTaskEmployeeData = dbAllQtTaskEmployee[qtKey];
+                    }
                     QtTask qtTask = new QtTask(qtTaskIndexData, qtTaskDepartmentData, qtTaskEmployeeData);
 
                     allQtTask[qtKey] = qtTask;
@@ -375,6 +392,47 @@ namespace FXB.DataManager
             }
 
             return newQtTask;
+        }
+
+        public void RemoveQtTask(string qtKey)
+        {
+            SqlTransaction sqlTran = null; 
+            try
+            {
+                sqlTran = SqlMgr.Instance().SqlConnect.BeginTransaction();
+                SqlCommand command = new SqlCommand();
+                command.Connection = SqlMgr.Instance().SqlConnect;
+                command.Transaction = sqlTran;
+
+                command.CommandType = CommandType.Text;
+                command.CommandText = "delete from qttaskdepartment where qtkey=@qtkey";
+                command.Parameters.AddWithValue("@qtkey", qtKey);
+                command.ExecuteScalar();
+                command.Parameters.Clear();
+
+                command.CommandType = CommandType.Text;
+                command.CommandText = "delete from qttaskindex where qtkey=@qtkey";
+                command.Parameters.AddWithValue("@qtkey", qtKey);
+                command.ExecuteScalar();
+                command.Parameters.Clear();
+
+                command.CommandType = CommandType.Text;
+                command.CommandText = "delete from qttaskemployee where qtkey=@qtkey";
+                command.Parameters.AddWithValue("@qtkey", qtKey);
+                command.ExecuteScalar();
+                command.Parameters.Clear();
+
+                sqlTran.Commit();
+                allQtTask.Remove(qtKey);
+            }
+            catch (Exception ex)
+            {
+                if (sqlTran != null)
+                {
+                    sqlTran.Rollback();
+                }
+                throw new CrashException(ex.Message);
+            }
         }
 
         public SortedDictionary<string, QtTask> AllQtTask

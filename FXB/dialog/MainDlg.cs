@@ -43,6 +43,7 @@ namespace FXB
                 ProjectDataMgr.Instance().Load();
                 EmployeeDataMgr.Instance().Load();
                 QtMgr.Instance().Load();
+                DxDuplicateMgr.Instance().Load();
             }
             catch (Exception ex)
             {
@@ -103,6 +104,12 @@ namespace FXB
                 dlg.MdiParent = this;
                 dlg.Show();
             }
+            else if (dlgName == "SalaryDuplicateOperDlg")
+            {
+                SalaryDuplicateOperDlg dlg = new SalaryDuplicateOperDlg();
+                dlg.MdiParent = this;
+                dlg.Show();
+            }
             else 
             {
                 MessageBox.Show("未知的窗口名字");
@@ -113,6 +120,11 @@ namespace FXB
         private void QT任务ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowDialog("QtTaskOperDlg");
+        }
+
+        private void 生成底薪副本ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowDialog("SalaryDuplicateOperDlg");
         }
 
     }

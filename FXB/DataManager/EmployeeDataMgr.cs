@@ -411,11 +411,17 @@ namespace FXB.DataManager
                 gridView.Rows[lineIndex].Cells["departmentName"].Value = DepartmentUtil.GetDepartmentShowText(item.Value.DepartmentId);
                 gridView.Rows[lineIndex].Cells["isOwner"].Value = item.Value.IsOwner;
                 gridView.Rows[lineIndex].Cells["zhiji"].Value = item.Value.JobGradeName;
-
                 gridView.Rows[lineIndex].Cells["dianhua"].Value = item.Value.PhoneNumber;
-                gridView.Rows[lineIndex].Cells["ruzhiTime"].Value = TimeUtil.TimestampToDateTime(item.Value.EnteryTime).ToShortDateString();
+
                 gridView.Rows[lineIndex].Cells["jobState"].Value = item.Value.JobState;
-                gridView.Rows[lineIndex].Cells["lizhiTime"].Value = TimeUtil.TimestampToDateTime(item.Value.DimissionTime).ToShortDateString();
+                gridView.Rows[lineIndex].Cells["ruzhiTime"].Value = TimeUtil.TimestampToDateTime(item.Value.EnteryTime).ToShortDateString();
+                if (!item.Value.JobState)
+                {
+                    gridView.Rows[lineIndex].Cells["lizhiTime"].Value = TimeUtil.TimestampToDateTime(item.Value.DimissionTime).ToShortDateString();
+                }
+                
+                
+                
 
                 gridView.Rows[lineIndex].Cells["shenfenzheng"].Value = item.Value.IdCard;
                 gridView.Rows[lineIndex].Cells["shengriTime"].Value = TimeUtil.TimestampToDateTime(item.Value.Birthday).ToShortDateString();
@@ -450,9 +456,12 @@ namespace FXB.DataManager
                     gridView.Rows[lineIndex].Cells["zhiji"].Value = item.Value.JobGradeName;
 
                     gridView.Rows[lineIndex].Cells["dianhua"].Value = item.Value.PhoneNumber;
-                    gridView.Rows[lineIndex].Cells["ruzhiTime"].Value = TimeUtil.TimestampToDateTime(item.Value.EnteryTime).ToShortDateString();
                     gridView.Rows[lineIndex].Cells["jobState"].Value = item.Value.JobState;
-                    gridView.Rows[lineIndex].Cells["lizhiTime"].Value = TimeUtil.TimestampToDateTime(item.Value.DimissionTime).ToShortDateString();
+                    gridView.Rows[lineIndex].Cells["ruzhiTime"].Value = TimeUtil.TimestampToDateTime(item.Value.EnteryTime).ToShortDateString();
+                    if (!item.Value.JobState)
+                    {
+                        gridView.Rows[lineIndex].Cells["lizhiTime"].Value = TimeUtil.TimestampToDateTime(item.Value.DimissionTime).ToShortDateString();
+                    }
 
                     gridView.Rows[lineIndex].Cells["shenfenzheng"].Value = item.Value.IdCard;
                     gridView.Rows[lineIndex].Cells["shengriTime"].Value = TimeUtil.TimestampToDateTime(item.Value.Birthday).ToShortDateString();

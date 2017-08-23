@@ -54,6 +54,7 @@
             this.qT查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.生成底薪副本ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -165,7 +166,8 @@
             // 薪资管理ToolStripMenuItem
             // 
             this.薪资管理ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.底薪录入ToolStripMenuItem});
+            this.底薪录入ToolStripMenuItem,
+            this.生成底薪副本ToolStripMenuItem});
             this.薪资管理ToolStripMenuItem.Name = "薪资管理ToolStripMenuItem";
             this.薪资管理ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.薪资管理ToolStripMenuItem.Text = "薪资管理";
@@ -173,7 +175,7 @@
             // 底薪录入ToolStripMenuItem
             // 
             this.底薪录入ToolStripMenuItem.Name = "底薪录入ToolStripMenuItem";
-            this.底薪录入ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.底薪录入ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.底薪录入ToolStripMenuItem.Text = "底薪录入";
             // 
             // QT任务ToolStripMenuItem
@@ -251,6 +253,13 @@
             this.退出ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.退出ToolStripMenuItem.Text = "退出";
             // 
+            // 生成底薪副本ToolStripMenuItem
+            // 
+            this.生成底薪副本ToolStripMenuItem.Name = "生成底薪副本ToolStripMenuItem";
+            this.生成底薪副本ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.生成底薪副本ToolStripMenuItem.Text = "生成底薪副本";
+            this.生成底薪副本ToolStripMenuItem.Click += new System.EventHandler(this.生成底薪副本ToolStripMenuItem_Click);
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -302,6 +311,7 @@
         private System.Windows.Forms.ToolStripMenuItem qT查询ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 修改密码ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 生成底薪副本ToolStripMenuItem;
     }
 }
 

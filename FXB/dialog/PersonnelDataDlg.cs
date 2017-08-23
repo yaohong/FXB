@@ -438,9 +438,16 @@ namespace FXB.Dialog
             row.Cells["zhiji"].Value = data.JobGradeName;
 
             row.Cells["dianhua"].Value = data.PhoneNumber;
-            row.Cells["ruzhiTime"].Value = TimeUtil.TimestampToDateTime(data.EnteryTime).ToShortDateString();
+            //row.Cells["ruzhiTime"].Value = TimeUtil.TimestampToDateTime(data.EnteryTime).ToShortDateString();
+            //row.Cells["jobState"].Value = data.JobState;
+            //row.Cells["lizhiTime"].Value = TimeUtil.TimestampToDateTime(data.DimissionTime).ToShortDateString();
+
             row.Cells["jobState"].Value = data.JobState;
-            row.Cells["lizhiTime"].Value = TimeUtil.TimestampToDateTime(data.DimissionTime).ToShortDateString();
+            row.Cells["ruzhiTime"].Value = TimeUtil.TimestampToDateTime(data.EnteryTime).ToShortDateString();
+            if (!data.JobState)
+            {
+                row.Cells["lizhiTime"].Value = TimeUtil.TimestampToDateTime(data.DimissionTime).ToShortDateString();
+            }
 
             row.Cells["shenfenzheng"].Value = data.IdCard;
             row.Cells["shengriTime"].Value = TimeUtil.TimestampToDateTime(data.Birthday).ToShortDateString();

@@ -70,6 +70,7 @@ namespace FXB.Dialog
         private void EditInit()
         {
             gonghaoEdit.Enabled = false;
+            xingmingEdit.Enabled = false;
             gonghaoEdit.Text = employeeData.JobNumber;
             xingmingEdit.Text = employeeData.Name;
             qtLevelSelect.SelectedIndex = QtUtil.GetComboxIndex(qtLevelSelect, employeeData.QTLevel);
@@ -126,35 +127,35 @@ namespace FXB.Dialog
                 return;
             }
 
-            if (shenfenzhengEdit.Text == "")
-            {
-                MessageBox.Show("身份证不能为空");
-                return;
-            }
+            //if (shenfenzhengEdit.Text == "")
+            //{
+            //    MessageBox.Show("身份证不能为空");
+            //    return;
+            //}
 
-            if (xingbieSelect.SelectedIndex == -1)
-            {
-                MessageBox.Show("性别未设置");
-                return;
-            }
+            //if (xingbieSelect.SelectedIndex == -1)
+            //{
+            //    MessageBox.Show("性别未设置");
+            //    return;
+            //}
 
-            if (juzhudizhiEdit.Text == "")
-            {
-                MessageBox.Show("居住地址不能为空");
-                return;
-            }
+            //if (juzhudizhiEdit.Text == "")
+            //{
+            //    MessageBox.Show("居住地址不能为空");
+            //    return;
+            //}
 
-            if (jjlianxirenEdit.Text == "")
-            {
-                MessageBox.Show("紧急联系人不能为空");
-                return;
-            }
+            //if (jjlianxirenEdit.Text == "")
+            //{
+            //    MessageBox.Show("紧急联系人不能为空");
+            //    return;
+            //}
 
-            if (jjDianhuaEdit.Text == "")
-            {
-                MessageBox.Show("紧急联系电话不能为空");
-                return;
-            }
+            //if (jjDianhuaEdit.Text == "")
+            //{
+            //    MessageBox.Show("紧急联系电话不能为空");
+            //    return;
+            //}
 
 
             if (mode == EditMode.EM_ADD)

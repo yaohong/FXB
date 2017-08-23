@@ -17,6 +17,7 @@ namespace FXB.Data
         private QtDepartment rootQtDepartment = null;
         private SortedDictionary<Int64, QtDepartment> allQtDepartment;
         private SortedDictionary<string, QtEmployee> allQtEmployee;
+        private SortedDictionary<Int64, QtOrder> allQtOrder;
         public static float singleTaskAmount = 10000.0f;
 
         public string QtKey
@@ -42,6 +43,11 @@ namespace FXB.Data
         {
             get { return allQtEmployee; }
         }
+
+        public SortedDictionary<Int64, QtOrder> AllQtOrder
+        {
+            get { return allQtOrder; }
+        }
         //生成新QT任务的构造函数
         public QtTask(string timeKey)
         {
@@ -51,7 +57,7 @@ namespace FXB.Data
 
             allQtDepartment = new SortedDictionary<Int64, QtDepartment>();
             allQtEmployee = new SortedDictionary<string, QtEmployee>();
-
+            allQtOrder = new SortedDictionary<Int64, QtOrder>();
             //用当前的部门结构构造QT部门结构
             DepartmentData rootDepartment = DepartmentDataMgr.Instance().RootDepartment;
             rootQtDepartment = rootDepartment.GenerateQtDepartment();
@@ -131,6 +137,10 @@ namespace FXB.Data
             rootQtDepartment = null;
             allQtDepartment = new SortedDictionary<Int64, QtDepartment>();
             allQtEmployee = new SortedDictionary<string, QtEmployee>();  //建立部门的上级关系
+            allQtOrder = new SortedDictionary<Int64, QtOrder>();
+
+
+
             foreach (var item in qtDepartmentData)
             {
                 GenerateQtDepartmentSuperiorRelation(qtDepartmentData, item.Value);

@@ -14,6 +14,7 @@ namespace FXB.Dialog
 {
     public partial class QtTaskOperDlg : Form
     {
+        private string curShowQtKey = "";
         public QtTaskOperDlg()
         {
             InitializeComponent();
@@ -41,6 +42,7 @@ namespace FXB.Dialog
             {
                 QtTask newQtTask = QtMgr.Instance().AddNewQtTask(qtKey);
                 qtCb.Items.Insert(0, qtKey);
+                qtCb.SelectedIndex = 0;
                 ShowQtTask(newQtTask);
             }
             catch (ConditionCheckException ex)
@@ -67,6 +69,7 @@ namespace FXB.Dialog
 
         private void ShowQtTask(QtTask qtTask)
         {
+            curShowQtKey = qtTask.QtKey;
             dataGridView1.Rows.Clear();
             IterationShowQtTask(qtTask.RootQtDepartment, qtTask);
             //QtDepartment itemDepartmen = qtTask.RootQtDepartment;
@@ -184,6 +187,40 @@ namespace FXB.Dialog
             prop.HeaderText = "提成比例";
             prop.Width = 100;
             dataGridView1.Columns.Add(prop);
+        }
+
+        private void removeQtTaskBtn_Click(object sender, EventArgs e)
+        {
+            if (qtCb.SelectedItem != null)
+            {
+                string qtKey = (string)qtCb.SelectedItem;
+                QtTask selectQtTask = QtMgr.Instance().AllQtTask[qtKey];
+                if (selectQtTask.AllQtOrder.Count > 0)
+                {
+                    //已经有开单了不能删除
+                    MessageBox.Show("已经有开单了不能删除");
+                    return;
+                }
+
+                try
+                {
+                    QtMgr.Instance().RemoveQtTask(qtKey);
+                    qtCb.Items.Remove(qtKey);
+                    if (qtKey == curShowQtKey)
+                    {
+                        dataGridView1.Rows.Clear();
+                    }
+                }
+                catch (ConditionCheckException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex1)
+                {
+                    MessageBox.Show(ex1.Message);
+                    Application.Exit();
+                }
+            }
         }
 
 
