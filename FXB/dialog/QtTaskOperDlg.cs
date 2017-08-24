@@ -127,7 +127,11 @@ namespace FXB.Dialog
                 ownerName = employeeData.Name;
             }
             dataGridView1.Rows[newLine].Cells["owner"].Value = ownerName;
-            dataGridView1.Rows[newLine].Cells["qtTaskAmount"].Value = Convert.ToString(qtDepartment.NeedCompleteTaskAmount);
+            if (qtDepartment.OwnerJobNumber != "")
+            {
+                dataGridView1.Rows[newLine].Cells["qtTaskAmount"].Value = Convert.ToString(qtDepartment.NeedCompleteTaskAmount);
+            }
+            
 
             if (!qtTask.Closing)
             {
