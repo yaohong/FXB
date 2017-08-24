@@ -86,6 +86,12 @@
     <Compile Include="Dialog\EmployeeOperDlg.Designer.cs">
       <DependentUpon>EmployeeOperDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\EmployeeSelectDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\EmployeeSelectDlg.Designer.cs">
+      <DependentUpon>EmployeeSelectDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\JobGradeDataDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +146,12 @@
     <Compile Include="Dialog\ProjectOperDlg.Designer.cs">
       <DependentUpon>ProjectOperDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\ProjectSelectDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\ProjectSelectDlg.Designer.cs">
+      <DependentUpon>ProjectSelectDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\QtTaskOperDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +190,9 @@
     <EmbeddedResource Include="Dialog\EmployeeOperDlg.resx">
       <DependentUpon>EmployeeOperDlg.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\EmployeeSelectDlg.resx">
+      <DependentUpon>EmployeeSelectDlg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\JobGradeDataDlg.resx">
       <DependentUpon>JobGradeDataDlg.cs</DependentUpon>
     </EmbeddedResource>
@@ -204,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\ProjectOperDlg.resx">
       <DependentUpon>ProjectOperDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\ProjectSelectDlg.resx">
+      <DependentUpon>ProjectSelectDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\QtTaskOperDlg.resx">
       <DependentUpon>QtTaskOperDlg.cs</DependentUpon>

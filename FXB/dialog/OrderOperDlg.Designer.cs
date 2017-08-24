@@ -86,15 +86,15 @@
             // 
             // yongjinzongeEdi
             // 
-            this.yongjinzongeEdi.Location = new System.Drawing.Point(356, 20);
+            this.yongjinzongeEdi.Location = new System.Drawing.Point(398, 21);
             this.yongjinzongeEdi.Name = "yongjinzongeEdi";
-            this.yongjinzongeEdi.Size = new System.Drawing.Size(110, 21);
+            this.yongjinzongeEdi.Size = new System.Drawing.Size(165, 21);
             this.yongjinzongeEdi.TabIndex = 12;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(291, 29);
+            this.label6.Location = new System.Drawing.Point(333, 30);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 12);
             this.label6.TabIndex = 11;
@@ -104,7 +104,7 @@
             // 
             this.orderGenerateTime.Location = new System.Drawing.Point(87, 20);
             this.orderGenerateTime.Name = "orderGenerateTime";
-            this.orderGenerateTime.Size = new System.Drawing.Size(110, 21);
+            this.orderGenerateTime.Size = new System.Drawing.Size(165, 21);
             this.orderGenerateTime.TabIndex = 5;
             // 
             // label3
@@ -138,7 +138,7 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Location = new System.Drawing.Point(31, 206);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(536, 211);
+            this.groupBox1.Size = new System.Drawing.Size(629, 211);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "操作人员信息";
@@ -158,12 +158,12 @@
             this.beizhuEdi.Multiline = true;
             this.beizhuEdi.Name = "beizhuEdi";
             this.beizhuEdi.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.beizhuEdi.Size = new System.Drawing.Size(379, 81);
+            this.beizhuEdi.Size = new System.Drawing.Size(476, 81);
             this.beizhuEdi.TabIndex = 25;
             // 
             // zhuchang2SelectBtn
             // 
-            this.zhuchang2SelectBtn.Location = new System.Drawing.Point(472, 74);
+            this.zhuchang2SelectBtn.Location = new System.Drawing.Point(569, 75);
             this.zhuchang2SelectBtn.Name = "zhuchang2SelectBtn";
             this.zhuchang2SelectBtn.Size = new System.Drawing.Size(39, 23);
             this.zhuchang2SelectBtn.TabIndex = 24;
@@ -172,15 +172,15 @@
             // 
             // zhuchang2Edi
             // 
-            this.zhuchang2Edi.Location = new System.Drawing.Point(356, 75);
+            this.zhuchang2Edi.Location = new System.Drawing.Point(398, 76);
             this.zhuchang2Edi.Name = "zhuchang2Edi";
-            this.zhuchang2Edi.Size = new System.Drawing.Size(110, 21);
+            this.zhuchang2Edi.Size = new System.Drawing.Size(165, 21);
             this.zhuchang2Edi.TabIndex = 22;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(309, 84);
+            this.label18.Location = new System.Drawing.Point(351, 85);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(41, 12);
             this.label18.TabIndex = 23;
@@ -188,7 +188,7 @@
             // 
             // zhuchang1SelectBtn
             // 
-            this.zhuchang1SelectBtn.Location = new System.Drawing.Point(204, 74);
+            this.zhuchang1SelectBtn.Location = new System.Drawing.Point(259, 75);
             this.zhuchang1SelectBtn.Name = "zhuchang1SelectBtn";
             this.zhuchang1SelectBtn.Size = new System.Drawing.Size(38, 23);
             this.zhuchang1SelectBtn.TabIndex = 21;
@@ -199,7 +199,7 @@
             // 
             this.zhuchang1Edi.Location = new System.Drawing.Point(87, 75);
             this.zhuchang1Edi.Name = "zhuchang1Edi";
-            this.zhuchang1Edi.Size = new System.Drawing.Size(110, 21);
+            this.zhuchang1Edi.Size = new System.Drawing.Size(165, 21);
             this.zhuchang1Edi.TabIndex = 20;
             // 
             // label17
@@ -213,7 +213,7 @@
             // 
             // keyuanSelectBtn
             // 
-            this.keyuanSelectBtn.Location = new System.Drawing.Point(472, 46);
+            this.keyuanSelectBtn.Location = new System.Drawing.Point(569, 48);
             this.keyuanSelectBtn.Name = "keyuanSelectBtn";
             this.keyuanSelectBtn.Size = new System.Drawing.Size(39, 23);
             this.keyuanSelectBtn.TabIndex = 18;
@@ -222,15 +222,15 @@
             // 
             // keyuanEdi
             // 
-            this.keyuanEdi.Location = new System.Drawing.Point(356, 47);
+            this.keyuanEdi.Location = new System.Drawing.Point(398, 48);
             this.keyuanEdi.Name = "keyuanEdi";
-            this.keyuanEdi.Size = new System.Drawing.Size(110, 21);
+            this.keyuanEdi.Size = new System.Drawing.Size(165, 21);
             this.keyuanEdi.TabIndex = 16;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(303, 56);
+            this.label16.Location = new System.Drawing.Point(345, 57);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(47, 12);
             this.label16.TabIndex = 17;
@@ -238,18 +238,19 @@
             // 
             // guwenSelectBtn
             // 
-            this.guwenSelectBtn.Location = new System.Drawing.Point(203, 47);
+            this.guwenSelectBtn.Location = new System.Drawing.Point(258, 48);
             this.guwenSelectBtn.Name = "guwenSelectBtn";
             this.guwenSelectBtn.Size = new System.Drawing.Size(39, 23);
             this.guwenSelectBtn.TabIndex = 15;
             this.guwenSelectBtn.Text = "..";
             this.guwenSelectBtn.UseVisualStyleBackColor = true;
+            this.guwenSelectBtn.Click += new System.EventHandler(this.guwenSelectBtn_Click);
             // 
             // guwenEdi
             // 
             this.guwenEdi.Location = new System.Drawing.Point(87, 48);
             this.guwenEdi.Name = "guwenEdi";
-            this.guwenEdi.Size = new System.Drawing.Size(110, 21);
+            this.guwenEdi.Size = new System.Drawing.Size(165, 21);
             this.guwenEdi.TabIndex = 13;
             // 
             // label15
@@ -268,7 +269,7 @@
             this.shenheInfo});
             this.statusStrip1.Location = new System.Drawing.Point(0, 468);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(595, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(698, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 15;
             this.statusStrip1.Text = "statusStrip1";
@@ -286,7 +287,6 @@
             this.shenheBtn.TabIndex = 16;
             this.shenheBtn.Text = "审核";
             this.shenheBtn.UseVisualStyleBackColor = true;
-
             // 
             // cancelShenheBtn
             // 
@@ -299,16 +299,17 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(411, 431);
+            this.saveBtn.Location = new System.Drawing.Point(438, 431);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 18;
             this.saveBtn.Text = "保存";
             this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // exitBtn
             // 
-            this.exitBtn.Location = new System.Drawing.Point(492, 431);
+            this.exitBtn.Location = new System.Drawing.Point(519, 431);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(75, 23);
             this.exitBtn.TabIndex = 19;
@@ -344,7 +345,7 @@
             this.myGroupBox1.Controls.Add(this.label1);
             this.myGroupBox1.Location = new System.Drawing.Point(31, 12);
             this.myGroupBox1.Name = "myGroupBox1";
-            this.myGroupBox1.Size = new System.Drawing.Size(536, 188);
+            this.myGroupBox1.Size = new System.Drawing.Size(629, 188);
             this.myGroupBox1.TabIndex = 0;
             this.myGroupBox1.TabStop = false;
             this.myGroupBox1.Text = "购买信息";
@@ -353,20 +354,20 @@
             // 
             this.buyTime.Location = new System.Drawing.Point(87, 72);
             this.buyTime.Name = "buyTime";
-            this.buyTime.Size = new System.Drawing.Size(109, 21);
+            this.buyTime.Size = new System.Drawing.Size(165, 21);
             this.buyTime.TabIndex = 29;
             // 
             // daikuanjineEdi
             // 
-            this.daikuanjineEdi.Location = new System.Drawing.Point(356, 153);
+            this.daikuanjineEdi.Location = new System.Drawing.Point(398, 153);
             this.daikuanjineEdi.Name = "daikuanjineEdi";
-            this.daikuanjineEdi.Size = new System.Drawing.Size(110, 21);
+            this.daikuanjineEdi.Size = new System.Drawing.Size(165, 21);
             this.daikuanjineEdi.TabIndex = 28;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(291, 162);
+            this.label14.Location = new System.Drawing.Point(333, 162);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(59, 12);
             this.label14.TabIndex = 27;
@@ -376,7 +377,7 @@
             // 
             this.fukuanTypeEdi.Location = new System.Drawing.Point(87, 153);
             this.fukuanTypeEdi.Name = "fukuanTypeEdi";
-            this.fukuanTypeEdi.Size = new System.Drawing.Size(110, 21);
+            this.fukuanTypeEdi.Size = new System.Drawing.Size(165, 21);
             this.fukuanTypeEdi.TabIndex = 26;
             // 
             // label13
@@ -390,15 +391,15 @@
             // 
             // hetongzhuangtaiEdi
             // 
-            this.hetongzhuangtaiEdi.Location = new System.Drawing.Point(356, 126);
+            this.hetongzhuangtaiEdi.Location = new System.Drawing.Point(398, 126);
             this.hetongzhuangtaiEdi.Name = "hetongzhuangtaiEdi";
-            this.hetongzhuangtaiEdi.Size = new System.Drawing.Size(110, 21);
+            this.hetongzhuangtaiEdi.Size = new System.Drawing.Size(165, 21);
             this.hetongzhuangtaiEdi.TabIndex = 24;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(291, 133);
+            this.label12.Location = new System.Drawing.Point(333, 133);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(59, 12);
             this.label12.TabIndex = 23;
@@ -408,17 +409,18 @@
             // 
             this.mianjiEdi.Location = new System.Drawing.Point(87, 126);
             this.mianjiEdi.Name = "mianjiEdi";
-            this.mianjiEdi.Size = new System.Drawing.Size(110, 21);
+            this.mianjiEdi.Size = new System.Drawing.Size(165, 21);
             this.mianjiEdi.TabIndex = 22;
             // 
             // projectNameSelectBtn
             // 
-            this.projectNameSelectBtn.Location = new System.Drawing.Point(472, 17);
+            this.projectNameSelectBtn.Location = new System.Drawing.Point(569, 16);
             this.projectNameSelectBtn.Name = "projectNameSelectBtn";
             this.projectNameSelectBtn.Size = new System.Drawing.Size(39, 23);
             this.projectNameSelectBtn.TabIndex = 8;
             this.projectNameSelectBtn.Text = "..";
             this.projectNameSelectBtn.UseVisualStyleBackColor = true;
+            this.projectNameSelectBtn.Click += new System.EventHandler(this.projectNameSelectBtn_Click);
             // 
             // label11
             // 
@@ -431,15 +433,15 @@
             // 
             // shoujuEdi
             // 
-            this.shoujuEdi.Location = new System.Drawing.Point(356, 99);
+            this.shoujuEdi.Location = new System.Drawing.Point(398, 99);
             this.shoujuEdi.Name = "shoujuEdi";
-            this.shoujuEdi.Size = new System.Drawing.Size(110, 21);
+            this.shoujuEdi.Size = new System.Drawing.Size(165, 21);
             this.shoujuEdi.TabIndex = 20;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(315, 108);
+            this.label10.Location = new System.Drawing.Point(357, 108);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(35, 12);
             this.label10.TabIndex = 19;
@@ -449,7 +451,7 @@
             // 
             this.shenfenzhengEdi.Location = new System.Drawing.Point(87, 99);
             this.shenfenzhengEdi.Name = "shenfenzhengEdi";
-            this.shenfenzhengEdi.Size = new System.Drawing.Size(110, 21);
+            this.shenfenzhengEdi.Size = new System.Drawing.Size(165, 21);
             this.shenfenzhengEdi.TabIndex = 18;
             // 
             // label9
@@ -463,15 +465,15 @@
             // 
             // kehudianhuaEdi
             // 
-            this.kehudianhuaEdi.Location = new System.Drawing.Point(356, 72);
+            this.kehudianhuaEdi.Location = new System.Drawing.Point(398, 72);
             this.kehudianhuaEdi.Name = "kehudianhuaEdi";
-            this.kehudianhuaEdi.Size = new System.Drawing.Size(110, 21);
+            this.kehudianhuaEdi.Size = new System.Drawing.Size(165, 21);
             this.kehudianhuaEdi.TabIndex = 16;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(291, 81);
+            this.label8.Location = new System.Drawing.Point(333, 81);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(59, 12);
             this.label8.TabIndex = 15;
@@ -488,15 +490,15 @@
             // 
             // cjZongjiaEdi
             // 
-            this.cjZongjiaEdi.Location = new System.Drawing.Point(356, 45);
+            this.cjZongjiaEdi.Location = new System.Drawing.Point(398, 45);
             this.cjZongjiaEdi.Name = "cjZongjiaEdi";
-            this.cjZongjiaEdi.Size = new System.Drawing.Size(110, 21);
+            this.cjZongjiaEdi.Size = new System.Drawing.Size(165, 21);
             this.cjZongjiaEdi.TabIndex = 10;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(291, 54);
+            this.label5.Location = new System.Drawing.Point(333, 54);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 12);
             this.label5.TabIndex = 9;
@@ -506,7 +508,7 @@
             // 
             this.roomNumberEdi.Location = new System.Drawing.Point(87, 45);
             this.roomNumberEdi.Name = "roomNumberEdi";
-            this.roomNumberEdi.Size = new System.Drawing.Size(110, 21);
+            this.roomNumberEdi.Size = new System.Drawing.Size(165, 21);
             this.roomNumberEdi.TabIndex = 7;
             // 
             // label4
@@ -520,15 +522,15 @@
             // 
             // projectNameEdi
             // 
-            this.projectNameEdi.Location = new System.Drawing.Point(356, 18);
+            this.projectNameEdi.Location = new System.Drawing.Point(398, 18);
             this.projectNameEdi.Name = "projectNameEdi";
-            this.projectNameEdi.Size = new System.Drawing.Size(110, 21);
+            this.projectNameEdi.Size = new System.Drawing.Size(165, 21);
             this.projectNameEdi.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(291, 27);
+            this.label2.Location = new System.Drawing.Point(333, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 12);
             this.label2.TabIndex = 2;
@@ -538,7 +540,7 @@
             // 
             this.kehuNameEdi.Location = new System.Drawing.Point(87, 18);
             this.kehuNameEdi.Name = "kehuNameEdi";
-            this.kehuNameEdi.Size = new System.Drawing.Size(110, 21);
+            this.kehuNameEdi.Size = new System.Drawing.Size(165, 21);
             this.kehuNameEdi.TabIndex = 1;
             // 
             // label1
@@ -554,7 +556,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(595, 490);
+            this.ClientSize = new System.Drawing.Size(698, 490);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.cancelShenheBtn);

@@ -34,14 +34,16 @@ namespace FXB.Dialog
             ProjectDataMgr.Instance().SetDataGridView(dataGridView1);
         }
 
-        private bool codeOrNameInquire(BasicDataInterface bd)
+        private bool codeOrNameOrAddressInquire(BasicDataInterface bd)
         {
             ProjectData data = bd as ProjectData;
             if (keyEdi.Text == "")
             {
                 return true;
             }
-            if (data.Code.IndexOf(keyEdi.Text) != -1 || data.Name.IndexOf(keyEdi.Text) != -1)
+            if (data.Code.IndexOf(keyEdi.Text) != -1 || 
+                data.Name.IndexOf(keyEdi.Text) != -1 ||
+                data.Address.IndexOf(keyEdi.Text) != -1)
             {
                 return true;
             }
@@ -50,7 +52,7 @@ namespace FXB.Dialog
         }
         private void inquireBtn_Click(object sender, EventArgs e)
         {
-            ProjectDataMgr.Instance().SetDataGridView(dataGridView1, codeOrNameInquire);
+            ProjectDataMgr.Instance().SetDataGridView(dataGridView1, codeOrNameOrAddressInquire);
         }
 
         private void setDataGridViewColumn()

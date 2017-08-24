@@ -481,7 +481,7 @@ namespace FXB.DataManager
         }
 
 
-        public void SetBasicDataGridView(DataGridView gridView)
+        public void SetDataGridView(DataGridView gridView)
         {
             gridView.Rows.Clear();
             foreach (var item in allEmployeeData)
@@ -495,11 +495,34 @@ namespace FXB.DataManager
                 gridView.Rows[lineIndex].Cells["departmentName"].Value = DepartmentUtil.GetDepartmentShowText(item.Value.DepartmentId);
                 gridView.Rows[lineIndex].Cells["isOwner"].Value = item.Value.IsOwner;
                 gridView.Rows[lineIndex].Cells["zhiji"].Value = item.Value.JobGradeName;
+                gridView.Rows[lineIndex].Cells["dianhua"].Value = item.Value.PhoneNumber;
+
                 gridView.Rows[lineIndex].Cells["jobState"].Value = item.Value.JobState;
+                gridView.Rows[lineIndex].Cells["ruzhiTime"].Value = TimeUtil.TimestampToDateTime(item.Value.EnteryTime).ToShortDateString();
+                if (!item.Value.JobState)
+                {
+                    gridView.Rows[lineIndex].Cells["lizhiTime"].Value = TimeUtil.TimestampToDateTime(item.Value.DimissionTime).ToShortDateString();
+                }
+
+
+
+
+                gridView.Rows[lineIndex].Cells["shenfenzheng"].Value = item.Value.IdCard;
+                gridView.Rows[lineIndex].Cells["shengriTime"].Value = TimeUtil.TimestampToDateTime(item.Value.Birthday).ToShortDateString();
+                gridView.Rows[lineIndex].Cells["xingbie"].Value = item.Value.Sex ? "男" : "女";
+                gridView.Rows[lineIndex].Cells["mingzujiguan"].Value = item.Value.EthnicAndOrigin;
+                gridView.Rows[lineIndex].Cells["juzhudizhi"].Value = item.Value.ResidentialAddress;
+                gridView.Rows[lineIndex].Cells["xueli"].Value = item.Value.Education;
+                gridView.Rows[lineIndex].Cells["biyexuexiao"].Value = item.Value.SchoolTag;
+                gridView.Rows[lineIndex].Cells["zhuanye"].Value = item.Value.Specialities;
+                gridView.Rows[lineIndex].Cells["jjLianxiren"].Value = item.Value.EmergencyContact;
+                gridView.Rows[lineIndex].Cells["jjLianxidianhua"].Value = item.Value.EmergencyTelephoneNumber;
+                gridView.Rows[lineIndex].Cells["jieshaoren"].Value = item.Value.Introducer;
+                gridView.Rows[lineIndex].Cells["beizhu"].Value = item.Value.Comment;
             }
         }
 
-        public void SetBasicDataGridView(DataGridView gridView, DataFilter filter)
+        public void SetDataGridView(DataGridView gridView, DataFilter filter)
         {
             gridView.Rows.Clear();
             foreach (var item in allEmployeeData)
@@ -515,7 +538,27 @@ namespace FXB.DataManager
                     gridView.Rows[lineIndex].Cells["departmentName"].Value = DepartmentUtil.GetDepartmentShowText(item.Value.DepartmentId);
                     gridView.Rows[lineIndex].Cells["isOwner"].Value = item.Value.IsOwner;
                     gridView.Rows[lineIndex].Cells["zhiji"].Value = item.Value.JobGradeName;
+
+                    gridView.Rows[lineIndex].Cells["dianhua"].Value = item.Value.PhoneNumber;
                     gridView.Rows[lineIndex].Cells["jobState"].Value = item.Value.JobState;
+                    gridView.Rows[lineIndex].Cells["ruzhiTime"].Value = TimeUtil.TimestampToDateTime(item.Value.EnteryTime).ToShortDateString();
+                    if (!item.Value.JobState)
+                    {
+                        gridView.Rows[lineIndex].Cells["lizhiTime"].Value = TimeUtil.TimestampToDateTime(item.Value.DimissionTime).ToShortDateString();
+                    }
+
+                    gridView.Rows[lineIndex].Cells["shenfenzheng"].Value = item.Value.IdCard;
+                    gridView.Rows[lineIndex].Cells["shengriTime"].Value = TimeUtil.TimestampToDateTime(item.Value.Birthday).ToShortDateString();
+                    gridView.Rows[lineIndex].Cells["xingbie"].Value = item.Value.Sex ? "男" : "女";
+                    gridView.Rows[lineIndex].Cells["mingzujiguan"].Value = item.Value.EthnicAndOrigin;
+                    gridView.Rows[lineIndex].Cells["juzhudizhi"].Value = item.Value.ResidentialAddress;
+                    gridView.Rows[lineIndex].Cells["xueli"].Value = item.Value.Education;
+                    gridView.Rows[lineIndex].Cells["biyexuexiao"].Value = item.Value.SchoolTag;
+                    gridView.Rows[lineIndex].Cells["zhuanye"].Value = item.Value.Specialities;
+                    gridView.Rows[lineIndex].Cells["jjLianxiren"].Value = item.Value.EmergencyContact;
+                    gridView.Rows[lineIndex].Cells["jjLianxidianhua"].Value = item.Value.EmergencyTelephoneNumber;
+                    gridView.Rows[lineIndex].Cells["jieshaoren"].Value = item.Value.Introducer;
+                    gridView.Rows[lineIndex].Cells["beizhu"].Value = item.Value.Comment;
                 }
 
             }

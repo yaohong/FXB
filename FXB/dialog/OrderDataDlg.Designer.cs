@@ -134,6 +134,7 @@
             this.salesmanSelectBtn.TabIndex = 8;
             this.salesmanSelectBtn.Text = "..";
             this.salesmanSelectBtn.UseVisualStyleBackColor = true;
+            this.salesmanSelectBtn.Click += new System.EventHandler(this.salesmanSelectBtn_Click);
             // 
             // salesmanEdi
             // 

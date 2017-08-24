@@ -188,5 +188,11 @@ namespace FXB.Dialog
             OrderOperDlg dlg = new OrderOperDlg();
             dlg.ShowDialog();
         }
+
+        private void salesmanSelectBtn_Click(object sender, EventArgs e)
+        {
+            EmployeeSelectDlg selectDlg = new EmployeeSelectDlg();
+            selectDlg.ShowDialog();
+        }
     }
 }
