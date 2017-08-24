@@ -110,6 +110,12 @@
     <Compile Include="Dialog\OrderDataDlg.Designer.cs">
       <DependentUpon>OrderDataDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\OrderOperDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\OrderOperDlg.Designer.cs">
+      <DependentUpon>OrderOperDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\PersonnelDataDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\OrderDataDlg.resx">
       <DependentUpon>OrderDataDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\OrderOperDlg.resx">
+      <DependentUpon>OrderOperDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\PersonnelDataDlg.resx">
       <DependentUpon>PersonnelDataDlg.cs</DependentUpon>

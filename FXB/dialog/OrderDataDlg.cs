@@ -185,7 +185,8 @@ namespace FXB.Dialog
 
         private void addOrderBtn_Click(object sender, EventArgs e)
         {
-
+            OrderOperDlg dlg = new OrderOperDlg();
+            dlg.ShowDialog();
         }
     }
 }

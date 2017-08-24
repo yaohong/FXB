@@ -9,12 +9,16 @@ namespace FXB.Data
     public class QtOrder
     {
         private Int64 orderId;                  //开单的ID
+
         private UInt32 generateTime;            //生成日期
+        private double commissionAmount;        //佣金总额
+
+
         private string customerName;            //客户名称
         private string projectName;             //所属的项目名称
         private string roomNumber;              //房号
         private double closingTheDealMoney;     //成交总价
-        private double commissionAmount;        //佣金总额
+        
 
 
 

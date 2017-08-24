@@ -21,5 +21,13 @@ namespace FXB.Dialog
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
+
+
+
+        private void RefreshCheckState(string checkState, string checkPersoName, string checkTime, string luruPersoName )
+        {
+            string str = string.Format("审核状态:{0}        审核人:{1}        审核日期:{2}         录入人:{3}", checkState, checkPersoName, checkPersoName, luruPersoName);
+            shenheInfo.Text = str;
+        }
     }
 }
