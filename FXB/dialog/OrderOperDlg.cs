@@ -75,6 +75,27 @@ namespace FXB.Dialog
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
+            if (mod == EditMode.EM_ADD)
+            {
+                AddSave();
+            }
+            else
+            {
+                EditSave();
+            }
+        }
+
+
+        private void AddSave()
+        {
+            //if (kehuNameEdi.Text == "")
+            //{
+            //    //客户不能为空
+            //}
+        }
+
+        private void EditSave()
+        {
 
         }
 
@@ -131,14 +152,14 @@ namespace FXB.Dialog
 
         private bool ZhuchangInquireFilterFunc(BasicDataInterface bd)
         {
-            //选择驻场的函数,必须在QT结构下
+            //选择驻场的函数,不是必须在QT任务里面
             EmployeeData data = bd as EmployeeData;
-            string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
-            QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
-            if (!qtTask.AllQtEmployee.ContainsKey(data.JobNumber))
-            {
-                return false;
-            }
+            //string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
+            //QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+            //if (!qtTask.AllQtEmployee.ContainsKey(data.JobNumber))
+            //{
+            //    return false;
+            //}
 
             if (data.QTLevel != QtLevel.ZhuchangZhuanyuan &&
                 data.QTLevel != QtLevel.ZhuchangZhuguan &&
@@ -312,8 +333,18 @@ namespace FXB.Dialog
                     }
                     else
                     {
-                        MessageBox.Show(string.Format("驻场1[{0}]不属于当前QT结构不能被选择", employee.Name));
-                        return;
+                        //不是当前QT结构下的人开单，只能是业务员,且部门必须是QT任务下的部门
+                        if (employee.QTLevel != QtLevel.ZhuchangZhuanyuan)
+                        {
+                            MessageBox.Show(string.Format("驻场1[{0}]不属于当前QT任务的结构，且QT级别不为驻场专员，不能被指定.", employee.Name));
+                            return;
+                        }
+
+                        if (!qtTask.AllQtDepartment.ContainsKey(employee.DepartmentId))
+                        {
+                            MessageBox.Show(string.Format("驻场1[{0}]不属于当前QT任务的结构，且所属的部门也不属于当前QT任务结构，不能被指定.", employee.Name));
+                            return;
+                        }
                     }
 
                     selectZhuchang1 = jobNumber;
@@ -361,8 +392,18 @@ namespace FXB.Dialog
                     }
                     else
                     {
-                        MessageBox.Show(string.Format("驻场2[{0}]不属于当前QT结构不能被选择", employee.Name));
-                        return;
+                        //不是当前QT结构下的人开单，只能是驻场专员,且部门必须是QT任务下的部门
+                        if (employee.QTLevel != QtLevel.ZhuchangZhuanyuan)
+                        {
+                            MessageBox.Show(string.Format("驻场2[{0}]不属于当前QT任务的结构，且QT级别不为驻场专员，不能被指定.", employee.Name));
+                            return;
+                        }
+
+                        if (!qtTask.AllQtDepartment.ContainsKey(employee.DepartmentId))
+                        {
+                            MessageBox.Show(string.Format("驻场2[{0}]不属于当前QT任务的结构，且所属的部门也不属于当前QT任务结构，不能被指定.", employee.Name));
+                            return;
+                        }
                     }
 
                     selectZhuchang2 = jobNumber;

@@ -24,16 +24,16 @@ namespace FXB.Data
 
         private string yxConsultantJobNumber;        //营销顾问
         private Int64 yxQtDepartmentId;             //营销顾问所属的QT部门
-        private double yxAchievements;              //本单业绩
+        //private double yxAchievements;              //本单业绩
 
         private string kyfConsultanJobNumbert;       //客源方顾问
         //private Int64 kyfQtDepartmentId;            //客源方所属的QT部门
-        private double kyfAchievements;             //客源方的业绩
+        //private double kyfAchievements;             //客源方的业绩
 
         private string zhuchang1JobNumber;          //驻场1
-        //private Int64 zc1QtDepartmentId;            //驻场1的QT部门ID
+        private Int64 zc1QtDepartmentId;            //驻场1的QT部门ID
         private string zhuchang2JobNumber;          //驻场2
-        //private Int64 zc2QtDepartmentId;            //驻场2的QT部门ID
+        private Int64 zc2QtDepartmentId;            //驻场2的QT部门ID
 
         
 
