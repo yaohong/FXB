@@ -106,6 +106,7 @@
             this.orderGenerateTime.Name = "orderGenerateTime";
             this.orderGenerateTime.Size = new System.Drawing.Size(165, 21);
             this.orderGenerateTime.TabIndex = 5;
+            this.orderGenerateTime.ValueChanged += new System.EventHandler(this.orderGenerateTime_ValueChanged);
             // 
             // label3
             // 
@@ -219,6 +220,7 @@
             this.keyuanSelectBtn.TabIndex = 18;
             this.keyuanSelectBtn.Text = "..";
             this.keyuanSelectBtn.UseVisualStyleBackColor = true;
+            this.keyuanSelectBtn.Click += new System.EventHandler(this.keyuanSelectBtn_Click);
             // 
             // keyuanEdi
             // 

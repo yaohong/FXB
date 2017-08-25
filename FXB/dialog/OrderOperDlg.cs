@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using FXB.Data;
 using FXB.DataManager;
+using FXB.Common;
 namespace FXB.Dialog
 {
     public partial class OrderOperDlg : Form
@@ -40,6 +41,10 @@ namespace FXB.Dialog
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
             projectNameEdi.Enabled = false;
+            guwenEdi.Enabled = false;
+            keyuanEdi.Enabled = false;
+            zhuchang1Edi.Enabled = false;
+            zhuchang2Edi.Enabled = false;
             if (mod == EditMode.EM_ADD)
             {
                 AddInit();
@@ -87,10 +92,159 @@ namespace FXB.Dialog
             }
         }
 
+        private bool GuwenInquireFilterFunc(BasicDataInterface bd)
+        {
+            //选择顾问的过滤函数
+            EmployeeData data = bd as EmployeeData;
+            if (data.QTLevel != QtLevel.Salesman &&
+                data.QTLevel != QtLevel.SmallCharge &&
+                data.QTLevel != QtLevel.LargeCharge &&
+                data.QTLevel != QtLevel.Majordomo)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool KeyuanfangInquireFilterFunc(BasicDataInterface bd)
+        {
+            //选择客源方的函数,必须在QT结构下
+            EmployeeData data = bd as EmployeeData;
+            string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
+            QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+            if (!qtTask.AllQtEmployee.ContainsKey(data.JobNumber))
+            {
+                return false;
+            }
+
+            if (data.QTLevel != QtLevel.Salesman &&
+                data.QTLevel != QtLevel.SmallCharge &&
+                data.QTLevel != QtLevel.LargeCharge &&
+                data.QTLevel != QtLevel.Majordomo)
+            {
+                return false;
+            }
+
+            return true;
+        }
         private void guwenSelectBtn_Click(object sender, EventArgs e)
         {
-            EmployeeSelectDlg selectDlg = new EmployeeSelectDlg(null);
-            selectDlg.ShowDialog();
+            EmployeeSelectDlg selectDlg = new EmployeeSelectDlg(GuwenInquireFilterFunc);
+            if (DialogResult.OK == selectDlg.ShowDialog())
+            {
+                string jobNumber = selectDlg.SelectEmployeeJobNumber;
+                //顾问可以是非当前QT结构下的人
+                if (jobNumber != "")
+                {
+                    string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
+                    if (!QtMgr.Instance().AllQtTask.ContainsKey(qtKey))
+                    {
+                        MessageBox.Show(string.Format("QT任务:{0}不存在", qtKey));
+                        return;
+                    }
+
+                    QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+                    if (qtTask.Closing)
+                    {
+                        MessageBox.Show(string.Format("QT任务:{0} 已经结算", qtKey));
+                        return;
+                    }
+
+                    EmployeeData employee = EmployeeDataMgr.Instance().AllEmployeeData[jobNumber];
+                    if (qtTask.AllQtEmployee.ContainsKey(jobNumber))
+                    {
+                        //是QT关系下的人
+                        //检测部门是否发生变更
+                        QtEmployee qtEmployee = qtTask.AllQtEmployee[jobNumber];
+                        if (qtEmployee.DepartmentId != employee.DepartmentId)
+                        {
+                            MessageBox.Show(string.Format("顾问[{0}]的部门在QT任务生成后发生更改不能开单."));
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        //不是当前QT结构下的人开单，只能是业务员,且部门必须是QT任务下的部门
+                        if (employee.QTLevel != QtLevel.Salesman)
+                        {
+                            MessageBox.Show(string.Format("顾问[{0}]不属于当前QT任务的结构，且QT级别不为业务员，不能开单."));
+                            return;
+                        }
+
+                        if (!qtTask.AllQtDepartment.ContainsKey(employee.DepartmentId))
+                        {
+                            MessageBox.Show(string.Format("顾问[{0}]不属于当前QT任务的结构，且所属的部门也不属于当前QT任务结构，不能开单."));
+                            return;
+                        }
+                    }
+
+                    selectGuwen = jobNumber;
+                    guwenEdi.Text = employee.Name;
+                    
+                }
+                
+            }
+        }
+
+        private void orderGenerateTime_ValueChanged(object sender, EventArgs e)
+        {
+            //选择的QT任务发生变化
+            selectGuwen = "";
+            guwenEdi.Text = "";
+
+            //客源方清空
+            selectKeyuanfang = "";
+            keyuanEdi.Text = "";
+        }
+
+        private void keyuanSelectBtn_Click(object sender, EventArgs e)
+        {
+            EmployeeSelectDlg selectDlg = new EmployeeSelectDlg(KeyuanfangInquireFilterFunc);
+            if (DialogResult.OK == selectDlg.ShowDialog())
+            {
+                string jobNumber = selectDlg.SelectEmployeeJobNumber;
+                //顾问可以是非当前QT结构下的人
+                if (jobNumber != "")
+                {
+                    string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
+                    if (!QtMgr.Instance().AllQtTask.ContainsKey(qtKey))
+                    {
+                        MessageBox.Show(string.Format("QT任务:{0}不存在", qtKey));
+                        return;
+                    }
+
+                    QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+                    if (qtTask.Closing)
+                    {
+                        MessageBox.Show(string.Format("QT任务:{0} 已经结算", qtKey));
+                        return;
+                    }
+
+                    EmployeeData employee = EmployeeDataMgr.Instance().AllEmployeeData[jobNumber];
+                    if (qtTask.AllQtEmployee.ContainsKey(jobNumber))
+                    {
+                        //是QT关系下的人
+                        //检测部门是否发生变更
+                        QtEmployee qtEmployee = qtTask.AllQtEmployee[jobNumber];
+                        if (qtEmployee.DepartmentId != employee.DepartmentId)
+                        {
+                            MessageBox.Show(string.Format("客源方[{0}]的部门在QT任务生成后发生更改不能被选择."));
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(string.Format("客源方{0}不属于当前QT结构，不能被选择", employee.Name));
+                        return;
+                    }
+
+                    selectKeyuanfang = jobNumber;
+                    keyuanEdi.Text = employee.Name;
+
+                }
+
+            }
         }
     }
 }

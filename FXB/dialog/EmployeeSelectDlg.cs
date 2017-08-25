@@ -16,6 +16,11 @@ namespace FXB.Dialog
     {
         private DataFilter filterFunc = null;
         private string selectEmployeeJobNumber = "";
+
+        public string SelectEmployeeJobNumber
+        {
+            get { return selectEmployeeJobNumber; }
+        }
         public EmployeeSelectDlg(DataFilter tmpFilterFunc)
         {
             InitializeComponent();
@@ -41,16 +46,16 @@ namespace FXB.Dialog
                     return false;
                 }
             }
-            //if (paramEdi.Text == "")
-            //{
-            //    return true;
-            //}
-            //if (data.Code.IndexOf(paramEdi.Text) != -1 ||
-            //    data.Name.IndexOf(paramEdi.Text) != -1 ||
-            //    data.Address.IndexOf(paramEdi.Text) != -1)
-            //{
-            //    return true;
-            //}
+            if (paramEdi.Text != "")
+            {
+                if (data.JobNumber.IndexOf(paramEdi.Text) == -1 &&
+                    data.Name.IndexOf(paramEdi.Text) == -1 &&
+                    data.JobGradeName.IndexOf(paramEdi.Text) == -1)
+                {
+                    return false;
+                }
+            }
+
             TreeNode selectNode = myTreeView1.SelectedNode;
             if (selectNode != null)
             {
@@ -130,6 +135,25 @@ namespace FXB.Dialog
             {
                 myTreeView1.SelectedNode = myTreeView1.GetNodeAt(e.X, e.Y);
             } 
+        }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            //只能选择一行
+            DataGridViewTextBoxCell selectCell = (DataGridViewTextBoxCell)dataGridView1.SelectedRows[0].Cells["gonghao"];
+            selectEmployeeJobNumber = (string)selectCell.Value;
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void exitBtn_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

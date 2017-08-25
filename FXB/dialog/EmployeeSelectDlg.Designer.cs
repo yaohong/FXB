@@ -61,6 +61,7 @@
             this.exitBtn.TabIndex = 3;
             this.exitBtn.Text = "退出";
             this.exitBtn.UseVisualStyleBackColor = true;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
             // inquireBtn
             // 
@@ -116,6 +117,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(736, 502);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             // 
             // EmployeeSelectDlg
             // 
