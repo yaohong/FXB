@@ -180,7 +180,7 @@ namespace FXB.Dialog
                         QtEmployee qtEmployee = qtTask.AllQtEmployee[jobNumber];
                         if (qtEmployee.DepartmentId != employee.DepartmentId)
                         {
-                            MessageBox.Show(string.Format("顾问[{0}]的部门在QT任务生成后发生更改不能开单."));
+                            MessageBox.Show(string.Format("顾问[{0}]的部门在QT任务生成后发生更改不能开单.", employee.Name));
                             return;
                         }
                     }
@@ -189,13 +189,13 @@ namespace FXB.Dialog
                         //不是当前QT结构下的人开单，只能是业务员,且部门必须是QT任务下的部门
                         if (employee.QTLevel != QtLevel.Salesman)
                         {
-                            MessageBox.Show(string.Format("顾问[{0}]不属于当前QT任务的结构，且QT级别不为业务员，不能开单."));
+                            MessageBox.Show(string.Format("顾问[{0}]不属于当前QT任务的结构，且QT级别不为业务员，不能开单.", employee.Name));
                             return;
                         }
 
                         if (!qtTask.AllQtDepartment.ContainsKey(employee.DepartmentId))
                         {
-                            MessageBox.Show(string.Format("顾问[{0}]不属于当前QT任务的结构，且所属的部门也不属于当前QT任务结构，不能开单."));
+                            MessageBox.Show(string.Format("顾问[{0}]不属于当前QT任务的结构，且所属的部门也不属于当前QT任务结构，不能开单.", employee.Name));
                             return;
                         }
                     }
@@ -220,6 +220,8 @@ namespace FXB.Dialog
 
             selectZhuchang1 = "";
             zhuchang1Edi.Text = "";
+
+            selectZhuchang2 = "";
             zhuchang2Edi.Text = "";
         }
 
@@ -229,7 +231,7 @@ namespace FXB.Dialog
             if (DialogResult.OK == selectDlg.ShowDialog())
             {
                 string jobNumber = selectDlg.SelectEmployeeJobNumber;
-                //顾问可以是非当前QT结构下的人
+                
                 if (jobNumber != "")
                 {
                     string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
@@ -246,6 +248,7 @@ namespace FXB.Dialog
                         return;
                     }
 
+                    //客源方必须是当前QT结构下的人
                     EmployeeData employee = EmployeeDataMgr.Instance().AllEmployeeData[jobNumber];
                     if (qtTask.AllQtEmployee.ContainsKey(jobNumber))
                     {
