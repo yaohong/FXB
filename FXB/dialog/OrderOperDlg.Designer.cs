@@ -170,6 +170,7 @@
             this.zhuchang2SelectBtn.TabIndex = 24;
             this.zhuchang2SelectBtn.Text = "..";
             this.zhuchang2SelectBtn.UseVisualStyleBackColor = true;
+            this.zhuchang2SelectBtn.Click += new System.EventHandler(this.zhuchang2SelectBtn_Click);
             // 
             // zhuchang2Edi
             // 
@@ -195,6 +196,7 @@
             this.zhuchang1SelectBtn.TabIndex = 21;
             this.zhuchang1SelectBtn.Text = "..";
             this.zhuchang1SelectBtn.UseVisualStyleBackColor = true;
+            this.zhuchang1SelectBtn.Click += new System.EventHandler(this.zhuchang1SelectBtn_Click);
             // 
             // zhuchang1Edi
             // 
