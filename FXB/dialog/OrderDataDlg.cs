@@ -191,7 +191,7 @@ namespace FXB.Dialog
 
         private void salesmanSelectBtn_Click(object sender, EventArgs e)
         {
-            EmployeeSelectDlg selectDlg = new EmployeeSelectDlg();
+            EmployeeSelectDlg selectDlg = new EmployeeSelectDlg(null);
             selectDlg.ShowDialog();
         }
     }

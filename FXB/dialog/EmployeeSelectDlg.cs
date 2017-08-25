@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FXB.DataManager;
+using FXB.Data;
+using FXB.Common;
 namespace FXB.Dialog
 {
     public partial class EmployeeSelectDlg : Form
     {
-        public EmployeeSelectDlg()
+        private DataFilter filterFunc = null;
+        private string selectEmployeeJobNumber = "";
+        public EmployeeSelectDlg(DataFilter tmpFilterFunc)
         {
             InitializeComponent();
+            filterFunc = tmpFilterFunc;
         }
 
         private void EmployeeSelectDlg_Load(object sender, EventArgs e)
@@ -25,9 +30,45 @@ namespace FXB.Dialog
             SetDataGridViewColumn();
         }
 
+        private bool InquireFilterFunc(BasicDataInterface bd)
+        {
+
+            EmployeeData data = bd as EmployeeData;
+            if (filterFunc != null)
+            {
+                if (!filterFunc(data))
+                {
+                    return false;
+                }
+            }
+            //if (paramEdi.Text == "")
+            //{
+            //    return true;
+            //}
+            //if (data.Code.IndexOf(paramEdi.Text) != -1 ||
+            //    data.Name.IndexOf(paramEdi.Text) != -1 ||
+            //    data.Address.IndexOf(paramEdi.Text) != -1)
+            //{
+            //    return true;
+            //}
+            TreeNode selectNode = myTreeView1.SelectedNode;
+            if (selectNode != null)
+            {
+                Console.WriteLine("selectNodeText:{0}", selectNode.Text);
+                Int64 departmentId = Convert.ToInt64(selectNode.Name);
+                if (!DepartmentUtil.FindEmployeeByDepartment(departmentId, data.JobNumber))
+                {
+                    return false;
+                }
+
+            }
+
+            return true;
+        }
+
         private void inquireBtn_Click(object sender, EventArgs e)
         {
-            EmployeeDataMgr.Instance().SetBasicDataGridView(dataGridView1);
+            EmployeeDataMgr.Instance().SetBasicDataGridView(dataGridView1, InquireFilterFunc);
         }
 
         private void SetDataGridViewColumn()
@@ -76,6 +117,19 @@ namespace FXB.Dialog
             jobState.Width = 60;
             dataGridView1.Columns.Add(jobState);
 
+        }
+
+        private void myTreeView1_Click(object sender, EventArgs e)
+        {
+            EmployeeDataMgr.Instance().SetBasicDataGridView(dataGridView1, InquireFilterFunc);
+        }
+
+        private void myTreeView1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if ((sender as TreeView) != null)
+            {
+                myTreeView1.SelectedNode = myTreeView1.GetNodeAt(e.X, e.Y);
+            } 
         }
     }
 }

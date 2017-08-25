@@ -12,7 +12,7 @@ namespace FXB.Common
     }
 
 
-    interface BasicDataInterface
+    public interface BasicDataInterface
     {
         
     }

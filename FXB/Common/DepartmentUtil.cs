@@ -221,5 +221,33 @@ namespace FXB.Common
                 return true;
             }
         }
+
+        public static bool FindEmployeeByDepartment(Int64 departmentId, string gonghao)
+        {
+            DepartmentData data = DepartmentDataMgr.Instance().AllDepartmentData[departmentId];
+            if (data.EmployeeSet.Contains(gonghao))
+            {
+                return true;
+            }
+
+            if (data.OwnerJobNumber == gonghao)
+            {
+                return true;
+            }
+
+            //查看子节点
+            foreach (var item in data.ChildSet)
+            {
+                if (FindEmployeeByDepartment(item, gonghao))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
+
+
+
 }

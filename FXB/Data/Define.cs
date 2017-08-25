@@ -55,5 +55,5 @@ namespace FXB.Data
     }
 
     //职级过滤的函数
-    delegate bool DataFilter(BasicDataInterface data);
+    public delegate bool DataFilter(BasicDataInterface data);
 }
