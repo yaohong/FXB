@@ -117,58 +117,102 @@ namespace FXB.Dialog
         {
             //选择顾问的过滤函数
             EmployeeData data = bd as EmployeeData;
-            if (data.QTLevel != QtLevel.Salesman &&
-                data.QTLevel != QtLevel.SmallCharge &&
-                data.QTLevel != QtLevel.LargeCharge &&
-                data.QTLevel != QtLevel.Majordomo)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        private bool KeyuanfangInquireFilterFunc(BasicDataInterface bd)
-        {
-            //选择客源方的函数,必须在QT结构下
-            EmployeeData data = bd as EmployeeData;
             string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
             QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
             if (!qtTask.AllQtEmployee.ContainsKey(data.JobNumber))
             {
-                return false;
+                //不属于QT任务里的只能是业务员
+                if (data.QTLevel == QtLevel.Salesman)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-
-            if (data.QTLevel != QtLevel.Salesman &&
-                data.QTLevel != QtLevel.SmallCharge &&
-                data.QTLevel != QtLevel.LargeCharge &&
-                data.QTLevel != QtLevel.Majordomo)
+            else
             {
-                return false;
+                if (data.QTLevel != QtLevel.Salesman &&
+                    data.QTLevel != QtLevel.SmallCharge &&
+                    data.QTLevel != QtLevel.LargeCharge &&
+                    data.QTLevel != QtLevel.Majordomo)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
-
-            return true;
         }
+
+        //private bool KeyuanfangInquireFilterFunc(BasicDataInterface bd)
+        //{
+        //    //选择客源方的函数,必须在QT结构下
+        //    EmployeeData data = bd as EmployeeData;
+        //    string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
+        //    QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+        //    if (!qtTask.AllQtEmployee.ContainsKey(data.JobNumber))
+        //    {
+        //        //不属于QT任务里的只能是业务员
+        //        if (data.QTLevel == QtLevel.Salesman)
+        //        {
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            return false;
+        //        }
+        //    } 
+        //    else
+        //    {
+        //        if (data.QTLevel != QtLevel.Salesman &&
+        //            data.QTLevel != QtLevel.SmallCharge &&
+        //            data.QTLevel != QtLevel.LargeCharge &&
+        //            data.QTLevel != QtLevel.Majordomo)
+        //        {
+        //            return false;
+        //        } 
+        //        else
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //}
 
         private bool ZhuchangInquireFilterFunc(BasicDataInterface bd)
         {
             //选择驻场的函数,不是必须在QT任务里面
             EmployeeData data = bd as EmployeeData;
-            //string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
-            //QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
-            //if (!qtTask.AllQtEmployee.ContainsKey(data.JobNumber))
-            //{
-            //    return false;
-            //}
-
-            if (data.QTLevel != QtLevel.ZhuchangZhuanyuan &&
-                data.QTLevel != QtLevel.ZhuchangZhuguan &&
-                data.QTLevel != QtLevel.ZhuchangZongjian)
+            string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
+            QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+            if (!qtTask.AllQtEmployee.ContainsKey(data.JobNumber))
             {
-                return false;
+                if (data.QTLevel == QtLevel.ZhuchangZhuanyuan)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (data.QTLevel != QtLevel.ZhuchangZhuanyuan &&
+                    data.QTLevel != QtLevel.ZhuchangZhuguan &&
+                    data.QTLevel != QtLevel.ZhuchangZongjian)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
 
-            return true;
+
         }
         private void guwenSelectBtn_Click(object sender, EventArgs e)
         {
@@ -248,7 +292,7 @@ namespace FXB.Dialog
 
         private void keyuanSelectBtn_Click(object sender, EventArgs e)
         {
-            EmployeeSelectDlg selectDlg = new EmployeeSelectDlg(KeyuanfangInquireFilterFunc);
+            EmployeeSelectDlg selectDlg = new EmployeeSelectDlg(GuwenInquireFilterFunc);
             if (DialogResult.OK == selectDlg.ShowDialog())
             {
                 string jobNumber = selectDlg.SelectEmployeeJobNumber;
@@ -284,8 +328,17 @@ namespace FXB.Dialog
                     }
                     else
                     {
-                        MessageBox.Show(string.Format("客源方[{0}]不属于当前QT结构，不能被选择", employee.Name));
-                        return;
+                        if (employee.QTLevel != QtLevel.Salesman)
+                        {
+                            MessageBox.Show(string.Format("客源方[{0}]不属于当前QT任务的结构，且QT级别不为业务员，不能被指定.", employee.Name));
+                            return;
+                        }
+
+                        if (!qtTask.AllQtDepartment.ContainsKey(employee.DepartmentId))
+                        {
+                            MessageBox.Show(string.Format("客源方[{0}]不属于当前QT任务的结构，且所属的部门也不属于当前QT任务结构，不能被指定.", employee.Name));
+                            return;
+                        }
                     }
 
                     selectKeyuanfang = jobNumber;

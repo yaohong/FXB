@@ -445,83 +445,140 @@ namespace FXB.DataManager
         }
 
 
-        public QtTask AddNewQtOrder(string qtKey)
+        public QtOrder AddNewQtOrder(
+            UInt32 generateTime,            //订单生成时间
+            double commissionAmount,        //佣金总额
+            string customerName,            //客户名称
+            string projectName,             //项目名称
+            string roomNumber,              //房间编号
+            double closingTheDealMoney,     //成交总价
+            string yxConsultantJobNumber,   //营销顾问
+            Int64 yxQtDepartmentId,         //营销顾问所属的部门ID
+            string kyfConsultanJobNumbert,  //客源方顾问
+            Int64 kyfQtDepartmentId,        //客源方的部门ID
+            string zc1JobNumber,            //驻场1
+            Int64 zc1QtDepartmentId,        //驻场1的部门ID
+            string zc2JobNumber,            //驻场2
+            Int64 zc2QtDepartmentId,        //驻场2的部门ID
+
+            bool checkState,                //审核状态
+            string checkPersonJobNumber,    //审核人
+            UInt32 checkTime,               //审核时间
+
+            string entryPersonJobNumber,    //录入人
+
+            string comment,                 //备注
+
+            UInt32 buyTime,                 //购买时间
+            string customerPhone,           //客户电话
+            string customerIdCard,          //客户身份证
+            string receipt,                 //收据
+            double roomArea,                //面积
+            string contractState,           //合同状态
+            string paymentMethod,           //付款方式
+            double loansMoney,              //贷款金额
+
+            string qtKey                    //所属的QT任务
+            )
         {
-            //添加新的QT任务
-            //如果QT任务存在,并且任务下有开单了。则禁止重新生成
-            if (allQtTask.ContainsKey(qtKey))
+            if (!allQtTask.ContainsKey(qtKey))
             {
-                throw new ConditionCheckException("QT任务已经存在");
+                throw new ConditionCheckException("QT任务不存在");
             }
 
-            QtTask newQtTask = new QtTask(qtKey);
-            //数据序列化到DB
-            SqlTransaction sqlTran = null;
-            try
-            {
-                sqlTran = SqlMgr.Instance().SqlConnect.BeginTransaction();
+            QtTask qtTask = allQtTask[qtKey];
+            SqlCommand command = new SqlCommand();
+            command.Connection = SqlMgr.Instance().SqlConnect;
+            command.CommandType = CommandType.Text;
+            command.CommandText = @"INSERT INTO qttaskorder(
+                                        generatetime,
+                                        commissionamount,
+                                        customername,
+                                        projectname,
+                                        roomnumber,
+                                        closingthedealnoney,
+                                        yxconsultantjobnumber,
+                                        yxqtdepartmentid,
+                                        kyfconsultanjobnumber,
+                                        kyfqtdepartmentid,
+                                        zc1jobnumber,
+                                        zc1qtdepartmentid,
+                                        zc2jobnumber,
+                                        zc2qtdepartmentid
+                                        checkstate,
+                                        checkpersonjobnumber,
+                                        checktime,
+                                        entrypersonjobnumber,
+                                        comment,
+                                        buytime,    
+                                        customerphone,
+                                        customeridcard,
+                                        receipt,
+                                        roomarea,
+                                        contractstate,
+                                        paymentmethod,
+                                        loansmoney,
+                                        qtkey) output inserted.Id VALUES(
+                                        @generatetime,
+                                        @commissionamount,
+                                        @customername,
+                                        @projectname,
+                                        @roomnumber,
+                                        @closingthedealnoney,
+                                        @yxconsultantjobnumber,
+                                        @yxqtdepartmentid,
+                                        @kyfconsultanjobnumber,
+                                        @kyfqtdepartmentid,
+                                        @zc1jobnumber,
+                                        @zc1qtdepartmentid,
+                                        @zc2jobnumber,
+                                        @zc2qtdepartmentid
+                                        @checkstate,
+                                        @checkpersonjobnumber,
+                                        @checktime,
+                                        @entrypersonjobnumber,
+                                        @comment,
+                                        @buytime,    
+                                        @customerphone,
+                                        @customeridcard,
+                                        @receipt,
+                                        @roomarea,
+                                        @contractstate,
+                                        @paymentmethod,
+                                        @loansmoney,
+                                        @qtkey);select @@identity";
+            command.Parameters.AddWithValue("@generatetime", generateTime);
+            command.Parameters.AddWithValue("@commissionamount", commissionAmount);
+            command.Parameters.AddWithValue("@customername", customerName);
+            command.Parameters.AddWithValue("@projectname", projectName);
+            command.Parameters.AddWithValue("@roomnumber", roomNumber);
+            command.Parameters.AddWithValue("@closingthedealnoney", closingTheDealMoney);
+            command.Parameters.AddWithValue("@yxconsultantjobnumber", yxConsultantJobNumber);
+            command.Parameters.AddWithValue("@yxqtdepartmentid", yxQtDepartmentId);
+            command.Parameters.AddWithValue("@kyfconsultanjobnumber", kyfConsultanJobNumbert);
+            command.Parameters.AddWithValue("@kyfqtdepartmentid", kyfQtDepartmentId);
+            command.Parameters.AddWithValue("@zc1jobnumber", zc1JobNumber);
+            command.Parameters.AddWithValue("@zc1qtdepartmentid", zc1QtDepartmentId);
+            command.Parameters.AddWithValue("@zc2jobnumber", zc2JobNumber);
+            command.Parameters.AddWithValue("@zc2qtdepartmentid", zc2QtDepartmentId);
+            command.Parameters.AddWithValue("@checkstate", checkState);
+            command.Parameters.AddWithValue("@checkpersonjobnumber", checkPersonJobNumber);
+            command.Parameters.AddWithValue("@checktime", checkTime);
+            command.Parameters.AddWithValue("@entrypersonjobnumber", entryPersonJobNumber);
+            command.Parameters.AddWithValue("@comment", comment);
+            command.Parameters.AddWithValue("@customerphone", customerName);
+            command.Parameters.AddWithValue("@customeridcard", customerIdCard);
+            command.Parameters.AddWithValue("@receipt", receipt);
+            command.Parameters.AddWithValue("@roomarea", roomArea);
+            command.Parameters.AddWithValue("@contractstate", contractState);
+            command.Parameters.AddWithValue("@paymentmethod", paymentMethod);
+            command.Parameters.AddWithValue("@loansmoney", loansMoney);
+            command.Parameters.AddWithValue("@qtkey", qtKey);
+            Int64 orderId = (Int64)command.ExecuteScalar();
 
-                SqlCommand command = new SqlCommand();
-                command.Connection = SqlMgr.Instance().SqlConnect;
-                command.Transaction = sqlTran;
+            QtOrder newQtOrder = new QtOrder();
 
-                command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO qttaskindex(qtkey,closing,rootqtdepartmentid) VALUES(@qtkey, @closing, @rootqtdepartmentid)";
-                command.Parameters.AddWithValue("@qtkey", newQtTask.QtKey);
-                command.Parameters.AddWithValue("@closing", newQtTask.Closing);
-                command.Parameters.AddWithValue("@rootqtdepartmentid", newQtTask.RootQtDepartment.Id);
-                command.ExecuteNonQuery();
-                Console.WriteLine("insert qtindex success");
-
-                command.Parameters.Clear();
-                foreach (var item in newQtTask.AllQtDepartment)
-                {
-                    QtDepartment qtDepartment = item.Value;
-                    command.CommandType = CommandType.Text;
-                    command.CommandText = @"INSERT INTO qttaskdepartment(qtdepartmentid,qtlevel,ownerjobnumber,qtdepartmentname,parentdepartmentid,needcompletetaskamount,qtkey) 
-                                            VALUES(@qtdepartmentid, @qtlevel, @ownerjobnumber, @qtdepartmentname, @parentdepartmentid, @needcompletetaskamount, @qtkey)";
-                    command.Parameters.AddWithValue("@qtdepartmentid", qtDepartment.Id);
-                    command.Parameters.AddWithValue("@qtlevel", (Int32)qtDepartment.QtLevel);
-                    command.Parameters.AddWithValue("@ownerjobnumber", qtDepartment.OwnerJobNumber);
-                    command.Parameters.AddWithValue("@qtdepartmentname", qtDepartment.DepartmentName);
-                    command.Parameters.AddWithValue("@parentdepartmentid", qtDepartment.ParentDepartmentId);
-                    command.Parameters.AddWithValue("@needcompletetaskamount", qtDepartment.NeedCompleteTaskAmount);
-                    command.Parameters.AddWithValue("@qtkey", newQtTask.QtKey);
-                    command.ExecuteNonQuery();
-                    command.Parameters.Clear();
-                }
-                Console.WriteLine("insert qtdepartment success");
-
-                command.Parameters.Clear();
-                foreach (var item in newQtTask.AllQtEmployee)
-                {
-                    QtEmployee qtEmployee = item.Value;
-                    command.CommandType = CommandType.Text;
-                    command.CommandText = @"INSERT INTO qttaskemployee(jobnumber,jobgradename,departmentid,qtlevel,isowner,qtkey) 
-                                            VALUES(@jobnumber,@jobgradename, @departmentid, @qtlevel, @isowner, @qtkey)";
-                    command.Parameters.AddWithValue("@jobnumber", qtEmployee.JobNumber);
-                    command.Parameters.AddWithValue("@jobgradename", qtEmployee.JobGradeName);
-                    command.Parameters.AddWithValue("@departmentid", qtEmployee.DepartmentId);
-                    command.Parameters.AddWithValue("@qtlevel", (Int32)qtEmployee.QtLevel);
-                    command.Parameters.AddWithValue("@isowner", qtEmployee.IsOwner);
-                    command.Parameters.AddWithValue("@qtkey", newQtTask.QtKey);
-                    command.ExecuteNonQuery();
-                    command.Parameters.Clear();
-                }
-
-                sqlTran.Commit();
-                allQtTask[newQtTask.QtKey] = newQtTask;
-            }
-            catch (Exception ex)
-            {
-                if (sqlTran != null)
-                {
-                    sqlTran.Rollback();
-                }
-                throw new CrashException(ex.Message);
-            }
-
-            return newQtTask;
+            return newQtOrder;
         }
 
         public SortedDictionary<string, QtTask> AllQtTask
