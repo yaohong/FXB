@@ -465,6 +465,10 @@ namespace FXB.DataManager
             string checkPersonJobNumber,    //审核人
             UInt32 checkTime,               //审核时间
 
+            bool ifchargeback,                   //是否退单
+            string cbJobNumber,                  //退单人
+            UInt32 cbTime,                       //退单时间
+
             string entryPersonJobNumber,    //录入人
 
             string comment,                 //备注
@@ -509,6 +513,9 @@ namespace FXB.DataManager
                                         checkstate,
                                         checkpersonjobnumber,
                                         checktime,
+                                        ifchargeback,
+                                        cbjobnumber,
+                                        cbtime,
                                         entrypersonjobnumber,
                                         comment,
                                         buytime,    
@@ -538,6 +545,9 @@ namespace FXB.DataManager
                                         @checkstate,
                                         @checkpersonjobnumber,
                                         @checktime,
+                                        @ifchargeback,
+                                        @cbjobnumber,
+                                        @cbtime,
                                         @entrypersonjobnumber,
                                         @comment,
                                         @buytime,    
@@ -567,6 +577,11 @@ namespace FXB.DataManager
             command.Parameters.AddWithValue("@checkstate", checkState);
             command.Parameters.AddWithValue("@checkpersonjobnumber", checkPersonJobNumber);
             command.Parameters.AddWithValue("@checktime", (Int32)checkTime);
+
+            command.Parameters.AddWithValue("@ifchargeback", ifchargeback);
+            command.Parameters.AddWithValue("@cbjobnumber", cbJobNumber);
+            command.Parameters.AddWithValue("@cbtime", (Int32)cbTime);
+
             command.Parameters.AddWithValue("@entrypersonjobnumber", entryPersonJobNumber);
             command.Parameters.AddWithValue("@comment", comment);
             command.Parameters.AddWithValue("@buytime", (Int32)buyTime);

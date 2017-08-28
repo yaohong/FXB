@@ -114,7 +114,7 @@ namespace FXB.Dialog
                 {
                     Convert.ToDouble(cjZongjiaEdi.Text);
                 } 
-                catch (Exception e1)
+                catch (Exception )
                 {
                     MessageBox.Show("成交总价格式错误");
                     return;
@@ -145,7 +145,7 @@ namespace FXB.Dialog
                 {
                     Convert.ToDouble(yongjinzongeEdi.Text);
                 }
-                catch (Exception e2)
+                catch (Exception)
                 {
                     MessageBox.Show("佣金总额格式错误");
                     return;
@@ -157,7 +157,7 @@ namespace FXB.Dialog
                 {
                     Convert.ToDouble(mianjiEdi.Text);
                 }
-                catch (Exception e3)
+                catch (Exception)
                 {
                     MessageBox.Show("面积格式错误");
                     return;
@@ -175,7 +175,7 @@ namespace FXB.Dialog
                 {
                     Convert.ToDouble(daikuanjineEdi.Text);
                 }
-                catch (Exception e3)
+                catch (Exception)
                 {
                     MessageBox.Show("贷款金额格式错误");
                     return;
@@ -243,6 +243,9 @@ namespace FXB.Dialog
                     false,
                     "",
                     0,
+                    false,
+                    "",
+                    0,
                     "owner",        //暂时填owner，真实情况应该为登陆用户
                     beizhuEdi.Text,
                     TimeUtil.DateTimeToTimestamp(buyTime.Value),
@@ -267,7 +270,7 @@ namespace FXB.Dialog
             catch (Exception e2)
             {
                 MessageBox.Show(e2.Message);
-                Application.Exit();
+//                Application.Exit();
             }
         }
 

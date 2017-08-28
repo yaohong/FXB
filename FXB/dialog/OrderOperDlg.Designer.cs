@@ -53,8 +53,8 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.myGroupBox1 = new FXB.MyControl.MyGroupBox();
             this.buyTime = new System.Windows.Forms.DateTimePicker();
             this.daikuanjineEdi = new System.Windows.Forms.TextBox();
@@ -122,8 +122,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Controls.Add(this.beizhuEdi);
             this.groupBox1.Controls.Add(this.zhuchang2SelectBtn);
             this.groupBox1.Controls.Add(this.zhuchang2Edi);
             this.groupBox1.Controls.Add(this.label18);
@@ -140,9 +138,9 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.yongjinzongeEdi);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Location = new System.Drawing.Point(31, 206);
+            this.groupBox1.Location = new System.Drawing.Point(31, 292);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(629, 211);
+            this.groupBox1.Size = new System.Drawing.Size(629, 218);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "操作人员信息";
@@ -150,7 +148,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(46, 153);
+            this.label19.Location = new System.Drawing.Point(46, 216);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(35, 12);
             this.label19.TabIndex = 26;
@@ -158,7 +156,7 @@
             // 
             // beizhuEdi
             // 
-            this.beizhuEdi.Location = new System.Drawing.Point(87, 115);
+            this.beizhuEdi.Location = new System.Drawing.Point(87, 180);
             this.beizhuEdi.Multiline = true;
             this.beizhuEdi.Name = "beizhuEdi";
             this.beizhuEdi.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -274,7 +272,7 @@
             this.statusStrip1.AllowMerge = false;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.shenheInfo});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 475);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 548);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(692, 22);
             this.statusStrip1.SizingGrip = false;
@@ -297,7 +295,7 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(504, 437);
+            this.saveBtn.Location = new System.Drawing.Point(504, 516);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 18;
@@ -307,7 +305,7 @@
             // 
             // exitBtn
             // 
-            this.exitBtn.Location = new System.Drawing.Point(585, 438);
+            this.exitBtn.Location = new System.Drawing.Point(585, 517);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(75, 23);
             this.exitBtn.TabIndex = 19;
@@ -319,21 +317,12 @@
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.shenheBtn);
-            this.groupBox2.Location = new System.Drawing.Point(31, 422);
+            this.groupBox2.Location = new System.Drawing.Point(31, 501);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(279, 44);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "订单操作";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(186, 15);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "退单";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -344,9 +333,20 @@
             this.button2.Text = "回佣";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(186, 15);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "退单";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // myGroupBox1
             // 
+            this.myGroupBox1.Controls.Add(this.label19);
             this.myGroupBox1.Controls.Add(this.buyTime);
+            this.myGroupBox1.Controls.Add(this.beizhuEdi);
             this.myGroupBox1.Controls.Add(this.daikuanjineEdi);
             this.myGroupBox1.Controls.Add(this.label14);
             this.myGroupBox1.Controls.Add(this.fukuanTypeEdi);
@@ -373,10 +373,10 @@
             this.myGroupBox1.Controls.Add(this.label1);
             this.myGroupBox1.Location = new System.Drawing.Point(31, 12);
             this.myGroupBox1.Name = "myGroupBox1";
-            this.myGroupBox1.Size = new System.Drawing.Size(629, 188);
+            this.myGroupBox1.Size = new System.Drawing.Size(629, 274);
             this.myGroupBox1.TabIndex = 0;
             this.myGroupBox1.TabStop = false;
-            this.myGroupBox1.Text = "购买信息";
+            this.myGroupBox1.Text = "订单信息";
             // 
             // buyTime
             // 
@@ -584,7 +584,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(692, 497);
+            this.ClientSize = new System.Drawing.Size(692, 570);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.saveBtn);

@@ -124,11 +124,23 @@ namespace FXB.Dialog
             entryPersonName.Width = 100;
             dataGridView1.Columns.Add(entryPersonName);
 
-            DataGridViewCheckBoxColumn orderState = new DataGridViewCheckBoxColumn();
-            orderState.Name = "orderState";
-            orderState.HeaderText = "订单状态";
-            orderState.Width = 100;
-            dataGridView1.Columns.Add(orderState);
+            DataGridViewCheckBoxColumn cbState = new DataGridViewCheckBoxColumn();
+            cbState.Name = "cbState";
+            cbState.HeaderText = "是否退单";
+            cbState.Width = 100;
+            dataGridView1.Columns.Add(cbState);
+
+            DataGridViewTextBoxColumn cbName = new DataGridViewTextBoxColumn();
+            cbName.Name = "cbName";
+            cbName.HeaderText = "退单人";
+            cbName.Width = 100;
+            dataGridView1.Columns.Add(cbName);
+
+            DataGridViewTextBoxColumn cbTime = new DataGridViewTextBoxColumn();
+            cbTime.Name = "cbTime";
+            cbTime.HeaderText = "退单日期";
+            cbTime.Width = 130;
+            dataGridView1.Columns.Add(cbTime);
 
             DataGridViewTextBoxColumn comment = new DataGridViewTextBoxColumn();
             comment.Name = "comment";
@@ -139,7 +151,7 @@ namespace FXB.Dialog
             DataGridViewTextBoxColumn buyTime = new DataGridViewTextBoxColumn();
             buyTime.Name = "buyTime";
             buyTime.HeaderText = "购买日期";
-            buyTime.Width = 100;
+            buyTime.Width = 130;
             dataGridView1.Columns.Add(buyTime);
 
             DataGridViewTextBoxColumn customerPhone = new DataGridViewTextBoxColumn();
@@ -217,19 +229,27 @@ namespace FXB.Dialog
                 row.Cells["checkPersonName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.checkPersonJobNumber].Name; ;
                 row.Cells["checkTime"].Value = TimeUtil.TimestampToDateTime(data.checkTime).ToString("yyyy-MM-dd hh-mm-ss");
             }
-            row.Cells["checkTime"].Value = data.roomNumber;
-            row.Cells["roomNumber"].Value = data.roomNumber;
-            row.Cells["roomNumber"].Value = data.roomNumber;
-            row.Cells["roomNumber"].Value = data.roomNumber;
-            row.Cells["roomNumber"].Value = data.roomNumber;
-            row.Cells["roomNumber"].Value = data.roomNumber;
-            row.Cells["roomNumber"].Value = data.roomNumber;
-            row.Cells["roomNumber"].Value = data.roomNumber;
-            row.Cells["roomNumber"].Value = data.roomNumber;
-            row.Cells["roomNumber"].Value = data.roomNumber;
-            row.Cells["roomNumber"].Value = data.roomNumber;
-            row.Cells["roomNumber"].Value = data.roomNumber;
-            row.Cells["roomNumber"].Value = data.roomNumber;
+
+            //录入人暂时不填
+
+            row.Cells["cbState"].Value = data.ifchargeback;
+            if (data.ifchargeback)
+            {
+                row.Cells["cbName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.cbJobNumber].Name; ;
+                row.Cells["cbTime"].Value = TimeUtil.TimestampToDateTime(data.cbTime).ToString("yyyy-MM-dd hh-mm-ss");
+            }
+
+            row.Cells["comment"].Value = data.comment;
+
+            row.Cells["buyTime"].Value = TimeUtil.TimestampToDateTime(data.buyTime).ToString("yyyy-MM-dd hh-mm-ss");
+
+            row.Cells["customerPhone"].Value = data.customerPhone;
+            row.Cells["customerIdCard"].Value = data.customerIdCard;
+            row.Cells["receipt"].Value = data.receipt;
+            row.Cells["roomArea"].Value = data.roomArea;
+            row.Cells["contractState"].Value = data.contractState;
+            row.Cells["paymentMethod"].Value = data.paymentMethod;
+            row.Cells["loansMoney"].Value = data.loansMoney;
         }
 
         private void salesmanSelectBtn_Click(object sender, EventArgs e)

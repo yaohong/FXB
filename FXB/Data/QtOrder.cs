@@ -41,6 +41,9 @@ namespace FXB.Data
         public string checkPersonJobNumber;        //审核人
         public UInt32 checkTime;                   //审核日期
 
+        public bool ifchargeback;                   //是否退单
+        public string cbJobNumber;                  //退单人
+        public UInt32 cbTime;                       //退单时间
 
         public string entryPersonJobNumber;        //录入人
 
