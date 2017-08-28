@@ -152,7 +152,7 @@ namespace FXB.Dialog
         private void EditInit()
         {
             codeEdi.Enabled = false;
-
+            nameEdi.Enabled = false;
             codeEdi.Text = projectData.Code;
             nameEdi.Text = projectData.Name;
             addressEdi.Text = projectData.Address;

@@ -23,6 +23,13 @@ namespace FXB.Dialog
         private string selectZhuchang2 = "";    //选择的驻场2
 
         private QtOrder editQtOrder = null;     //编辑模式下选择的订单
+
+        //创建的新订单
+        private QtOrder newOrder = null;
+        public QtOrder NewOrder
+        {
+            get { return newOrder; }
+        }
         public OrderOperDlg()
         {
             InitializeComponent();
@@ -45,6 +52,8 @@ namespace FXB.Dialog
             keyuanEdi.Enabled = false;
             zhuchang1Edi.Enabled = false;
             zhuchang2Edi.Enabled = false;
+
+            RefreshCheckState(true, "姚鸿", "22016-10-5", "黄平", false);
             if (mod == EditMode.EM_ADD)
             {
                 AddInit();
@@ -67,14 +76,134 @@ namespace FXB.Dialog
         }
 
 
-        private void RefreshCheckState(string checkState, string checkPersoName, string checkTime, string luruPersoName )
+        private void RefreshCheckState(bool checkState, string checkPersoName, string checkTime, string luruPersoName, bool orderState)
         {
-            string str = string.Format("审核状态:{0}        审核人:{1}        审核日期:{2}         录入人:{3}", checkState, checkPersoName, checkPersoName, luruPersoName);
+            string str = string.Format("审核状态:{0}    审核人:{1}    审核日期:{2}         录入人:{3}         订单状态:{4}", checkState ? "已审核" : "未审核",
+                checkPersoName, checkTime, luruPersoName, orderState ? "正常" : "已退单");
             shenheInfo.Text = str;
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
+            if (kehuNameEdi.Text == "")
+            {
+                MessageBox.Show("客户名称不为空");
+                return;
+            }
+
+            if (selectProjectCode == "")
+            {
+                MessageBox.Show("项目不能为空");
+                return;
+            }
+
+            if (roomNumberEdi.Text == "")
+            {
+                MessageBox.Show("房号不能为空");
+                return;
+            }
+
+            if (cjZongjiaEdi.Text == "")
+            {
+                MessageBox.Show("成交总价不能为空");
+                return;
+            } 
+            else
+            {
+                try
+                {
+                    Convert.ToDouble(cjZongjiaEdi.Text);
+                } 
+                catch (Exception e1)
+                {
+                    MessageBox.Show("成交总价格式错误");
+                    return;
+                }
+                    
+            }
+
+            if (kehudianhuaEdi.Text == "")
+            {
+                MessageBox.Show("联系电话不能为空");
+                return;
+            }
+
+            if (shenfenzhengEdi.Text == "")
+            {
+                MessageBox.Show("身份证不能为空");
+                return;
+            }
+
+            if (yongjinzongeEdi.Text == "")
+            {
+                MessageBox.Show("佣金总额不能为空");
+                return;
+            } 
+            else
+            {
+                try
+                {
+                    Convert.ToDouble(yongjinzongeEdi.Text);
+                }
+                catch (Exception e2)
+                {
+                    MessageBox.Show("佣金总额格式错误");
+                    return;
+                }
+            }
+            if (mianjiEdi.Text != "")
+            {
+                try
+                {
+                    Convert.ToDouble(mianjiEdi.Text);
+                }
+                catch (Exception e3)
+                {
+                    MessageBox.Show("面积格式错误");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("面积不能为空");
+                return;
+            }
+
+            if (daikuanjineEdi.Text != "")
+            {
+                try
+                {
+                    Convert.ToDouble(daikuanjineEdi.Text);
+                }
+                catch (Exception e3)
+                {
+                    MessageBox.Show("贷款金额格式错误");
+                    return;
+                }
+            }
+
+
+            if (selectGuwen == "")
+            {
+                MessageBox.Show("营销顾问不能为空");
+                return;
+            }
+
+
+            if (selectGuwen == selectKeyuanfang)
+            {
+                MessageBox.Show("营销顾问和客源方不能为同一个人");
+                return;
+            }
+
+            if (selectZhuchang1 == selectZhuchang2 && selectZhuchang1 != "")
+            {
+                MessageBox.Show("2个驻场不能为同一个人");
+                return;
+            }
+
+
+
             if (mod == EditMode.EM_ADD)
             {
                 AddSave();
@@ -86,12 +215,60 @@ namespace FXB.Dialog
         }
 
 
+
+
+
         private void AddSave()
         {
-            //if (kehuNameEdi.Text == "")
-            //{
-            //    //客户不能为空
-            //}
+
+            try 
+            {
+                string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
+                QtOrder tmpNewOrder = 
+                QtMgr.Instance().AddNewQtOrder(
+                    TimeUtil.DateTimeToTimestamp(orderGenerateTime.Value),
+                    System.Math.Round(Convert.ToDouble(yongjinzongeEdi.Text), 2),
+                    kehuNameEdi.Text,
+                    selectProjectCode,
+                    roomNumberEdi.Text,
+                    System.Math.Round(Convert.ToDouble(cjZongjiaEdi.Text), 2),
+                    selectGuwen,
+                    EmployeeDataMgr.Instance().AllEmployeeData[selectGuwen].DepartmentId,
+                    selectKeyuanfang,
+                    selectKeyuanfang == "" ? 0 : EmployeeDataMgr.Instance().AllEmployeeData[selectKeyuanfang].DepartmentId,
+                    selectZhuchang1,
+                    selectZhuchang1 == "" ? 0 : EmployeeDataMgr.Instance().AllEmployeeData[selectZhuchang1].DepartmentId,
+                    selectZhuchang2,
+                    selectZhuchang2 == "" ? 0 : EmployeeDataMgr.Instance().AllEmployeeData[selectZhuchang2].DepartmentId,
+                    false,
+                    "",
+                    0,
+                    "owner",        //暂时填owner，真实情况应该为登陆用户
+                    beizhuEdi.Text,
+                    TimeUtil.DateTimeToTimestamp(buyTime.Value),
+                    kehudianhuaEdi.Text,
+                    shenfenzhengEdi.Text,
+                    shoujuEdi.Text,
+                    System.Math.Round(Convert.ToDouble(mianjiEdi.Text), 2),
+                    hetongzhuangtaiEdi.Text,
+                    fukuanTypeEdi.Text,
+                    daikuanjineEdi.Text == "" ? 0.0f : System.Math.Round(Convert.ToDouble(daikuanjineEdi.Text), 2),
+                    false,
+                    qtKey);
+                newOrder = tmpNewOrder;
+                DialogResult = DialogResult.OK;
+                Close();
+
+            }
+            catch (ConditionCheckException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception e2)
+            {
+                MessageBox.Show(e2.Message);
+                Application.Exit();
+            }
         }
 
         private void EditSave()
@@ -124,6 +301,10 @@ namespace FXB.Dialog
                 //不属于QT任务里的只能是业务员
                 if (data.QTLevel == QtLevel.Salesman)
                 {
+                    if (!qtTask.AllQtDepartment.ContainsKey(data.DepartmentId))
+                    {
+                        return false;
+                    }
                     return true;
                 }
                 else
@@ -191,6 +372,10 @@ namespace FXB.Dialog
             {
                 if (data.QTLevel == QtLevel.ZhuchangZhuanyuan)
                 {
+                    if (!qtTask.AllQtDepartment.ContainsKey(data.DepartmentId))
+                    {
+                        return false;
+                    }
                     return true;
                 }
                 else
@@ -266,8 +451,13 @@ namespace FXB.Dialog
                     }
 
                     selectGuwen = jobNumber;
-                    guwenEdi.Text = employee.Name;
+                    guwenEdi.Text = employee.Name; 
                     
+                }
+                else
+                {
+                    selectGuwen = "";
+                    guwenEdi.Text = ""; 
                 }
                 
             }
@@ -345,6 +535,11 @@ namespace FXB.Dialog
                     keyuanEdi.Text = employee.Name;
 
                 }
+                else
+                {
+                    selectKeyuanfang = "";
+                    keyuanEdi.Text = "";
+                }
 
             }
         }
@@ -404,6 +599,11 @@ namespace FXB.Dialog
                     zhuchang1Edi.Text = employee.Name;
 
                 }
+                else
+                {
+                    selectZhuchang1 = "";
+                    zhuchang1Edi.Text = "";
+                }
 
             }
         }
@@ -462,6 +662,11 @@ namespace FXB.Dialog
                     selectZhuchang2 = jobNumber;
                     zhuchang2Edi.Text = employee.Name;
 
+                }
+                else
+                {
+                    selectZhuchang2 = "";
+                    zhuchang2Edi.Text = "";
                 }
 
             }

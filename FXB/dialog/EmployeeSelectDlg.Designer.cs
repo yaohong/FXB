@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.myGroupBox1 = new FXB.MyControl.MyGroupBox();
+            this.okBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
             this.inquireBtn = new System.Windows.Forms.Button();
             this.paramEdi = new System.Windows.Forms.TextBox();
@@ -43,19 +44,30 @@
             // 
             // myGroupBox1
             // 
+            this.myGroupBox1.Controls.Add(this.okBtn);
             this.myGroupBox1.Controls.Add(this.exitBtn);
             this.myGroupBox1.Controls.Add(this.inquireBtn);
             this.myGroupBox1.Controls.Add(this.paramEdi);
             this.myGroupBox1.Controls.Add(this.label1);
             this.myGroupBox1.Location = new System.Drawing.Point(13, 13);
             this.myGroupBox1.Name = "myGroupBox1";
-            this.myGroupBox1.Size = new System.Drawing.Size(393, 50);
+            this.myGroupBox1.Size = new System.Drawing.Size(477, 50);
             this.myGroupBox1.TabIndex = 0;
             this.myGroupBox1.TabStop = false;
             // 
+            // okBtn
+            // 
+            this.okBtn.Location = new System.Drawing.Point(301, 17);
+            this.okBtn.Name = "okBtn";
+            this.okBtn.Size = new System.Drawing.Size(75, 23);
+            this.okBtn.TabIndex = 4;
+            this.okBtn.Text = "确定";
+            this.okBtn.UseVisualStyleBackColor = true;
+            this.okBtn.Click += new System.EventHandler(this.okBtn_Click);
+            // 
             // exitBtn
             // 
-            this.exitBtn.Location = new System.Drawing.Point(301, 17);
+            this.exitBtn.Location = new System.Drawing.Point(382, 17);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(75, 23);
             this.exitBtn.TabIndex = 3;
@@ -103,16 +115,16 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Beige;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(201, 69);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Bisque;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Bisque;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(736, 502);
@@ -149,5 +161,6 @@
         private System.Windows.Forms.Button exitBtn;
         private MyControl.MyTreeView myTreeView1;
         private MyControl.MyDataGridView dataGridView1;
+        private System.Windows.Forms.Button okBtn;
     }
 }

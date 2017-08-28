@@ -15,7 +15,7 @@ namespace FXB.Data
 
 
         public string customerName;            //客户名称
-        public string projectName;             //所属的项目名称
+        public string projectCode;             //所属的项目
         public string roomNumber;              //房号
         public double closingTheDealMoney;     //成交总价
 
@@ -26,13 +26,13 @@ namespace FXB.Data
         public Int64 yxQtDepartmentId;             //营销顾问所属的QT部门
         //private double yxAchievements;              //本单业绩
 
-        public string kyfConsultanJobNumbert;       //客源方顾问
+        public string kyfConsultanJobNumber;       //客源方顾问
         public Int64 kyfQtDepartmentId;            //客源方所属的QT部门
         //private double kyfAchievements;             //客源方的业绩
 
-        public string zcJobNumber;          //驻场1
+        public string zc1JobNumber;                 //驻场1
         public Int64 zc1QtDepartmentId;            //驻场1的QT部门ID
-        public string zc2JobNumber;          //驻场2
+        public string zc2JobNumber;                 //驻场2
         public Int64 zc2QtDepartmentId;            //驻场2的QT部门ID
 
 
@@ -44,7 +44,7 @@ namespace FXB.Data
 
         public string entryPersonJobNumber;        //录入人
 
-        public string commend;                     //备注
+        public string comment;                     //备注
 
         public UInt32 buyTime;                     //购买日期
         public string customerPhone;               //客户联系电话
@@ -55,6 +55,7 @@ namespace FXB.Data
         public string paymentMethod;               //付款方式
         public double loansMoney;                  //贷款金额
 
+        public bool isReceiveReward;               //是否领取开单奖励
         public string qtKey;                       //所属的QT任务
     }
 }

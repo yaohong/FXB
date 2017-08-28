@@ -155,5 +155,11 @@ namespace FXB.Dialog
         {
             Close();
         }
+
+        private void okBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
     }
 }

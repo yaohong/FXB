@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using FXB.Data;
+using FXB.DataManager;
+using FXB.Common;
 namespace FXB.Dialog
 {
     public partial class OrderDataDlg : Form
@@ -186,7 +188,48 @@ namespace FXB.Dialog
         private void addOrderBtn_Click(object sender, EventArgs e)
         {
             OrderOperDlg dlg = new OrderOperDlg();
-            dlg.ShowDialog();
+            if (DialogResult.OK ==  dlg.ShowDialog())
+            {
+                QtOrder newOrder = dlg.NewOrder;
+                int newLine = dataGridView1.Rows.Add();
+                UpdateGridViewRow(dataGridView1.Rows[newLine], newOrder);
+            }
+        }
+
+        private void UpdateGridViewRow(DataGridViewRow row, QtOrder data)
+        {
+            row.Cells["orderid"].Value = data.orderId;
+            row.Cells["ordertime"].Value = TimeUtil.TimestampToDateTime(data.generateTime).ToShortDateString();
+            row.Cells["customerName"].Value = data.customerName;
+            row.Cells["projectName"].Value = ProjectDataMgr.Instance().AllProjectData[data.projectCode].Name ;
+            row.Cells["roomNumber"].Value = data.roomNumber;
+
+            row.Cells["closingTheDealMoney"].Value = data.closingTheDealMoney;
+            row.Cells["commissionAmount"].Value = data.commissionAmount;
+
+            row.Cells["yxConsultantName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.yxConsultantJobNumber].Name;
+            row.Cells["kyfConsultanName"].Value = data.kyfConsultanJobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.kyfConsultanJobNumber].Name : "";
+            row.Cells["zhuchang1Name"].Value = data.zc1JobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.zc1JobNumber].Name : "";
+            row.Cells["zhuchang2Name"].Value = data.zc2JobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.zc2JobNumber].Name : "";
+            row.Cells["checkState"].Value = data.checkState;
+            if (data.checkState)
+            {
+                row.Cells["checkPersonName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.checkPersonJobNumber].Name; ;
+                row.Cells["checkTime"].Value = TimeUtil.TimestampToDateTime(data.checkTime).ToString("yyyy-MM-dd hh-mm-ss");
+            }
+            row.Cells["checkTime"].Value = data.roomNumber;
+            row.Cells["roomNumber"].Value = data.roomNumber;
+            row.Cells["roomNumber"].Value = data.roomNumber;
+            row.Cells["roomNumber"].Value = data.roomNumber;
+            row.Cells["roomNumber"].Value = data.roomNumber;
+            row.Cells["roomNumber"].Value = data.roomNumber;
+            row.Cells["roomNumber"].Value = data.roomNumber;
+            row.Cells["roomNumber"].Value = data.roomNumber;
+            row.Cells["roomNumber"].Value = data.roomNumber;
+            row.Cells["roomNumber"].Value = data.roomNumber;
+            row.Cells["roomNumber"].Value = data.roomNumber;
+            row.Cells["roomNumber"].Value = data.roomNumber;
+            row.Cells["roomNumber"].Value = data.roomNumber;
         }
 
         private void salesmanSelectBtn_Click(object sender, EventArgs e)

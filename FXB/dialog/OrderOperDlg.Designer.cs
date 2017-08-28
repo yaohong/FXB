@@ -50,9 +50,11 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.shenheInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.shenheBtn = new System.Windows.Forms.Button();
-            this.cancelShenheBtn = new System.Windows.Forms.Button();
             this.saveBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.myGroupBox1 = new FXB.MyControl.MyGroupBox();
             this.buyTime = new System.Windows.Forms.DateTimePicker();
             this.daikuanjineEdi = new System.Windows.Forms.TextBox();
@@ -81,6 +83,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.myGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -271,9 +274,9 @@
             this.statusStrip1.AllowMerge = false;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.shenheInfo});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 468);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 475);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(698, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(692, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 15;
             this.statusStrip1.Text = "statusStrip1";
@@ -285,25 +288,16 @@
             // 
             // shenheBtn
             // 
-            this.shenheBtn.Location = new System.Drawing.Point(118, 431);
+            this.shenheBtn.Location = new System.Drawing.Point(24, 15);
             this.shenheBtn.Name = "shenheBtn";
             this.shenheBtn.Size = new System.Drawing.Size(75, 23);
             this.shenheBtn.TabIndex = 16;
             this.shenheBtn.Text = "审核";
             this.shenheBtn.UseVisualStyleBackColor = true;
             // 
-            // cancelShenheBtn
-            // 
-            this.cancelShenheBtn.Location = new System.Drawing.Point(199, 431);
-            this.cancelShenheBtn.Name = "cancelShenheBtn";
-            this.cancelShenheBtn.Size = new System.Drawing.Size(75, 23);
-            this.cancelShenheBtn.TabIndex = 17;
-            this.cancelShenheBtn.Text = "取消审核";
-            this.cancelShenheBtn.UseVisualStyleBackColor = true;
-            // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(438, 431);
+            this.saveBtn.Location = new System.Drawing.Point(504, 437);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 18;
@@ -313,12 +307,42 @@
             // 
             // exitBtn
             // 
-            this.exitBtn.Location = new System.Drawing.Point(519, 431);
+            this.exitBtn.Location = new System.Drawing.Point(585, 438);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(75, 23);
             this.exitBtn.TabIndex = 19;
             this.exitBtn.Text = "退出";
             this.exitBtn.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.shenheBtn);
+            this.groupBox2.Location = new System.Drawing.Point(31, 422);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(279, 44);
+            this.groupBox2.TabIndex = 20;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "订单操作";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(186, 15);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "退单";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(105, 15);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 19;
+            this.button2.Text = "回佣";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // myGroupBox1
             // 
@@ -560,11 +584,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(698, 490);
+            this.ClientSize = new System.Drawing.Size(692, 497);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.saveBtn);
-            this.Controls.Add(this.cancelShenheBtn);
-            this.Controls.Add(this.shenheBtn);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.myGroupBox1);
@@ -578,6 +601,7 @@
             this.groupBox1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.myGroupBox1.ResumeLayout(false);
             this.myGroupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -634,9 +658,11 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel shenheInfo;
         private System.Windows.Forms.Button shenheBtn;
-        private System.Windows.Forms.Button cancelShenheBtn;
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.Button exitBtn;
         private System.Windows.Forms.DateTimePicker buyTime;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

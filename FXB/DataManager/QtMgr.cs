@@ -219,7 +219,7 @@ namespace FXB.DataManager
                 }
                 qtDepartmentReader.Close();
 
-
+                //////////////////////////////////////////////////////////////////////////////////////////////
                 SqlCommand qtEmployeeCommand = new SqlCommand();
                 qtEmployeeCommand.Connection = SqlMgr.Instance().SqlConnect;
                 qtEmployeeCommand.CommandType = CommandType.Text;
@@ -254,7 +254,7 @@ namespace FXB.DataManager
                     allEmployee[jobNumber] = new DbQtTaskEmployee(jobNumber, jobGradeName, qtdepartmentid, qtLevel, isOwner);
                 }
                 qtEmployeeReader.Close();
-
+                //////////////////////////////////////////////////////////////////////////////////////////////
 
 
                 foreach (var item in dbAllQtTaskIndex)
@@ -449,12 +449,12 @@ namespace FXB.DataManager
             UInt32 generateTime,            //订单生成时间
             double commissionAmount,        //佣金总额
             string customerName,            //客户名称
-            string projectName,             //项目名称
+            string projectCode,             //项目编码
             string roomNumber,              //房间编号
             double closingTheDealMoney,     //成交总价
             string yxConsultantJobNumber,   //营销顾问
             Int64 yxQtDepartmentId,         //营销顾问所属的部门ID
-            string kyfConsultanJobNumbert,  //客源方顾问
+            string kyfConsultanJobNumber,  //客源方顾问
             Int64 kyfQtDepartmentId,        //客源方的部门ID
             string zc1JobNumber,            //驻场1
             Int64 zc1QtDepartmentId,        //驻场1的部门ID
@@ -478,6 +478,7 @@ namespace FXB.DataManager
             string paymentMethod,           //付款方式
             double loansMoney,              //贷款金额
 
+            bool isReceiveReward,           //是否领取开单奖励
             string qtKey                    //所属的QT任务
             )
         {
@@ -494,7 +495,7 @@ namespace FXB.DataManager
                                         generatetime,
                                         commissionamount,
                                         customername,
-                                        projectname,
+                                        projectcode,
                                         roomnumber,
                                         closingthedealnoney,
                                         yxconsultantjobnumber,
@@ -504,7 +505,7 @@ namespace FXB.DataManager
                                         zc1jobnumber,
                                         zc1qtdepartmentid,
                                         zc2jobnumber,
-                                        zc2qtdepartmentid
+                                        zc2qtdepartmentid,
                                         checkstate,
                                         checkpersonjobnumber,
                                         checktime,
@@ -518,11 +519,12 @@ namespace FXB.DataManager
                                         contractstate,
                                         paymentmethod,
                                         loansmoney,
+                                        isreceivereward,
                                         qtkey) output inserted.Id VALUES(
                                         @generatetime,
                                         @commissionamount,
                                         @customername,
-                                        @projectname,
+                                        @projectcode,
                                         @roomnumber,
                                         @closingthedealnoney,
                                         @yxconsultantjobnumber,
@@ -532,7 +534,7 @@ namespace FXB.DataManager
                                         @zc1jobnumber,
                                         @zc1qtdepartmentid,
                                         @zc2jobnumber,
-                                        @zc2qtdepartmentid
+                                        @zc2qtdepartmentid,
                                         @checkstate,
                                         @checkpersonjobnumber,
                                         @checktime,
@@ -546,16 +548,17 @@ namespace FXB.DataManager
                                         @contractstate,
                                         @paymentmethod,
                                         @loansmoney,
+                                        @isreceivereward,
                                         @qtkey);select @@identity";
-            command.Parameters.AddWithValue("@generatetime", generateTime);
+            command.Parameters.AddWithValue("@generatetime", (Int32)generateTime);
             command.Parameters.AddWithValue("@commissionamount", commissionAmount);
             command.Parameters.AddWithValue("@customername", customerName);
-            command.Parameters.AddWithValue("@projectname", projectName);
+            command.Parameters.AddWithValue("@projectcode", projectCode);
             command.Parameters.AddWithValue("@roomnumber", roomNumber);
             command.Parameters.AddWithValue("@closingthedealnoney", closingTheDealMoney);
             command.Parameters.AddWithValue("@yxconsultantjobnumber", yxConsultantJobNumber);
             command.Parameters.AddWithValue("@yxqtdepartmentid", yxQtDepartmentId);
-            command.Parameters.AddWithValue("@kyfconsultanjobnumber", kyfConsultanJobNumbert);
+            command.Parameters.AddWithValue("@kyfconsultanjobnumber", kyfConsultanJobNumber);
             command.Parameters.AddWithValue("@kyfqtdepartmentid", kyfQtDepartmentId);
             command.Parameters.AddWithValue("@zc1jobnumber", zc1JobNumber);
             command.Parameters.AddWithValue("@zc1qtdepartmentid", zc1QtDepartmentId);
@@ -563,9 +566,10 @@ namespace FXB.DataManager
             command.Parameters.AddWithValue("@zc2qtdepartmentid", zc2QtDepartmentId);
             command.Parameters.AddWithValue("@checkstate", checkState);
             command.Parameters.AddWithValue("@checkpersonjobnumber", checkPersonJobNumber);
-            command.Parameters.AddWithValue("@checktime", checkTime);
+            command.Parameters.AddWithValue("@checktime", (Int32)checkTime);
             command.Parameters.AddWithValue("@entrypersonjobnumber", entryPersonJobNumber);
             command.Parameters.AddWithValue("@comment", comment);
+            command.Parameters.AddWithValue("@buytime", (Int32)buyTime);
             command.Parameters.AddWithValue("@customerphone", customerName);
             command.Parameters.AddWithValue("@customeridcard", customerIdCard);
             command.Parameters.AddWithValue("@receipt", receipt);
@@ -573,11 +577,42 @@ namespace FXB.DataManager
             command.Parameters.AddWithValue("@contractstate", contractState);
             command.Parameters.AddWithValue("@paymentmethod", paymentMethod);
             command.Parameters.AddWithValue("@loansmoney", loansMoney);
+            command.Parameters.AddWithValue("@isreceivereward", isReceiveReward);
             command.Parameters.AddWithValue("@qtkey", qtKey);
             Int64 orderId = (Int64)command.ExecuteScalar();
 
             QtOrder newQtOrder = new QtOrder();
+            newQtOrder.orderId = orderId;
+            newQtOrder.generateTime = generateTime;
+            newQtOrder.commissionAmount = commissionAmount;
+            newQtOrder.customerName = customerName;
+            newQtOrder.projectCode = projectCode;
+            newQtOrder.roomNumber = roomNumber;
+            newQtOrder.closingTheDealMoney = closingTheDealMoney;
+            newQtOrder.yxConsultantJobNumber = yxConsultantJobNumber;
+            newQtOrder.yxQtDepartmentId = yxQtDepartmentId;
+            newQtOrder.kyfConsultanJobNumber = kyfConsultanJobNumber;
+            newQtOrder.kyfQtDepartmentId = kyfQtDepartmentId;
+            newQtOrder.zc1JobNumber = zc1JobNumber;
+            newQtOrder.zc1QtDepartmentId = zc1QtDepartmentId;
+            newQtOrder.zc2JobNumber = zc2JobNumber;
+            newQtOrder.zc2QtDepartmentId = zc2QtDepartmentId;
+            newQtOrder.checkState = checkState;
+            newQtOrder.checkPersonJobNumber = checkPersonJobNumber;
+            newQtOrder.checkTime = checkTime;
+            newQtOrder.entryPersonJobNumber = entryPersonJobNumber;
+            newQtOrder.comment = comment;
 
+            newQtOrder.buyTime = buyTime;
+            newQtOrder.customerPhone = customerName;
+            newQtOrder.customerIdCard = customerIdCard;
+            newQtOrder.receipt = receipt;
+            newQtOrder.roomArea = roomArea;
+            newQtOrder.contractState = contractState;
+            newQtOrder.paymentMethod = paymentMethod;
+            newQtOrder.loansMoney = loansMoney;
+            newQtOrder.isReceiveReward = isReceiveReward;
+            qtTask.AllQtOrder[orderId] = newQtOrder;
             return newQtOrder;
         }
 
