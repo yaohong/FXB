@@ -270,7 +270,7 @@ namespace FXB.Dialog
             catch (Exception e2)
             {
                 MessageBox.Show(e2.Message);
-//                Application.Exit();
+                Application.Exit();
             }
         }
 
@@ -454,13 +454,18 @@ namespace FXB.Dialog
                     }
 
                     selectGuwen = jobNumber;
-                    guwenEdi.Text = employee.Name; 
-                    
+                    guwenEdi.Text = employee.Name;
+
+                    yxBumenEdi.Text = DepartmentUtil.GetDepartmentShowText(employee.DepartmentId);
+                    yxQtLevelEdi.Text = QtUtil.GetQTLevelString(employee.QTLevel);
                 }
                 else
                 {
                     selectGuwen = "";
-                    guwenEdi.Text = ""; 
+                    guwenEdi.Text = "";
+
+                    yxBumenEdi.Text = "";
+                    yxQtLevelEdi.Text = "";
                 }
                 
             }
@@ -471,16 +476,25 @@ namespace FXB.Dialog
             //选择的QT任务发生变化
             selectGuwen = "";
             guwenEdi.Text = "";
+            yxBumenEdi.Text = "";
+            yxQtLevelEdi.Text = "";
 
             //客源方清空
             selectKeyuanfang = "";
             keyuanEdi.Text = "";
+            kyfBumenEdi.Text = "";
+            kyfQtLevelEdi.Text = "";
 
             selectZhuchang1 = "";
             zhuchang1Edi.Text = "";
+            zc1BumenEdi.Text = "";
+            zc1QtLevelEdi.Text = "";
+
 
             selectZhuchang2 = "";
             zhuchang2Edi.Text = "";
+            zc2BumenEdi.Text = "";
+            zc2QtLevelEdi.Text = "";
         }
 
         private void keyuanSelectBtn_Click(object sender, EventArgs e)
@@ -537,11 +551,16 @@ namespace FXB.Dialog
                     selectKeyuanfang = jobNumber;
                     keyuanEdi.Text = employee.Name;
 
+                    kyfBumenEdi.Text = DepartmentUtil.GetDepartmentShowText(employee.DepartmentId);
+                    kyfQtLevelEdi.Text = QtUtil.GetQTLevelString(employee.QTLevel);
+
                 }
                 else
                 {
                     selectKeyuanfang = "";
                     keyuanEdi.Text = "";
+                    kyfBumenEdi.Text = "";
+                    kyfQtLevelEdi.Text = "";
                 }
 
             }
@@ -600,12 +619,15 @@ namespace FXB.Dialog
 
                     selectZhuchang1 = jobNumber;
                     zhuchang1Edi.Text = employee.Name;
-
+                    zc1BumenEdi.Text = DepartmentUtil.GetDepartmentShowText(employee.DepartmentId);
+                    zc1QtLevelEdi.Text = QtUtil.GetQTLevelString(employee.QTLevel);
                 }
                 else
                 {
                     selectZhuchang1 = "";
                     zhuchang1Edi.Text = "";
+                    zc1BumenEdi.Text = "";
+                    zc1QtLevelEdi.Text = "";
                 }
 
             }
@@ -664,12 +686,15 @@ namespace FXB.Dialog
 
                     selectZhuchang2 = jobNumber;
                     zhuchang2Edi.Text = employee.Name;
-
+                    zc2BumenEdi.Text = DepartmentUtil.GetDepartmentShowText(employee.DepartmentId);
+                    zc2QtLevelEdi.Text = QtUtil.GetQTLevelString(employee.QTLevel);
                 }
                 else
                 {
                     selectZhuchang2 = "";
                     zhuchang2Edi.Text = "";
+                    zc2BumenEdi.Text = "";
+                    zc2QtLevelEdi.Text = "";
                 }
 
             }

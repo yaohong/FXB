@@ -120,26 +120,26 @@ namespace FXB.Dialog
 
             dataGridView1.Rows[newLine].Cells["department"].Value = DepartmentUtil.GetQtDepartmentShowText(qtTask, qtDepartment.Id);
             dataGridView1.Rows[newLine].Cells["qtlevel"].Value = QtUtil.GetQTLevelString(qtDepartment.QtLevel);
-            string ownerName = "";
+
             if (qtDepartment.OwnerJobNumber != "")
             {
                 EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[qtDepartment.OwnerJobNumber];
-                ownerName = employeeData.Name;
-            }
-            dataGridView1.Rows[newLine].Cells["owner"].Value = ownerName;
-            if (qtDepartment.OwnerJobNumber != "")
-            {
+                dataGridView1.Rows[newLine].Cells["owner"].Value = employeeData.Name;
                 dataGridView1.Rows[newLine].Cells["qtTaskAmount"].Value = Convert.ToString(qtDepartment.NeedCompleteTaskAmount);
-            }
-            
+                if (!qtTask.Closing)
+                {
+                    //没有结算
+                    dataGridView1.Rows[newLine].Cells["ifSettle"].Value = false;
+                }
+                else
+                {
+                    dataGridView1.Rows[newLine].Cells["ifSettle"].Value = true;
+                    dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = qtDepartment.AlreadyCompleteTaskAmount;
+                    dataGridView1.Rows[newLine].Cells["prop"].Value = CommissionUtil.GetCommissionPropToStr(qtDepartment);
 
-            if (!qtTask.Closing)
-            {
-                //没有结算
-                dataGridView1.Rows[newLine].Cells["ifSettle"].Value = false;
-                dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = "0";
-                dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = "0";
+                }
             }
+
 
             foreach (var item in qtDepartment.ChildDepartmentIdSet)
             {
@@ -229,7 +229,60 @@ namespace FXB.Dialog
 
         private void generateQtPushbtn_Click(object sender, EventArgs e)
         {
+            if (qtCb.SelectedItem != null)
+            {
+                string qtKey = (string)qtCb.SelectedItem;
+                QtTask selectQtTask = QtMgr.Instance().AllQtTask[qtKey];
+                if (selectQtTask.Closing)
+                {
+                    //已经有开单了?
+                    MessageBox.Show("提成已经生成");
+                    return;
+                }
 
+                try
+                {
+                    foreach (var item in selectQtTask.AllQtOrder)
+                    {
+                        QtOrder qtOrder = item.Value;
+                        if (!qtOrder.checkState)
+                        {
+                            //没有审核的订单不参与计算
+                            continue;
+                        }
+
+                        if (qtOrder.ifchargeback)
+                        {
+                            //已经退了
+                            continue;
+                        }
+
+                        Int64 departmentId = qtOrder.yxQtDepartmentId;
+                        
+                        while (departmentId != 0)
+                        {
+                            QtDepartment qtDepartment = selectQtTask.AllQtDepartment[departmentId];
+                            if (qtDepartment.OwnerJobNumber != "")
+                            {
+                                qtDepartment.AlreadyCompleteTaskAmount += qtOrder.commissionAmount;
+                            }
+                            departmentId = qtDepartment.ParentDepartmentId;
+                        }
+
+
+
+                    }
+                }
+                catch (ConditionCheckException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex1)
+                {
+                    MessageBox.Show(ex1.Message);
+                    Application.Exit();
+                }
+            }
         }
 
 

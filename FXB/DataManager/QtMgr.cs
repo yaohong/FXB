@@ -491,6 +491,12 @@ namespace FXB.DataManager
                 throw new ConditionCheckException("QT任务不存在");
             }
 
+
+            if (allQtTask[qtKey].Closing)
+            {
+                throw new ConditionCheckException("提成已经生成，本月不能在开单了");
+            }
+
             QtTask qtTask = allQtTask[qtKey];
             SqlCommand command = new SqlCommand();
             command.Connection = SqlMgr.Instance().SqlConnect;

@@ -88,6 +88,11 @@ namespace FXB.Data
             get { return needCompleteTaskAmount; }
         }
 
+        public double AlreadyCompleteTaskAmount
+        {
+            get { return alreadyCompleteTaskAmount; }
+            set { alreadyCompleteTaskAmount = value; }
+        }
         public float CalcTaskAmount(QtTask qtTask)
         {
             if (isCalcTaskAmount)
