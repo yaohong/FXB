@@ -8,57 +8,302 @@ namespace FXB.Data
 {
     public class QtOrder
     {
-        public Int64 orderId;                  //开单的ID
+        private Int64 orderId;                  //开单的ID
 
-        public UInt32 generateTime;            //生成日期
-        public double commissionAmount;        //佣金总额
-
-
-        public string customerName;            //客户名称
-        public string projectCode;             //所属的项目
-        public string roomNumber;              //房号
-        public double closingTheDealMoney;     //成交总价
+        private UInt32 generateTime;            //生成日期
+        private double commissionAmount;        //佣金总额
 
 
-
-
-        public string yxConsultantJobNumber;        //营销顾问
-        public Int64 yxQtDepartmentId;             //营销顾问所属的QT部门
-        //private double yxAchievements;              //本单业绩
-
-        public string kyfConsultanJobNumber;       //客源方顾问
-        public Int64 kyfQtDepartmentId;            //客源方所属的QT部门
-        //private double kyfAchievements;             //客源方的业绩
-
-        public string zc1JobNumber;                 //驻场1
-        public Int64 zc1QtDepartmentId;            //驻场1的QT部门ID
-        public string zc2JobNumber;                 //驻场2
-        public Int64 zc2QtDepartmentId;            //驻场2的QT部门ID
+        private string customerName;            //客户名称
+        private string projectCode;             //所属的项目
+        private string roomNumber;              //房号
+        private double closingTheDealMoney;     //成交总价
 
 
 
-        public bool checkState;                    //审核状态
-        public string checkPersonJobNumber;        //审核人
-        public UInt32 checkTime;                   //审核日期
 
-        public bool ifchargeback;                   //是否退单
-        public string cbJobNumber;                  //退单人
-        public UInt32 cbTime;                       //退单时间
+        private string yxConsultantJobNumber;        //营销顾问
+        private Int64 yxQtDepartmentId;             //营销顾问所属的QT部门
 
-        public string entryPersonJobNumber;        //录入人
+        private string kyfConsultanJobNumber;       //客源方顾问
+        private Int64 kyfQtDepartmentId;            //客源方所属的QT部门
 
-        public string comment;                     //备注
+        private string zc1JobNumber;                 //驻场1
+        private Int64 zc1QtDepartmentId;            //驻场1的QT部门ID
+        private string zc2JobNumber;                 //驻场2
+        private Int64 zc2QtDepartmentId;            //驻场2的QT部门ID
 
-        public UInt32 buyTime;                     //购买日期
-        public string customerPhone;               //客户联系电话
-        public string customerIdCard;              //客户端的身份证
-        public string receipt;                     //收据
-        public double roomArea;                    //面积
-        public string contractState;               //合同状态
-        public string paymentMethod;               //付款方式
-        public double loansMoney;                  //贷款金额
 
-        public bool isReceiveReward;               //是否领取开单奖励
-        public string qtKey;                       //所属的QT任务
+
+        private bool checkState;                    //审核状态
+        private string checkPersonJobNumber;        //审核人
+        private UInt32 checkTime;                   //审核日期
+
+        private bool ifchargeback;                   //是否退单
+        private string cbJobNumber;                  //退单人
+        private UInt32 cbTime;                       //退单时间
+
+        private string entryPersonJobNumber;        //录入人
+
+        private string comment;                     //备注
+
+        private UInt32 buyTime;                     //购买日期
+        private string customerPhone;               //客户联系电话
+        private string customerIdCard;              //客户端的身份证
+        private string receipt;                     //收据
+        private double roomArea;                    //面积
+        private string contractState;               //合同状态
+        private string paymentMethod;               //付款方式
+        private double loansMoney;                  //贷款金额
+
+        private bool isReceiveReward;               //是否领取开单奖励
+
+        private string qtKey;                       //所属的QT任务
+        public Int64 Id
+        {
+            get { return orderId; }
+        }
+        public string QtKey
+        {
+            get { return qtKey; }
+        }
+
+        public UInt32 GenerateTime
+        {
+            get { return generateTime; }
+        }
+
+        public double CommissionAmount
+        {
+            get { return commissionAmount; }
+        }
+
+        public string CustomerName
+        {
+            get { return customerName; }
+        }
+
+        public string ProjectCode
+        {
+            get { return projectCode; }
+        }
+
+        public string RoomNumber
+        {
+            get { return roomNumber; }
+        }
+
+        public double ClosingTheDealMoney
+        {
+            get { return closingTheDealMoney; }
+        }
+
+        public string YxConsultantJobNumber
+        {
+            get { return yxConsultantJobNumber; }
+        }
+
+        public Int64 YxQtDepartmentId
+        {
+            get { return yxQtDepartmentId; }
+        }
+
+        public string KyfConsultanJobNumber
+        {
+            get { return kyfConsultanJobNumber; }
+        }
+
+        public Int64 KyfQtDepartmentId
+        {
+            get { return kyfQtDepartmentId; }
+        }
+
+        public string Zc1JobNumber
+        {
+            get { return zc1JobNumber; }
+        }
+
+        public Int64 Zc1QtDepartmentId
+        {
+            get { return zc1QtDepartmentId; }
+        }
+
+        public string Zc2JobNumber
+        {
+            get { return zc2JobNumber; }
+        }
+
+        public Int64 Zc2QtDepartmentId
+        {
+            get { return zc2QtDepartmentId; }
+        }
+
+        public bool CheckState
+        {
+            get { return checkState; }
+        }
+
+        public string CheckPersonJobNumber
+        {
+            get { return checkPersonJobNumber; }
+        }
+
+        public UInt32 CheckTime
+        {
+            get { return checkTime; }
+        }
+
+        public bool IfChargeback
+        {
+            get { return ifchargeback; }
+        }
+
+        public string CbJobNumber
+        {
+            get { return cbJobNumber; }
+        }
+
+        public UInt32 CbTime
+        {
+            get { return cbTime; }
+        }
+
+        public string EntryPersonJobNumber
+        {
+            get { return entryPersonJobNumber; }
+        }
+
+        public string Comment
+        {
+            get { return comment; }
+        }
+
+        public UInt32 BuyTime
+        {
+            get { return buyTime; }
+        }
+
+        public string CustomerPhone
+        {
+            get { return customerPhone; }
+        }
+
+        public string CustomerIdCard
+        {
+            get { return customerIdCard; }
+        }
+
+        public string Receipt
+        {
+            get { return receipt; }
+        }
+
+        public double RoomArea
+        {
+            get { return roomArea; }
+        }
+
+        public string ContractState
+        {
+            get { return contractState; }
+        }
+
+        public string PaymentMethod
+        {
+            get { return paymentMethod; }
+        }
+
+
+        public double LoansMoney
+        {
+            get { return loansMoney; }
+        }
+
+        public bool IsReceiveReward
+        {
+            get { return isReceiveReward; }
+        }
+        public QtOrder(
+            Int64 tmpId,
+            UInt32 tmpGenerateTime,
+            double tmpCommissionAmount,
+            string tmpCustomerName,
+            string tmpProjectCode,
+            string tmpRoomNumber,
+            double tmpClosingTheDealmoney,
+
+            string tmpYxConsultantJobnumber,
+            Int64 tmpYxQtDepartmentId,             
+            string tmpKyfConsultanJobnumber,       
+            Int64 tmpKyfQtDepartmentId,            
+            string tmpZc1JobNumber,                
+            Int64 tmpZc1QtDepartmentId,            
+            string tmpZc2JobNumber,                
+            Int64 tmpZc2QtDepartmentId,    
+        
+            bool tmpCheckState,
+            string tmpCheckPersonJobnumber,
+            UInt32 tmpCheckTime,
+
+            bool tmpIfChargeback,
+            string tmpCbJobnumber,
+            UInt32 tmpCbTime,
+
+            string tmpEntryPersonJobnumber,
+
+            string tmpComment,
+            UInt32 tmpBuyTime,
+            string tmpCustomerPhone,
+            string tmpCustomerIdCard,
+            string tmpReceipt,
+            double tmpRoomArea,
+            string tmpContractState,
+            string tmpPaymentMethod,
+            double tmploansMoney,
+
+            bool tmpIsReceiveReward,
+            string tmpQtKey)
+        {
+            orderId = tmpId;
+            generateTime = tmpGenerateTime;
+            commissionAmount = tmpCommissionAmount;
+            customerName = tmpCustomerName;
+            projectCode = tmpProjectCode;
+            roomNumber = tmpRoomNumber;
+            closingTheDealMoney = tmpClosingTheDealmoney;
+
+            yxConsultantJobNumber = tmpYxConsultantJobnumber;
+            yxQtDepartmentId = tmpYxQtDepartmentId;
+            kyfConsultanJobNumber = tmpKyfConsultanJobnumber;
+            kyfQtDepartmentId = tmpKyfQtDepartmentId;
+            zc1JobNumber = tmpZc1JobNumber;
+            zc1QtDepartmentId = tmpZc1QtDepartmentId;
+            zc2JobNumber = tmpZc2JobNumber;
+            zc2QtDepartmentId = tmpZc2QtDepartmentId;
+
+            checkState = tmpCheckState;
+            checkPersonJobNumber = tmpCheckPersonJobnumber;
+            checkTime = tmpCheckTime;
+
+            ifchargeback = tmpIfChargeback;
+            cbJobNumber = tmpCbJobnumber;
+            cbTime = tmpCbTime;
+
+            entryPersonJobNumber = tmpEntryPersonJobnumber;
+
+            comment = tmpComment;
+            buyTime = tmpBuyTime;
+            customerPhone = tmpCustomerPhone;
+            customerIdCard = tmpCustomerIdCard;
+            receipt = tmpReceipt;
+            roomArea = tmpRoomArea;
+            contractState = tmpContractState;
+            paymentMethod = tmpPaymentMethod;
+            loansMoney = tmploansMoney;
+
+            isReceiveReward = tmpIsReceiveReward;
+
+            qtKey = tmpQtKey;
+        }
     }
 }

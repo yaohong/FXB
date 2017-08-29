@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.myTableLayoutPanel1 = new FXB.MyControl.MyTableLayoutPanel();
             this.groupBox1 = new FXB.MyControl.MyGroupBox();
+            this.qtCbSelect = new System.Windows.Forms.ComboBox();
             this.removeOrderBtn = new System.Windows.Forms.Button();
             this.addOrderBtn = new System.Windows.Forms.Button();
             this.exportBtn = new System.Windows.Forms.Button();
@@ -39,9 +40,6 @@
             this.salesmanSelectBtn = new System.Windows.Forms.Button();
             this.salesmanEdi = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.endTime = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.startTime = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.paramEdi = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -68,6 +66,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.qtCbSelect);
             this.groupBox1.Controls.Add(this.removeOrderBtn);
             this.groupBox1.Controls.Add(this.addOrderBtn);
             this.groupBox1.Controls.Add(this.exportBtn);
@@ -75,9 +74,6 @@
             this.groupBox1.Controls.Add(this.salesmanSelectBtn);
             this.groupBox1.Controls.Add(this.salesmanEdi);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.endTime);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.startTime);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.paramEdi);
             this.groupBox1.Controls.Add(this.label1);
@@ -88,6 +84,15 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // qtCbSelect
+            // 
+            this.qtCbSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.qtCbSelect.FormattingEnabled = true;
+            this.qtCbSelect.Location = new System.Drawing.Point(254, 16);
+            this.qtCbSelect.Name = "qtCbSelect";
+            this.qtCbSelect.Size = new System.Drawing.Size(134, 20);
+            this.qtCbSelect.TabIndex = 13;
+            // 
             // removeOrderBtn
             // 
             this.removeOrderBtn.Location = new System.Drawing.Point(973, 15);
@@ -96,6 +101,7 @@
             this.removeOrderBtn.TabIndex = 12;
             this.removeOrderBtn.Text = "删除开单";
             this.removeOrderBtn.UseVisualStyleBackColor = true;
+            this.removeOrderBtn.Click += new System.EventHandler(this.removeOrderBtn_Click);
             // 
             // addOrderBtn
             // 
@@ -140,6 +146,7 @@
             // 
             this.salesmanEdi.Location = new System.Drawing.Point(534, 16);
             this.salesmanEdi.Name = "salesmanEdi";
+            this.salesmanEdi.ReadOnly = true;
             this.salesmanEdi.Size = new System.Drawing.Size(100, 21);
             this.salesmanEdi.TabIndex = 7;
             // 
@@ -152,37 +159,14 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "营销顾问:";
             // 
-            // endTime
-            // 
-            this.endTime.Location = new System.Drawing.Point(347, 16);
-            this.endTime.Name = "endTime";
-            this.endTime.Size = new System.Drawing.Size(82, 21);
-            this.endTime.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(330, 21);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(11, 12);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "-";
-            // 
-            // startTime
-            // 
-            this.startTime.Location = new System.Drawing.Point(242, 16);
-            this.startTime.Name = "startTime";
-            this.startTime.Size = new System.Drawing.Size(82, 21);
-            this.startTime.TabIndex = 3;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(201, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 12);
+            this.label2.Size = new System.Drawing.Size(47, 12);
             this.label2.TabIndex = 2;
-            this.label2.Text = "日期:";
+            this.label2.Text = "QT任务:";
             // 
             // paramEdi
             // 
@@ -205,8 +189,8 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Beige;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 53);
@@ -214,8 +198,8 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Bisque;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Bisque;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1221, 559);
@@ -244,10 +228,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox paramEdi;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker startTime;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker endTime;
         private System.Windows.Forms.TextBox salesmanEdi;
         private System.Windows.Forms.Button salesmanSelectBtn;
         private System.Windows.Forms.Button inquireBtn;
@@ -256,5 +237,6 @@
         private System.Windows.Forms.Button removeOrderBtn;
         private MyControl.MyTableLayoutPanel myTableLayoutPanel1;
         private MyControl.MyDataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox qtCbSelect;
     }
 }

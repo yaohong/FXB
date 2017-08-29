@@ -14,6 +14,7 @@ namespace FXB.Dialog
 {
     public partial class OrderDataDlg : Form
     {
+        private string selectJobNumber = "";
         public OrderDataDlg()
         {
             InitializeComponent();
@@ -21,6 +22,32 @@ namespace FXB.Dialog
 
         private void inquireBtn_Click(object sender, EventArgs e)
         {
+            string qtKey = "";
+            if (qtCbSelect.SelectedIndex == -1)
+            {
+                return;
+            }
+            dataGridView1.Rows.Clear();
+            qtKey = qtCbSelect.SelectedItem as string;
+
+            QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+            foreach (var item in qtTask.AllQtOrder)
+            {
+                QtOrder qtOrder = item.Value;
+                if (selectJobNumber != "" && qtOrder.YxConsultantJobNumber != selectJobNumber)
+                {
+                    //过滤营销顾问
+                    continue;
+                }
+
+                if (paramEdi.Text != "")
+                {
+                    //过滤查询关键字
+                }
+
+                int lineIndex = dataGridView1.Rows.Add();
+                UpdateGridViewRow(dataGridView1.Rows[lineIndex], qtOrder);
+            }
 
         }
 
@@ -30,6 +57,11 @@ namespace FXB.Dialog
             salesmanEdi.Enabled = false;
 
             SetDataGridViewColumn();
+
+            foreach (var item in QtMgr.Instance().AllQtTask)
+            {
+                qtCbSelect.Items.Add(item.Key);
+            }
         }
 
         private void SetDataGridViewColumn()
@@ -210,52 +242,61 @@ namespace FXB.Dialog
 
         private void UpdateGridViewRow(DataGridViewRow row, QtOrder data)
         {
-            row.Cells["orderid"].Value = data.orderId;
-            row.Cells["ordertime"].Value = TimeUtil.TimestampToDateTime(data.generateTime).ToShortDateString();
-            row.Cells["customerName"].Value = data.customerName;
-            row.Cells["projectName"].Value = ProjectDataMgr.Instance().AllProjectData[data.projectCode].Name ;
-            row.Cells["roomNumber"].Value = data.roomNumber;
+            row.Cells["orderid"].Value = data.Id;
+            row.Cells["ordertime"].Value = TimeUtil.TimestampToDateTime(data.GenerateTime).ToShortDateString();
+            row.Cells["customerName"].Value = data.CustomerName;
+            row.Cells["projectName"].Value = ProjectDataMgr.Instance().AllProjectData[data.ProjectCode].Name ;
+            row.Cells["roomNumber"].Value = data.RoomNumber;
 
-            row.Cells["closingTheDealMoney"].Value = data.closingTheDealMoney;
-            row.Cells["commissionAmount"].Value = data.commissionAmount;
+            row.Cells["closingTheDealMoney"].Value = data.ClosingTheDealMoney;
+            row.Cells["commissionAmount"].Value = data.CommissionAmount;
 
-            row.Cells["yxConsultantName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.yxConsultantJobNumber].Name;
-            row.Cells["kyfConsultanName"].Value = data.kyfConsultanJobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.kyfConsultanJobNumber].Name : "";
-            row.Cells["zhuchang1Name"].Value = data.zc1JobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.zc1JobNumber].Name : "";
-            row.Cells["zhuchang2Name"].Value = data.zc2JobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.zc2JobNumber].Name : "";
-            row.Cells["checkState"].Value = data.checkState;
-            if (data.checkState)
+            row.Cells["yxConsultantName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.YxConsultantJobNumber].Name;
+            row.Cells["kyfConsultanName"].Value = data.KyfConsultanJobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.KyfConsultanJobNumber].Name : "";
+            row.Cells["zhuchang1Name"].Value = data.Zc1JobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.Zc1JobNumber].Name : "";
+            row.Cells["zhuchang2Name"].Value = data.Zc2JobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.Zc2JobNumber].Name : "";
+            row.Cells["checkState"].Value = data.CheckState;
+            if (data.CheckState)
             {
-                row.Cells["checkPersonName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.checkPersonJobNumber].Name; ;
-                row.Cells["checkTime"].Value = TimeUtil.TimestampToDateTime(data.checkTime).ToString("yyyy-MM-dd hh-mm-ss");
+                row.Cells["checkPersonName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.CheckPersonJobNumber].Name; ;
+                row.Cells["checkTime"].Value = TimeUtil.TimestampToDateTime(data.CheckTime).ToString("yyyy-MM-dd hh-mm-ss");
             }
 
             //录入人暂时不填
+            row.Cells["entryPersonName"].Value = "";
 
-            row.Cells["cbState"].Value = data.ifchargeback;
-            if (data.ifchargeback)
+            row.Cells["cbState"].Value = data.IfChargeback;
+            if (data.IfChargeback)
             {
-                row.Cells["cbName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.cbJobNumber].Name; ;
-                row.Cells["cbTime"].Value = TimeUtil.TimestampToDateTime(data.cbTime).ToString("yyyy-MM-dd hh-mm-ss");
+                row.Cells["cbName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.CbJobNumber].Name; ;
+                row.Cells["cbTime"].Value = TimeUtil.TimestampToDateTime(data.CbTime).ToString("yyyy-MM-dd hh-mm-ss");
             }
 
-            row.Cells["comment"].Value = data.comment;
-
-            row.Cells["buyTime"].Value = TimeUtil.TimestampToDateTime(data.buyTime).ToString("yyyy-MM-dd hh-mm-ss");
-
-            row.Cells["customerPhone"].Value = data.customerPhone;
-            row.Cells["customerIdCard"].Value = data.customerIdCard;
-            row.Cells["receipt"].Value = data.receipt;
-            row.Cells["roomArea"].Value = data.roomArea;
-            row.Cells["contractState"].Value = data.contractState;
-            row.Cells["paymentMethod"].Value = data.paymentMethod;
-            row.Cells["loansMoney"].Value = data.loansMoney;
+            row.Cells["comment"].Value = data.Comment;
+            row.Cells["buyTime"].Value = TimeUtil.TimestampToDateTime(data.BuyTime).ToString("yyyy-MM-dd hh-mm-ss");
+            row.Cells["customerPhone"].Value = data.CustomerPhone;
+            row.Cells["customerIdCard"].Value = data.CustomerIdCard;
+            row.Cells["receipt"].Value = data.Receipt;
+            row.Cells["roomArea"].Value = data.RoomArea;
+            row.Cells["contractState"].Value = data.ContractState;
+            row.Cells["paymentMethod"].Value = data.PaymentMethod;
+            row.Cells["loansMoney"].Value = data.LoansMoney;
         }
 
         private void salesmanSelectBtn_Click(object sender, EventArgs e)
         {
             EmployeeSelectDlg selectDlg = new EmployeeSelectDlg(null);
-            selectDlg.ShowDialog();
+            if (DialogResult.OK == selectDlg.ShowDialog())
+            {
+                selectJobNumber = selectDlg.SelectEmployeeJobNumber;
+                EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[selectJobNumber];
+                salesmanEdi.Text = employeeData.Name;
+            }
+        }
+
+        private void removeOrderBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

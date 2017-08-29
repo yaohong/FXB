@@ -17,12 +17,12 @@ namespace FXB.Data
         private Int64 parentDepartmentId;
         private SortedSet<Int64> childDepartmentIdSet;      //所有的子部门
         private double needCompleteTaskAmount;              //需要完成的任务金额
-
+        private double alreadyCompleteTaskAmount;            //已经完成的任务金额
 
 
         //不存DB的数据
         private bool isCalcTaskAmount;                        //是否计算任务金额
-        private float alreadyCompleteTaskAmount;            //已经完成的任务金额
+        
         public QtDepartment(Int64 tmpDeparmentId, QtLevel tmpQtLevel, string tmpOwnerJobNumber, string tmpDeparmentName,Int64 tmpParentDepartmentId)
         {
             deparmentId = tmpDeparmentId;
@@ -33,9 +33,10 @@ namespace FXB.Data
 
             childDepartmentIdSet = new SortedSet<Int64>();
             needCompleteTaskAmount = 0.0f;
+            alreadyCompleteTaskAmount = 0.0f;
 
             isCalcTaskAmount = false;
-            alreadyCompleteTaskAmount = 0.0f;
+            
         }
 
         public QtDepartment(Int64 tmpDeparmentId, QtLevel tmpQtLevel, string tmpOwnerJobNumber, string tmpDeparmentName, Int64 tmpParentDepartmentId, double tmpNeedCompleteTaskAmount)

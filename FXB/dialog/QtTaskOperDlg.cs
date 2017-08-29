@@ -232,46 +232,12 @@ namespace FXB.Dialog
             if (qtCb.SelectedItem != null)
             {
                 string qtKey = (string)qtCb.SelectedItem;
-                QtTask selectQtTask = QtMgr.Instance().AllQtTask[qtKey];
-                if (selectQtTask.Closing)
-                {
-                    //已经有开单了?
-                    MessageBox.Show("提成已经生成");
-                    return;
-                }
 
                 try
                 {
-                    foreach (var item in selectQtTask.AllQtOrder)
-                    {
-                        QtOrder qtOrder = item.Value;
-                        if (!qtOrder.checkState)
-                        {
-                            //没有审核的订单不参与计算
-                            continue;
-                        }
-
-                        if (qtOrder.ifchargeback)
-                        {
-                            //已经退了
-                            continue;
-                        }
-
-                        Int64 departmentId = qtOrder.yxQtDepartmentId;
-                        
-                        while (departmentId != 0)
-                        {
-                            QtDepartment qtDepartment = selectQtTask.AllQtDepartment[departmentId];
-                            if (qtDepartment.OwnerJobNumber != "")
-                            {
-                                qtDepartment.AlreadyCompleteTaskAmount += qtOrder.commissionAmount;
-                            }
-                            departmentId = qtDepartment.ParentDepartmentId;
-                        }
-
-
-
-                    }
+                    QtMgr.Instance().GenerateQtPush(qtKey);
+                    QtTask qtTak = QtMgr.Instance().AllQtTask[qtKey];
+                    ShowQtTask(qtTak);
                 }
                 catch (ConditionCheckException ex)
                 {

@@ -27,6 +27,7 @@ namespace FXB.Data
         public bool Closing
         {
             get { return closing; }
+            set { closing = true; }
         }
 
         public QtDepartment RootQtDepartment
@@ -130,7 +131,11 @@ namespace FXB.Data
         }
 
         //由DB数据构建QT任务
-        public QtTask(DbQtTaskIndex qtIndexData, SortedDictionary<Int64, DbQtTaskDepartment> qtDepartmentData, SortedDictionary<string, DbQtTaskEmployee> qtEmployeeData)
+        public QtTask(
+            DbQtTaskIndex qtIndexData, 
+            SortedDictionary<Int64, DbQtTaskDepartment> qtDepartmentData, 
+            SortedDictionary<string, DbQtTaskEmployee> qtEmployeeData,
+            SortedDictionary<Int64, DbQtTaskOrder> qtOrderData)
         {
             qtKey = qtIndexData.QtKey;
             closing = qtIndexData.Closing;
@@ -138,8 +143,6 @@ namespace FXB.Data
             allQtDepartment = new SortedDictionary<Int64, QtDepartment>();
             allQtEmployee = new SortedDictionary<string, QtEmployee>();  //建立部门的上级关系
             allQtOrder = new SortedDictionary<Int64, QtOrder>();
-
-
 
             foreach (var item in qtDepartmentData)
             {
@@ -154,12 +157,26 @@ namespace FXB.Data
 
             rootQtDepartment = allQtDepartment[qtIndexData.RootqtDepartmentId];
 
-
             //添加员工信息
             foreach (var EmployeeItem in qtEmployeeData)
             {
                 DbQtTaskEmployee dbEmployee = EmployeeItem.Value;
                 allQtEmployee[EmployeeItem.Key] = new QtEmployee(dbEmployee.JobNumber, dbEmployee.JobGradeName, dbEmployee.DepartmentId, dbEmployee.QtLevel, dbEmployee.IsOwner);
+            }
+
+            foreach (var OrderItem in qtOrderData)
+            {
+                DbQtTaskOrder dbOrder = OrderItem.Value;
+                QtOrder newQtOrder = new QtOrder(
+                    dbOrder.Id, dbOrder.GenerateTime, dbOrder.CommissionAmount, dbOrder.CustomerName,
+                    dbOrder.ProjectCode, dbOrder.RoomNumber, dbOrder.ClosingTheDealmoney, dbOrder.YxConsultantJobnumber,
+                    dbOrder.YxQtDepartmentId, dbOrder.KyfConsultanJobnumber, dbOrder.KyfQtDepartmentId, dbOrder.Zc1JobNumber,
+                    dbOrder.Zc1QtDepartmentId, dbOrder.Zc2JobNumber, dbOrder.Zc2QtDepartmentId, dbOrder.CheckState,
+                    dbOrder.CheckPersonJobnumber, dbOrder.CheckTime, dbOrder.IfChargeback, dbOrder.CbJobnumber,
+                    dbOrder.CbTime, dbOrder.EntryPersonJobnumber, dbOrder.Comment, dbOrder.BuyTime,
+                    dbOrder.CustomerPhone, dbOrder.CustomerIdCard, dbOrder.Receipt, dbOrder.RoomArea,
+                    dbOrder.ContractState, dbOrder.PaymentMethod, dbOrder.LoansMoney, dbOrder.IsReceiveReward, qtKey);
+                allQtOrder[dbOrder.Id] = newQtOrder;
             }
         }
 
