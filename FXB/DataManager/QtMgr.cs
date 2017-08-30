@@ -1009,7 +1009,7 @@ namespace FXB.DataManager
             command.Parameters.AddWithValue("@entrypersonjobnumber", entryPersonJobNumber);
             command.Parameters.AddWithValue("@comment", comment);
             command.Parameters.AddWithValue("@buytime", (Int32)buyTime);
-            command.Parameters.AddWithValue("@customerphone", customerName);
+            command.Parameters.AddWithValue("@customerphone", customerPhone);
             command.Parameters.AddWithValue("@customeridcard", customerIdCard);
             command.Parameters.AddWithValue("@receipt", receipt);
             command.Parameters.AddWithValue("@roomarea", roomArea);
@@ -1034,53 +1034,14 @@ namespace FXB.DataManager
         }
 
         //生成QT提成
-        public void GenerateQtPush(string qtKey)
+        public void CalcQtCommission(string qtKey)
         {
-            if (QtMgr.Instance().AllQtTask.ContainsKey(qtKey))
+            if (!allQtTask.ContainsKey(qtKey))
             {
                 throw new ConditionCheckException(string.Format("QT任务[{0}]不存在", qtKey));
             }
-            QtTask selectQtTask = QtMgr.Instance().AllQtTask[qtKey];
-            if (selectQtTask.Closing)
-            {
-                //已经计算提成了
-                throw new ConditionCheckException(string.Format("QT任务[{0}]的提成已经生成", qtKey));
-            }
-
-            foreach (var kv in selectQtTask.AllQtDepartment)
-            {
-                kv.Value.AlreadyCompleteTaskAmount = 0.0f;
-            }
-
-            foreach (var item in selectQtTask.AllQtOrder)
-            {
-                QtOrder qtOrder = item.Value;
-                if (!qtOrder.CheckState)
-                {
-                    //没有审核的订单不参与计算
-                    continue;
-                }
-
-                if (qtOrder.IfChargeback)
-                {
-                    //已经退了
-                    continue;
-                }
-
-                Int64 departmentId = qtOrder.YxQtDepartmentId;
-
-                //往上回朔计算提成
-                while (departmentId != 0)
-                {
-                    QtDepartment qtDepartment = selectQtTask.AllQtDepartment[departmentId];
-                    if (qtDepartment.OwnerJobNumber != "")
-                    {
-                        qtDepartment.AlreadyCompleteTaskAmount += qtOrder.CommissionAmount;
-                    }
-                    departmentId = qtDepartment.ParentDepartmentId;
-                }
-            }
-
+            QtTask qtTask = allQtTask[qtKey];
+            qtTask.CalcQtCommission();
             //更新数据到DB
             SqlCommand command = new SqlCommand();
             command.Connection = SqlMgr.Instance().SqlConnect;
@@ -1090,7 +1051,7 @@ namespace FXB.DataManager
             command.Parameters.AddWithValue("@qtkey", qtKey);
             command.ExecuteNonQuery();
 
-            selectQtTask.Closing = true;
+           // selectQtTask.Closing = true;
         }
 
         public SortedDictionary<string, QtTask> AllQtTask

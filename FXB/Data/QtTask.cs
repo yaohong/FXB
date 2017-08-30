@@ -217,7 +217,55 @@ namespace FXB.Data
         }
 
 
+        public void CalcQtCommission()
+        {
+            //计算QT提成
+            if (closing)
+            {
+                throw new ConditionCheckException("QT提成已经生成");
+            }
 
+            //先清零
+            foreach (var kv in allQtDepartment)
+            {
+                kv.Value.AlreadyCompleteTaskAmount = 0.0f;
+            }
+
+            foreach (var item in allQtOrder)
+            {
+                QtOrder qtOrder = item.Value;
+                if (!qtOrder.CheckState)
+                {
+                    //没有审核的订单不参与计算
+                    continue;
+                }
+
+                if (qtOrder.IfChargeback)
+                {
+                    //已经退了
+                    continue;
+                }
+
+                Int64 departmentId = qtOrder.YxQtDepartmentId;
+
+                //往上回朔计算提成
+                while (departmentId != 0)
+                {
+                    QtDepartment qtDepartment = allQtDepartment[departmentId];
+                    if (qtDepartment.OwnerJobNumber != "")
+                    {
+                        qtDepartment.AlreadyCompleteTaskAmount += qtOrder.CommissionAmount;
+                    }
+                    departmentId = qtDepartment.ParentDepartmentId;
+                }
+            }
+        }
+
+        
+        public void ResetQtCommission()
+        {
+            //重置QT提成
+        }
 
     }
 }

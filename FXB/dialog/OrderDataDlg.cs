@@ -69,19 +69,19 @@ namespace FXB.Dialog
             DataGridViewTextBoxColumn orderid = new DataGridViewTextBoxColumn();
             orderid.Name = "orderid";
             orderid.HeaderText = "开单编号";
-            orderid.Width = 120;
+            orderid.Width = 80;
             dataGridView1.Columns.Add(orderid);
 
             DataGridViewTextBoxColumn ordertime = new DataGridViewTextBoxColumn();
             ordertime.Name = "ordertime";
             ordertime.HeaderText = "开单日期";
-            ordertime.Width = 120;
+            ordertime.Width = 80;
             dataGridView1.Columns.Add(ordertime);
 
             DataGridViewTextBoxColumn customerName = new DataGridViewTextBoxColumn();
             customerName.Name = "customerName";
             customerName.HeaderText = "客户名称";
-            customerName.Width = 100;
+            customerName.Width = 80;
             dataGridView1.Columns.Add(customerName);
 
             DataGridViewTextBoxColumn projectName = new DataGridViewTextBoxColumn();
@@ -93,49 +93,49 @@ namespace FXB.Dialog
             DataGridViewTextBoxColumn roomNumber = new DataGridViewTextBoxColumn();
             roomNumber.Name = "roomNumber";
             roomNumber.HeaderText = "房号";
-            roomNumber.Width = 100;
+            roomNumber.Width = 130;
             dataGridView1.Columns.Add(roomNumber);
 
             DataGridViewTextBoxColumn closingTheDealMoney = new DataGridViewTextBoxColumn();
             closingTheDealMoney.Name = "closingTheDealMoney";
             closingTheDealMoney.HeaderText = "成交总价";
-            closingTheDealMoney.Width = 100;
+            closingTheDealMoney.Width = 80;
             dataGridView1.Columns.Add(closingTheDealMoney);
 
             DataGridViewTextBoxColumn commissionAmount = new DataGridViewTextBoxColumn();
             commissionAmount.Name = "commissionAmount";
             commissionAmount.HeaderText = "佣金总额";
-            commissionAmount.Width = 100;
+            commissionAmount.Width = 80;
             dataGridView1.Columns.Add(commissionAmount);
 
             DataGridViewTextBoxColumn yxConsultantName = new DataGridViewTextBoxColumn();
             yxConsultantName.Name = "yxConsultantName";
             yxConsultantName.HeaderText = "营销顾问";
-            yxConsultantName.Width = 100;
+            yxConsultantName.Width = 80;
             dataGridView1.Columns.Add(yxConsultantName);
 
             DataGridViewTextBoxColumn kyfConsultanName = new DataGridViewTextBoxColumn();
             kyfConsultanName.Name = "kyfConsultanName";
             kyfConsultanName.HeaderText = "客源方";
-            kyfConsultanName.Width = 100;
+            kyfConsultanName.Width = 80;
             dataGridView1.Columns.Add(kyfConsultanName);
 
             DataGridViewTextBoxColumn zhuchang1Name = new DataGridViewTextBoxColumn();
             zhuchang1Name.Name = "zhuchang1Name";
             zhuchang1Name.HeaderText = "驻场1";
-            zhuchang1Name.Width = 100;
+            zhuchang1Name.Width = 80;
             dataGridView1.Columns.Add(zhuchang1Name);
 
             DataGridViewTextBoxColumn zhuchang2Name = new DataGridViewTextBoxColumn();
             zhuchang2Name.Name = "zhuchang2Name";
             zhuchang2Name.HeaderText = "驻场2";
-            zhuchang2Name.Width = 100;
+            zhuchang2Name.Width = 80;
             dataGridView1.Columns.Add(zhuchang2Name);
 
             DataGridViewCheckBoxColumn checkState = new DataGridViewCheckBoxColumn();
             checkState.Name = "checkState";
             checkState.HeaderText = "审核状态";
-            checkState.Width = 100;
+            checkState.Width = 80;
             dataGridView1.Columns.Add(checkState);
 
             DataGridViewTextBoxColumn checkPersonName = new DataGridViewTextBoxColumn();
@@ -259,7 +259,7 @@ namespace FXB.Dialog
             if (data.CheckState)
             {
                 row.Cells["checkPersonName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.CheckPersonJobNumber].Name; ;
-                row.Cells["checkTime"].Value = TimeUtil.TimestampToDateTime(data.CheckTime).ToString("yyyy-MM-dd hh-mm-ss");
+                row.Cells["checkTime"].Value = TimeUtil.TimestampToDateTime(data.CheckTime).ToString("yyyy-MM-dd HH:mm:ss");
             }
 
             //录入人暂时不填
@@ -269,11 +269,11 @@ namespace FXB.Dialog
             if (data.IfChargeback)
             {
                 row.Cells["cbName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.CbJobNumber].Name; ;
-                row.Cells["cbTime"].Value = TimeUtil.TimestampToDateTime(data.CbTime).ToString("yyyy-MM-dd hh-mm-ss");
+                row.Cells["cbTime"].Value = TimeUtil.TimestampToDateTime(data.CbTime).ToString("yyyy-MM-dd HH:mm:ss");
             }
 
             row.Cells["comment"].Value = data.Comment;
-            row.Cells["buyTime"].Value = TimeUtil.TimestampToDateTime(data.BuyTime).ToString("yyyy-MM-dd hh-mm-ss");
+            row.Cells["buyTime"].Value = TimeUtil.TimestampToDateTime(data.BuyTime).ToString("yyyy-MM-dd HH:mm:ss");
             row.Cells["customerPhone"].Value = data.CustomerPhone;
             row.Cells["customerIdCard"].Value = data.CustomerIdCard;
             row.Cells["receipt"].Value = data.Receipt;
@@ -289,8 +289,16 @@ namespace FXB.Dialog
             if (DialogResult.OK == selectDlg.ShowDialog())
             {
                 selectJobNumber = selectDlg.SelectEmployeeJobNumber;
-                EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[selectJobNumber];
-                salesmanEdi.Text = employeeData.Name;
+                if (selectJobNumber != "")
+                {
+                    EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[selectJobNumber];
+                    salesmanEdi.Text = employeeData.Name;
+                }
+                else
+                {
+                    salesmanEdi.Text = "";
+                }
+
             }
         }
 

@@ -235,7 +235,7 @@ namespace FXB.Dialog
 
                 try
                 {
-                    QtMgr.Instance().GenerateQtPush(qtKey);
+                    QtMgr.Instance().CalcQtCommission(qtKey);
                     QtTask qtTak = QtMgr.Instance().AllQtTask[qtKey];
                     ShowQtTask(qtTak);
                 }
