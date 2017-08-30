@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new FXB.MyControl.MyTableLayoutPanel();
             this.dataGridView1 = new FXB.MyControl.MyDataGridView();
             this.groupBox1 = new FXB.MyControl.MyGroupBox();
+            this.clearQtPushBtn = new System.Windows.Forms.Button();
             this.removeQtTaskBtn = new System.Windows.Forms.Button();
             this.generateQtPushbtn = new System.Windows.Forms.Button();
             this.viewQtTaskBtn = new System.Windows.Forms.Button();
@@ -64,8 +65,8 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Beige;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 60);
@@ -73,8 +74,8 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Bisque;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Bisque;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(680, 436);
@@ -82,6 +83,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.clearQtPushBtn);
             this.groupBox1.Controls.Add(this.removeQtTaskBtn);
             this.groupBox1.Controls.Add(this.generateQtPushbtn);
             this.groupBox1.Controls.Add(this.viewQtTaskBtn);
@@ -95,9 +97,19 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
+            // clearQtPushBtn
+            // 
+            this.clearQtPushBtn.Location = new System.Drawing.Point(491, 19);
+            this.clearQtPushBtn.Name = "clearQtPushBtn";
+            this.clearQtPushBtn.Size = new System.Drawing.Size(75, 23);
+            this.clearQtPushBtn.TabIndex = 7;
+            this.clearQtPushBtn.Text = "清除QT提成";
+            this.clearQtPushBtn.UseVisualStyleBackColor = true;
+            this.clearQtPushBtn.Click += new System.EventHandler(this.clearQtPushBtn_Click);
+            // 
             // removeQtTaskBtn
             // 
-            this.removeQtTaskBtn.Location = new System.Drawing.Point(491, 19);
+            this.removeQtTaskBtn.Location = new System.Drawing.Point(572, 19);
             this.removeQtTaskBtn.Name = "removeQtTaskBtn";
             this.removeQtTaskBtn.Size = new System.Drawing.Size(75, 23);
             this.removeQtTaskBtn.TabIndex = 6;
@@ -178,5 +190,6 @@
         private FXB.MyControl.MyDataGridView dataGridView1;
         private System.Windows.Forms.Button generateQtPushbtn;
         private System.Windows.Forms.Button removeQtTaskBtn;
+        private System.Windows.Forms.Button clearQtPushBtn;
     }
 }

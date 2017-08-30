@@ -224,7 +224,7 @@ namespace FXB.Data
             {
                 throw new ConditionCheckException("QT提成已经生成");
             }
-
+            closing = true;
             //先清零
             foreach (var kv in allQtDepartment)
             {
@@ -242,13 +242,31 @@ namespace FXB.Data
 
                 if (qtOrder.IfChargeback)
                 {
-                    //已经退了
+                    //已经退单了
                     continue;
                 }
 
                 Int64 departmentId = qtOrder.YxQtDepartmentId;
+                double yxCommission = qtOrder.CommissionAmount;
+                if (qtOrder.KyfConsultanJobNumber != "")
+                {
+                    //有客源方
+                    yxCommission = qtOrder.CommissionAmount * 0.9;
+                    double kyfCommission = qtOrder.CommissionAmount * 0.1;
+                    //给客源方加业绩
+                    Int64 kyfDepartmentId = qtOrder.KyfQtDepartmentId;
+                    while (kyfDepartmentId != 0)
+                    {
+                        QtDepartment kyfQtDepartment = allQtDepartment[kyfDepartmentId];
+                        if (kyfQtDepartment.OwnerJobNumber != "")
+                        {
+                            kyfQtDepartment.AlreadyCompleteTaskAmount += kyfCommission;
+                        }
+                        kyfDepartmentId = kyfQtDepartment.ParentDepartmentId;
+                    }
+                }
 
-                //往上回朔计算提成
+                //给自身添加业绩
                 while (departmentId != 0)
                 {
                     QtDepartment qtDepartment = allQtDepartment[departmentId];
@@ -258,13 +276,25 @@ namespace FXB.Data
                     }
                     departmentId = qtDepartment.ParentDepartmentId;
                 }
+
             }
         }
 
         
-        public void ResetQtCommission()
+        public void ClearQtCommission()
         {
             //重置QT提成
+            if (!closing)
+            {
+                return;
+            }
+
+            closing = false;
+            //需要检测是否有回佣
+            foreach (var kv in allQtDepartment)
+            {
+                kv.Value.AlreadyCompleteTaskAmount = 0.0f;
+            }
         }
 
     }

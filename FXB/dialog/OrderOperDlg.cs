@@ -78,9 +78,10 @@ namespace FXB.Dialog
 
         private void RefreshCheckState(bool checkState, string checkPersoName, string checkTime, string luruPersoName, bool orderState)
         {
-            string str = string.Format("审核状态:{0}    审核人:{1}    审核日期:{2}         录入人:{3}         订单状态:{4}", checkState ? "已审核" : "未审核",
-                checkPersoName, checkTime, luruPersoName, orderState ? "正常" : "已退单");
-            shenheInfo.Text = str;
+            checkStateLable.Text = "已审核";
+            checkJobNumberLable.Text = "石頭哥哥";
+            checkTimeLable.Text = "2016-10-09 23:11:20";
+            luruJobNumberLable.Text = "石頭哥哥的";
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -330,40 +331,6 @@ namespace FXB.Dialog
                 }
             }
         }
-
-        //private bool KeyuanfangInquireFilterFunc(BasicDataInterface bd)
-        //{
-        //    //选择客源方的函数,必须在QT结构下
-        //    EmployeeData data = bd as EmployeeData;
-        //    string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
-        //    QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
-        //    if (!qtTask.AllQtEmployee.ContainsKey(data.JobNumber))
-        //    {
-        //        //不属于QT任务里的只能是业务员
-        //        if (data.QTLevel == QtLevel.Salesman)
-        //        {
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            return false;
-        //        }
-        //    } 
-        //    else
-        //    {
-        //        if (data.QTLevel != QtLevel.Salesman &&
-        //            data.QTLevel != QtLevel.SmallCharge &&
-        //            data.QTLevel != QtLevel.LargeCharge &&
-        //            data.QTLevel != QtLevel.Majordomo)
-        //        {
-        //            return false;
-        //        } 
-        //        else
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //}
 
         private bool ZhuchangInquireFilterFunc(BasicDataInterface bd)
         {

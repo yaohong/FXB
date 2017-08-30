@@ -111,6 +111,12 @@
     <Compile Include="Dialog\JobGradeSelectDlg.Designer.cs">
       <DependentUpon>JobGradeSelectDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\LoginDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\LoginDlg.Designer.cs">
+      <DependentUpon>LoginDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\OrderDataDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\JobGradeSelectDlg.resx">
       <DependentUpon>JobGradeSelectDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\LoginDlg.resx">
+      <DependentUpon>LoginDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\OrderDataDlg.resx">
       <DependentUpon>OrderDataDlg.cs</DependentUpon>

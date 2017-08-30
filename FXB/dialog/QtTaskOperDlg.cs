@@ -72,40 +72,6 @@ namespace FXB.Dialog
             curShowQtKey = qtTask.QtKey;
             dataGridView1.Rows.Clear();
             IterationShowQtTask(qtTask.RootQtDepartment, qtTask);
-            //QtDepartment itemDepartmen = qtTask.RootQtDepartment;
-            //while (itemDepartmen != null)
-            //{
-
-            //}
-            //foreach (var item in qtTask.AllQtDepartment)
-            //{
-            //    QtDepartment qtDepartment = item.Value;
-            //    if (qtDepartment.QtLevel == QtLevel.ZhuchangZongjian ||
-            //        qtDepartment.QtLevel == QtLevel.ZhuchangZhuguan)
-            //    {
-            //        continue;
-            //    }
-            //    int newLine = dataGridView1.Rows.Add();
-                
-            //    dataGridView1.Rows[newLine].Cells["department"].Value = DepartmentUtil.GetQtDepartmentShowText(qtTask, qtDepartment.Id);
-            //    dataGridView1.Rows[newLine].Cells["qtlevel"].Value = QtUtil.GetQTLevelString(qtDepartment.QtLevel);
-            //    string ownerName = "";
-            //    if (qtDepartment.OwnerJobNumber != "")
-            //    {
-            //        EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[qtDepartment.OwnerJobNumber];
-            //        ownerName = employeeData.Name;
-            //    }
-            //    dataGridView1.Rows[newLine].Cells["owner"].Value = ownerName;
-            //    dataGridView1.Rows[newLine].Cells["qtTaskAmount"].Value = Convert.ToString(qtDepartment.NeedCompleteTaskAmount);
-
-            //    if (!qtTask.Closing)
-            //    {
-            //        //没有结算
-            //        dataGridView1.Rows[newLine].Cells["ifSettle"].Value = false;
-            //        dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = "0";
-            //        dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = "0";
-            //    }
-            //}
         }
 
         private void IterationShowQtTask(QtDepartment qtDepartment, QtTask qtTask)
@@ -121,24 +87,27 @@ namespace FXB.Dialog
             dataGridView1.Rows[newLine].Cells["department"].Value = DepartmentUtil.GetQtDepartmentShowText(qtTask, qtDepartment.Id);
             dataGridView1.Rows[newLine].Cells["qtlevel"].Value = QtUtil.GetQTLevelString(qtDepartment.QtLevel);
 
+            
             if (qtDepartment.OwnerJobNumber != "")
             {
                 EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[qtDepartment.OwnerJobNumber];
                 dataGridView1.Rows[newLine].Cells["owner"].Value = employeeData.Name;
-                dataGridView1.Rows[newLine].Cells["qtTaskAmount"].Value = Convert.ToString(qtDepartment.NeedCompleteTaskAmount);
-                if (!qtTask.Closing)
-                {
-                    //没有结算
-                    dataGridView1.Rows[newLine].Cells["ifSettle"].Value = false;
-                }
-                else
-                {
-                    dataGridView1.Rows[newLine].Cells["ifSettle"].Value = true;
-                    dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = qtDepartment.AlreadyCompleteTaskAmount;
-                    dataGridView1.Rows[newLine].Cells["prop"].Value = CommissionUtil.GetCommissionPropToStr(qtDepartment);
-
-                }
             }
+            dataGridView1.Rows[newLine].Cells["qtTaskAmount"].Value = Convert.ToString(qtDepartment.NeedCompleteTaskAmount);
+            if (!qtTask.Closing)
+            {
+                //没有结算
+                dataGridView1.Rows[newLine].Cells["ifSettle"].Value = false;
+            }
+            else
+            {
+                dataGridView1.Rows[newLine].Cells["ifSettle"].Value = true;
+                dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = qtDepartment.AlreadyCompleteTaskAmount;
+                dataGridView1.Rows[newLine].Cells["prop"].Value = CommissionUtil.GetCommissionPropToStr(qtDepartment);
+
+            }
+
+
 
 
             foreach (var item in qtDepartment.ChildDepartmentIdSet)
@@ -164,7 +133,7 @@ namespace FXB.Dialog
 
             DataGridViewTextBoxColumn owner = new DataGridViewTextBoxColumn();
             owner.Name = "owner";
-            owner.HeaderText = "管理员";
+            owner.HeaderText = "主管";
             owner.Width = 100;
             dataGridView1.Columns.Add(owner);
 
@@ -236,6 +205,30 @@ namespace FXB.Dialog
                 try
                 {
                     QtMgr.Instance().CalcQtCommission(qtKey);
+                    QtTask qtTak = QtMgr.Instance().AllQtTask[qtKey];
+                    ShowQtTask(qtTak);
+                }
+                catch (ConditionCheckException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex1)
+                {
+                    MessageBox.Show(ex1.Message);
+                    Application.Exit();
+                }
+            }
+        }
+
+        private void clearQtPushBtn_Click(object sender, EventArgs e)
+        {
+            if (qtCb.SelectedItem != null)
+            {
+                string qtKey = (string)qtCb.SelectedItem;
+
+                try
+                {
+                    QtMgr.Instance().ClearQtCommission(qtKey);
                     QtTask qtTak = QtMgr.Instance().AllQtTask[qtKey];
                     ShowQtTask(qtTak);
                 }

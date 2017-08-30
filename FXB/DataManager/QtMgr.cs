@@ -1042,16 +1042,96 @@ namespace FXB.DataManager
             }
             QtTask qtTask = allQtTask[qtKey];
             qtTask.CalcQtCommission();
-            //更新数据到DB
-            SqlCommand command = new SqlCommand();
-            command.Connection = SqlMgr.Instance().SqlConnect;
-            command.CommandType = CommandType.Text;
-            command.CommandText = "update qttaskindex set closing=@closing where qtkey=@qtkey";
-            command.Parameters.AddWithValue("@closing", true);
-            command.Parameters.AddWithValue("@qtkey", qtKey);
-            command.ExecuteNonQuery();
 
-           // selectQtTask.Closing = true;
+            SqlTransaction sqlTran = null; 
+            try
+            {
+                sqlTran = SqlMgr.Instance().SqlConnect.BeginTransaction();
+
+                SqlCommand command = new SqlCommand();
+                command.Connection = SqlMgr.Instance().SqlConnect;
+                command.Transaction = sqlTran;
+                command.CommandType = CommandType.Text;
+                command.CommandText = "update qttaskindex set closing=@closing where qtkey=@qtkey";
+                command.Parameters.AddWithValue("@closing", qtTask.Closing);
+                command.Parameters.AddWithValue("@qtkey", qtKey);
+                command.ExecuteNonQuery();
+
+                command.Parameters.Clear();
+
+                foreach (var item in qtTask.AllQtDepartment)
+                {
+                    QtDepartment qtDepartment = item.Value;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "update qttaskdepartment set alreadycompletetaskamount=@alreadycompletetaskamount where qtkey=@qtkey and qtdepartmentid=@qtdepartmentid";
+                    command.Parameters.AddWithValue("@alreadycompletetaskamount", qtDepartment.AlreadyCompleteTaskAmount);
+                    command.Parameters.AddWithValue("@qtkey", qtKey);
+                    command.Parameters.AddWithValue("@qtdepartmentid", item.Key);
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                }
+                sqlTran.Commit();
+            }
+            catch (Exception ex)
+            {
+                if (sqlTran != null)
+                {
+                    sqlTran.Rollback();
+                }
+                throw new CrashException(ex.Message);
+            }
+
+        }
+
+        //清除QT提成
+        public void ClearQtCommission(string qtKey)
+        {
+            if (!allQtTask.ContainsKey(qtKey))
+            {
+                throw new ConditionCheckException(string.Format("QT任务[{0}]不存在", qtKey));
+            }
+
+            QtTask qtTask = allQtTask[qtKey];
+            qtTask.ClearQtCommission();
+
+            SqlTransaction sqlTran = null;
+            try
+            {
+                sqlTran = SqlMgr.Instance().SqlConnect.BeginTransaction();
+
+                SqlCommand command = new SqlCommand();
+                command.Connection = SqlMgr.Instance().SqlConnect;
+                command.Transaction = sqlTran;
+                command.CommandType = CommandType.Text;
+                command.CommandText = "update qttaskindex set closing=@closing where qtkey=@qtkey";
+                command.Parameters.AddWithValue("@closing", qtTask.Closing);
+                command.Parameters.AddWithValue("@qtkey", qtKey);
+                command.ExecuteNonQuery();
+
+                command.Parameters.Clear();
+
+                foreach (var item in qtTask.AllQtDepartment)
+                {
+                    QtDepartment qtDepartment = item.Value;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "update qttaskdepartment set alreadycompletetaskamount=@alreadycompletetaskamount where qtkey=@qtkey and qtdepartmentid=@qtdepartmentid";
+                    command.Parameters.AddWithValue("@alreadycompletetaskamount", qtDepartment.AlreadyCompleteTaskAmount);
+                    command.Parameters.AddWithValue("@qtkey", qtKey);
+                    command.Parameters.AddWithValue("@qtdepartmentid", item.Key);
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                }
+                sqlTran.Commit();
+            }
+            catch (Exception ex)
+            {
+                if (sqlTran != null)
+                {
+                    sqlTran.Rollback();
+                }
+                throw new CrashException(ex.Message);
+            }
+
         }
 
         public SortedDictionary<string, QtTask> AllQtTask

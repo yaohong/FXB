@@ -34,10 +34,21 @@ namespace FXB
 
         private void main_Load(object sender, EventArgs e)
         {
+            SqlMgr.Instance().Init();
+            LoginDlg loginDlg = new LoginDlg();
+            if (DialogResult.OK == loginDlg.ShowDialog())
+            {
+
+            }
+            else
+            {
+                Application.Exit();
+                return;
+            }
             //初始化操作
             try 
             {
-                SqlMgr.Instance().Init();
+                
                 DepartmentDataMgr.Instance().Load();
                 JobGradeDataMgr.Instance().Load();
                 ProjectDataMgr.Instance().Load();
