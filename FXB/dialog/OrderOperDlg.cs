@@ -371,6 +371,20 @@ namespace FXB.Dialog
         }
         private void guwenSelectBtn_Click(object sender, EventArgs e)
         {
+            string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
+            if (!QtMgr.Instance().AllQtTask.ContainsKey(qtKey))
+            {
+                MessageBox.Show(string.Format("QT任务:{0}不存在", qtKey));
+                return;
+            }
+
+            QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+            if (qtTask.Closing)
+            {
+                MessageBox.Show(string.Format("QT任务:{0} 已经结算", qtKey));
+                return;
+            }
+
             EmployeeSelectDlg selectDlg = new EmployeeSelectDlg(GuwenInquireFilterFunc);
             if (DialogResult.OK == selectDlg.ShowDialog())
             {
@@ -378,20 +392,6 @@ namespace FXB.Dialog
                 //顾问可以是非当前QT结构下的人
                 if (jobNumber != "")
                 {
-                    string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
-                    if (!QtMgr.Instance().AllQtTask.ContainsKey(qtKey))
-                    {
-                        MessageBox.Show(string.Format("QT任务:{0}不存在", qtKey));
-                        return;
-                    }
-
-                    QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
-                    if (qtTask.Closing)
-                    {
-                        MessageBox.Show(string.Format("QT任务:{0} 已经结算", qtKey));
-                        return;
-                    }
-
                     EmployeeData employee = EmployeeDataMgr.Instance().AllEmployeeData[jobNumber];
                     if (qtTask.AllQtEmployee.ContainsKey(jobNumber))
                     {
@@ -466,6 +466,20 @@ namespace FXB.Dialog
 
         private void keyuanSelectBtn_Click(object sender, EventArgs e)
         {
+            string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
+            if (!QtMgr.Instance().AllQtTask.ContainsKey(qtKey))
+            {
+                MessageBox.Show(string.Format("QT任务:{0}不存在", qtKey));
+                return;
+            }
+
+            QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+            if (qtTask.Closing)
+            {
+                MessageBox.Show(string.Format("QT任务:{0} 已经结算", qtKey));
+                return;
+            }
+
             EmployeeSelectDlg selectDlg = new EmployeeSelectDlg(GuwenInquireFilterFunc);
             if (DialogResult.OK == selectDlg.ShowDialog())
             {
@@ -473,19 +487,6 @@ namespace FXB.Dialog
                 
                 if (jobNumber != "")
                 {
-                    string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
-                    if (!QtMgr.Instance().AllQtTask.ContainsKey(qtKey))
-                    {
-                        MessageBox.Show(string.Format("QT任务:{0}不存在", qtKey));
-                        return;
-                    }
-
-                    QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
-                    if (qtTask.Closing)
-                    {
-                        MessageBox.Show(string.Format("QT任务:{0} 已经结算", qtKey));
-                        return;
-                    }
 
                     //客源方必须是当前QT结构下的人
                     EmployeeData employee = EmployeeDataMgr.Instance().AllEmployeeData[jobNumber];
@@ -535,6 +536,20 @@ namespace FXB.Dialog
 
         private void zhuchang1SelectBtn_Click(object sender, EventArgs e)
         {
+            string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
+            if (!QtMgr.Instance().AllQtTask.ContainsKey(qtKey))
+            {
+                MessageBox.Show(string.Format("QT任务:{0}不存在", qtKey));
+                return;
+            }
+
+            QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+            if (qtTask.Closing)
+            {
+                MessageBox.Show(string.Format("QT任务:{0} 已经结算", qtKey));
+                return;
+            }
+
             EmployeeSelectDlg selectDlg = new EmployeeSelectDlg(ZhuchangInquireFilterFunc);
             if (DialogResult.OK == selectDlg.ShowDialog())
             {
@@ -542,20 +557,6 @@ namespace FXB.Dialog
                 //
                 if (jobNumber != "")
                 {
-                    string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
-                    if (!QtMgr.Instance().AllQtTask.ContainsKey(qtKey))
-                    {
-                        MessageBox.Show(string.Format("QT任务:{0}不存在", qtKey));
-                        return;
-                    }
-
-                    QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
-                    if (qtTask.Closing)
-                    {
-                        MessageBox.Show(string.Format("QT任务:{0} 已经结算", qtKey));
-                        return;
-                    }
-
                     EmployeeData employee = EmployeeDataMgr.Instance().AllEmployeeData[jobNumber];
                     if (qtTask.AllQtEmployee.ContainsKey(jobNumber))
                     {
@@ -602,6 +603,20 @@ namespace FXB.Dialog
 
         private void zhuchang2SelectBtn_Click(object sender, EventArgs e)
         {
+            string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
+            if (!QtMgr.Instance().AllQtTask.ContainsKey(qtKey))
+            {
+                MessageBox.Show(string.Format("QT任务:{0}不存在", qtKey));
+                return;
+            }
+
+            QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+            if (qtTask.Closing)
+            {
+                MessageBox.Show(string.Format("QT任务:{0} 已经结算", qtKey));
+                return;
+            }
+
             EmployeeSelectDlg selectDlg = new EmployeeSelectDlg(ZhuchangInquireFilterFunc);
             if (DialogResult.OK == selectDlg.ShowDialog())
             {
@@ -609,20 +624,6 @@ namespace FXB.Dialog
                 //
                 if (jobNumber != "")
                 {
-                    string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
-                    if (!QtMgr.Instance().AllQtTask.ContainsKey(qtKey))
-                    {
-                        MessageBox.Show(string.Format("QT任务:{0}不存在", qtKey));
-                        return;
-                    }
-
-                    QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
-                    if (qtTask.Closing)
-                    {
-                        MessageBox.Show(string.Format("QT任务:{0} 已经结算", qtKey));
-                        return;
-                    }
-
                     EmployeeData employee = EmployeeDataMgr.Instance().AllEmployeeData[jobNumber];
                     if (qtTask.AllQtEmployee.ContainsKey(jobNumber))
                     {

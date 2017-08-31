@@ -43,6 +43,11 @@ namespace FXB.Dialog
                 if (paramEdi.Text != "")
                 {
                     //过滤查询关键字
+                    if (qtOrder.RoomNumber.IndexOf(paramEdi.Text) == -1 &&
+                        qtOrder.ProjectCode.IndexOf(paramEdi.Text) == -1)
+                    {
+                        continue;
+                    }
                 }
 
                 int lineIndex = dataGridView1.Rows.Add();

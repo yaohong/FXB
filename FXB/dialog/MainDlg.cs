@@ -34,13 +34,6 @@ namespace FXB
 
         private void main_Load(object sender, EventArgs e)
         {
-            //基础设置ToolStripMenuItem.Visible = false;
-            //员工档案ToolStripMenuItem.Visible = false;
-            //职级档案ToolStripMenuItem.Visible = false;
-            //项目档案ToolStripMenuItem.Visible = false;
-            //用户权限ToolStripMenuItem.Visible = false;
-            //刷新层级关系ToolStripMenuItem.Visible = false;
-
 
             //初始化操作
             try 

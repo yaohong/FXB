@@ -90,5 +90,18 @@ namespace FXB.DataManager
             command.ExecuteScalar();
         }
 
+        public void ChangeAuthAttr(string jobNumber, Int64 operMake, bool prohibit, Int32 viewLevel)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = SqlMgr.Instance().SqlConnect;
+            command.CommandType = CommandType.Text;
+            command.CommandText = "update auth set opermask=@opermask,prohibit=@prohibit,viewlevel=@viewlevel where jobnumber=@jobnumber";
+            command.Parameters.AddWithValue("@opermask", operMake);
+            command.Parameters.AddWithValue("@prohibit", prohibit);
+            command.Parameters.AddWithValue("@viewlevel", viewLevel);
+            command.Parameters.AddWithValue("@jobnumber", jobNumber);
+            command.ExecuteScalar();
+        }
+
     }
 }
