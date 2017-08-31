@@ -145,7 +145,7 @@ namespace FXB.Dialog
             string jobnumber = (string)selectCell.Value;
 
             EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[jobnumber];
-            AuthEditDlg authEditDlg = new AuthEditDlg();
+            AuthEditDlg authEditDlg = new AuthEditDlg(employeeData);
             if (authEditDlg.ShowDialog() == DialogResult.OK)
             {
 

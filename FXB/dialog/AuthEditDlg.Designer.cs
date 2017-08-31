@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.viewLevelCb = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.prohibitCb = new System.Windows.Forms.CheckBox();
+            this.resertPwdBtn = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.pwdEdi = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.zhijieEdi = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.bumenEdi = new System.Windows.Forms.TextBox();
+            this.nameEdi = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.gonghaoEdi = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -58,18 +58,21 @@
             this.dxluruMenuCb = new System.Windows.Forms.CheckBox();
             this.generateDxMenuCb = new System.Windows.Forms.CheckBox();
             this.qtTaskMenuCb = new System.Windows.Forms.CheckBox();
+            this.saveBtn = new System.Windows.Forms.Button();
+            this.exitBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // viewLevelCb
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(121, 212);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(261, 20);
-            this.comboBox1.TabIndex = 15;
+            this.viewLevelCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.viewLevelCb.FormattingEnabled = true;
+            this.viewLevelCb.Location = new System.Drawing.Point(121, 212);
+            this.viewLevelCb.Name = "viewLevelCb";
+            this.viewLevelCb.Size = new System.Drawing.Size(261, 20);
+            this.viewLevelCb.TabIndex = 15;
             // 
             // label8
             // 
@@ -89,24 +92,25 @@
             this.label7.TabIndex = 13;
             this.label7.Text = "禁止登陆:";
             // 
-            // checkBox1
+            // prohibitCb
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(121, 190);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(210, 16);
-            this.checkBox1.TabIndex = 12;
-            this.checkBox1.Text = "勾选为禁止登陆,不勾选为允许登陆";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.prohibitCb.AutoSize = true;
+            this.prohibitCb.Location = new System.Drawing.Point(121, 190);
+            this.prohibitCb.Name = "prohibitCb";
+            this.prohibitCb.Size = new System.Drawing.Size(210, 16);
+            this.prohibitCb.TabIndex = 12;
+            this.prohibitCb.Text = "勾选为禁止登陆,不勾选为允许登陆";
+            this.prohibitCb.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // resertPwdBtn
             // 
-            this.button1.Location = new System.Drawing.Point(121, 160);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(261, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "重置密码为123";
-            this.button1.UseVisualStyleBackColor = true;
+            this.resertPwdBtn.Location = new System.Drawing.Point(121, 161);
+            this.resertPwdBtn.Name = "resertPwdBtn";
+            this.resertPwdBtn.Size = new System.Drawing.Size(261, 23);
+            this.resertPwdBtn.TabIndex = 11;
+            this.resertPwdBtn.Text = "重置密码为123";
+            this.resertPwdBtn.UseVisualStyleBackColor = true;
+            this.resertPwdBtn.Click += new System.EventHandler(this.resertPwdBtn_Click);
             // 
             // label6
             // 
@@ -117,12 +121,13 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "重置密码:";
             // 
-            // textBox5
+            // pwdEdi
             // 
-            this.textBox5.Location = new System.Drawing.Point(121, 133);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(261, 21);
-            this.textBox5.TabIndex = 9;
+            this.pwdEdi.Location = new System.Drawing.Point(121, 133);
+            this.pwdEdi.Name = "pwdEdi";
+            this.pwdEdi.ReadOnly = true;
+            this.pwdEdi.Size = new System.Drawing.Size(261, 21);
+            this.pwdEdi.TabIndex = 9;
             // 
             // label5
             // 
@@ -133,12 +138,13 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "密码:";
             // 
-            // textBox4
+            // zhijieEdi
             // 
-            this.textBox4.Location = new System.Drawing.Point(121, 105);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(261, 21);
-            this.textBox4.TabIndex = 7;
+            this.zhijieEdi.Location = new System.Drawing.Point(121, 105);
+            this.zhijieEdi.Name = "zhijieEdi";
+            this.zhijieEdi.ReadOnly = true;
+            this.zhijieEdi.Size = new System.Drawing.Size(261, 21);
+            this.zhijieEdi.TabIndex = 7;
             // 
             // label4
             // 
@@ -158,19 +164,21 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "所属部门:";
             // 
-            // textBox3
+            // bumenEdi
             // 
-            this.textBox3.Location = new System.Drawing.Point(121, 78);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(261, 21);
-            this.textBox3.TabIndex = 4;
+            this.bumenEdi.Location = new System.Drawing.Point(121, 78);
+            this.bumenEdi.Name = "bumenEdi";
+            this.bumenEdi.ReadOnly = true;
+            this.bumenEdi.Size = new System.Drawing.Size(261, 21);
+            this.bumenEdi.TabIndex = 4;
             // 
-            // textBox2
+            // nameEdi
             // 
-            this.textBox2.Location = new System.Drawing.Point(121, 50);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(261, 21);
-            this.textBox2.TabIndex = 3;
+            this.nameEdi.Location = new System.Drawing.Point(121, 50);
+            this.nameEdi.Name = "nameEdi";
+            this.nameEdi.ReadOnly = true;
+            this.nameEdi.Size = new System.Drawing.Size(261, 21);
+            this.nameEdi.TabIndex = 3;
             // 
             // label2
             // 
@@ -181,12 +189,13 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "员工姓名:";
             // 
-            // textBox1
+            // gonghaoEdi
             // 
-            this.textBox1.Location = new System.Drawing.Point(121, 22);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(261, 21);
-            this.textBox1.TabIndex = 1;
+            this.gonghaoEdi.Location = new System.Drawing.Point(121, 22);
+            this.gonghaoEdi.Name = "gonghaoEdi";
+            this.gonghaoEdi.ReadOnly = true;
+            this.gonghaoEdi.Size = new System.Drawing.Size(261, 21);
+            this.gonghaoEdi.TabIndex = 1;
             // 
             // label1
             // 
@@ -201,7 +210,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(25, 27);
+            this.tabControl1.Location = new System.Drawing.Point(25, 26);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(465, 297);
@@ -209,22 +218,22 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.textBox3);
-            this.tabPage2.Controls.Add(this.comboBox1);
-            this.tabPage2.Controls.Add(this.textBox4);
+            this.tabPage2.Controls.Add(this.bumenEdi);
+            this.tabPage2.Controls.Add(this.viewLevelCb);
+            this.tabPage2.Controls.Add(this.zhijieEdi);
             this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.textBox5);
-            this.tabPage2.Controls.Add(this.textBox1);
+            this.tabPage2.Controls.Add(this.pwdEdi);
+            this.tabPage2.Controls.Add(this.gonghaoEdi);
             this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.checkBox1);
-            this.tabPage2.Controls.Add(this.textBox2);
+            this.tabPage2.Controls.Add(this.prohibitCb);
+            this.tabPage2.Controls.Add(this.nameEdi);
             this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.resertPwdBtn);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -364,11 +373,32 @@
             this.qtTaskMenuCb.Text = "QT任务";
             this.qtTaskMenuCb.UseVisualStyleBackColor = true;
             // 
+            // saveBtn
+            // 
+            this.saveBtn.Location = new System.Drawing.Point(321, 341);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(75, 23);
+            this.saveBtn.TabIndex = 2;
+            this.saveBtn.Text = "保存";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            // 
+            // exitBtn
+            // 
+            this.exitBtn.Location = new System.Drawing.Point(415, 341);
+            this.exitBtn.Name = "exitBtn";
+            this.exitBtn.Size = new System.Drawing.Size(75, 23);
+            this.exitBtn.TabIndex = 3;
+            this.exitBtn.Text = "退出";
+            this.exitBtn.UseVisualStyleBackColor = true;
+            // 
             // AuthEditDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(517, 383);
+            this.Controls.Add(this.exitBtn);
+            this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -388,21 +418,21 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox gonghaoEdi;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox nameEdi;
+        private System.Windows.Forms.TextBox bumenEdi;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox zhijieEdi;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox pwdEdi;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button resertPwdBtn;
+        private System.Windows.Forms.CheckBox prohibitCb;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox viewLevelCb;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
@@ -417,5 +447,7 @@
         private System.Windows.Forms.CheckBox dxluruMenuCb;
         private System.Windows.Forms.CheckBox generateDxMenuCb;
         private System.Windows.Forms.CheckBox qtTaskMenuCb;
+        private System.Windows.Forms.Button saveBtn;
+        private System.Windows.Forms.Button exitBtn;
     }
 }
