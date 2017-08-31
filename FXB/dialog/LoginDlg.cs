@@ -35,14 +35,19 @@ namespace FXB.Dialog
 
             try
             {
-                AuthData authItem = AuthMgr.Instance().GetAuth(jobnumberEdi.Text);
-                if (authItem.Password != passwordEdi.Text)
+                if (!EmployeeDataMgr.Instance().AllEmployeeData.ContainsKey(jobnumberEdi.Text))
+                {
+                    MessageBox.Show("工号不存在");
+                    return;
+                }
+                EmployeeData data = EmployeeDataMgr.Instance().AllEmployeeData[jobnumberEdi.Text];
+                if (data.AuthData.Password != passwordEdi.Text)
                 {
                     MessageBox.Show("密码错误");
                     return;
                 }
 
-                AuthMgr.Instance().CurLoginAuth = authItem;
+                AuthMgr.Instance().CurLoginEmployee = data;
                 DialogResult = DialogResult.OK;
                 Close();
             }

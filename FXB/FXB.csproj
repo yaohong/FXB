@@ -71,6 +71,24 @@
     <Compile Include="Data\QtEmployee.cs" />
     <Compile Include="Data\QtOrder.cs" />
     <Compile Include="Data\QtTask.cs" />
+    <Compile Include="Dialog\AuthDataDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\AuthDataDlg.Designer.cs">
+      <DependentUpon>AuthDataDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\AuthEditDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\AuthEditDlg.Designer.cs">
+      <DependentUpon>AuthEditDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\ChangePasswordDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\ChangePasswordDlg.Designer.cs">
+      <DependentUpon>ChangePasswordDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\DepartmentOperDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +208,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dialog\AuthDataDlg.resx">
+      <DependentUpon>AuthDataDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\AuthEditDlg.resx">
+      <DependentUpon>AuthEditDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\ChangePasswordDlg.resx">
+      <DependentUpon>ChangePasswordDlg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\DepartmentOperDlg.resx">
       <DependentUpon>DepartmentOperDlg.cs</DependentUpon>
     </EmbeddedResource>

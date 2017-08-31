@@ -170,7 +170,12 @@ namespace FXB.Data
             set { qtLevel = value; }
         }
 
-
+        private AuthData authData = null;
+        public AuthData AuthData
+        {
+            get { return authData; }
+            set { authData = value; }
+        }
 
 
         public QtEmployee GenerateQtEmployee()

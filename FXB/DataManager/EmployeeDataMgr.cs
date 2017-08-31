@@ -520,5 +520,53 @@ namespace FXB.DataManager
 
             }
         }
+
+
+        public void SetAuthDataGridView(DataGridView gridView)
+        {
+            gridView.Rows.Clear();
+            foreach (var item in allEmployeeData)
+            {
+                EmployeeData data = item.Value;
+                int lineIndex = gridView.Rows.Add();
+                DepartmentData departmentData = DepartmentDataMgr.Instance().AllDepartmentData[data.DepartmentId];
+                gridView.Rows[lineIndex].Cells["name"].Value = item.Value.Name;
+                gridView.Rows[lineIndex].Cells["jobnumber"].Value = item.Value.JobNumber;
+                gridView.Rows[lineIndex].Cells["jobstate"].Value = item.Value.JobState;
+                gridView.Rows[lineIndex].Cells["zhiji"].Value = item.Value.JobGradeName;
+                gridView.Rows[lineIndex].Cells["department"].Value = DepartmentUtil.GetDepartmentShowText(item.Value.DepartmentId);
+                gridView.Rows[lineIndex].Cells["departmentOwner"].Value = departmentData.OwnerJobNumber == "" ? "" : allEmployeeData[departmentData.OwnerJobNumber].Name;
+                gridView.Rows[lineIndex].Cells["dianhua"].Value = item.Value.PhoneNumber;
+                gridView.Rows[lineIndex].Cells["idCard"].Value = item.Value.IdCard;
+
+                gridView.Rows[lineIndex].Cells["prohibit"].Value = item.Value.AuthData.Prohibit;
+            }
+        }
+
+        public void SetAuthDataGridView(DataGridView gridView, DataFilter filter)
+        {
+            gridView.Rows.Clear();
+            foreach (var item in allEmployeeData)
+            {
+                EmployeeData data = item.Value;
+                if (filter(data))
+                {
+                    int lineIndex = gridView.Rows.Add();
+
+                    DepartmentData departmentData = DepartmentDataMgr.Instance().AllDepartmentData[data.DepartmentId];
+                    gridView.Rows[lineIndex].Cells["name"].Value = item.Value.Name;
+                    gridView.Rows[lineIndex].Cells["jobnumber"].Value = item.Value.JobNumber;
+                    gridView.Rows[lineIndex].Cells["jobstate"].Value = item.Value.JobState;
+                    gridView.Rows[lineIndex].Cells["zhiji"].Value = item.Value.JobGradeName;
+                    gridView.Rows[lineIndex].Cells["department"].Value = DepartmentUtil.GetDepartmentShowText(item.Value.DepartmentId);
+                    gridView.Rows[lineIndex].Cells["departmentOwner"].Value = departmentData.OwnerJobNumber == "" ? "" : allEmployeeData[departmentData.OwnerJobNumber].Name;
+                    gridView.Rows[lineIndex].Cells["dianhua"].Value = item.Value.PhoneNumber;
+                    gridView.Rows[lineIndex].Cells["idCard"].Value = item.Value.IdCard;
+
+                    gridView.Rows[lineIndex].Cells["prohibit"].Value = item.Value.AuthData.Prohibit;
+                }
+
+            }
+        }
     }
 }

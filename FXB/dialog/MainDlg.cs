@@ -40,27 +40,26 @@ namespace FXB
             //项目档案ToolStripMenuItem.Visible = false;
             //用户权限ToolStripMenuItem.Visible = false;
             //刷新层级关系ToolStripMenuItem.Visible = false;
-            SqlMgr.Instance().Init();
-            LoginDlg loginDlg = new LoginDlg();
-            if (DialogResult.OK == loginDlg.ShowDialog())
-            {
 
-            }
-            else
-            {
-                Application.Exit();
-                return;
-            }
+
             //初始化操作
             try 
             {
-                
+                SqlMgr.Instance().Init();
                 DepartmentDataMgr.Instance().Load();
                 JobGradeDataMgr.Instance().Load();
                 ProjectDataMgr.Instance().Load();
                 EmployeeDataMgr.Instance().Load();
                 QtMgr.Instance().Load();
                 DxDuplicateMgr.Instance().Load();
+                AuthMgr.Instance().Load();
+
+                LoginDlg loginDlg = new LoginDlg();
+                if (DialogResult.OK != loginDlg.ShowDialog())
+                {
+                    Application.Exit();
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -133,6 +132,12 @@ namespace FXB
                 dlg.MdiParent = this;
                 dlg.Show();
             }
+            else if (dlgName == "AuthDataDlg")
+            {
+                AuthDataDlg dlg = new AuthDataDlg();
+                dlg.MdiParent = this;
+                dlg.Show();
+            }
             else 
             {
                 MessageBox.Show("未知的窗口名字");
@@ -153,6 +158,23 @@ namespace FXB
         private void 开单录入ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowDialog("OrderDataDlg");
+        }
+
+        private void 用户权限ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowDialog("AuthDataDlg");
+            
+        }
+
+        private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void 修改密码ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangePasswordDlg dlg = new ChangePasswordDlg();
+            dlg.ShowDialog();
         }
 
     }

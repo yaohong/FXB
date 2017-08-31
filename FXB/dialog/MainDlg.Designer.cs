@@ -105,35 +105,36 @@
             // 员工档案ToolStripMenuItem
             // 
             this.员工档案ToolStripMenuItem.Name = "员工档案ToolStripMenuItem";
-            this.员工档案ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.员工档案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.员工档案ToolStripMenuItem.Text = "员工档案";
             this.员工档案ToolStripMenuItem.Click += new System.EventHandler(this.员工档案ToolStripMenuItem_Click);
             // 
             // 职级档案ToolStripMenuItem
             // 
             this.职级档案ToolStripMenuItem.Name = "职级档案ToolStripMenuItem";
-            this.职级档案ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.职级档案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.职级档案ToolStripMenuItem.Text = "职级档案";
             this.职级档案ToolStripMenuItem.Click += new System.EventHandler(this.职级档案ToolStripMenuItem_Click);
             // 
             // 项目档案ToolStripMenuItem
             // 
             this.项目档案ToolStripMenuItem.Name = "项目档案ToolStripMenuItem";
-            this.项目档案ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.项目档案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.项目档案ToolStripMenuItem.Text = "项目档案";
             this.项目档案ToolStripMenuItem.Click += new System.EventHandler(this.项目档案ToolStripMenuItem_Click);
             // 
             // 用户权限ToolStripMenuItem
             // 
             this.用户权限ToolStripMenuItem.Name = "用户权限ToolStripMenuItem";
-            this.用户权限ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.用户权限ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.用户权限ToolStripMenuItem.Text = "用户权限";
+            this.用户权限ToolStripMenuItem.Click += new System.EventHandler(this.用户权限ToolStripMenuItem_Click);
             // 
             // 刷新层级关系ToolStripMenuItem
             // 
             this.刷新层级关系ToolStripMenuItem.Name = "刷新层级关系ToolStripMenuItem";
-            this.刷新层级关系ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.刷新层级关系ToolStripMenuItem.Text = "刷新层级关系";
+            this.刷新层级关系ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.刷新层级关系ToolStripMenuItem.Text = "刷新数据";
             // 
             // 单据录入ToolStripMenuItem
             // 
@@ -176,13 +177,13 @@
             // 底薪录入ToolStripMenuItem
             // 
             this.底薪录入ToolStripMenuItem.Name = "底薪录入ToolStripMenuItem";
-            this.底薪录入ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.底薪录入ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.底薪录入ToolStripMenuItem.Text = "底薪录入";
             // 
             // 生成底薪副本ToolStripMenuItem
             // 
             this.生成底薪副本ToolStripMenuItem.Name = "生成底薪副本ToolStripMenuItem";
-            this.生成底薪副本ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.生成底薪副本ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.生成底薪副本ToolStripMenuItem.Text = "生成底薪副本";
             this.生成底薪副本ToolStripMenuItem.Click += new System.EventHandler(this.生成底薪副本ToolStripMenuItem_Click);
             // 
@@ -254,12 +255,14 @@
             this.修改密码ToolStripMenuItem.Name = "修改密码ToolStripMenuItem";
             this.修改密码ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.修改密码ToolStripMenuItem.Text = "修改密码";
+            this.修改密码ToolStripMenuItem.Click += new System.EventHandler(this.修改密码ToolStripMenuItem_Click);
             // 
             // 退出ToolStripMenuItem
             // 
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
             this.退出ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.退出ToolStripMenuItem.Text = "退出";
+            this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
             // 
             // main
             // 

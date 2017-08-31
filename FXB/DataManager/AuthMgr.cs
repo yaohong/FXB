@@ -13,15 +13,15 @@ using FXB.Common;
 namespace FXB.DataManager
 {
     //批量给账号添加权限的SQL语句
-    // insert into auth(pwd, opermask, prohibit,ifowner, jobnumber) select '123456',0, 0, 0, gonghao from employee
+    // insert into auth(pwd, opermask, prohibit,ifowner,viewlevel, jobnumber) select '123456',0, 0, 0,2, gonghao from employee
     class AuthMgr
     {
         private static AuthMgr ins;
-        private AuthData curLoginAuth = null;
-        public AuthData CurLoginAuth
+        private EmployeeData curLoginEmployee = null;
+        public EmployeeData CurLoginEmployee
         {
-            get { return curLoginAuth; }
-            set { curLoginAuth = value; }
+            get { return curLoginEmployee; }
+            set { curLoginEmployee = value; }
         }
         private AuthMgr()
         {
@@ -38,29 +38,35 @@ namespace FXB.DataManager
             return ins;
         }
 
-        public AuthData GetAuth(string jobNumber)
+        public void Load()
         {
+            //重新从数据库里加载
             SqlDataReader reader = null;
             try
             {
                 SqlCommand command = new SqlCommand();
                 command.Connection = SqlMgr.Instance().SqlConnect;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "select * from auth where jobnumber=@jobnumber";
-                command.Parameters.AddWithValue("@jobnumber", jobNumber);
+                command.CommandText = "select * from auth";
                 reader = command.ExecuteReader();
-                if (!reader.Read())
+                while (reader.Read())
                 {
-                    throw new ConditionCheckException("工号不存在");
+                    string jobnumber = reader.GetString(0);
+                    string pwd = reader.GetString(1);
+                    Int64 opermask = reader.GetInt64(2);
+                    bool prohibit = reader.GetBoolean(3);
+                    bool ifowner = reader.GetBoolean(4);
+                    Int32 viewlevel = reader.GetInt32(5);
+
+                    AuthData authData = new AuthData(jobnumber, pwd, opermask, prohibit, ifowner, viewlevel);
+                    EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[jobnumber];
+                    employeeData.AuthData = authData;
                 }
-
-                string pwd = reader.GetString(1);
-                Int64 operMake = reader.GetInt64(2);
-                bool prohibit = reader.GetBoolean(3);
-                bool ifowner = reader.GetBoolean(4);
-
-                AuthData loginAuth = new AuthData(jobNumber, pwd, operMake, prohibit, ifowner);
-                return loginAuth;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                Application.Exit();
             }
             finally
             {
@@ -70,6 +76,19 @@ namespace FXB.DataManager
                 }
 
             }
+
         }
+
+        public void ChangePassword(string jobNumber, string newPwd)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = SqlMgr.Instance().SqlConnect;
+            command.CommandType = CommandType.Text;
+            command.CommandText = "update auth set pwd=@pwd where jobnumber=@jobnumber";
+            command.Parameters.AddWithValue("@pwd", newPwd);
+            command.Parameters.AddWithValue("@jobnumber", jobNumber);
+            command.ExecuteScalar();
+        }
+
     }
 }
