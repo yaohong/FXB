@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using FXB.DataManager;
+using FXB.Data;
+using FXB.Common;
 namespace FXB.Dialog
 {
     public partial class LoginDlg : Form
@@ -19,8 +21,41 @@ namespace FXB.Dialog
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
-            Close();
+            if (jobnumberEdi.Text == "")
+            {
+                MessageBox.Show("工号不能为空");
+                return;
+            }
+
+            if (passwordEdi.Text == "")
+            {
+                MessageBox.Show("密码不能为空");
+                return;
+            }
+
+            try
+            {
+                AuthData authItem = AuthMgr.Instance().GetAuth(jobnumberEdi.Text);
+                if (authItem.Password != passwordEdi.Text)
+                {
+                    MessageBox.Show("密码错误");
+                    return;
+                }
+
+                AuthMgr.Instance().CurLoginAuth = authItem;
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (ConditionCheckException e1)
+            {
+                MessageBox.Show(e1.Message);
+                return;
+            }
+            catch (Exception e2)
+            {
+                MessageBox.Show(e2.Message);
+                Application.Exit();
+            }
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)

@@ -10,6 +10,7 @@ using FXB.Data;
 using FXB.Common;
 namespace FXB.DataManager
 {
+
     class DepartmentDataMgr
     {
         private static DepartmentDataMgr ins;

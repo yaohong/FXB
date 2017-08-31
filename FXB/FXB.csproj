@@ -53,12 +53,14 @@
     <Compile Include="Common\SqlMgr.cs" />
     <Compile Include="Common\TextException.cs" />
     <Compile Include="Common\TimeUtil.cs" />
+    <Compile Include="DataManager\AuthMgr.cs" />
     <Compile Include="DataManager\DepartmentDataMgr.cs" />
     <Compile Include="DataManager\DxDuplicateMgr.cs" />
     <Compile Include="DataManager\EmployeeDataMgr.cs" />
     <Compile Include="DataManager\JobGradeDataMgr.cs" />
     <Compile Include="DataManager\ProjectDataMgr.cs" />
     <Compile Include="DataManager\QtMgr.cs" />
+    <Compile Include="Data\AuthData.cs" />
     <Compile Include="Data\Define.cs" />
     <Compile Include="Data\DepartmentData.cs" />
     <Compile Include="Data\DxDuplicate.cs" />
