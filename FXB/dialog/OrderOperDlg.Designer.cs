@@ -323,6 +323,7 @@
             this.exitBtn.TabIndex = 19;
             this.exitBtn.Text = "退出";
             this.exitBtn.UseVisualStyleBackColor = true;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
             // label19
             // 
@@ -641,7 +642,6 @@
             this.luruJobNumberLable.Size = new System.Drawing.Size(35, 12);
             this.luruJobNumberLable.TabIndex = 27;
             this.luruJobNumberLable.Text = "     ";
-            this.luruJobNumberLable.Click += new System.EventHandler(this.luruJobNumberLable_Click);
             // 
             // tabControl1
             // 

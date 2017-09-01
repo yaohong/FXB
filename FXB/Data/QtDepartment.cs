@@ -39,7 +39,7 @@ namespace FXB.Data
             
         }
 
-        public QtDepartment(Int64 tmpDeparmentId, QtLevel tmpQtLevel, string tmpOwnerJobNumber, string tmpDeparmentName, Int64 tmpParentDepartmentId, double tmpNeedCompleteTaskAmount)
+        public QtDepartment(Int64 tmpDeparmentId, QtLevel tmpQtLevel, string tmpOwnerJobNumber, string tmpDeparmentName, Int64 tmpParentDepartmentId, double tmpNeedCompleteTaskAmount, double tmpAlreadyCompleteTaskAmount)
         {
             deparmentId = tmpDeparmentId;
             qtLevel = tmpQtLevel;
@@ -49,9 +49,10 @@ namespace FXB.Data
             parentDepartmentId = tmpParentDepartmentId;
             childDepartmentIdSet = new SortedSet<Int64>();
             needCompleteTaskAmount = tmpNeedCompleteTaskAmount;
+            alreadyCompleteTaskAmount = tmpAlreadyCompleteTaskAmount;
 
             isCalcTaskAmount = true;
-            alreadyCompleteTaskAmount = 0.0f;
+            
         }
 
         public SortedSet<Int64> ChildDepartmentIdSet

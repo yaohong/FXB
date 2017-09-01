@@ -95,6 +95,12 @@ namespace FXB.Dialog
             ordertime.Width = 80;
             dataGridView1.Columns.Add(ordertime);
 
+            DataGridViewTextBoxColumn qtKey = new DataGridViewTextBoxColumn();
+            qtKey.Name = "qtKey";
+            qtKey.HeaderText = "所属QT任务";
+            qtKey.Width = 80;
+            dataGridView1.Columns.Add(qtKey);
+
             DataGridViewTextBoxColumn customerName = new DataGridViewTextBoxColumn();
             customerName.Name = "customerName";
             customerName.HeaderText = "客户名称";
@@ -164,7 +170,7 @@ namespace FXB.Dialog
             DataGridViewTextBoxColumn checkTime = new DataGridViewTextBoxColumn();
             checkTime.Name = "checkTime";
             checkTime.HeaderText = "审核日期";
-            checkTime.Width = 100;
+            checkTime.Width = 130;
             dataGridView1.Columns.Add(checkTime);
 
             DataGridViewTextBoxColumn entryPersonName = new DataGridViewTextBoxColumn();
@@ -261,6 +267,7 @@ namespace FXB.Dialog
         {
             row.Cells["orderid"].Value = data.Id;
             row.Cells["ordertime"].Value = TimeUtil.TimestampToDateTime(data.GenerateTime).ToShortDateString();
+            row.Cells["qtKey"].Value = data.QtKey;
             row.Cells["customerName"].Value = data.CustomerName;
             row.Cells["projectName"].Value = ProjectDataMgr.Instance().AllProjectData[data.ProjectCode].Name ;
             row.Cells["roomNumber"].Value = data.RoomNumber;
@@ -277,6 +284,11 @@ namespace FXB.Dialog
             {
                 row.Cells["checkPersonName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.CheckPersonJobNumber].Name; ;
                 row.Cells["checkTime"].Value = TimeUtil.TimestampToDateTime(data.CheckTime).ToString("yyyy-MM-dd HH:mm:ss");
+            }
+            else
+            {
+                row.Cells["checkPersonName"].Value ="";
+                row.Cells["checkTime"].Value = "";
             }
 
             //录入人暂时不填
@@ -321,12 +333,6 @@ namespace FXB.Dialog
 
         private void removeOrderBtn_Click(object sender, EventArgs e)
         {
-            if (qtCbSelect.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            string qtKey = qtCbSelect.SelectedItem as string;
             //删除订单
             if (dataGridView1.SelectedRows.Count == 0)
             {
@@ -335,9 +341,9 @@ namespace FXB.Dialog
 
             //只能选择一行
             DataGridViewRow selectRow = dataGridView1.SelectedRows[0];
-            DataGridViewTextBoxCell selectCell = (DataGridViewTextBoxCell)selectRow.Cells["orderid"];
-            Int64 orderId = (Int64)selectCell.Value;
 
+            Int64 orderId = (Int64)selectRow.Cells["orderid"].Value;
+            string qtKey = (string)selectRow.Cells["qtKey"].Value;
             QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
             if (qtTask.Closing)
             {
@@ -345,8 +351,13 @@ namespace FXB.Dialog
                 return;
             }
 
+            
+            if (!qtTask.AllQtOrder.ContainsKey(orderId))
+            {
+                MessageBox.Show(string.Format("订单[{0}]不属于QT任务[{1}], 请重新查询", orderId, qtKey));
+                return;
+            }
             QtOrder qtOrder = qtTask.AllQtOrder[orderId];
-
             if (qtOrder.CheckState)
             {
                 MessageBox.Show(string.Format("订单[{0}]已经通过审核，请执行 [取消审核后] 后在执行该操作", orderId));
@@ -372,12 +383,7 @@ namespace FXB.Dialog
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
-            if (qtCbSelect.SelectedIndex == -1)
-            {
-                return;
-            }
 
-            string qtKey = qtCbSelect.SelectedItem as string;
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 return;
@@ -385,17 +391,22 @@ namespace FXB.Dialog
 
             //只能选择一行
             DataGridViewRow selectRow = dataGridView1.SelectedRows[0];
-            DataGridViewTextBoxCell selectCell = (DataGridViewTextBoxCell)selectRow.Cells["orderid"];
-            Int64 orderId = (Int64)selectCell.Value;
+
+            Int64 orderId = (Int64)selectRow.Cells["orderid"].Value;
+            string qtKey = (string)selectRow.Cells["qtKey"].Value;
 
             QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+
+            if (!qtTask.AllQtOrder.ContainsKey(orderId))
+            {
+                MessageBox.Show(string.Format("订单[{0}]不属于QT任务[{1}], 请重新查询", orderId, qtKey));
+                return;
+            }
             QtOrder qtOrder = qtTask.AllQtOrder[orderId];
 
             OrderOperDlg dlg = new OrderOperDlg(qtOrder);
-            if (DialogResult.OK == dlg.ShowDialog())
-            {
-                UpdateGridViewRow(selectRow, qtOrder);
-            }
+            dlg.ShowDialog();
+            UpdateGridViewRow(selectRow, qtOrder);
 
         }
     }

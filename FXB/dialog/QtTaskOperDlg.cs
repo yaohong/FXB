@@ -93,7 +93,7 @@ namespace FXB.Dialog
                 EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[qtDepartment.OwnerJobNumber];
                 dataGridView1.Rows[newLine].Cells["owner"].Value = employeeData.Name;
             }
-            dataGridView1.Rows[newLine].Cells["qtTaskAmount"].Value = Convert.ToString(qtDepartment.NeedCompleteTaskAmount);
+            dataGridView1.Rows[newLine].Cells["qtTaskAmount"].Value = System.Math.Round(qtDepartment.NeedCompleteTaskAmount, 2);
             if (!qtTask.Closing)
             {
                 //没有结算
@@ -102,7 +102,7 @@ namespace FXB.Dialog
             else
             {
                 dataGridView1.Rows[newLine].Cells["ifSettle"].Value = true;
-                dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = qtDepartment.AlreadyCompleteTaskAmount;
+                dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = System.Math.Round(qtDepartment.AlreadyCompleteTaskAmount, 2);
                 dataGridView1.Rows[newLine].Cells["prop"].Value = CommissionUtil.GetCommissionPropToStr(qtDepartment);
 
             }

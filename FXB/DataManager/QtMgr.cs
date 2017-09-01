@@ -180,8 +180,6 @@ namespace FXB.DataManager
         private string paymentMethod;
         private double loansMoney;
 
-        private bool isReceiveReward;                   //是否接受过回佣奖励(第一笔回佣来的时候发放)
-
         public Int64 Id
         {
             get { return id; }
@@ -323,11 +321,6 @@ namespace FXB.DataManager
             get { return loansMoney; }
         }
 
-        public bool IsReceiveReward
-        {
-            get { return isReceiveReward; }
-        }
-
         public DbQtTaskOrder(
             Int64 tmpId,
             UInt32 tmpGenerateTime,
@@ -360,9 +353,7 @@ namespace FXB.DataManager
             double tmpRoomArea,
             string tmpContractState,
             string tmpPaymentMethod,
-            double tmploansMoney,
-
-            bool tmpIsReceiveReward
+            double tmploansMoney
             )
         {
             id = tmpId;
@@ -397,8 +388,6 @@ namespace FXB.DataManager
             contractState = tmpContractState;
             paymentMethod = tmpPaymentMethod;
             loansMoney = tmploansMoney;
-
-            isReceiveReward = tmpIsReceiveReward;
         }
 
     }
@@ -574,8 +563,7 @@ namespace FXB.DataManager
                     string contractstate = qtOrderReader.GetString(25);
                     string paymentmethod = qtOrderReader.GetString(26);
                     double loansmoney = qtOrderReader.GetDouble(27);
-                    bool isreceivereward = qtOrderReader.GetBoolean(28);
-                    string qtkey = qtOrderReader.GetString(29);
+                    string qtkey = qtOrderReader.GetString(28);
 
                     SortedDictionary<Int64, DbQtTaskOrder> allOrder;
                     if (dbAllQtTaskOrder.ContainsKey(qtkey))
@@ -595,7 +583,7 @@ namespace FXB.DataManager
                         zc1qtdepartmentid, zc2jobnumber, zc2qtdepartmentid, checkstate, 
                         checkpersonjobnumber,checktime, entrypersonjobnumber, comment, buytime, 
                         customerphone, customeridcard, receipt, roomarea, 
-                        contractstate, paymentmethod, loansmoney, isreceivereward);
+                        contractstate, paymentmethod, loansmoney);
                 }
                 qtOrderReader.Close();
                 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -868,7 +856,6 @@ namespace FXB.DataManager
             string paymentMethod,           //付款方式
             double loansMoney,              //贷款金额
 
-            bool isReceiveReward,           //是否领取开单奖励
             string qtKey                    //所属的QT任务
             )
         {
@@ -915,7 +902,6 @@ namespace FXB.DataManager
                                         contractstate,
                                         paymentmethod,
                                         loansmoney,
-                                        isreceivereward,
                                         qtkey) output inserted.Id VALUES(
                                         @generatetime,
                                         @commissionamount,
@@ -944,7 +930,6 @@ namespace FXB.DataManager
                                         @contractstate,
                                         @paymentmethod,
                                         @loansmoney,
-                                        @isreceivereward,
                                         @qtkey);select @@identity";
             command.Parameters.AddWithValue("@generatetime", (Int32)generateTime);
             command.Parameters.AddWithValue("@commissionamount", commissionAmount);
@@ -974,7 +959,6 @@ namespace FXB.DataManager
             command.Parameters.AddWithValue("@contractstate", contractState);
             command.Parameters.AddWithValue("@paymentmethod", paymentMethod);
             command.Parameters.AddWithValue("@loansmoney", loansMoney);
-            command.Parameters.AddWithValue("@isreceivereward", isReceiveReward);
             command.Parameters.AddWithValue("@qtkey", qtKey);
             Int64 orderId = (Int64)command.ExecuteScalar();
 
@@ -985,11 +969,94 @@ namespace FXB.DataManager
                 zc1QtDepartmentId, zc2JobNumber, zc2QtDepartmentId, checkState,
                 checkPersonJobNumber, checkTime, entryPersonJobNumber, comment, buyTime,
                 customerPhone, customerIdCard, receipt, roomArea,
-                contractState, paymentMethod, loansMoney, isReceiveReward, qtKey);
+                contractState, paymentMethod, loansMoney, qtKey);
             qtTask.AllQtOrder[orderId] = newQtOrder;
             return newQtOrder;
         }
 
+        public void ModifyQtOrder(
+            Int64 orderId,                     //订单ID
+
+            double newCommissionAmount,        //佣金总额
+            string newCustomerName,            //客户名称
+            string newProjectCode,             //项目编码
+            string newRoomNumber,              //房间编号
+            double newClosingTheDealMoney,     //成交总价
+            string newYxConsultantJobNumber,   //营销顾问
+            Int64 newYxQtDepartmentId,         //营销顾问所属的部门ID
+            string newKyfConsultanJobNumber,  //客源方顾问
+            Int64 newKyfQtDepartmentId,        //客源方的部门ID
+            string newZc1JobNumber,            //驻场1
+            Int64 newZc1QtDepartmentId,        //驻场1的部门ID
+            string newZc2JobNumber,            //驻场2
+            Int64 newZc2QtDepartmentId,        //驻场2的部门ID
+
+            string newComment,                 //备注
+
+            UInt32 newBuyTime,                 //购买时间
+            string newCustomerPhone,           //客户电话
+            string newCustomerIdCard,          //客户身份证
+            string newReceipt,                 //收据
+            double newRoomArea,                //面积
+            string newContractState,           //合同状态
+            string newPaymentMethod,           //付款方式
+            double newPoansMoney               //贷款金额
+            )
+        {
+
+            SqlCommand command = new SqlCommand();
+            command.Connection = SqlMgr.Instance().SqlConnect;
+            command.CommandType = CommandType.Text;
+            command.CommandText = @"update qttaskorder set 
+                                    commissionamount=@commissionamount,
+                                    customername=@customername,
+                                    projectcode=@projectcode,
+                                    roomnumber=@roomnumber,
+                                    closingthedealmoney=@closingthedealmoney,
+                                    yxconsultantjobnumber=@yxconsultantjobnumber,
+                                    yxqtdepartmentid=@yxqtdepartmentid,
+                                    kyfconsultanjobnumber=@kyfconsultanjobnumber,
+                                    kyfqtdepartmentid=@kyfqtdepartmentid,
+                                    zc1jobnumber=@zc1jobnumber,
+                                    zc1qtdepartmentid=@zc1qtdepartmentid,
+                                    zc2jobnumber=@zc2jobnumber,
+                                    zc2qtdepartmentid=@zc2qtdepartmentid,
+                                    comment=@comment,
+                                    buytime=@buytime,
+                                    customerphone=@customerphone,
+                                    customeridcard=@customeridcard,
+                                    receipt=@receipt,
+                                    roomarea=@roomarea,
+                                    contractstate=@contractstate,
+                                    paymentmethod=@paymentmethod,
+                                    loansmoney=@loansmoney where id=@id";
+            command.Parameters.AddWithValue("@commissionamount", newCommissionAmount);
+            command.Parameters.AddWithValue("@customername", newCustomerName);
+            command.Parameters.AddWithValue("@projectcode", newProjectCode);
+            command.Parameters.AddWithValue("@roomnumber", newRoomNumber);
+            command.Parameters.AddWithValue("@closingthedealmoney", newClosingTheDealMoney);
+            command.Parameters.AddWithValue("@yxconsultantjobnumber", newYxConsultantJobNumber);
+            command.Parameters.AddWithValue("@yxqtdepartmentid", newYxQtDepartmentId);
+            command.Parameters.AddWithValue("@kyfconsultanjobnumber", newKyfConsultanJobNumber);
+            command.Parameters.AddWithValue("@kyfqtdepartmentid", newKyfQtDepartmentId);
+            command.Parameters.AddWithValue("@zc1jobnumber", newZc1JobNumber);
+            command.Parameters.AddWithValue("@zc1qtdepartmentid", newZc1QtDepartmentId);
+            command.Parameters.AddWithValue("@zc2jobnumber", newZc2JobNumber);
+            command.Parameters.AddWithValue("@zc2qtdepartmentid", newZc2QtDepartmentId);
+
+            command.Parameters.AddWithValue("@comment", newComment);
+
+            command.Parameters.AddWithValue("@buytime", (Int32)newBuyTime);
+            command.Parameters.AddWithValue("@customerphone", newCustomerPhone);
+            command.Parameters.AddWithValue("@customeridcard", newCustomerIdCard);
+            command.Parameters.AddWithValue("@receipt", newReceipt);
+            command.Parameters.AddWithValue("@roomarea", newRoomArea);
+            command.Parameters.AddWithValue("@contractstate", newContractState);
+            command.Parameters.AddWithValue("@paymentmethod", newPaymentMethod);
+            command.Parameters.AddWithValue("@loansmoney", newPoansMoney);
+            command.Parameters.AddWithValue("@id", orderId);
+            command.ExecuteNonQuery();
+        }
         public void RemoveQtOrder(Int64 orderId)
         {
             SqlCommand command = new SqlCommand();
@@ -1099,6 +1166,20 @@ namespace FXB.DataManager
                 throw new CrashException(ex.Message);
             }
 
+        }
+
+        //更新订单审核信息
+        public void UpdateCheckInfo(Int64 orderId, bool checkState, string checkJobNumber, UInt32 checkTime)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = SqlMgr.Instance().SqlConnect;
+            command.CommandType = CommandType.Text;
+            command.CommandText = "update qttaskorder set checkstate=@checkstate,checkpersonjobnumber=@checkpersonjobnumber,checktime=@checktime where id=@id";
+            command.Parameters.AddWithValue("@checkstate", checkState);
+            command.Parameters.AddWithValue("@checkpersonjobnumber", checkJobNumber);
+            command.Parameters.AddWithValue("@checktime", (Int32)checkTime);
+            command.Parameters.AddWithValue("@id", (Int32)orderId);
+            command.ExecuteNonQuery();
         }
 
         public SortedDictionary<string, QtTask> AllQtTask

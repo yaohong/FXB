@@ -93,7 +93,7 @@ namespace FXB.Dialog
                 EmployeeData checkEmployeeData = EmployeeDataMgr.Instance().AllEmployeeData[editQtOrder.CheckPersonJobNumber];
                 checkStateLable.Text = "已审核";
                 checkJobNumberLable.Text = checkEmployeeData.Name;
-                checkTimeLable.Text = TimeUtil.TimestampToDateTime(editQtOrder.CheckTime).ToString("yyyy-MM-dd HH:mm:ss"); ;
+                checkTimeLable.Text = TimeUtil.TimestampToDateTime(editQtOrder.CheckTime).ToString("yyyy-MM-dd HH:mm:ss");
 
                 //将控件变灰
                 EnableControl(false);
@@ -104,6 +104,9 @@ namespace FXB.Dialog
                 checkStateLable.Text = "未审核";
                 shenheBtn.Text = "审核";
             }
+
+            //编辑模式下订单生成时间不允许修改
+            orderGenerateTime.Enabled = false;
 
             kehuNameEdi.Text = editQtOrder.CustomerName;
             projectNameEdi.Text = ProjectDataMgr.Instance().AllProjectData[editQtOrder.ProjectCode].Name;
@@ -121,9 +124,14 @@ namespace FXB.Dialog
             yongjinzongeEdi.Text = editQtOrder.CommissionAmount.ToString();
             orderGenerateTime.Value = TimeUtil.TimestampToDateTime(editQtOrder.GenerateTime);
 
+            //下面的设置必须放在 orderGenerateTime.Value 之后
+            selectProjectCode = editQtOrder.ProjectCode;
+            selectGuwen = editQtOrder.YxConsultantJobNumber;
+            selectKeyuanfang = editQtOrder.KyfConsultanJobNumber;
+            selectZhuchang1 = editQtOrder.Zc1JobNumber;
+            selectZhuchang2 = editQtOrder.Zc2JobNumber; 
 
-            string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
-            QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+            QtTask qtTask = QtMgr.Instance().AllQtTask[editQtOrder.QtKey];
             //设置营销顾问
             {
                 guwenEdi.Text = EmployeeDataMgr.Instance().AllEmployeeData[editQtOrder.YxConsultantJobNumber].Name;
@@ -345,7 +353,13 @@ namespace FXB.Dialog
                 return;
             }
 
-            if (selectZhuchang1 == selectZhuchang2 && selectZhuchang1 != "")
+            if (selectZhuchang1 == "")
+            {
+                MessageBox.Show("驻场1必须设置");
+                return;
+            }
+
+            if (selectZhuchang1 == selectZhuchang2)
             {
                 MessageBox.Show("2个驻场不能为同一个人");
                 return;
@@ -402,7 +416,6 @@ namespace FXB.Dialog
                     hetongzhuangtaiEdi.Text,
                     fukuanTypeEdi.Text,
                     daikuanjineEdi.Text == "" ? 0.0f : System.Math.Round(Convert.ToDouble(daikuanjineEdi.Text), 2),
-                    false,
                     qtKey);
                 newOrder = tmpNewOrder;
                 DialogResult = DialogResult.OK;
@@ -422,7 +435,117 @@ namespace FXB.Dialog
 
         private void EditSave()
         {
+            
+            if (kehuNameEdi.Text != editQtOrder.CustomerName || 
+                selectProjectCode != editQtOrder.ProjectCode ||
+                roomNumberEdi.Text != editQtOrder.RoomNumber ||
+                cjZongjiaEdi.Text != editQtOrder.ClosingTheDealMoney.ToString() ||
+                TimeUtil.DateTimeToTimestamp(buyTime.Value) != editQtOrder.BuyTime || 
+                kehudianhuaEdi.Text != editQtOrder.CustomerPhone ||
+                shenfenzhengEdi.Text != editQtOrder.CustomerIdCard ||
+                shoujuEdi.Text != editQtOrder.Receipt || 
+                mianjiEdi.Text != editQtOrder.RoomArea.ToString() ||
+                hetongzhuangtaiEdi.Text != editQtOrder.ContractState || 
+                fukuanTypeEdi.Text != editQtOrder.PaymentMethod ||
+                daikuanjineEdi.Text != editQtOrder.LoansMoney.ToString() ||
+                beizhuEdi.Text != editQtOrder.Comment ||
+                yongjinzongeEdi.Text != editQtOrder.CommissionAmount.ToString() || 
+                selectGuwen != editQtOrder.YxConsultantJobNumber ||
+                selectKeyuanfang != editQtOrder.KyfConsultanJobNumber || 
+                selectZhuchang1 != editQtOrder.Zc1JobNumber || 
+                selectZhuchang2 != editQtOrder.Zc2JobNumber
+                )
+            {
+                QtTask qtTask = QtMgr.Instance().AllQtTask[editQtOrder.QtKey];
+                if (qtTask.Closing)
+                {
+                    MessageBox.Show("目标QT任务已经已经生成提成，不能修改");
+                    return;
+                }
 
+                try
+                {
+                    Int64 newYxDepartmentId = EmployeeDataMgr.Instance().AllEmployeeData[selectGuwen].DepartmentId;
+                    Int64 newKyfDepartmentId = 0;
+                    Int64 newZc1DepartmentId = 0;
+                    Int64 newZc2DepartmentId = 0;
+                    if (selectKeyuanfang != "")
+                    {
+                        newKyfDepartmentId = EmployeeDataMgr.Instance().AllEmployeeData[selectKeyuanfang].DepartmentId;
+                    }
+
+                    if (selectZhuchang1 != "")
+                    {
+                        newZc1DepartmentId = EmployeeDataMgr.Instance().AllEmployeeData[selectZhuchang1].DepartmentId;
+                    }
+
+                    if (selectZhuchang2 != "")
+                    {
+                        newZc2DepartmentId = EmployeeDataMgr.Instance().AllEmployeeData[selectZhuchang2].DepartmentId;
+                    }
+
+                    QtMgr.Instance().ModifyQtOrder(
+                        editQtOrder.Id,
+                        System.Math.Round(Convert.ToDouble(yongjinzongeEdi.Text), 2),
+                        kehuNameEdi.Text,
+                        selectProjectCode,
+                        roomNumberEdi.Text,
+                        System.Math.Round(Convert.ToDouble(cjZongjiaEdi.Text), 2),
+                        selectGuwen, newYxDepartmentId,
+                        selectKeyuanfang, newKyfDepartmentId,
+                        selectZhuchang1, newZc1DepartmentId,
+                        selectZhuchang2, newZc2DepartmentId,
+
+                        beizhuEdi.Text,
+                        TimeUtil.DateTimeToTimestamp(buyTime.Value),
+                        kehudianhuaEdi.Text,
+                        shenfenzhengEdi.Text,
+                        shoujuEdi.Text,
+                        System.Math.Round(Convert.ToDouble(mianjiEdi.Text), 2),
+                        hetongzhuangtaiEdi.Text,
+                        fukuanTypeEdi.Text,
+                        daikuanjineEdi.Text == "" ? 0.0f : System.Math.Round(Convert.ToDouble(daikuanjineEdi.Text), 2));
+
+                    editQtOrder.CommissionAmount = System.Math.Round(Convert.ToDouble(yongjinzongeEdi.Text), 2);
+                    editQtOrder.CustomerName = kehuNameEdi.Text;
+                    editQtOrder.ProjectCode = selectProjectCode;
+                    editQtOrder.RoomNumber = roomNumberEdi.Text;
+                    editQtOrder.ClosingTheDealMoney = System.Math.Round(Convert.ToDouble(cjZongjiaEdi.Text), 2);
+                    editQtOrder.YxConsultantJobNumber = selectGuwen;
+                    editQtOrder.YxQtDepartmentId = newYxDepartmentId;
+                    editQtOrder.KyfConsultanJobNumber = selectKeyuanfang;
+                    editQtOrder.KyfQtDepartmentId = newKyfDepartmentId;
+                    editQtOrder.Zc1JobNumber = selectZhuchang1;
+                    editQtOrder.Zc1QtDepartmentId = newZc1DepartmentId;
+                    editQtOrder.Zc2JobNumber = selectZhuchang2;
+                    editQtOrder.Zc2QtDepartmentId = newZc2DepartmentId;
+                    editQtOrder.Comment = beizhuEdi.Text;
+                    editQtOrder.BuyTime = TimeUtil.DateTimeToTimestamp(buyTime.Value);
+                    editQtOrder.CustomerPhone = kehudianhuaEdi.Text;
+                    editQtOrder.CustomerIdCard = shenfenzhengEdi.Text;
+                    editQtOrder.Receipt = shoujuEdi.Text;
+                    editQtOrder.RoomArea = System.Math.Round(Convert.ToDouble(mianjiEdi.Text), 2);
+                    editQtOrder.ContractState = hetongzhuangtaiEdi.Text;
+                    editQtOrder.PaymentMethod = fukuanTypeEdi.Text;
+                    editQtOrder.LoansMoney = daikuanjineEdi.Text == "" ? 0.0f : System.Math.Round(Convert.ToDouble(daikuanjineEdi.Text), 2);
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+                catch (ConditionCheckException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception e2)
+                {
+                    MessageBox.Show(e2.Message);
+                    Application.Exit();
+                }
+            }
+            else
+            {
+                DialogResult = DialogResult.OK;
+                Close();
+            }
         }
 
         private void projectNameSelectBtn_Click(object sender, EventArgs e)
@@ -815,19 +938,68 @@ namespace FXB.Dialog
 
         private void shenheBtn_Click(object sender, EventArgs e)
         {
-            if (editQtOrder.CheckState)
+            try
             {
-                //当前是审核状态
+                QtTask qtTask = QtMgr.Instance().AllQtTask[editQtOrder.QtKey];
+                if (qtTask.Closing)
+                {
+                    MessageBox.Show("QT提成已经生成,不能变更审核状态");
+                    return;
+                }
+
+                if (editQtOrder.CheckState)
+                {
+                    //当前是审核状态
+                    //取消审核
+                    QtMgr.Instance().UpdateCheckInfo(editQtOrder.Id, false, "", 0);
+                    editQtOrder.CheckState = false;
+                    editQtOrder.CheckPersonJobNumber = "";
+                    editQtOrder.CheckTime = 0;
+
+                    EnableControl(true);
+                    //生成时间不允许修改
+                    orderGenerateTime.Enabled = false;
+
+                    checkStateLable.Text = "未审核";
+                    checkJobNumberLable.Text = "";
+                    checkTimeLable.Text = "";
+                    shenheBtn.Text = "审核";
+                }
+                else
+                {
+                    
+                    //当前是取消审核状态
+                    //审核
+                    EmployeeData curEmployee = AuthMgr.Instance().CurLoginEmployee;
+                    UInt32 timestamp = TimeUtil.DateTimeToTimestamp(DateTime.Now);
+                    QtMgr.Instance().UpdateCheckInfo(editQtOrder.Id, true, curEmployee.JobNumber, timestamp);
+                    editQtOrder.CheckState = true;
+                    editQtOrder.CheckPersonJobNumber = curEmployee.JobNumber;
+                    editQtOrder.CheckTime = timestamp;
+
+                    EnableControl(false);
+
+                    checkStateLable.Text = "已审核";
+                    checkJobNumberLable.Text = curEmployee.Name;
+                    checkTimeLable.Text = TimeUtil.TimestampToDateTime(editQtOrder.CheckTime).ToString("yyyy-MM-dd HH:mm:ss");
+                    shenheBtn.Text = "取消审核";
+                }
             }
-            else
+            catch (ConditionCheckException ex)
             {
-                //当前是取消审核状态
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception e2)
+            {
+                MessageBox.Show(e2.Message);
+                Application.Exit();
             }
         }
 
-        private void luruJobNumberLable_Click(object sender, EventArgs e)
+        private void exitBtn_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
+
     }
 }

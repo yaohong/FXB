@@ -34,7 +34,6 @@ namespace FXB
 
         private void main_Load(object sender, EventArgs e)
         {
-
             //初始化操作
             try 
             {

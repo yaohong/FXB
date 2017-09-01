@@ -56,8 +56,6 @@ namespace FXB.Data
         private string paymentMethod;               //付款方式
         private double loansMoney;                  //贷款金额
 
-        private bool isReceiveReward;               //是否领取开单奖励
-
         private string qtKey;                       //所属的QT任务
         public Int64 Id
         {
@@ -76,81 +74,97 @@ namespace FXB.Data
         public double CommissionAmount
         {
             get { return commissionAmount; }
+            set { commissionAmount = value; }
         }
 
         public string CustomerName
         {
             get { return customerName; }
+            set { customerName = value; }
         }
 
         public string ProjectCode
         {
             get { return projectCode; }
+            set { projectCode = value; }
         }
 
         public string RoomNumber
         {
             get { return roomNumber; }
+            set { roomNumber = value; }
         }
 
         public double ClosingTheDealMoney
         {
             get { return closingTheDealMoney; }
+            set { closingTheDealMoney = value; }
         }
 
         public string YxConsultantJobNumber
         {
             get { return yxConsultantJobNumber; }
+            set { yxConsultantJobNumber = value; }
         }
 
         public Int64 YxQtDepartmentId
         {
             get { return yxQtDepartmentId; }
+            set { yxQtDepartmentId = value; }
         }
 
         public string KyfConsultanJobNumber
         {
             get { return kyfConsultanJobNumber; }
+            set { kyfConsultanJobNumber = value; }
         }
 
         public Int64 KyfQtDepartmentId
         {
             get { return kyfQtDepartmentId; }
+            set { kyfQtDepartmentId = value; }
         }
 
         public string Zc1JobNumber
         {
             get { return zc1JobNumber; }
+            set { zc1JobNumber = value; }
         }
 
         public Int64 Zc1QtDepartmentId
         {
             get { return zc1QtDepartmentId; }
+            set { zc1QtDepartmentId = value; }
         }
 
         public string Zc2JobNumber
         {
             get { return zc2JobNumber; }
+            set { zc2JobNumber = value; }
         }
 
         public Int64 Zc2QtDepartmentId
         {
             get { return zc2QtDepartmentId; }
+            set { zc2QtDepartmentId = value; }
         }
 
         public bool CheckState
         {
             get { return checkState; }
+            set { checkState = value; }
         }
 
         public string CheckPersonJobNumber
         {
             get { return checkPersonJobNumber; }
+            set { checkPersonJobNumber = value; }
         }
 
         public UInt32 CheckTime
         {
             get { return checkTime; }
+            set { checkTime = value; }
         }
 
         public string EntryPersonJobNumber
@@ -161,53 +175,58 @@ namespace FXB.Data
         public string Comment
         {
             get { return comment; }
+            set { comment = value; }
         }
 
         public UInt32 BuyTime
         {
             get { return buyTime; }
+            set { buyTime = value; }
         }
 
         public string CustomerPhone
         {
             get { return customerPhone; }
+            set { customerPhone = value; }
         }
 
         public string CustomerIdCard
         {
             get { return customerIdCard; }
+            set { customerIdCard = value; }
         }
 
         public string Receipt
         {
             get { return receipt; }
+            set { receipt = value; }
         }
 
         public double RoomArea
         {
             get { return roomArea; }
+            set { roomArea = value; }
         }
 
         public string ContractState
         {
             get { return contractState; }
+            set { contractState = value; }
         }
 
         public string PaymentMethod
         {
             get { return paymentMethod; }
+            set { paymentMethod = value; }
         }
 
 
         public double LoansMoney
         {
             get { return loansMoney; }
+            set { loansMoney = value; }
         }
 
-        public bool IsReceiveReward
-        {
-            get { return isReceiveReward; }
-        }
         public QtOrder(
             Int64 tmpId,
             UInt32 tmpGenerateTime,
@@ -242,7 +261,6 @@ namespace FXB.Data
             string tmpPaymentMethod,
             double tmploansMoney,
 
-            bool tmpIsReceiveReward,
             string tmpQtKey)
         {
             orderId = tmpId;
@@ -277,8 +295,6 @@ namespace FXB.Data
             contractState = tmpContractState;
             paymentMethod = tmpPaymentMethod;
             loansMoney = tmploansMoney;
-
-            isReceiveReward = tmpIsReceiveReward;
 
             qtKey = tmpQtKey;
         }

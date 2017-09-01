@@ -174,7 +174,7 @@ namespace FXB.Data
                     dbOrder.Zc1QtDepartmentId, dbOrder.Zc2JobNumber, dbOrder.Zc2QtDepartmentId, dbOrder.CheckState,
                     dbOrder.CheckPersonJobnumber, dbOrder.CheckTime, dbOrder.EntryPersonJobnumber, dbOrder.Comment, dbOrder.BuyTime,
                     dbOrder.CustomerPhone, dbOrder.CustomerIdCard, dbOrder.Receipt, dbOrder.RoomArea,
-                    dbOrder.ContractState, dbOrder.PaymentMethod, dbOrder.LoansMoney, dbOrder.IsReceiveReward, qtKey);
+                    dbOrder.ContractState, dbOrder.PaymentMethod, dbOrder.LoansMoney, qtKey);
                 allQtOrder[dbOrder.Id] = newQtOrder;
             }
         }
@@ -201,7 +201,9 @@ namespace FXB.Data
                 qtDbDepartmentData.OwnerJobNumber,
                 qtDbDepartmentData.QtDepartmentName,
                 qtDbDepartmentData.ParentDepartmentId,
-                qtDbDepartmentData.NeedCompleteTaskAmount);
+                qtDbDepartmentData.NeedCompleteTaskAmount,
+                qtDbDepartmentData.AlreadyCompleteTaskAmount
+                );
             allQtDepartment[qtDbDepartmentData.QtDepartmentId] = qtDepartment;
             return qtDepartment;
         }
@@ -257,10 +259,10 @@ namespace FXB.Data
                     while (kyfDepartmentId != 0)
                     {
                         QtDepartment kyfQtDepartment = allQtDepartment[kyfDepartmentId];
-                        if (kyfQtDepartment.OwnerJobNumber != "")
-                        {
+                        //if (kyfQtDepartment.OwnerJobNumber != "")
+                        //{
                             kyfQtDepartment.AlreadyCompleteTaskAmount += kyfCommission;
-                        }
+                        //}
                         kyfDepartmentId = kyfQtDepartment.ParentDepartmentId;
                     }
                 }
@@ -269,10 +271,10 @@ namespace FXB.Data
                 while (departmentId != 0)
                 {
                     QtDepartment qtDepartment = allQtDepartment[departmentId];
-                    if (qtDepartment.OwnerJobNumber != "")
-                    {
-                        qtDepartment.AlreadyCompleteTaskAmount += qtOrder.CommissionAmount;
-                    }
+                    //if (qtDepartment.OwnerJobNumber != "")
+                    //{
+                    qtDepartment.AlreadyCompleteTaskAmount += yxCommission;
+                    //}
                     departmentId = qtDepartment.ParentDepartmentId;
                 }
 
