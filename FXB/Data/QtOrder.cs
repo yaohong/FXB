@@ -39,9 +39,9 @@ namespace FXB.Data
         private string checkPersonJobNumber;        //审核人
         private UInt32 checkTime;                   //审核日期
 
-        private bool ifchargeback;                   //是否退单
-        private string cbJobNumber;                  //退单人
-        private UInt32 cbTime;                       //退单时间
+        //private bool ifchargeback;                   //是否退单
+        //private string cbJobNumber;                  //退单人
+        //private UInt32 cbTime;                       //退单时间
 
         private string entryPersonJobNumber;        //录入人
 
@@ -153,21 +153,6 @@ namespace FXB.Data
             get { return checkTime; }
         }
 
-        public bool IfChargeback
-        {
-            get { return ifchargeback; }
-        }
-
-        public string CbJobNumber
-        {
-            get { return cbJobNumber; }
-        }
-
-        public UInt32 CbTime
-        {
-            get { return cbTime; }
-        }
-
         public string EntryPersonJobNumber
         {
             get { return entryPersonJobNumber; }
@@ -245,10 +230,6 @@ namespace FXB.Data
             string tmpCheckPersonJobnumber,
             UInt32 tmpCheckTime,
 
-            bool tmpIfChargeback,
-            string tmpCbJobnumber,
-            UInt32 tmpCbTime,
-
             string tmpEntryPersonJobnumber,
 
             string tmpComment,
@@ -284,10 +265,6 @@ namespace FXB.Data
             checkState = tmpCheckState;
             checkPersonJobNumber = tmpCheckPersonJobnumber;
             checkTime = tmpCheckTime;
-
-            ifchargeback = tmpIfChargeback;
-            cbJobNumber = tmpCbJobnumber;
-            cbTime = tmpCbTime;
 
             entryPersonJobNumber = tmpEntryPersonJobnumber;
 

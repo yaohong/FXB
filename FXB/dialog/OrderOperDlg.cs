@@ -22,6 +22,7 @@ namespace FXB.Dialog
         private string selectZhuchang1 = "";    //选择的驻场1
         private string selectZhuchang2 = "";    //选择的驻场2
 
+        //编辑模式
         private QtOrder editQtOrder = null;     //编辑模式下选择的订单
 
         //创建的新订单
@@ -53,7 +54,13 @@ namespace FXB.Dialog
             zhuchang1Edi.Enabled = false;
             zhuchang2Edi.Enabled = false;
 
-            RefreshCheckState(true, "姚鸿", "22016-10-5", "黄平", false);
+            AuthData curAuth = AuthMgr.Instance().CurLoginEmployee.AuthData;
+            if (!curAuth.IfOwner && !curAuth.ShowOrderCheckBtn())
+            {
+                //不显示审核
+                shenheBtn.Visible = false;
+            }
+
             if (mod == EditMode.EM_ADD)
             {
                 AddInit();
@@ -68,21 +75,162 @@ namespace FXB.Dialog
         private void AddInit()
         {
             this.Text = "添加";
+            shenheBtn.Visible = false;
+            checkStateLable.Text = "未审核";
+            luruJobNumberLable.Text = AuthMgr.Instance().CurLoginEmployee.Name;
+
         }
 
         private void EditInit()
         {
             this.Text = "编辑";
+
+            //设置录入人
+            EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[editQtOrder.EntryPersonJobNumber];
+            luruJobNumberLable.Text = employeeData.Name;
+            if (editQtOrder.CheckState)
+            {
+                EmployeeData checkEmployeeData = EmployeeDataMgr.Instance().AllEmployeeData[editQtOrder.CheckPersonJobNumber];
+                checkStateLable.Text = "已审核";
+                checkJobNumberLable.Text = checkEmployeeData.Name;
+                checkTimeLable.Text = TimeUtil.TimestampToDateTime(editQtOrder.CheckTime).ToString("yyyy-MM-dd HH:mm:ss"); ;
+
+                //将控件变灰
+                EnableControl(false);
+                shenheBtn.Text = "取消审核";
+            }
+            else
+            {
+                checkStateLable.Text = "未审核";
+                shenheBtn.Text = "审核";
+            }
+
+            kehuNameEdi.Text = editQtOrder.CustomerName;
+            projectNameEdi.Text = ProjectDataMgr.Instance().AllProjectData[editQtOrder.ProjectCode].Name;
+            roomNumberEdi.Text = editQtOrder.RoomNumber;
+            cjZongjiaEdi.Text = editQtOrder.ClosingTheDealMoney.ToString();
+            buyTime.Value = TimeUtil.TimestampToDateTime(editQtOrder.BuyTime);
+            kehudianhuaEdi.Text = editQtOrder.CustomerPhone;
+            shenfenzhengEdi.Text = editQtOrder.CustomerIdCard;
+            shoujuEdi.Text = editQtOrder.Receipt;
+            mianjiEdi.Text = editQtOrder.RoomArea.ToString();
+            hetongzhuangtaiEdi.Text = editQtOrder.ContractState;
+            fukuanTypeEdi.Text = editQtOrder.PaymentMethod;
+            daikuanjineEdi.Text = editQtOrder.LoansMoney.ToString();
+            beizhuEdi.Text = editQtOrder.Comment;
+            yongjinzongeEdi.Text = editQtOrder.CommissionAmount.ToString();
+            orderGenerateTime.Value = TimeUtil.TimestampToDateTime(editQtOrder.GenerateTime);
+
+
+            string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
+            QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+            //设置营销顾问
+            {
+                guwenEdi.Text = EmployeeDataMgr.Instance().AllEmployeeData[editQtOrder.YxConsultantJobNumber].Name;
+                yxBumenEdi.Text = DepartmentUtil.GetQtDepartmentShowText(qtTask, editQtOrder.YxQtDepartmentId);
+                QtLevel yxQtLevel = QtLevel.None;
+                if (qtTask.AllQtEmployee.ContainsKey(editQtOrder.YxConsultantJobNumber))
+                {
+                    yxQtLevel = qtTask.AllQtEmployee[editQtOrder.YxConsultantJobNumber].QtLevel;
+                }
+                else
+                {
+                    //不是QT任务下的业务员只会是QT业务员
+                    yxQtLevel = QtLevel.Salesman;
+                }
+                yxQtLevelEdi.Text = QtUtil.GetQTLevelString(yxQtLevel);
+            }
+
+            //设置客源方
+            {
+                if (editQtOrder.KyfConsultanJobNumber != "")
+                {
+                    keyuanEdi.Text = EmployeeDataMgr.Instance().AllEmployeeData[editQtOrder.KyfConsultanJobNumber].Name;
+                    kyfBumenEdi.Text = DepartmentUtil.GetQtDepartmentShowText(qtTask, editQtOrder.KyfQtDepartmentId);
+                    QtLevel kyfQtLevel = QtLevel.None;
+                    if (qtTask.AllQtEmployee.ContainsKey(editQtOrder.KyfConsultanJobNumber))
+                    {
+                        kyfQtLevel = qtTask.AllQtEmployee[editQtOrder.KyfConsultanJobNumber].QtLevel;
+                    }
+                    else
+                    {
+                        //不是QT任务下的业务员只会是QT业务员
+                        kyfQtLevel = QtLevel.Salesman;
+                    }
+                    kyfQtLevelEdi.Text = QtUtil.GetQTLevelString(kyfQtLevel);
+                }
+            }
+
+            //设置驻场1
+            {
+                if (editQtOrder.Zc1JobNumber != "")
+                {
+                    zhuchang1Edi.Text = EmployeeDataMgr.Instance().AllEmployeeData[editQtOrder.Zc1JobNumber].Name;
+                    zc1BumenEdi.Text = DepartmentUtil.GetQtDepartmentShowText(qtTask, editQtOrder.Zc1QtDepartmentId);
+                    QtLevel zcQtLevel = QtLevel.None;
+                    if (qtTask.AllQtEmployee.ContainsKey(editQtOrder.Zc1JobNumber))
+                    {
+                        zcQtLevel = qtTask.AllQtEmployee[editQtOrder.Zc1JobNumber].QtLevel;
+                    }
+                    else
+                    {
+                        //不是QT任务下的业务员只会是驻场业务员
+                        zcQtLevel = QtLevel.ZhuchangZhuanyuan;
+                    }
+                    zc1QtLevelEdi.Text = QtUtil.GetQTLevelString(zcQtLevel);
+                }
+            }
+            //设置驻场2
+            {
+                if (editQtOrder.Zc2JobNumber != "")
+                {
+                    zhuchang2Edi.Text = EmployeeDataMgr.Instance().AllEmployeeData[editQtOrder.Zc2JobNumber].Name;
+                    zc2BumenEdi.Text = DepartmentUtil.GetQtDepartmentShowText(qtTask, editQtOrder.Zc2QtDepartmentId);
+                    QtLevel zcQtLevel = QtLevel.None;
+                    if (qtTask.AllQtEmployee.ContainsKey(editQtOrder.Zc2JobNumber))
+                    {
+                        zcQtLevel = qtTask.AllQtEmployee[editQtOrder.Zc2JobNumber].QtLevel;
+                    }
+                    else
+                    {
+                        //不是QT任务下的业务员只会是驻场业务员
+                        zcQtLevel = QtLevel.ZhuchangZhuanyuan;
+                    }
+                    zc2QtLevelEdi.Text = QtUtil.GetQTLevelString(zcQtLevel);
+                }
+            }
         }
 
-
-        private void RefreshCheckState(bool checkState, string checkPersoName, string checkTime, string luruPersoName, bool orderState)
+        void EnableControl(bool bl)
         {
-            checkStateLable.Text = "已审核";
-            checkJobNumberLable.Text = "石頭哥哥";
-            checkTimeLable.Text = "2016-10-09 23:11:20";
-            luruJobNumberLable.Text = "石頭哥哥的";
+            kehuNameEdi.Enabled = bl;
+            projectNameSelectBtn.Enabled = bl;
+            roomNumberEdi.Enabled = bl;
+            cjZongjiaEdi.Enabled = bl;
+            buyTime.Enabled = bl;
+            kehudianhuaEdi.Enabled = bl;
+            shenfenzhengEdi.Enabled = bl;
+            shoujuEdi.Enabled = bl;
+            mianjiEdi.Enabled = bl;
+            hetongzhuangtaiEdi.Enabled = bl;
+            fukuanTypeEdi.Enabled = bl;
+            daikuanjineEdi.Enabled = bl;
+            beizhuEdi.Enabled = bl;
+            yongjinzongeEdi.Enabled = bl;
+
+            orderGenerateTime.Enabled = bl;
+            guwenSelectBtn.Enabled = bl;
+            keyuanSelectBtn.Enabled = bl;
+            zhuchang1SelectBtn.Enabled = bl;
+            zhuchang2SelectBtn.Enabled = bl;
         }
+        //private void RefreshCheckState(bool checkState, string checkPersoName, string checkTime, string luruPersoName, bool orderState)
+        //{
+        //    checkStateLable.Text = "已审核";
+        //    checkJobNumberLable.Text = "石頭哥哥";
+        //    checkTimeLable.Text = "2016-10-09 23:11:20";
+        //    luruJobNumberLable.Text = "石頭哥哥的";
+        //}
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
@@ -221,7 +369,7 @@ namespace FXB.Dialog
 
         private void AddSave()
         {
-
+            EmployeeData curEmployeeData = AuthMgr.Instance().CurLoginEmployee;
             try 
             {
                 string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
@@ -244,10 +392,7 @@ namespace FXB.Dialog
                     false,
                     "",
                     0,
-                    false,
-                    "",
-                    0,
-                    "owner",        //暂时填owner，真实情况应该为登陆用户
+                    curEmployeeData.JobNumber,
                     beizhuEdi.Text,
                     TimeUtil.DateTimeToTimestamp(buyTime.Value),
                     kehudianhuaEdi.Text,
@@ -423,7 +568,7 @@ namespace FXB.Dialog
                     selectGuwen = jobNumber;
                     guwenEdi.Text = employee.Name;
 
-                    yxBumenEdi.Text = DepartmentUtil.GetDepartmentShowText(employee.DepartmentId);
+                    yxBumenEdi.Text = DepartmentUtil.GetQtDepartmentShowText(qtTask, employee.DepartmentId);
                     yxQtLevelEdi.Text = QtUtil.GetQTLevelString(employee.QTLevel);
                 }
                 else
@@ -519,7 +664,7 @@ namespace FXB.Dialog
                     selectKeyuanfang = jobNumber;
                     keyuanEdi.Text = employee.Name;
 
-                    kyfBumenEdi.Text = DepartmentUtil.GetDepartmentShowText(employee.DepartmentId);
+                    kyfBumenEdi.Text = DepartmentUtil.GetQtDepartmentShowText(qtTask, employee.DepartmentId);
                     kyfQtLevelEdi.Text = QtUtil.GetQTLevelString(employee.QTLevel);
 
                 }
@@ -587,7 +732,7 @@ namespace FXB.Dialog
 
                     selectZhuchang1 = jobNumber;
                     zhuchang1Edi.Text = employee.Name;
-                    zc1BumenEdi.Text = DepartmentUtil.GetDepartmentShowText(employee.DepartmentId);
+                    zc1BumenEdi.Text = DepartmentUtil.GetQtDepartmentShowText(qtTask, employee.DepartmentId);
                     zc1QtLevelEdi.Text = QtUtil.GetQTLevelString(employee.QTLevel);
                 }
                 else
@@ -654,7 +799,7 @@ namespace FXB.Dialog
 
                     selectZhuchang2 = jobNumber;
                     zhuchang2Edi.Text = employee.Name;
-                    zc2BumenEdi.Text = DepartmentUtil.GetDepartmentShowText(employee.DepartmentId);
+                    zc2BumenEdi.Text = DepartmentUtil.GetQtDepartmentShowText(qtTask, employee.DepartmentId);
                     zc2QtLevelEdi.Text = QtUtil.GetQTLevelString(employee.QTLevel);
                 }
                 else
@@ -666,6 +811,23 @@ namespace FXB.Dialog
                 }
 
             }
+        }
+
+        private void shenheBtn_Click(object sender, EventArgs e)
+        {
+            if (editQtOrder.CheckState)
+            {
+                //当前是审核状态
+            }
+            else
+            {
+                //当前是取消审核状态
+            }
+        }
+
+        private void luruJobNumberLable_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

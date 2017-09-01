@@ -53,6 +53,69 @@ namespace FXB
                     Application.Exit();
                     return;
                 }
+
+                //根据权限隐藏菜单
+                AuthData curLoginAuth = AuthMgr.Instance().CurLoginEmployee.AuthData;
+                if (!curLoginAuth.IfOwner)
+                {
+                    //不是管理员
+                    if (!curLoginAuth.ShowYuangongDanganMenu())
+                    {
+                        员工档案ToolStripMenuItem.Visible = false;
+                    }
+
+                    if (!curLoginAuth.ShowZhijiDanganMenu())
+                    {
+                        职级档案ToolStripMenuItem.Visible = false;
+                    }
+
+                    if (!curLoginAuth.ShowXiangmuDanganMenu())
+                    {
+                        项目档案ToolStripMenuItem.Visible = false;
+                    }
+
+                    if (!curLoginAuth.ShowYonghuquanxianMenu())
+                    {
+                        用户权限ToolStripMenuItem.Visible = false;
+                    }
+
+                    if (!curLoginAuth.ShowShuaXinShujuMenu())
+                    {
+                        刷新数据ToolStripMenuItem.Visible = false;
+                    }
+
+                    if (!curLoginAuth.ShowKaiDanMenu())
+                    {
+                        开单录入ToolStripMenuItem.Visible = false;
+                    }
+
+                    if (!curLoginAuth.ShowHuiYongMenu())
+                    {
+                        回佣录入ToolStripMenuItem.Visible = false;
+                    }
+
+                    if (!curLoginAuth.ShowTuiDanMenu())
+                    {
+                        退单录入ToolStripMenuItem.Visible = false;
+                    }
+
+
+                    if (!curLoginAuth.ShowDixinLuruMenu())
+                    {
+                        底薪录入ToolStripMenuItem.Visible = false;
+                    }
+
+                    if (!curLoginAuth.ShowGenerateDixinFubenMenu())
+                    {
+                        生成底薪副本ToolStripMenuItem.Visible = false;
+                    }
+
+                    if (!curLoginAuth.ShowQtTaskMenu())
+                    {
+                        QT任务ToolStripMenuItem.Visible = false;
+                    }
+                }
+
             }
             catch (Exception ex)
             {

@@ -168,10 +168,6 @@ namespace FXB.DataManager
         private string checkPersonJobnumber;
         private UInt32 checkTime;
 
-        private bool ifChargeback;
-        private string cbJobnumber;                  //
-        private UInt32 cbTime;
-
         private string entryPersonJobnumber;
 
         private string comment;
@@ -276,21 +272,6 @@ namespace FXB.DataManager
             get { return checkTime; }
         }
 
-        public bool IfChargeback
-        {
-            get { return ifChargeback; }
-        }
-
-        public string CbJobnumber
-        {
-            get { return cbJobnumber; }
-        }
-
-        public UInt32 CbTime
-        {
-            get { return cbTime; }
-        }
-
         public string EntryPersonJobnumber
         {
             get { return entryPersonJobnumber; }
@@ -369,10 +350,6 @@ namespace FXB.DataManager
             string tmpCheckPersonJobnumber,
             UInt32 tmpCheckTime,
 
-            bool tmpIfChargeback,
-            string tmpCbJobnumber,
-            UInt32 tmpCbTime,
-
             string tmpEntryPersonJobnumber,
 
             string tmpComment,
@@ -408,10 +385,6 @@ namespace FXB.DataManager
             checkState = tmpCheckState;                    
             checkPersonJobnumber = tmpCheckPersonJobnumber;
             checkTime = tmpCheckTime;
-
-            ifChargeback = tmpIfChargeback;
-            cbJobnumber = tmpCbJobnumber;
-            cbTime = tmpCbTime;
 
             entryPersonJobnumber = tmpEntryPersonJobnumber;
 
@@ -588,21 +561,21 @@ namespace FXB.DataManager
                     bool checkstate = qtOrderReader.GetBoolean(15);
                     string checkpersonjobnumber = qtOrderReader.GetString(16);
                     UInt32 checktime = (UInt32)qtOrderReader.GetInt32(17);
-                    bool ifchargeback = qtOrderReader.GetBoolean(18);
-                    string cbjobnumber = qtOrderReader.GetString(19);
-                    UInt32 cbtime = (UInt32)qtOrderReader.GetInt32(20);
-                    string entrypersonjobnumber = qtOrderReader.GetString(21);
-                    string comment = qtOrderReader.GetString(22);
-                    UInt32 buytime = (UInt32)qtOrderReader.GetInt32(23);
-                    string customerphone = qtOrderReader.GetString(24);
-                    string customeridcard = qtOrderReader.GetString(25);
-                    string receipt = qtOrderReader.GetString(26);
-                    double roomarea = qtOrderReader.GetDouble(27);
-                    string contractstate = qtOrderReader.GetString(28);
-                    string paymentmethod = qtOrderReader.GetString(29);
-                    double loansmoney = qtOrderReader.GetDouble(30);
-                    bool isreceivereward = qtOrderReader.GetBoolean(31);
-                    string qtkey = qtOrderReader.GetString(32);
+                    //bool ifchargeback = qtOrderReader.GetBoolean(18);
+                    //string cbjobnumber = qtOrderReader.GetString(19);
+                    //UInt32 cbtime = (UInt32)qtOrderReader.GetInt32(20);
+                    string entrypersonjobnumber = qtOrderReader.GetString(18);
+                    string comment = qtOrderReader.GetString(19);
+                    UInt32 buytime = (UInt32)qtOrderReader.GetInt32(20);
+                    string customerphone = qtOrderReader.GetString(21);
+                    string customeridcard = qtOrderReader.GetString(22);
+                    string receipt = qtOrderReader.GetString(23);
+                    double roomarea = qtOrderReader.GetDouble(24);
+                    string contractstate = qtOrderReader.GetString(25);
+                    string paymentmethod = qtOrderReader.GetString(26);
+                    double loansmoney = qtOrderReader.GetDouble(27);
+                    bool isreceivereward = qtOrderReader.GetBoolean(28);
+                    string qtkey = qtOrderReader.GetString(29);
 
                     SortedDictionary<Int64, DbQtTaskOrder> allOrder;
                     if (dbAllQtTaskOrder.ContainsKey(qtkey))
@@ -620,8 +593,7 @@ namespace FXB.DataManager
                         projectcode, roomnumber, closingthedealmoney, yxconsultantjobnumber, 
                         yxqtdepartmentid,kyfconsultanjobnumber, kyfqtdepartmentid, zc1jobnumber, 
                         zc1qtdepartmentid, zc2jobnumber, zc2qtdepartmentid, checkstate, 
-                        checkpersonjobnumber,checktime,ifchargeback, cbjobnumber, 
-                        cbtime, entrypersonjobnumber, comment, buytime, 
+                        checkpersonjobnumber,checktime, entrypersonjobnumber, comment, buytime, 
                         customerphone, customeridcard, receipt, roomarea, 
                         contractstate, paymentmethod, loansmoney, isreceivereward);
                 }
@@ -883,10 +855,6 @@ namespace FXB.DataManager
             string checkPersonJobNumber,    //审核人
             UInt32 checkTime,               //审核时间
 
-            bool ifchargeback,                   //是否退单
-            string cbJobNumber,                  //退单人
-            UInt32 cbTime,                       //退单时间
-
             string entryPersonJobNumber,    //录入人
 
             string comment,                 //备注
@@ -937,9 +905,6 @@ namespace FXB.DataManager
                                         checkstate,
                                         checkpersonjobnumber,
                                         checktime,
-                                        ifchargeback,
-                                        cbjobnumber,
-                                        cbtime,
                                         entrypersonjobnumber,
                                         comment,
                                         buytime,    
@@ -969,9 +934,6 @@ namespace FXB.DataManager
                                         @checkstate,
                                         @checkpersonjobnumber,
                                         @checktime,
-                                        @ifchargeback,
-                                        @cbjobnumber,
-                                        @cbtime,
                                         @entrypersonjobnumber,
                                         @comment,
                                         @buytime,    
@@ -1002,10 +964,6 @@ namespace FXB.DataManager
             command.Parameters.AddWithValue("@checkpersonjobnumber", checkPersonJobNumber);
             command.Parameters.AddWithValue("@checktime", (Int32)checkTime);
 
-            command.Parameters.AddWithValue("@ifchargeback", ifchargeback);
-            command.Parameters.AddWithValue("@cbjobnumber", cbJobNumber);
-            command.Parameters.AddWithValue("@cbtime", (Int32)cbTime);
-
             command.Parameters.AddWithValue("@entrypersonjobnumber", entryPersonJobNumber);
             command.Parameters.AddWithValue("@comment", comment);
             command.Parameters.AddWithValue("@buytime", (Int32)buyTime);
@@ -1025,12 +983,21 @@ namespace FXB.DataManager
                 projectCode, roomNumber, closingTheDealMoney, yxConsultantJobNumber,
                 yxQtDepartmentId, kyfConsultanJobNumber, kyfQtDepartmentId, zc1JobNumber,
                 zc1QtDepartmentId, zc2JobNumber, zc2QtDepartmentId, checkState,
-                checkPersonJobNumber, checkTime, ifchargeback, cbJobNumber,
-                cbTime, entryPersonJobNumber, comment, buyTime,
+                checkPersonJobNumber, checkTime, entryPersonJobNumber, comment, buyTime,
                 customerPhone, customerIdCard, receipt, roomArea,
                 contractState, paymentMethod, loansMoney, isReceiveReward, qtKey);
             qtTask.AllQtOrder[orderId] = newQtOrder;
             return newQtOrder;
+        }
+
+        public void RemoveQtOrder(Int64 orderId)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Connection = SqlMgr.Instance().SqlConnect;
+            command.CommandType = CommandType.Text;
+            command.CommandText = "delete from qttaskorder where id=@id";
+            command.Parameters.AddWithValue("@id", orderId);
+            command.ExecuteScalar();
         }
 
         //生成QT提成

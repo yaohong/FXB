@@ -95,9 +95,11 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // orderGenerateTime
@@ -566,11 +568,12 @@
             this.shenheBtn.TabIndex = 16;
             this.shenheBtn.Text = "审核";
             this.shenheBtn.UseVisualStyleBackColor = true;
+            this.shenheBtn.Click += new System.EventHandler(this.shenheBtn_Click);
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(20, 369);
+            this.label22.Location = new System.Drawing.Point(7, 17);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(59, 12);
             this.label22.TabIndex = 20;
@@ -579,7 +582,7 @@
             // checkStateLable
             // 
             this.checkStateLable.AutoSize = true;
-            this.checkStateLable.Location = new System.Drawing.Point(77, 369);
+            this.checkStateLable.Location = new System.Drawing.Point(65, 17);
             this.checkStateLable.Name = "checkStateLable";
             this.checkStateLable.Size = new System.Drawing.Size(35, 12);
             this.checkStateLable.TabIndex = 21;
@@ -588,7 +591,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(160, 369);
+            this.label23.Location = new System.Drawing.Point(121, 17);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(47, 12);
             this.label23.TabIndex = 22;
@@ -597,7 +600,7 @@
             // checkJobNumberLable
             // 
             this.checkJobNumberLable.AutoSize = true;
-            this.checkJobNumberLable.Location = new System.Drawing.Point(206, 369);
+            this.checkJobNumberLable.Location = new System.Drawing.Point(167, 17);
             this.checkJobNumberLable.Name = "checkJobNumberLable";
             this.checkJobNumberLable.Size = new System.Drawing.Size(65, 12);
             this.checkJobNumberLable.TabIndex = 23;
@@ -606,7 +609,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(295, 369);
+            this.label24.Location = new System.Drawing.Point(234, 17);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(59, 12);
             this.label24.TabIndex = 24;
@@ -615,7 +618,7 @@
             // checkTimeLable
             // 
             this.checkTimeLable.AutoSize = true;
-            this.checkTimeLable.Location = new System.Drawing.Point(352, 369);
+            this.checkTimeLable.Location = new System.Drawing.Point(292, 17);
             this.checkTimeLable.Name = "checkTimeLable";
             this.checkTimeLable.Size = new System.Drawing.Size(59, 12);
             this.checkTimeLable.TabIndex = 25;
@@ -624,7 +627,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(555, 369);
+            this.label25.Location = new System.Drawing.Point(560, 17);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(47, 12);
             this.label25.TabIndex = 26;
@@ -633,11 +636,12 @@
             // luruJobNumberLable
             // 
             this.luruJobNumberLable.AutoSize = true;
-            this.luruJobNumberLable.Location = new System.Drawing.Point(600, 369);
+            this.luruJobNumberLable.Location = new System.Drawing.Point(606, 17);
             this.luruJobNumberLable.Name = "luruJobNumberLable";
             this.luruJobNumberLable.Size = new System.Drawing.Size(35, 12);
             this.luruJobNumberLable.TabIndex = 27;
             this.luruJobNumberLable.Text = "     ";
+            this.luruJobNumberLable.Click += new System.EventHandler(this.luruJobNumberLable_Click);
             // 
             // tabControl1
             // 
@@ -722,20 +726,29 @@
             this.tabPage2.Text = "操作人员信息";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label23);
+            this.groupBox1.Controls.Add(this.label22);
+            this.groupBox1.Controls.Add(this.luruJobNumberLable);
+            this.groupBox1.Controls.Add(this.checkStateLable);
+            this.groupBox1.Controls.Add(this.label25);
+            this.groupBox1.Controls.Add(this.checkJobNumberLable);
+            this.groupBox1.Controls.Add(this.checkTimeLable);
+            this.groupBox1.Controls.Add(this.label24);
+            this.groupBox1.Location = new System.Drawing.Point(22, 355);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(660, 38);
+            this.groupBox1.TabIndex = 29;
+            this.groupBox1.TabStop = false;
+            // 
             // OrderOperDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 389);
+            this.ClientSize = new System.Drawing.Size(700, 398);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.luruJobNumberLable);
-            this.Controls.Add(this.label25);
-            this.Controls.Add(this.checkTimeLable);
-            this.Controls.Add(this.label24);
-            this.Controls.Add(this.checkJobNumberLable);
-            this.Controls.Add(this.label23);
-            this.Controls.Add(this.checkStateLable);
-            this.Controls.Add(this.label22);
             this.Controls.Add(this.shenheBtn);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.saveBtn);
@@ -750,8 +763,9 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -824,5 +838,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

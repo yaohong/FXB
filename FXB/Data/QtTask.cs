@@ -172,8 +172,7 @@ namespace FXB.Data
                     dbOrder.ProjectCode, dbOrder.RoomNumber, dbOrder.ClosingTheDealmoney, dbOrder.YxConsultantJobnumber,
                     dbOrder.YxQtDepartmentId, dbOrder.KyfConsultanJobnumber, dbOrder.KyfQtDepartmentId, dbOrder.Zc1JobNumber,
                     dbOrder.Zc1QtDepartmentId, dbOrder.Zc2JobNumber, dbOrder.Zc2QtDepartmentId, dbOrder.CheckState,
-                    dbOrder.CheckPersonJobnumber, dbOrder.CheckTime, dbOrder.IfChargeback, dbOrder.CbJobnumber,
-                    dbOrder.CbTime, dbOrder.EntryPersonJobnumber, dbOrder.Comment, dbOrder.BuyTime,
+                    dbOrder.CheckPersonJobnumber, dbOrder.CheckTime, dbOrder.EntryPersonJobnumber, dbOrder.Comment, dbOrder.BuyTime,
                     dbOrder.CustomerPhone, dbOrder.CustomerIdCard, dbOrder.Receipt, dbOrder.RoomArea,
                     dbOrder.ContractState, dbOrder.PaymentMethod, dbOrder.LoansMoney, dbOrder.IsReceiveReward, qtKey);
                 allQtOrder[dbOrder.Id] = newQtOrder;
@@ -240,11 +239,11 @@ namespace FXB.Data
                     continue;
                 }
 
-                if (qtOrder.IfChargeback)
-                {
-                    //已经退单了
-                    continue;
-                }
+                //if (qtOrder.IfChargeback)
+                //{
+                //    //已经退单了
+                //    continue;
+                //}
 
                 Int64 departmentId = qtOrder.YxQtDepartmentId;
                 double yxCommission = qtOrder.CommissionAmount;

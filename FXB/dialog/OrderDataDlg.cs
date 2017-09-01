@@ -67,6 +67,18 @@ namespace FXB.Dialog
             {
                 qtCbSelect.Items.Add(item.Key);
             }
+
+            AuthData curAuth = AuthMgr.Instance().CurLoginEmployee.AuthData;
+            if (!curAuth.IfOwner && !curAuth.ShowAddOrderBtn())
+            {
+                //不显示新增开单
+                addOrderBtn.Visible = false;
+            }
+
+            if (!curAuth.IfOwner && !curAuth.ShowDeleteOrderBtn())
+            {
+                removeOrderBtn.Visible = false;
+            }
         }
 
         private void SetDataGridViewColumn()
@@ -268,14 +280,14 @@ namespace FXB.Dialog
             }
 
             //录入人暂时不填
-            row.Cells["entryPersonName"].Value = "";
+            row.Cells["entryPersonName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.EntryPersonJobNumber].Name;
 
-            row.Cells["cbState"].Value = data.IfChargeback;
-            if (data.IfChargeback)
-            {
-                row.Cells["cbName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.CbJobNumber].Name; ;
-                row.Cells["cbTime"].Value = TimeUtil.TimestampToDateTime(data.CbTime).ToString("yyyy-MM-dd HH:mm:ss");
-            }
+            //row.Cells["cbState"].Value = data.IfChargeback;
+            //if (data.IfChargeback)
+            //{
+            //    row.Cells["cbName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.CbJobNumber].Name; ;
+            //    row.Cells["cbTime"].Value = TimeUtil.TimestampToDateTime(data.CbTime).ToString("yyyy-MM-dd HH:mm:ss");
+            //}
 
             row.Cells["comment"].Value = data.Comment;
             row.Cells["buyTime"].Value = TimeUtil.TimestampToDateTime(data.BuyTime).ToString("yyyy-MM-dd HH:mm:ss");
@@ -309,6 +321,81 @@ namespace FXB.Dialog
 
         private void removeOrderBtn_Click(object sender, EventArgs e)
         {
+            if (qtCbSelect.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            string qtKey = qtCbSelect.SelectedItem as string;
+            //删除订单
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            //只能选择一行
+            DataGridViewRow selectRow = dataGridView1.SelectedRows[0];
+            DataGridViewTextBoxCell selectCell = (DataGridViewTextBoxCell)selectRow.Cells["orderid"];
+            Int64 orderId = (Int64)selectCell.Value;
+
+            QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+            if (qtTask.Closing)
+            {
+                MessageBox.Show(string.Format("QT任务[{0}]已经结算，请执行 [清除QT提成] 后在执行该操作", qtKey));
+                return;
+            }
+
+            QtOrder qtOrder = qtTask.AllQtOrder[orderId];
+
+            if (qtOrder.CheckState)
+            {
+                MessageBox.Show(string.Format("订单[{0}]已经通过审核，请执行 [取消审核后] 后在执行该操作", orderId));
+                return;
+            }
+
+            try
+            {
+                QtMgr.Instance().RemoveQtOrder(orderId);
+                qtTask.AllQtOrder.Remove(orderId);
+                dataGridView1.Rows.RemoveAt(selectRow.Index);
+            }
+            catch (ConditionCheckException ex1)
+            {
+                MessageBox.Show(ex1.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Application.Exit();
+            }
+        }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (qtCbSelect.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            string qtKey = qtCbSelect.SelectedItem as string;
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            //只能选择一行
+            DataGridViewRow selectRow = dataGridView1.SelectedRows[0];
+            DataGridViewTextBoxCell selectCell = (DataGridViewTextBoxCell)selectRow.Cells["orderid"];
+            Int64 orderId = (Int64)selectCell.Value;
+
+            QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+            QtOrder qtOrder = qtTask.AllQtOrder[orderId];
+
+            OrderOperDlg dlg = new OrderOperDlg(qtOrder);
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                UpdateGridViewRow(selectRow, qtOrder);
+            }
 
         }
     }
