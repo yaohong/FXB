@@ -778,7 +778,7 @@
             this.hyDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableLayoutPanel1.SetColumnSpan(this.hyDataGridView1, 3);
             this.hyDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hyDataGridView1.Location = new System.Drawing.Point(3, 33);
+            this.hyDataGridView1.Location = new System.Drawing.Point(3, 32);
             this.hyDataGridView1.MultiSelect = false;
             this.hyDataGridView1.Name = "hyDataGridView1";
             this.hyDataGridView1.ReadOnly = true;
@@ -787,7 +787,7 @@
             this.hyDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.hyDataGridView1.RowTemplate.Height = 23;
             this.hyDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.hyDataGridView1.Size = new System.Drawing.Size(636, 227);
+            this.hyDataGridView1.Size = new System.Drawing.Size(636, 228);
             this.hyDataGridView1.TabIndex = 1;
             // 
             // addHuiyongBtn
@@ -798,6 +798,7 @@
             this.addHuiyongBtn.TabIndex = 0;
             this.addHuiyongBtn.Text = "添加回佣";
             this.addHuiyongBtn.UseVisualStyleBackColor = true;
+            this.addHuiyongBtn.Click += new System.EventHandler(this.addHuiyongBtn_Click);
             // 
             // deleteHuiYongBtn
             // 

@@ -343,32 +343,10 @@ namespace FXB.Dialog
             DataGridViewRow selectRow = dataGridView1.SelectedRows[0];
 
             Int64 orderId = (Int64)selectRow.Cells["orderid"].Value;
-            string qtKey = (string)selectRow.Cells["qtKey"].Value;
-            QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
-            if (qtTask.Closing)
-            {
-                MessageBox.Show(string.Format("QT任务[{0}]已经结算，请执行 [清除QT提成] 后在执行该操作", qtKey));
-                return;
-            }
-
-            
-            if (!qtTask.AllQtOrder.ContainsKey(orderId))
-            {
-                MessageBox.Show(string.Format("订单[{0}]不属于QT任务[{1}], 请重新查询", orderId, qtKey));
-                return;
-            }
-            //审核过后也可以删
-            //QtOrder qtOrder = qtTask.AllQtOrder[orderId];
-            //if (qtOrder.CheckState)
-            //{
-            //    MessageBox.Show(string.Format("订单[{0}]已经通过审核，请执行 [取消审核后] 后在执行该操作", orderId));
-            //    return;
-            //}
 
             try
             {
-                QtMgr.Instance().RemoveQtOrder(orderId);
-                qtTask.AllQtOrder.Remove(orderId);
+                OrderMgr.Instance().RemoveQtOrder(orderId);
                 dataGridView1.Rows.RemoveAt(selectRow.Index);
             }
             catch (ConditionCheckException ex1)

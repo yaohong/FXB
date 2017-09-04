@@ -57,6 +57,13 @@ namespace FXB.Data
         private double loansMoney;                  //贷款金额
 
         private string qtKey;                       //所属的QT任务
+
+        private SortedDictionary<Int64, HYData> allHYData;     //回佣数据
+
+        public SortedDictionary<Int64, HYData> AllHYData
+        {
+            get { return allHYData; }
+        }
         public Int64 Id
         {
             get { return orderId; }
@@ -297,6 +304,8 @@ namespace FXB.Data
             loansMoney = tmploansMoney;
 
             qtKey = tmpQtKey;
+
+            allHYData = new SortedDictionary<Int64, HYData>();
         }
     }
 }

@@ -47,6 +47,7 @@
     <Compile Include="Common\CheckBoxUtil.cs" />
     <Compile Include="Common\CommissionUtil.cs" />
     <Compile Include="Common\DepartmentUtil.cs" />
+    <Compile Include="Common\DoubleUtil.cs" />
     <Compile Include="Common\Interface.cs" />
     <Compile Include="Common\JobGradeUtil.cs" />
     <Compile Include="Common\QtUtil.cs" />
@@ -57,7 +58,9 @@
     <Compile Include="DataManager\DepartmentDataMgr.cs" />
     <Compile Include="DataManager\DxDuplicateMgr.cs" />
     <Compile Include="DataManager\EmployeeDataMgr.cs" />
+    <Compile Include="DataManager\HYMgr.cs" />
     <Compile Include="DataManager\JobGradeDataMgr.cs" />
+    <Compile Include="DataManager\OrderMgr.cs" />
     <Compile Include="DataManager\ProjectDataMgr.cs" />
     <Compile Include="DataManager\QtMgr.cs" />
     <Compile Include="Data\AuthData.cs" />
@@ -65,12 +68,19 @@
     <Compile Include="Data\DepartmentData.cs" />
     <Compile Include="Data\DxDuplicate.cs" />
     <Compile Include="Data\EmployeeData.cs" />
+    <Compile Include="Data\HYData.cs" />
     <Compile Include="Data\JobGradeData.cs" />
     <Compile Include="Data\ProjectData.cs" />
     <Compile Include="Data\QtDepartment.cs" />
     <Compile Include="Data\QtEmployee.cs" />
     <Compile Include="Data\QtOrder.cs" />
     <Compile Include="Data\QtTask.cs" />
+    <Compile Include="Dialog\AddHYDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\AddHYDlg.Designer.cs">
+      <DependentUpon>AddHYDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\AuthDataDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +218,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dialog\AddHYDlg.resx">
+      <DependentUpon>AddHYDlg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\AuthDataDlg.resx">
       <DependentUpon>AuthDataDlg.cs</DependentUpon>
     </EmbeddedResource>

@@ -167,13 +167,7 @@ namespace FXB.Dialog
             if (qtCb.SelectedItem != null)
             {
                 string qtKey = (string)qtCb.SelectedItem;
-                QtTask selectQtTask = QtMgr.Instance().AllQtTask[qtKey];
-                if (selectQtTask.AllQtOrder.Count > 0)
-                {
-                    //已经有开单了不能删除
-                    MessageBox.Show("已经有开单了不能删除");
-                    return;
-                }
+
 
                 try
                 {

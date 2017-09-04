@@ -40,358 +40,6 @@ namespace FXB.DataManager
         }
     }
 
-    public class DbQtTaskDepartment 
-    {
-        private Int64 qtDepartmentId;
-        private QtLevel qtLevel;
-        private string ownerJobNumber;
-        private string qtDepartmentName;
-        private Int64 parentDepartmentId;
-        private double needCompleteTaskAmount;
-        private double alreadyCompleteTaskAmount;
-
-        public Int64 QtDepartmentId
-        {
-            get { return qtDepartmentId; }
-        }
-
-        public QtLevel QtLevel
-        {
-            get { return qtLevel; }
-        }
-
-        public string OwnerJobNumber
-        {
-            get { return ownerJobNumber; }
-        }
-
-        public string QtDepartmentName
-        {
-            get { return qtDepartmentName; }
-        }
-
-        public Int64 ParentDepartmentId
-        {
-            get { return parentDepartmentId; }
-        }
-
-        public double NeedCompleteTaskAmount
-        {
-            get { return needCompleteTaskAmount; }
-        }
-
-        public double AlreadyCompleteTaskAmount
-        {
-            get { return alreadyCompleteTaskAmount; }
-        }
-        public DbQtTaskDepartment(
-            Int64 tmpQtDepartmentId, 
-            QtLevel tmpQtLevel, 
-            string tmpOwnerJobNumber, 
-            string tmpQtDepartmentName, 
-            Int64 tmpParentDepartmentId, 
-            double tmpNeedCompleteTaskAmount,
-            double tmpAlreadyCompleteTaskAmount)
-        {
-            qtDepartmentId = tmpQtDepartmentId;
-            qtLevel = tmpQtLevel;
-            ownerJobNumber = tmpOwnerJobNumber;
-            qtDepartmentName = tmpQtDepartmentName;
-            parentDepartmentId = tmpParentDepartmentId;
-            needCompleteTaskAmount = tmpNeedCompleteTaskAmount;
-            alreadyCompleteTaskAmount = tmpAlreadyCompleteTaskAmount;
-        }
-    }
-
-    public class DbQtTaskEmployee
-    {
-        private string jobNumber;
-        private string jobGradeName;
-        private Int64 departmentId;
-        private QtLevel qtLevel;
-        private bool isOwner;
-
-        public string JobNumber
-        {
-            get { return jobNumber; }
-        }
-
-        public string JobGradeName
-        {
-            get { return jobGradeName; }
-        }
-
-        public Int64 DepartmentId
-        {
-            get { return departmentId; }
-        }
-
-        public QtLevel QtLevel
-        {
-            get { return qtLevel; }
-        }
-
-        public bool IsOwner
-        {
-            get { return isOwner; }
-        }
-        public DbQtTaskEmployee(string tmpJobNumber, string tmpJobGradeName, Int64 tmpDepartmentId, QtLevel tmpQtLevel, bool tmpIsOwner)
-        {
-            jobNumber = tmpJobNumber;
-            jobGradeName = tmpJobGradeName;
-            departmentId = tmpDepartmentId;
-            qtLevel = tmpQtLevel;
-            isOwner = tmpIsOwner;
-        }
-    }
-
-    public class DbQtTaskOrder
-    {
-        private Int64 id;
-        private UInt32 generateTime;
-        private double commissionAmount;            //佣金总额
-        private string customerName;                //用户名字
-        private string projectCode;                 //所属的项目
-        private string roomNumber;                  //房号
-        private double closingTheDealmoney;         //成交总价
-
-        private string yxConsultantJobnumber;       //营销顾问的ID
-        private Int64 yxQtDepartmentId;             //营销顾问所属的部门ID
-        private string kyfConsultanJobnumber;       //客源方的ID
-        private Int64 kyfQtDepartmentId;            //客源方的部门ID
-        private string zc1JobNumber;                //驻场1的ID
-        private Int64 zc1QtDepartmentId;            //驻场1的部门ID
-        private string zc2JobNumber;                //驻场2的ID
-        private Int64 zc2QtDepartmentId;            //驻场2的部门ID
-
-        private bool checkState;                    //
-        private string checkPersonJobnumber;
-        private UInt32 checkTime;
-
-        private string entryPersonJobnumber;
-
-        private string comment;
-        private UInt32 buyTime;
-        private string customerPhone;
-        private string customerIdCard;
-        private string receipt;
-        private double roomArea;
-        private string contractState;
-        private string paymentMethod;
-        private double loansMoney;
-
-        public Int64 Id
-        {
-            get { return id; }
-        }
-
-        public UInt32 GenerateTime
-        {
-            get { return generateTime; }
-        }
-
-        public double CommissionAmount
-        {
-            get { return commissionAmount; }
-        }
-
-        public string CustomerName
-        {
-            get { return customerName; }
-        }
-
-        public string ProjectCode
-        {
-            get { return projectCode; }
-        }
-
-        public string RoomNumber
-        {
-            get { return roomNumber; }
-        }
-
-        public double ClosingTheDealmoney
-        {
-            get { return closingTheDealmoney; }
-        }
-
-        public string YxConsultantJobnumber
-        {
-            get { return yxConsultantJobnumber; }
-        }
-
-        public Int64 YxQtDepartmentId
-        {
-            get { return yxQtDepartmentId; }
-        }
-
-        public string KyfConsultanJobnumber
-        {
-            get { return kyfConsultanJobnumber; }
-        }
-
-        public Int64 KyfQtDepartmentId
-        {
-            get { return kyfQtDepartmentId; }
-        }
-
-        public string Zc1JobNumber
-        {
-            get { return zc1JobNumber; }
-        }
-
-        public Int64 Zc1QtDepartmentId
-        {
-            get { return zc1QtDepartmentId; }
-        }
-
-        public string Zc2JobNumber
-        {
-            get { return zc2JobNumber; }
-        }
-
-        public Int64 Zc2QtDepartmentId
-        {
-            get { return zc2QtDepartmentId; }
-        }
-
-        public bool CheckState
-        {
-            get { return checkState; }
-        }
-
-        public string CheckPersonJobnumber
-        {
-            get { return checkPersonJobnumber; }
-        }
-
-        public UInt32 CheckTime
-        {
-            get { return checkTime; }
-        }
-
-        public string EntryPersonJobnumber
-        {
-            get { return entryPersonJobnumber; }
-        }
-
-        public string Comment
-        {
-            get { return comment; }
-        }
-
-        public UInt32 BuyTime
-        {
-            get { return buyTime; }
-        }
-
-        public string CustomerPhone
-        {
-            get { return customerPhone; }
-        }
-
-        public string CustomerIdCard
-        {
-            get { return customerIdCard; }
-        }
-
-        public string Receipt
-        {
-            get { return receipt; }
-        }
-
-        public double RoomArea
-        {
-            get { return roomArea; }
-        }
-
-        public string ContractState
-        {
-            get { return contractState; }
-        }
-
-        public string PaymentMethod
-        {
-            get { return paymentMethod; }
-        }
-
-
-        public double LoansMoney
-        {
-            get { return loansMoney; }
-        }
-
-        public DbQtTaskOrder(
-            Int64 tmpId,
-            UInt32 tmpGenerateTime,
-            double tmpCommissionAmount,
-            string tmpCustomerName,
-            string tmpProjectCode,
-            string tmpRoomNumber,
-            double tmpClosingTheDealmoney,
-
-            string tmpYxConsultantJobnumber,
-            Int64 tmpYxQtDepartmentId,             
-            string tmpKyfConsultanJobnumber,       
-            Int64 tmpKyfQtDepartmentId,            
-            string tmpZc1JobNumber,                
-            Int64 tmpZc1QtDepartmentId,            
-            string tmpZc2JobNumber,                
-            Int64 tmpZc2QtDepartmentId,    
-        
-            bool tmpCheckState,
-            string tmpCheckPersonJobnumber,
-            UInt32 tmpCheckTime,
-
-            string tmpEntryPersonJobnumber,
-
-            string tmpComment,
-            UInt32 tmpBuyTime,
-            string tmpCustomerPhone,
-            string tmpCustomerIdCard,
-            string tmpReceipt,
-            double tmpRoomArea,
-            string tmpContractState,
-            string tmpPaymentMethod,
-            double tmploansMoney
-            )
-        {
-            id = tmpId;
-            generateTime = tmpGenerateTime;
-            commissionAmount = tmpCommissionAmount;        
-            customerName = tmpCustomerName;
-            projectCode = tmpProjectCode;                 
-            roomNumber = tmpRoomNumber;
-            closingTheDealmoney = tmpClosingTheDealmoney;
-
-            yxConsultantJobnumber = tmpYxConsultantJobnumber;
-            yxQtDepartmentId = tmpYxQtDepartmentId;             
-            kyfConsultanJobnumber = tmpKyfConsultanJobnumber;       
-            kyfQtDepartmentId = tmpKyfQtDepartmentId;
-            zc1JobNumber = tmpZc1JobNumber;
-            zc1QtDepartmentId = tmpZc1QtDepartmentId;            
-            zc2JobNumber = tmpZc2JobNumber;                
-            zc2QtDepartmentId = tmpZc2QtDepartmentId;            
-
-            checkState = tmpCheckState;                    
-            checkPersonJobnumber = tmpCheckPersonJobnumber;
-            checkTime = tmpCheckTime;
-
-            entryPersonJobnumber = tmpEntryPersonJobnumber;
-
-            comment = tmpComment;
-            buyTime = tmpBuyTime;
-            customerPhone = tmpCustomerPhone;
-            customerIdCard = tmpCustomerIdCard;
-            receipt = tmpReceipt;
-            roomArea = tmpRoomArea;
-            contractState = tmpContractState;
-            paymentMethod = tmpPaymentMethod;
-            loansMoney = tmploansMoney;
-        }
-
-    }
-
     class QtMgr
     {
         private static QtMgr ins;
@@ -419,6 +67,7 @@ namespace FXB.DataManager
             SqlDataReader qtDepartmentReader = null;
             SqlDataReader qtEmployeeReader = null;
             SqlDataReader qtOrderReader = null;
+            SqlDataReader qtHYReader = null;
             try
             {
 
@@ -453,7 +102,7 @@ namespace FXB.DataManager
                 qtDepartmentCommand.CommandType = CommandType.Text;
                 qtDepartmentCommand.CommandText = "select * from qttaskdepartment";
                 qtDepartmentReader = qtDepartmentCommand.ExecuteReader();
-                SortedDictionary<string, SortedDictionary<Int64, DbQtTaskDepartment> > dbAllQtTaskDepartment = new SortedDictionary<string, SortedDictionary<Int64, DbQtTaskDepartment> >();
+                SortedDictionary<string, SortedDictionary<Int64, QtDepartment>> dbAllQtTaskDepartment = new SortedDictionary<string, SortedDictionary<Int64, QtDepartment>>();
                 while (qtDepartmentReader.Read())
                 {
                     Int64 qtdepartmentid = qtDepartmentReader.GetInt64(0);
@@ -465,14 +114,14 @@ namespace FXB.DataManager
                     double alreadycompletetaskamount = qtDepartmentReader.GetDouble(6);
                     string qtKey = qtDepartmentReader.GetString(7);
 
-                    SortedDictionary<Int64, DbQtTaskDepartment> allDepartment;
+                    SortedDictionary<Int64, QtDepartment> allDepartment;
                     if (dbAllQtTaskDepartment.ContainsKey(qtKey))
                     {
                         allDepartment = dbAllQtTaskDepartment[qtKey];
                     } 
                     else
                     {
-                        dbAllQtTaskDepartment[qtKey] = new SortedDictionary<Int64, DbQtTaskDepartment>();
+                        dbAllQtTaskDepartment[qtKey] = new SortedDictionary<Int64, QtDepartment>();
                         allDepartment = dbAllQtTaskDepartment[qtKey];
                     }
 
@@ -481,7 +130,7 @@ namespace FXB.DataManager
                         throw new CrashException("QT部门ID重复");
                     }
 
-                    allDepartment[qtdepartmentid] = new DbQtTaskDepartment(qtdepartmentid, qtLevel, ownerJobNumber, qtdepartmentname, parentQtDepartmentId, needCompleteTaskAmount, alreadycompletetaskamount);
+                    allDepartment[qtdepartmentid] = new QtDepartment(qtdepartmentid, qtLevel, ownerJobNumber, qtdepartmentname, parentQtDepartmentId, needCompleteTaskAmount, alreadycompletetaskamount);
                 }
                 qtDepartmentReader.Close();
                 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -493,7 +142,7 @@ namespace FXB.DataManager
                 qtEmployeeCommand.CommandType = CommandType.Text;
                 qtEmployeeCommand.CommandText = "select * from qttaskemployee";
                 qtEmployeeReader = qtEmployeeCommand.ExecuteReader();
-                SortedDictionary<string, SortedDictionary<string, DbQtTaskEmployee>> dbAllQtTaskEmployee = new SortedDictionary<string, SortedDictionary<string, DbQtTaskEmployee>>();
+                SortedDictionary<string, SortedDictionary<string, QtEmployee>> dbAllQtTaskEmployee = new SortedDictionary<string, SortedDictionary<string, QtEmployee>>();
                 while (qtEmployeeReader.Read())
                 {
                     string jobNumber = qtEmployeeReader.GetString(0);
@@ -503,14 +152,14 @@ namespace FXB.DataManager
                     bool isOwner = qtEmployeeReader.GetBoolean(4);
                     string qtKey = qtEmployeeReader.GetString(5);
 
-                    SortedDictionary<string, DbQtTaskEmployee> allEmployee;
+                    SortedDictionary<string, QtEmployee> allEmployee;
                     if (dbAllQtTaskEmployee.ContainsKey(qtKey))
                     {
                         allEmployee = dbAllQtTaskEmployee[qtKey];
                     }
                     else
                     {
-                        dbAllQtTaskEmployee[qtKey] = new SortedDictionary<string, DbQtTaskEmployee>();
+                        dbAllQtTaskEmployee[qtKey] = new SortedDictionary<string, QtEmployee>();
                         allEmployee = dbAllQtTaskEmployee[qtKey];
                     }
 
@@ -519,17 +168,18 @@ namespace FXB.DataManager
                         throw new CrashException("工号重复");
                     }
 
-                    allEmployee[jobNumber] = new DbQtTaskEmployee(jobNumber, jobGradeName, qtdepartmentid, qtLevel, isOwner);
+                    allEmployee[jobNumber] = new QtEmployee(jobNumber, jobGradeName, qtdepartmentid, qtLevel, isOwner);
                 }
                 qtEmployeeReader.Close();
 
+                //加载QT订单
                 //////////////////////////////////////////////////////////////////////////////////////////////
                 SqlCommand qtOrderCommand = new SqlCommand();
                 qtOrderCommand.Connection = SqlMgr.Instance().SqlConnect;
                 qtOrderCommand.CommandType = CommandType.Text;
                 qtOrderCommand.CommandText = "select * from qttaskorder";
                 qtOrderReader = qtOrderCommand.ExecuteReader();
-                SortedDictionary<string, SortedDictionary<Int64, DbQtTaskOrder>> dbAllQtTaskOrder = new SortedDictionary<string, SortedDictionary<Int64, DbQtTaskOrder>>();
+                SortedDictionary<string, SortedDictionary<Int64, QtOrder>> dbAllQtTaskOrder = new SortedDictionary<string, SortedDictionary<Int64, QtOrder>>();
                 while (qtOrderReader.Read())
                 {
                     Int64 id = qtOrderReader.GetInt64(0);
@@ -565,27 +215,73 @@ namespace FXB.DataManager
                     double loansmoney = qtOrderReader.GetDouble(27);
                     string qtkey = qtOrderReader.GetString(28);
 
-                    SortedDictionary<Int64, DbQtTaskOrder> allOrder;
+                    SortedDictionary<Int64, QtOrder> allOrder;
                     if (dbAllQtTaskOrder.ContainsKey(qtkey))
                     {
                         allOrder = dbAllQtTaskOrder[qtkey];
                     }
                     else
                     {
-                        dbAllQtTaskOrder[qtkey] = new SortedDictionary<Int64, DbQtTaskOrder>();
+                        dbAllQtTaskOrder[qtkey] = new SortedDictionary<Int64, QtOrder>();
                         allOrder = dbAllQtTaskOrder[qtkey];
                     }
+                    //allOrder[id]
 
-                    allOrder[id] = new DbQtTaskOrder(
-                        id, generatetime, commissionamount, customername,
-                        projectcode, roomnumber, closingthedealmoney, yxconsultantjobnumber, 
-                        yxqtdepartmentid,kyfconsultanjobnumber, kyfqtdepartmentid, zc1jobnumber, 
-                        zc1qtdepartmentid, zc2jobnumber, zc2qtdepartmentid, checkstate, 
-                        checkpersonjobnumber,checktime, entrypersonjobnumber, comment, buytime, 
-                        customerphone, customeridcard, receipt, roomarea, 
-                        contractstate, paymentmethod, loansmoney);
+                    QtOrder newQtOrder = new QtOrder(
+                        id, 
+                        generatetime, 
+                        commissionamount, 
+                        customername,
+                        projectcode, 
+                        roomnumber, 
+                        closingthedealmoney, 
+                        yxconsultantjobnumber, yxqtdepartmentid,
+                        kyfconsultanjobnumber, kyfqtdepartmentid, 
+                        zc1jobnumber, zc1qtdepartmentid, 
+                        zc2jobnumber, zc2qtdepartmentid, 
+                        checkstate, checkpersonjobnumber,checktime, 
+                        entrypersonjobnumber, 
+                        comment, 
+                        buytime, 
+                        customerphone, 
+                        customeridcard, 
+                        receipt, 
+                        roomarea, 
+                        contractstate, 
+                        paymentmethod,
+                        loansmoney, 
+                        qtkey);
+                    allOrder[id] = newQtOrder;
+                    OrderMgr.Instance().AllOrderData[id] = newQtOrder;
                 }
                 qtOrderReader.Close();
+                //////////////////////////////////////////////////////////////////////////////////////////////
+
+                //加载回佣
+                //////////////////////////////////////////////////////////////////////////////////////////////
+                SqlCommand qtHYCommand = new SqlCommand();
+                qtHYCommand.Connection = SqlMgr.Instance().SqlConnect;
+                qtHYCommand.CommandType = CommandType.Text;
+                qtHYCommand.CommandText = "select * from qtorderhy";
+                qtHYReader = qtHYCommand.ExecuteReader();
+
+                while (qtHYReader.Read())
+                {
+                    Int64 hyId = qtHYReader.GetInt64(0);
+                    Int64 orderId = qtHYReader.GetInt64(1);
+                    double amount = qtHYReader.GetDouble(2);
+                    UInt32 addtime = (UInt32)qtHYReader.GetInt32(3);
+                    string entryjobnumber = qtHYReader.GetString(4);
+                    bool checkstate = qtHYReader.GetBoolean(5);
+                    string checkjobnumber = qtHYReader.GetString(6);
+                    UInt32 checktime = (UInt32)qtHYReader.GetInt32(7);
+                    bool issettlement = qtHYReader.GetBoolean(8);
+
+                    HYData hyData = new HYData(hyId, orderId, amount, addtime, entryjobnumber, checkstate, checkjobnumber, checktime, issettlement);
+                    HYMgr.Instance().AllHYData[hyId] = hyData;
+                }
+                qtHYReader.Close();
+
                 //////////////////////////////////////////////////////////////////////////////////////////////
 
                 foreach (var item in dbAllQtTaskIndex)
@@ -593,30 +289,30 @@ namespace FXB.DataManager
                     string qtKey = item.Key;
                     DbQtTaskIndex qtTaskIndexData = item.Value;
 
-                    SortedDictionary<Int64, DbQtTaskDepartment> qtTaskDepartmentData = dbAllQtTaskDepartment[qtKey];
+                    SortedDictionary<Int64, QtDepartment> qtTaskDepartmentData = dbAllQtTaskDepartment[qtKey];
                     if (!dbAllQtTaskDepartment.ContainsKey(qtKey))
                     {
-                        qtTaskDepartmentData = new SortedDictionary<Int64, DbQtTaskDepartment>();
+                        qtTaskDepartmentData = new SortedDictionary<Int64, QtDepartment>();
                     }
                     else
                     {
                         qtTaskDepartmentData = dbAllQtTaskDepartment[qtKey];
                     }
 
-                    SortedDictionary<string, DbQtTaskEmployee> qtTaskEmployeeData;
+                    SortedDictionary<string, QtEmployee> qtTaskEmployeeData;
                     if (!dbAllQtTaskEmployee.ContainsKey(qtKey))
                     {
-                        qtTaskEmployeeData = new SortedDictionary<string, DbQtTaskEmployee>();
+                        qtTaskEmployeeData = new SortedDictionary<string, QtEmployee>();
                     }
                     else
                     {
                         qtTaskEmployeeData = dbAllQtTaskEmployee[qtKey];
                     }
 
-                    SortedDictionary<Int64, DbQtTaskOrder> qtTaskOrderData;
+                    SortedDictionary<Int64, QtOrder> qtTaskOrderData;
                     if (!dbAllQtTaskOrder.ContainsKey(qtKey))
                     {
-                        qtTaskOrderData = new SortedDictionary<Int64, DbQtTaskOrder>();
+                        qtTaskOrderData = new SortedDictionary<Int64, QtOrder>();
                     }
                     else
                     {
@@ -770,6 +466,13 @@ namespace FXB.DataManager
 
         public void RemoveQtTask(string qtKey)
         {
+            QtTask selectQtTask = allQtTask[qtKey];
+            if (selectQtTask.AllQtOrder.Count > 0)
+            {
+                //已经有开单了不能删除
+                throw new ConditionCheckException(string.Format("qt任务[{0}]已经有开单了，不能删除", qtKey));
+            }
+
             SqlTransaction sqlTran = null; 
             try
             {
@@ -807,10 +510,10 @@ namespace FXB.DataManager
                 command.Parameters.Clear();
 
                 //回佣
-                //开单
 
                 sqlTran.Commit();
                 allQtTask.Remove(qtKey);
+                OrderMgr.Instance().RemoveOrderByQtTask(qtKey);
             }
             catch (Exception ex)
             {
@@ -823,249 +526,9 @@ namespace FXB.DataManager
         }
 
 
-        public QtOrder AddNewQtOrder(
-            UInt32 generateTime,            //订单生成时间
-            double commissionAmount,        //佣金总额
-            string customerName,            //客户名称
-            string projectCode,             //项目编码
-            string roomNumber,              //房间编号
-            double closingTheDealMoney,     //成交总价
-            string yxConsultantJobNumber,   //营销顾问
-            Int64 yxQtDepartmentId,         //营销顾问所属的部门ID
-            string kyfConsultanJobNumber,  //客源方顾问
-            Int64 kyfQtDepartmentId,        //客源方的部门ID
-            string zc1JobNumber,            //驻场1
-            Int64 zc1QtDepartmentId,        //驻场1的部门ID
-            string zc2JobNumber,            //驻场2
-            Int64 zc2QtDepartmentId,        //驻场2的部门ID
-
-            bool checkState,                //审核状态
-            string checkPersonJobNumber,    //审核人
-            UInt32 checkTime,               //审核时间
-
-            string entryPersonJobNumber,    //录入人
-
-            string comment,                 //备注
-
-            UInt32 buyTime,                 //购买时间
-            string customerPhone,           //客户电话
-            string customerIdCard,          //客户身份证
-            string receipt,                 //收据
-            double roomArea,                //面积
-            string contractState,           //合同状态
-            string paymentMethod,           //付款方式
-            double loansMoney,              //贷款金额
-
-            string qtKey                    //所属的QT任务
-            )
-        {
-            if (!allQtTask.ContainsKey(qtKey))
-            {
-                throw new ConditionCheckException("QT任务不存在");
-            }
 
 
-            if (allQtTask[qtKey].Closing)
-            {
-                throw new ConditionCheckException("提成已经生成，本月不能在开单了");
-            }
 
-            QtTask qtTask = allQtTask[qtKey];
-            SqlCommand command = new SqlCommand();
-            command.Connection = SqlMgr.Instance().SqlConnect;
-            command.CommandType = CommandType.Text;
-            command.CommandText = @"INSERT INTO qttaskorder(
-                                        generatetime,
-                                        commissionamount,
-                                        customername,
-                                        projectcode,
-                                        roomnumber,
-                                        closingthedealmoney,
-                                        yxconsultantjobnumber,
-                                        yxqtdepartmentid,
-                                        kyfconsultanjobnumber,
-                                        kyfqtdepartmentid,
-                                        zc1jobnumber,
-                                        zc1qtdepartmentid,
-                                        zc2jobnumber,
-                                        zc2qtdepartmentid,
-                                        checkstate,
-                                        checkpersonjobnumber,
-                                        checktime,
-                                        entrypersonjobnumber,
-                                        comment,
-                                        buytime,    
-                                        customerphone,
-                                        customeridcard,
-                                        receipt,
-                                        roomarea,
-                                        contractstate,
-                                        paymentmethod,
-                                        loansmoney,
-                                        qtkey) output inserted.Id VALUES(
-                                        @generatetime,
-                                        @commissionamount,
-                                        @customername,
-                                        @projectcode,
-                                        @roomnumber,
-                                        @closingthedealmoney,
-                                        @yxconsultantjobnumber,
-                                        @yxqtdepartmentid,
-                                        @kyfconsultanjobnumber,
-                                        @kyfqtdepartmentid,
-                                        @zc1jobnumber,
-                                        @zc1qtdepartmentid,
-                                        @zc2jobnumber,
-                                        @zc2qtdepartmentid,
-                                        @checkstate,
-                                        @checkpersonjobnumber,
-                                        @checktime,
-                                        @entrypersonjobnumber,
-                                        @comment,
-                                        @buytime,    
-                                        @customerphone,
-                                        @customeridcard,
-                                        @receipt,
-                                        @roomarea,
-                                        @contractstate,
-                                        @paymentmethod,
-                                        @loansmoney,
-                                        @qtkey);select @@identity";
-            command.Parameters.AddWithValue("@generatetime", (Int32)generateTime);
-            command.Parameters.AddWithValue("@commissionamount", commissionAmount);
-            command.Parameters.AddWithValue("@customername", customerName);
-            command.Parameters.AddWithValue("@projectcode", projectCode);
-            command.Parameters.AddWithValue("@roomnumber", roomNumber);
-            command.Parameters.AddWithValue("@closingthedealmoney", closingTheDealMoney);
-            command.Parameters.AddWithValue("@yxconsultantjobnumber", yxConsultantJobNumber);
-            command.Parameters.AddWithValue("@yxqtdepartmentid", yxQtDepartmentId);
-            command.Parameters.AddWithValue("@kyfconsultanjobnumber", kyfConsultanJobNumber);
-            command.Parameters.AddWithValue("@kyfqtdepartmentid", kyfQtDepartmentId);
-            command.Parameters.AddWithValue("@zc1jobnumber", zc1JobNumber);
-            command.Parameters.AddWithValue("@zc1qtdepartmentid", zc1QtDepartmentId);
-            command.Parameters.AddWithValue("@zc2jobnumber", zc2JobNumber);
-            command.Parameters.AddWithValue("@zc2qtdepartmentid", zc2QtDepartmentId);
-            command.Parameters.AddWithValue("@checkstate", checkState);
-            command.Parameters.AddWithValue("@checkpersonjobnumber", checkPersonJobNumber);
-            command.Parameters.AddWithValue("@checktime", (Int32)checkTime);
-
-            command.Parameters.AddWithValue("@entrypersonjobnumber", entryPersonJobNumber);
-            command.Parameters.AddWithValue("@comment", comment);
-            command.Parameters.AddWithValue("@buytime", (Int32)buyTime);
-            command.Parameters.AddWithValue("@customerphone", customerPhone);
-            command.Parameters.AddWithValue("@customeridcard", customerIdCard);
-            command.Parameters.AddWithValue("@receipt", receipt);
-            command.Parameters.AddWithValue("@roomarea", roomArea);
-            command.Parameters.AddWithValue("@contractstate", contractState);
-            command.Parameters.AddWithValue("@paymentmethod", paymentMethod);
-            command.Parameters.AddWithValue("@loansmoney", loansMoney);
-            command.Parameters.AddWithValue("@qtkey", qtKey);
-            Int64 orderId = (Int64)command.ExecuteScalar();
-
-            QtOrder newQtOrder = new QtOrder(
-                orderId, generateTime, commissionAmount, customerName,
-                projectCode, roomNumber, closingTheDealMoney, yxConsultantJobNumber,
-                yxQtDepartmentId, kyfConsultanJobNumber, kyfQtDepartmentId, zc1JobNumber,
-                zc1QtDepartmentId, zc2JobNumber, zc2QtDepartmentId, checkState,
-                checkPersonJobNumber, checkTime, entryPersonJobNumber, comment, buyTime,
-                customerPhone, customerIdCard, receipt, roomArea,
-                contractState, paymentMethod, loansMoney, qtKey);
-            qtTask.AllQtOrder[orderId] = newQtOrder;
-            return newQtOrder;
-        }
-
-        public void ModifyQtOrder(
-            Int64 orderId,                     //订单ID
-
-            double newCommissionAmount,        //佣金总额
-            string newCustomerName,            //客户名称
-            string newProjectCode,             //项目编码
-            string newRoomNumber,              //房间编号
-            double newClosingTheDealMoney,     //成交总价
-            string newYxConsultantJobNumber,   //营销顾问
-            Int64 newYxQtDepartmentId,         //营销顾问所属的部门ID
-            string newKyfConsultanJobNumber,  //客源方顾问
-            Int64 newKyfQtDepartmentId,        //客源方的部门ID
-            string newZc1JobNumber,            //驻场1
-            Int64 newZc1QtDepartmentId,        //驻场1的部门ID
-            string newZc2JobNumber,            //驻场2
-            Int64 newZc2QtDepartmentId,        //驻场2的部门ID
-
-            string newComment,                 //备注
-
-            UInt32 newBuyTime,                 //购买时间
-            string newCustomerPhone,           //客户电话
-            string newCustomerIdCard,          //客户身份证
-            string newReceipt,                 //收据
-            double newRoomArea,                //面积
-            string newContractState,           //合同状态
-            string newPaymentMethod,           //付款方式
-            double newPoansMoney               //贷款金额
-            )
-        {
-
-            SqlCommand command = new SqlCommand();
-            command.Connection = SqlMgr.Instance().SqlConnect;
-            command.CommandType = CommandType.Text;
-            command.CommandText = @"update qttaskorder set 
-                                    commissionamount=@commissionamount,
-                                    customername=@customername,
-                                    projectcode=@projectcode,
-                                    roomnumber=@roomnumber,
-                                    closingthedealmoney=@closingthedealmoney,
-                                    yxconsultantjobnumber=@yxconsultantjobnumber,
-                                    yxqtdepartmentid=@yxqtdepartmentid,
-                                    kyfconsultanjobnumber=@kyfconsultanjobnumber,
-                                    kyfqtdepartmentid=@kyfqtdepartmentid,
-                                    zc1jobnumber=@zc1jobnumber,
-                                    zc1qtdepartmentid=@zc1qtdepartmentid,
-                                    zc2jobnumber=@zc2jobnumber,
-                                    zc2qtdepartmentid=@zc2qtdepartmentid,
-                                    comment=@comment,
-                                    buytime=@buytime,
-                                    customerphone=@customerphone,
-                                    customeridcard=@customeridcard,
-                                    receipt=@receipt,
-                                    roomarea=@roomarea,
-                                    contractstate=@contractstate,
-                                    paymentmethod=@paymentmethod,
-                                    loansmoney=@loansmoney where id=@id";
-            command.Parameters.AddWithValue("@commissionamount", newCommissionAmount);
-            command.Parameters.AddWithValue("@customername", newCustomerName);
-            command.Parameters.AddWithValue("@projectcode", newProjectCode);
-            command.Parameters.AddWithValue("@roomnumber", newRoomNumber);
-            command.Parameters.AddWithValue("@closingthedealmoney", newClosingTheDealMoney);
-            command.Parameters.AddWithValue("@yxconsultantjobnumber", newYxConsultantJobNumber);
-            command.Parameters.AddWithValue("@yxqtdepartmentid", newYxQtDepartmentId);
-            command.Parameters.AddWithValue("@kyfconsultanjobnumber", newKyfConsultanJobNumber);
-            command.Parameters.AddWithValue("@kyfqtdepartmentid", newKyfQtDepartmentId);
-            command.Parameters.AddWithValue("@zc1jobnumber", newZc1JobNumber);
-            command.Parameters.AddWithValue("@zc1qtdepartmentid", newZc1QtDepartmentId);
-            command.Parameters.AddWithValue("@zc2jobnumber", newZc2JobNumber);
-            command.Parameters.AddWithValue("@zc2qtdepartmentid", newZc2QtDepartmentId);
-
-            command.Parameters.AddWithValue("@comment", newComment);
-
-            command.Parameters.AddWithValue("@buytime", (Int32)newBuyTime);
-            command.Parameters.AddWithValue("@customerphone", newCustomerPhone);
-            command.Parameters.AddWithValue("@customeridcard", newCustomerIdCard);
-            command.Parameters.AddWithValue("@receipt", newReceipt);
-            command.Parameters.AddWithValue("@roomarea", newRoomArea);
-            command.Parameters.AddWithValue("@contractstate", newContractState);
-            command.Parameters.AddWithValue("@paymentmethod", newPaymentMethod);
-            command.Parameters.AddWithValue("@loansmoney", newPoansMoney);
-            command.Parameters.AddWithValue("@id", orderId);
-            command.ExecuteNonQuery();
-        }
-        public void RemoveQtOrder(Int64 orderId)
-        {
-            SqlCommand command = new SqlCommand();
-            command.Connection = SqlMgr.Instance().SqlConnect;
-            command.CommandType = CommandType.Text;
-            command.CommandText = "delete from qttaskorder where id=@id";
-            command.Parameters.AddWithValue("@id", orderId);
-            command.ExecuteScalar();
-        }
 
         //生成QT提成
         public void CalcQtCommission(string qtKey)
@@ -1168,19 +631,7 @@ namespace FXB.DataManager
 
         }
 
-        //更新订单审核信息
-        public void UpdateCheckInfo(Int64 orderId, bool checkState, string checkJobNumber, UInt32 checkTime)
-        {
-            SqlCommand command = new SqlCommand();
-            command.Connection = SqlMgr.Instance().SqlConnect;
-            command.CommandType = CommandType.Text;
-            command.CommandText = "update qttaskorder set checkstate=@checkstate,checkpersonjobnumber=@checkpersonjobnumber,checktime=@checktime where id=@id";
-            command.Parameters.AddWithValue("@checkstate", checkState);
-            command.Parameters.AddWithValue("@checkpersonjobnumber", checkJobNumber);
-            command.Parameters.AddWithValue("@checktime", (Int32)checkTime);
-            command.Parameters.AddWithValue("@id", (Int32)orderId);
-            command.ExecuteNonQuery();
-        }
+
 
         public SortedDictionary<string, QtTask> AllQtTask
         {

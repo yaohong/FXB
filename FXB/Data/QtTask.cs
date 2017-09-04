@@ -133,21 +133,22 @@ namespace FXB.Data
         //由DB数据构建QT任务
         public QtTask(
             DbQtTaskIndex qtIndexData, 
-            SortedDictionary<Int64, DbQtTaskDepartment> qtDepartmentData, 
-            SortedDictionary<string, DbQtTaskEmployee> qtEmployeeData,
-            SortedDictionary<Int64, DbQtTaskOrder> qtOrderData)
+            SortedDictionary<Int64, QtDepartment> qtDepartmentData,
+            SortedDictionary<string, QtEmployee> qtEmployeeData,
+            SortedDictionary<Int64, QtOrder> qtOrderData)
         {
             qtKey = qtIndexData.QtKey;
             closing = qtIndexData.Closing;
             rootQtDepartment = null;
-            allQtDepartment = new SortedDictionary<Int64, QtDepartment>();
-            allQtEmployee = new SortedDictionary<string, QtEmployee>();  //建立部门的上级关系
-            allQtOrder = new SortedDictionary<Int64, QtOrder>();
+            allQtDepartment = qtDepartmentData;
+            allQtEmployee = qtEmployeeData;  
+            allQtOrder = qtOrderData;
 
-            foreach (var item in qtDepartmentData)
-            {
-                GenerateQtDepartmentSuperiorRelation(qtDepartmentData, item.Value);
-            }
+            ////建立部门的上级关系
+            //foreach (var item in allQtDepartment)
+            //{
+            //    GenerateQtDepartmentSuperiorRelation(item.Value);
+            //}
 
             //建立部门的下级关系
             foreach (var item in allQtDepartment)
@@ -156,56 +157,6 @@ namespace FXB.Data
             }
 
             rootQtDepartment = allQtDepartment[qtIndexData.RootqtDepartmentId];
-
-            //添加员工信息
-            foreach (var EmployeeItem in qtEmployeeData)
-            {
-                DbQtTaskEmployee dbEmployee = EmployeeItem.Value;
-                allQtEmployee[EmployeeItem.Key] = new QtEmployee(dbEmployee.JobNumber, dbEmployee.JobGradeName, dbEmployee.DepartmentId, dbEmployee.QtLevel, dbEmployee.IsOwner);
-            }
-
-            foreach (var OrderItem in qtOrderData)
-            {
-                DbQtTaskOrder dbOrder = OrderItem.Value;
-                QtOrder newQtOrder = new QtOrder(
-                    dbOrder.Id, dbOrder.GenerateTime, dbOrder.CommissionAmount, dbOrder.CustomerName,
-                    dbOrder.ProjectCode, dbOrder.RoomNumber, dbOrder.ClosingTheDealmoney, dbOrder.YxConsultantJobnumber,
-                    dbOrder.YxQtDepartmentId, dbOrder.KyfConsultanJobnumber, dbOrder.KyfQtDepartmentId, dbOrder.Zc1JobNumber,
-                    dbOrder.Zc1QtDepartmentId, dbOrder.Zc2JobNumber, dbOrder.Zc2QtDepartmentId, dbOrder.CheckState,
-                    dbOrder.CheckPersonJobnumber, dbOrder.CheckTime, dbOrder.EntryPersonJobnumber, dbOrder.Comment, dbOrder.BuyTime,
-                    dbOrder.CustomerPhone, dbOrder.CustomerIdCard, dbOrder.Receipt, dbOrder.RoomArea,
-                    dbOrder.ContractState, dbOrder.PaymentMethod, dbOrder.LoansMoney, qtKey);
-                allQtOrder[dbOrder.Id] = newQtOrder;
-            }
-        }
-
-
-
-        private QtDepartment GenerateQtDepartmentSuperiorRelation(SortedDictionary<Int64, DbQtTaskDepartment> allDbQtDepartment, DbQtTaskDepartment qtDbDepartmentData)
-        {
-            if (allQtDepartment.ContainsKey(qtDbDepartmentData.QtDepartmentId))
-            {
-                //已经有了
-                return allQtDepartment[qtDbDepartmentData.QtDepartmentId];
-            }
-
-            QtDepartment parentQtDepartment = null;
-            if (qtDbDepartmentData.ParentDepartmentId != 0)
-            {
-                parentQtDepartment = GenerateQtDepartmentSuperiorRelation(allDbQtDepartment, allDbQtDepartment[qtDbDepartmentData.ParentDepartmentId]);
-            }
-
-            QtDepartment qtDepartment = new QtDepartment(
-                qtDbDepartmentData.QtDepartmentId,
-                qtDbDepartmentData.QtLevel,
-                qtDbDepartmentData.OwnerJobNumber,
-                qtDbDepartmentData.QtDepartmentName,
-                qtDbDepartmentData.ParentDepartmentId,
-                qtDbDepartmentData.NeedCompleteTaskAmount,
-                qtDbDepartmentData.AlreadyCompleteTaskAmount
-                );
-            allQtDepartment[qtDbDepartmentData.QtDepartmentId] = qtDepartment;
-            return qtDepartment;
         }
 
         private void GenerateQtDepartmentLowerRelation(QtDepartment qtDepartment)

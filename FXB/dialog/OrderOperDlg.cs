@@ -208,7 +208,14 @@ namespace FXB.Dialog
                     zc2QtLevelEdi.Text = QtUtil.GetQTLevelString(zcQtLevel);
                 }
             }
+
+
+            //设置回佣dataGridView的字段
+            SetHYDataGridViewFiled();
+            InitHYDataGridView();
         }
+
+
 
         void EnableControl(bool bl)
         {
@@ -233,13 +240,6 @@ namespace FXB.Dialog
             zhuchang1SelectBtn.Enabled = bl;
             zhuchang2SelectBtn.Enabled = bl;
         }
-        //private void RefreshCheckState(bool checkState, string checkPersoName, string checkTime, string luruPersoName, bool orderState)
-        //{
-        //    checkStateLable.Text = "已审核";
-        //    checkJobNumberLable.Text = "石頭哥哥";
-        //    checkTimeLable.Text = "2016-10-09 23:11:20";
-        //    luruJobNumberLable.Text = "石頭哥哥的";
-        //}
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
@@ -268,11 +268,7 @@ namespace FXB.Dialog
             } 
             else
             {
-                try
-                {
-                    Convert.ToDouble(cjZongjiaEdi.Text);
-                } 
-                catch (Exception )
+                if (!DoubleUtil.Check(cjZongjiaEdi.Text))
                 {
                     MessageBox.Show("成交总价格式错误");
                     return;
@@ -299,23 +295,17 @@ namespace FXB.Dialog
             } 
             else
             {
-                try
-                {
-                    Convert.ToDouble(yongjinzongeEdi.Text);
-                }
-                catch (Exception)
+
+                if (!DoubleUtil.Check(yongjinzongeEdi.Text))
                 {
                     MessageBox.Show("佣金总额格式错误");
                     return;
                 }
+
             }
             if (mianjiEdi.Text != "")
             {
-                try
-                {
-                    Convert.ToDouble(mianjiEdi.Text);
-                }
-                catch (Exception)
+                if (!DoubleUtil.Check(mianjiEdi.Text))
                 {
                     MessageBox.Show("面积格式错误");
                     return;
@@ -329,11 +319,7 @@ namespace FXB.Dialog
 
             if (daikuanjineEdi.Text != "")
             {
-                try
-                {
-                    Convert.ToDouble(daikuanjineEdi.Text);
-                }
-                catch (Exception)
+                if (!DoubleUtil.Check(daikuanjineEdi.Text))
                 {
                     MessageBox.Show("贷款金额格式错误");
                     return;
@@ -389,7 +375,7 @@ namespace FXB.Dialog
             {
                 string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
                 QtOrder tmpNewOrder = 
-                QtMgr.Instance().AddNewQtOrder(
+                OrderMgr.Instance().AddNewQtOrder(
                     TimeUtil.DateTimeToTimestamp(orderGenerateTime.Value),
                     System.Math.Round(Convert.ToDouble(yongjinzongeEdi.Text), 2),
                     kehuNameEdi.Text,
@@ -457,12 +443,6 @@ namespace FXB.Dialog
                 selectZhuchang2 != editQtOrder.Zc2JobNumber
                 )
             {
-                QtTask qtTask = QtMgr.Instance().AllQtTask[editQtOrder.QtKey];
-                if (qtTask.Closing)
-                {
-                    MessageBox.Show("目标QT任务已经已经生成提成，不能修改");
-                    return;
-                }
 
                 try
                 {
@@ -485,7 +465,7 @@ namespace FXB.Dialog
                         newZc2DepartmentId = EmployeeDataMgr.Instance().AllEmployeeData[selectZhuchang2].DepartmentId;
                     }
 
-                    QtMgr.Instance().ModifyQtOrder(
+                    OrderMgr.Instance().ModifyQtOrder(
                         editQtOrder.Id,
                         System.Math.Round(Convert.ToDouble(yongjinzongeEdi.Text), 2),
                         kehuNameEdi.Text,
@@ -507,28 +487,7 @@ namespace FXB.Dialog
                         fukuanTypeEdi.Text,
                         daikuanjineEdi.Text == "" ? 0.0f : System.Math.Round(Convert.ToDouble(daikuanjineEdi.Text), 2));
 
-                    editQtOrder.CommissionAmount = System.Math.Round(Convert.ToDouble(yongjinzongeEdi.Text), 2);
-                    editQtOrder.CustomerName = kehuNameEdi.Text;
-                    editQtOrder.ProjectCode = selectProjectCode;
-                    editQtOrder.RoomNumber = roomNumberEdi.Text;
-                    editQtOrder.ClosingTheDealMoney = System.Math.Round(Convert.ToDouble(cjZongjiaEdi.Text), 2);
-                    editQtOrder.YxConsultantJobNumber = selectGuwen;
-                    editQtOrder.YxQtDepartmentId = newYxDepartmentId;
-                    editQtOrder.KyfConsultanJobNumber = selectKeyuanfang;
-                    editQtOrder.KyfQtDepartmentId = newKyfDepartmentId;
-                    editQtOrder.Zc1JobNumber = selectZhuchang1;
-                    editQtOrder.Zc1QtDepartmentId = newZc1DepartmentId;
-                    editQtOrder.Zc2JobNumber = selectZhuchang2;
-                    editQtOrder.Zc2QtDepartmentId = newZc2DepartmentId;
-                    editQtOrder.Comment = beizhuEdi.Text;
-                    editQtOrder.BuyTime = TimeUtil.DateTimeToTimestamp(buyTime.Value);
-                    editQtOrder.CustomerPhone = kehudianhuaEdi.Text;
-                    editQtOrder.CustomerIdCard = shenfenzhengEdi.Text;
-                    editQtOrder.Receipt = shoujuEdi.Text;
-                    editQtOrder.RoomArea = System.Math.Round(Convert.ToDouble(mianjiEdi.Text), 2);
-                    editQtOrder.ContractState = hetongzhuangtaiEdi.Text;
-                    editQtOrder.PaymentMethod = fukuanTypeEdi.Text;
-                    editQtOrder.LoansMoney = daikuanjineEdi.Text == "" ? 0.0f : System.Math.Round(Convert.ToDouble(daikuanjineEdi.Text), 2);
+
                     DialogResult = DialogResult.OK;
                     Close();
                 }
@@ -952,10 +911,7 @@ namespace FXB.Dialog
                 {
                     //当前是审核状态
                     //取消审核
-                    QtMgr.Instance().UpdateCheckInfo(editQtOrder.Id, false, "", 0);
-                    editQtOrder.CheckState = false;
-                    editQtOrder.CheckPersonJobNumber = "";
-                    editQtOrder.CheckTime = 0;
+                    OrderMgr.Instance().UpdateCheckState(editQtOrder.Id, false, "", 0);
 
                     EnableControl(true);
                     //生成时间不允许修改
@@ -968,15 +924,11 @@ namespace FXB.Dialog
                 }
                 else
                 {
-                    
                     //当前是取消审核状态
                     //审核
                     EmployeeData curEmployee = AuthMgr.Instance().CurLoginEmployee;
                     UInt32 timestamp = TimeUtil.DateTimeToTimestamp(DateTime.Now);
-                    QtMgr.Instance().UpdateCheckInfo(editQtOrder.Id, true, curEmployee.JobNumber, timestamp);
-                    editQtOrder.CheckState = true;
-                    editQtOrder.CheckPersonJobNumber = curEmployee.JobNumber;
-                    editQtOrder.CheckTime = timestamp;
+                    OrderMgr.Instance().UpdateCheckState(editQtOrder.Id, true, curEmployee.JobNumber, timestamp);
 
                     EnableControl(false);
 
@@ -1002,5 +954,96 @@ namespace FXB.Dialog
             Close();
         }
 
+        private void addHuiyongBtn_Click(object sender, EventArgs e)
+        {
+            AddHYDlg dlg = new AddHYDlg(editQtOrder.Id);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                Int64 newHYId = dlg.NewHYId;
+                HYData hyData = HYMgr.Instance().AllHYData[newHYId];
+                int newRow = hyDataGridView1.Rows.Add();
+                UpdateHYGridViewRow(hyDataGridView1.Rows[newRow], hyData);
+            }
+        }
+
+
+        private void UpdateHYGridViewRow(DataGridViewRow row, HYData data)
+        {
+            row.Cells["id"].Value = data.Id;
+            row.Cells["hyAmount"].Value = data.Amount;
+            row.Cells["hyTime"].Value = TimeUtil.TimestampToDateTime(data.AddTime).ToShortDateString();
+            row.Cells["entryJobNumber"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.EntryJobNumber].Name;
+            row.Cells["checkState"].Value = data.CheckState;
+            //if (data.CheckState)
+            //{
+            //    row.Cells["checkJobNumber"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.CheckJobNumber].Name;
+            //    row.Cells["checkTime"].Value = TimeUtil.TimestampToDateTime(data.CheckTime).ToShortDateString();
+            //}
+
+            row.Cells["isSettlement"].Value = data.IsSettlement;
+        }
+
+
+        void SetHYDataGridViewFiled()
+        {
+            DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
+            id.Name = "id";
+            id.HeaderText = "回佣ID";
+            id.Width = 80;
+            hyDataGridView1.Columns.Add(id);
+
+            DataGridViewTextBoxColumn hyAmount = new DataGridViewTextBoxColumn();
+            hyAmount.Name = "hyAmount";
+            hyAmount.HeaderText = "回佣金额";
+            hyAmount.Width = 80;
+            hyDataGridView1.Columns.Add(hyAmount);
+
+            DataGridViewTextBoxColumn hyTime = new DataGridViewTextBoxColumn();
+            hyTime.Name = "hyTime";
+            hyTime.HeaderText = "回佣时间";
+            hyTime.Width = 80;
+            hyDataGridView1.Columns.Add(hyTime);
+
+            DataGridViewTextBoxColumn entryJobNumber = new DataGridViewTextBoxColumn();
+            entryJobNumber.Name = "entryJobNumber";
+            entryJobNumber.HeaderText = "录入人";
+            entryJobNumber.Width = 80;
+            hyDataGridView1.Columns.Add(entryJobNumber);
+
+            DataGridViewCheckBoxColumn checkState = new DataGridViewCheckBoxColumn();
+            checkState.Name = "checkState";
+            checkState.HeaderText = "是否审核";
+            checkState.Width = 80;
+            hyDataGridView1.Columns.Add(checkState);
+
+            //DataGridViewTextBoxColumn checkJobNumber = new DataGridViewTextBoxColumn();
+            //checkJobNumber.Name = "checkJobNumber";
+            //checkJobNumber.HeaderText = "审核人";
+            //checkJobNumber.Width = 100;
+            //hyDataGridView1.Columns.Add(checkJobNumber);
+
+            //DataGridViewTextBoxColumn checkTime = new DataGridViewTextBoxColumn();
+            //checkTime.Name = "checkTime";
+            //checkTime.HeaderText = "审核时间";
+            //checkTime.Width = 120;
+            //hyDataGridView1.Columns.Add(checkTime);
+
+            DataGridViewCheckBoxColumn isSettlement = new DataGridViewCheckBoxColumn();
+            isSettlement.Name = "isSettlement";
+            isSettlement.HeaderText = "是否结算";
+            isSettlement.Width = 80;
+            hyDataGridView1.Columns.Add(isSettlement);
+
+        }
+
+        void InitHYDataGridView()
+        {
+            hyDataGridView1.Rows.Clear();
+            foreach (var item in editQtOrder.AllHYData)
+            {
+                int newRow = hyDataGridView1.Rows.Add();
+                UpdateHYGridViewRow(hyDataGridView1.Rows[newRow], item.Value);
+            }
+        }
     }
 }

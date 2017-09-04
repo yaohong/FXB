@@ -45,7 +45,7 @@ namespace FXB
                 QtMgr.Instance().Load();
                 DxDuplicateMgr.Instance().Load();
                 AuthMgr.Instance().Load();
-
+                HYMgr.Instance().Init();
                 LoginDlg loginDlg = new LoginDlg();
                 if (DialogResult.OK != loginDlg.ShowDialog())
                 {
