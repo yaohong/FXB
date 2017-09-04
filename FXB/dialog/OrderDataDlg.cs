@@ -98,7 +98,7 @@ namespace FXB.Dialog
             DataGridViewTextBoxColumn qtKey = new DataGridViewTextBoxColumn();
             qtKey.Name = "qtKey";
             qtKey.HeaderText = "所属QT任务";
-            qtKey.Width = 80;
+            qtKey.Width = 110;
             dataGridView1.Columns.Add(qtKey);
 
             DataGridViewTextBoxColumn customerName = new DataGridViewTextBoxColumn();
@@ -357,12 +357,13 @@ namespace FXB.Dialog
                 MessageBox.Show(string.Format("订单[{0}]不属于QT任务[{1}], 请重新查询", orderId, qtKey));
                 return;
             }
-            QtOrder qtOrder = qtTask.AllQtOrder[orderId];
-            if (qtOrder.CheckState)
-            {
-                MessageBox.Show(string.Format("订单[{0}]已经通过审核，请执行 [取消审核后] 后在执行该操作", orderId));
-                return;
-            }
+            //审核过后也可以删
+            //QtOrder qtOrder = qtTask.AllQtOrder[orderId];
+            //if (qtOrder.CheckState)
+            //{
+            //    MessageBox.Show(string.Format("订单[{0}]已经通过审核，请执行 [取消审核后] 后在执行该操作", orderId));
+            //    return;
+            //}
 
             try
             {

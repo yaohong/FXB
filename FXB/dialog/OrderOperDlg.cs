@@ -74,6 +74,7 @@ namespace FXB.Dialog
 
         private void AddInit()
         {
+            tabPage3.Parent = null;
             this.Text = "添加";
             shenheBtn.Visible = false;
             checkStateLable.Text = "未审核";
