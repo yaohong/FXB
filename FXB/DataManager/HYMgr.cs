@@ -135,5 +135,25 @@ namespace FXB.DataManager
             hyData.CheckJobNumber = checkjobnumber;
             hyData.CheckTime = checktime;
         }
+
+        public void RemoveHY(Int64 hyId)
+        {
+            if (!allHYData.ContainsKey(hyId))
+            {
+                throw new ConditionCheckException(string.Format("回佣id[{0}]不存在", hyId));
+            }
+            HYData hyData = allHYData[hyId];
+            QtOrder order = OrderMgr.Instance().AllOrderData[hyData.OrderId];
+            SqlCommand command = new SqlCommand();
+            command.Connection = SqlMgr.Instance().SqlConnect;
+            command.CommandType = CommandType.Text;
+            command.CommandText = "delete from qtorderhy where id=@id";
+            command.Parameters.AddWithValue("@id", hyId);
+            command.ExecuteScalar();
+
+            order.AllHYData.Remove(hyId);
+            allHYData.Remove(hyId);
+
+        }
     }
 }

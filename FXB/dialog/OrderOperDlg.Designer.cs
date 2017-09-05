@@ -789,6 +789,7 @@
             this.hyDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.hyDataGridView1.Size = new System.Drawing.Size(636, 228);
             this.hyDataGridView1.TabIndex = 1;
+            this.hyDataGridView1.DoubleClick += new System.EventHandler(this.hyDataGridView1_DoubleClick);
             // 
             // addHuiyongBtn
             // 
@@ -808,6 +809,7 @@
             this.deleteHuiYongBtn.TabIndex = 2;
             this.deleteHuiYongBtn.Text = "删除回佣";
             this.deleteHuiYongBtn.UseVisualStyleBackColor = true;
+            this.deleteHuiYongBtn.Click += new System.EventHandler(this.deleteHuiYongBtn_Click);
             // 
             // groupBox1
             // 

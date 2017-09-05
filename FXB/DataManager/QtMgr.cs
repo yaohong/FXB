@@ -495,12 +495,12 @@ namespace FXB.DataManager
                 command.ExecuteScalar();
                 command.Parameters.Clear();
 
-                //删除QT订单
-                command.CommandType = CommandType.Text;
-                command.CommandText = "delete from qttaskorder where qtkey=@qtkey";
-                command.Parameters.AddWithValue("@qtkey", qtKey);
-                command.ExecuteScalar();
-                command.Parameters.Clear();
+                ////删除QT订单
+                //command.CommandType = CommandType.Text;
+                //command.CommandText = "delete from qttaskorder where qtkey=@qtkey";
+                //command.Parameters.AddWithValue("@qtkey", qtKey);
+                //command.ExecuteScalar();
+                //command.Parameters.Clear();
 
                 //删除QT数据
                 command.CommandType = CommandType.Text;

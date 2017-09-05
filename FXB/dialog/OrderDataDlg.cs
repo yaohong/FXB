@@ -30,6 +30,13 @@ namespace FXB.Dialog
             dataGridView1.Rows.Clear();
             qtKey = qtCbSelect.SelectedItem as string;
 
+            if (!QtMgr.Instance().AllQtTask.ContainsKey(qtKey))
+            {
+                MessageBox.Show(string.Format("QT任务[{0}]不存在,请关闭窗口重新打开.", qtKey));
+                return;
+            }
+
+
             QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
             foreach (var item in qtTask.AllQtOrder)
             {

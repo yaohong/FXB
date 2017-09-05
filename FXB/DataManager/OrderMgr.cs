@@ -61,11 +61,15 @@ namespace FXB.DataManager
 
             if (qtTask.Closing)
             {
-                MessageBox.Show(string.Format("QT任务[{0}]已经结算，请执行 [清除QT提成] 后在执行该操作", order.QtKey));
-                return;
+                throw new ConditionCheckException(string.Format("QT任务[{0}]已经结算，请执行 [清除QT提成] 后在执行该操作", order.QtKey));
             }
 
-            //删除订单和下面的回佣
+            if (order.AllHYData.Count > 0)
+            {
+                throw new ConditionCheckException(string.Format("QT任务[{0}]已经生成回佣,请删除后在进行该操作", order.QtKey));
+            }
+
+            //删除订单
             SqlCommand command = new SqlCommand();
             command.Connection = SqlMgr.Instance().SqlConnect;
             command.CommandType = CommandType.Text;

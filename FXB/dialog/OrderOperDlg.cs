@@ -900,12 +900,6 @@ namespace FXB.Dialog
         {
             try
             {
-                QtTask qtTask = QtMgr.Instance().AllQtTask[editQtOrder.QtKey];
-                if (qtTask.Closing)
-                {
-                    MessageBox.Show("QT提成已经生成,不能变更审核状态");
-                    return;
-                }
 
                 if (editQtOrder.CheckState)
                 {
@@ -1044,6 +1038,54 @@ namespace FXB.Dialog
                 int newRow = hyDataGridView1.Rows.Add();
                 UpdateHYGridViewRow(hyDataGridView1.Rows[newRow], item.Value);
             }
+        }
+
+        private void deleteHuiYongBtn_Click(object sender, EventArgs e)
+        {
+            if (hyDataGridView1.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            //只能选择一行
+            DataGridViewRow selectRow = hyDataGridView1.SelectedRows[0];
+            Int64 hyId = (Int64)selectRow.Cells["id"].Value;
+            HYData hyData = HYMgr.Instance().AllHYData[hyId];
+            if (hyData.IsSettlement)
+            {
+                if (DialogResult.Cancel == MessageBox.Show("回佣已经结算确定要删除?", "警告", MessageBoxButtons.OKCancel))
+                {
+                    return;
+                }
+            }
+
+            try
+            {
+                HYMgr.Instance().RemoveHY(hyId);
+                hyDataGridView1.Rows.RemoveAt(selectRow.Index);
+            }
+            catch (ConditionCheckException ex1)
+            {
+                MessageBox.Show(ex1.Message);
+            }
+            catch (Exception e2)
+            {
+                MessageBox.Show(e2.Message);
+                Application.Exit();
+            }
+        }
+
+        private void hyDataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (hyDataGridView1.SelectedRows.Count == 0)
+            {
+                return;
+            }
+            DataGridViewRow selectRow = hyDataGridView1.SelectedRows[0];
+            Int64 hyId = (Int64)selectRow.Cells["id"].Value;
+            HYData hyData = HYMgr.Instance().AllHYData[hyId];
+            ViewHYDlg dlg = new ViewHYDlg(hyData);
+            dlg.ShowDialog();
         }
     }
 }

@@ -242,7 +242,7 @@ namespace FXB.Data
             }
 
             closing = false;
-            //需要检测是否有回佣
+
             foreach (var kv in allQtDepartment)
             {
                 kv.Value.AlreadyCompleteTaskAmount = 0.0f;
