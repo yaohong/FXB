@@ -35,12 +35,22 @@ namespace FXB.Dialog
 
             try
             {
+                string loginJobnumber = "";
                 if (!EmployeeDataMgr.Instance().AllEmployeeData.ContainsKey(jobnumberEdi.Text))
                 {
-                    MessageBox.Show("工号不存在");
-                    return;
+                    //当手机号尝试
+                    if (!EmployeeDataMgr.Instance().AllPhoneToJobnumber.ContainsKey(jobnumberEdi.Text))
+                    {
+                        MessageBox.Show("账号错误");
+                        return;
+                    }
+                    loginJobnumber = EmployeeDataMgr.Instance().AllPhoneToJobnumber[jobnumberEdi.Text];
+                } 
+                else
+                {
+                    loginJobnumber = jobnumberEdi.Text;
                 }
-                EmployeeData data = EmployeeDataMgr.Instance().AllEmployeeData[jobnumberEdi.Text];
+                EmployeeData data = EmployeeDataMgr.Instance().AllEmployeeData[loginJobnumber];
                 if (data.AuthData.Password != passwordEdi.Text)
                 {
                     MessageBox.Show("密码错误");
@@ -59,7 +69,7 @@ namespace FXB.Dialog
             catch (Exception e2)
             {
                 MessageBox.Show(e2.Message);
-                Application.Exit();
+                System.Environment.Exit(0);
             }
         }
 

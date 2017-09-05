@@ -38,23 +38,23 @@
             this.jiesuanCb = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
-            this.ywyEdi = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.ywyGZEdi = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.kyfEdi = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.kyfGZEdi = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lable10 = new System.Windows.Forms.Label();
-            this.checkJobNumberEdi = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.checkTimeEdi = new System.Windows.Forms.TextBox();
-            this.checkBtn = new System.Windows.Forms.Button();
-            this.exitBtn = new System.Windows.Forms.Button();
             this.checkStateEdi = new System.Windows.Forms.TextBox();
+            this.exitBtn = new System.Windows.Forms.Button();
+            this.checkBtn = new System.Windows.Forms.Button();
+            this.checkTimeEdi = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.checkJobNumberEdi = new System.Windows.Forms.TextBox();
+            this.lable10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.kyfGZEdi = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.kyfEdi = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.ywyGZEdi = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.ywyEdi = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -163,6 +163,74 @@
             this.tabPage1.Text = "回佣信息";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // checkStateEdi
+            // 
+            this.checkStateEdi.Location = new System.Drawing.Point(86, 124);
+            this.checkStateEdi.Name = "checkStateEdi";
+            this.checkStateEdi.Size = new System.Drawing.Size(289, 21);
+            this.checkStateEdi.TabIndex = 15;
+            // 
+            // exitBtn
+            // 
+            this.exitBtn.Location = new System.Drawing.Point(326, 205);
+            this.exitBtn.Name = "exitBtn";
+            this.exitBtn.Size = new System.Drawing.Size(49, 23);
+            this.exitBtn.TabIndex = 14;
+            this.exitBtn.Text = "退出";
+            this.exitBtn.UseVisualStyleBackColor = true;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
+            // 
+            // checkBtn
+            // 
+            this.checkBtn.Location = new System.Drawing.Point(86, 205);
+            this.checkBtn.Name = "checkBtn";
+            this.checkBtn.Size = new System.Drawing.Size(49, 23);
+            this.checkBtn.TabIndex = 12;
+            this.checkBtn.Text = "审核";
+            this.checkBtn.UseVisualStyleBackColor = true;
+            this.checkBtn.Click += new System.EventHandler(this.checkBtn_Click);
+            // 
+            // checkTimeEdi
+            // 
+            this.checkTimeEdi.Location = new System.Drawing.Point(86, 178);
+            this.checkTimeEdi.Name = "checkTimeEdi";
+            this.checkTimeEdi.Size = new System.Drawing.Size(289, 21);
+            this.checkTimeEdi.TabIndex = 11;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(21, 187);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(59, 12);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "审核时间:";
+            // 
+            // checkJobNumberEdi
+            // 
+            this.checkJobNumberEdi.Location = new System.Drawing.Point(86, 151);
+            this.checkJobNumberEdi.Name = "checkJobNumberEdi";
+            this.checkJobNumberEdi.Size = new System.Drawing.Size(289, 21);
+            this.checkJobNumberEdi.TabIndex = 9;
+            // 
+            // lable10
+            // 
+            this.lable10.AutoSize = true;
+            this.lable10.Location = new System.Drawing.Point(33, 160);
+            this.lable10.Name = "lable10";
+            this.lable10.Size = new System.Drawing.Size(47, 12);
+            this.lable10.TabIndex = 2;
+            this.lable10.Text = "审核人:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(21, 133);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(59, 12);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "审核状态:";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.kyfGZEdi);
@@ -181,53 +249,12 @@
             this.tabPage2.Text = "预发工资";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // kyfGZEdi
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 24);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 12);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "业务员:";
-            // 
-            // ywyEdi
-            // 
-            this.ywyEdi.Location = new System.Drawing.Point(68, 15);
-            this.ywyEdi.Name = "ywyEdi";
-            this.ywyEdi.Size = new System.Drawing.Size(122, 21);
-            this.ywyEdi.TabIndex = 1;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(207, 24);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 12);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "预发工资:";
-            // 
-            // ywyGZEdi
-            // 
-            this.ywyGZEdi.Location = new System.Drawing.Point(272, 15);
-            this.ywyGZEdi.Name = "ywyGZEdi";
-            this.ywyGZEdi.Size = new System.Drawing.Size(122, 21);
-            this.ywyGZEdi.TabIndex = 3;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 52);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 12);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "客源方:";
-            // 
-            // kyfEdi
-            // 
-            this.kyfEdi.Location = new System.Drawing.Point(68, 43);
-            this.kyfEdi.Name = "kyfEdi";
-            this.kyfEdi.Size = new System.Drawing.Size(122, 21);
-            this.kyfEdi.TabIndex = 5;
+            this.kyfGZEdi.Location = new System.Drawing.Point(272, 43);
+            this.kyfGZEdi.Name = "kyfGZEdi";
+            this.kyfGZEdi.Size = new System.Drawing.Size(122, 21);
+            this.kyfGZEdi.TabIndex = 7;
             // 
             // label8
             // 
@@ -238,79 +265,53 @@
             this.label8.TabIndex = 6;
             this.label8.Text = "预发工资:";
             // 
-            // kyfGZEdi
+            // kyfEdi
             // 
-            this.kyfGZEdi.Location = new System.Drawing.Point(272, 43);
-            this.kyfGZEdi.Name = "kyfGZEdi";
-            this.kyfGZEdi.Size = new System.Drawing.Size(122, 21);
-            this.kyfGZEdi.TabIndex = 7;
+            this.kyfEdi.Location = new System.Drawing.Point(68, 43);
+            this.kyfEdi.Name = "kyfEdi";
+            this.kyfEdi.Size = new System.Drawing.Size(122, 21);
+            this.kyfEdi.TabIndex = 5;
             // 
-            // label9
+            // label7
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 133);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(59, 12);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "审核状态:";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 52);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 12);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "客源方:";
             // 
-            // lable10
+            // ywyGZEdi
             // 
-            this.lable10.AutoSize = true;
-            this.lable10.Location = new System.Drawing.Point(33, 160);
-            this.lable10.Name = "lable10";
-            this.lable10.Size = new System.Drawing.Size(47, 12);
-            this.lable10.TabIndex = 2;
-            this.lable10.Text = "审核人:";
+            this.ywyGZEdi.Location = new System.Drawing.Point(272, 15);
+            this.ywyGZEdi.Name = "ywyGZEdi";
+            this.ywyGZEdi.Size = new System.Drawing.Size(122, 21);
+            this.ywyGZEdi.TabIndex = 3;
             // 
-            // checkJobNumberEdi
+            // label6
             // 
-            this.checkJobNumberEdi.Location = new System.Drawing.Point(86, 151);
-            this.checkJobNumberEdi.Name = "checkJobNumberEdi";
-            this.checkJobNumberEdi.Size = new System.Drawing.Size(289, 21);
-            this.checkJobNumberEdi.TabIndex = 9;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(207, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 12);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "预发工资:";
             // 
-            // label10
+            // ywyEdi
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(21, 187);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(59, 12);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "审核时间:";
+            this.ywyEdi.Location = new System.Drawing.Point(68, 15);
+            this.ywyEdi.Name = "ywyEdi";
+            this.ywyEdi.Size = new System.Drawing.Size(122, 21);
+            this.ywyEdi.TabIndex = 1;
             // 
-            // checkTimeEdi
+            // label5
             // 
-            this.checkTimeEdi.Location = new System.Drawing.Point(86, 178);
-            this.checkTimeEdi.Name = "checkTimeEdi";
-            this.checkTimeEdi.Size = new System.Drawing.Size(289, 21);
-            this.checkTimeEdi.TabIndex = 11;
-            // 
-            // checkBtn
-            // 
-            this.checkBtn.Location = new System.Drawing.Point(86, 205);
-            this.checkBtn.Name = "checkBtn";
-            this.checkBtn.Size = new System.Drawing.Size(49, 23);
-            this.checkBtn.TabIndex = 12;
-            this.checkBtn.Text = "审核";
-            this.checkBtn.UseVisualStyleBackColor = true;
-            this.checkBtn.Click += new System.EventHandler(this.checkBtn_Click);
-            // 
-            // exitBtn
-            // 
-            this.exitBtn.Location = new System.Drawing.Point(326, 205);
-            this.exitBtn.Name = "exitBtn";
-            this.exitBtn.Size = new System.Drawing.Size(49, 23);
-            this.exitBtn.TabIndex = 14;
-            this.exitBtn.Text = "退出";
-            this.exitBtn.UseVisualStyleBackColor = true;
-            // 
-            // checkStateEdi
-            // 
-            this.checkStateEdi.Location = new System.Drawing.Point(86, 124);
-            this.checkStateEdi.Name = "checkStateEdi";
-            this.checkStateEdi.Size = new System.Drawing.Size(289, 21);
-            this.checkStateEdi.TabIndex = 15;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(15, 24);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(47, 12);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "业务员:";
             // 
             // ViewHYDlg
             // 

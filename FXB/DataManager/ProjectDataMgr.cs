@@ -60,7 +60,7 @@ namespace FXB.DataManager
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
-                Application.Exit();
+                System.Environment.Exit(0);
             }
             finally
             {

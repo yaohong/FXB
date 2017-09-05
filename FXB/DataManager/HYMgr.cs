@@ -113,9 +113,9 @@ namespace FXB.DataManager
             }
 
             HYData hyData = allHYData[hyId];
-            if (hyData.IsSettlement && !checkState)
+            if (hyData.IsSettlement)
             {
-                throw new ConditionCheckException(string.Format("回佣id[{0}]已经结算不能取消审核", hyId));
+                throw new ConditionCheckException(string.Format("回佣id[{0}]已经结算不能变更审核状态", hyId));
             }
 
             SqlCommand command = new SqlCommand();

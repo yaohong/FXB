@@ -87,7 +87,7 @@ namespace FXB.Dialog
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Application.Exit();
+                System.Environment.Exit(0);
             }
         }
 
@@ -114,7 +114,7 @@ namespace FXB.Dialog
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                    Application.Exit();
+                    System.Environment.Exit(0);
                 }
             }
             else

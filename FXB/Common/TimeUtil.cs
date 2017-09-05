@@ -21,5 +21,12 @@ namespace FXB.Common
             long timeStamp = (long)(dateTime - startTime).TotalSeconds;
             return (UInt32)timeStamp;
         }
+
+        public static Int64 DateTimeToMs(DateTime dateTime)
+        {
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
+            long timeStamp = (long)(dateTime - startTime).TotalMilliseconds;
+            return timeStamp;
+        }
     }
 }

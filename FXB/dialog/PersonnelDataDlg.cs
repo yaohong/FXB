@@ -76,7 +76,6 @@ namespace FXB.Dialog
             TreeNode selectNode = departmentTreeView.SelectedNode;
             if (selectNode != null)
             {
-                Console.WriteLine("selectNodeText:{0}", selectNode.Text);
                 Int64 departmentId =  Convert.ToInt64(selectNode.Name);
                 if (!DepartmentUtil.FindEmployeeByDepartment(departmentId, data.JobNumber))
                 {
@@ -151,7 +150,7 @@ namespace FXB.Dialog
                     if (childCount != 1)
                     {
                         MessageBox.Show("部门关系发生异常，请重新启动程序");
-                        Application.Exit();
+                        System.Environment.Exit(0);
                     }
                     TreeNode parentNode = allTreeNode[0];
                     parentNode.Nodes.Add(newDepartmentData.Id.ToString(), newDepartmentData.Name);
@@ -215,7 +214,7 @@ namespace FXB.Dialog
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Application.Exit();
+                System.Environment.Exit(0);
             }
         }
 
@@ -442,8 +441,10 @@ namespace FXB.Dialog
 
         private void treeView1_Click(object sender, EventArgs e)
         {
-            
+            Int64 s1 = TimeUtil.DateTimeToMs(DateTime.Now);
             EmployeeDataMgr.Instance().SetDataGridView(dataGridView1, jobNumberOrNameInquire);
+            Int64 s2 = TimeUtil.DateTimeToMs(DateTime.Now);
+            Console.WriteLine((s2-s1).ToString());
         }
 
         private void departmentTreeView_MouseDown(object sender, MouseEventArgs e)

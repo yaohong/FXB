@@ -416,7 +416,7 @@ namespace FXB.Dialog
             catch (Exception e2)
             {
                 MessageBox.Show(e2.Message);
-                Application.Exit();
+                System.Environment.Exit(0);
             }
         }
 
@@ -498,7 +498,7 @@ namespace FXB.Dialog
                 catch (Exception e2)
                 {
                     MessageBox.Show(e2.Message);
-                    Application.Exit();
+                    System.Environment.Exit(0);
                 }
             }
             else
@@ -939,7 +939,7 @@ namespace FXB.Dialog
             catch (Exception e2)
             {
                 MessageBox.Show(e2.Message);
-                Application.Exit();
+                System.Environment.Exit(0);
             }
         }
 
@@ -1071,7 +1071,7 @@ namespace FXB.Dialog
             catch (Exception e2)
             {
                 MessageBox.Show(e2.Message);
-                Application.Exit();
+                System.Environment.Exit(0);
             }
         }
 
@@ -1086,6 +1086,7 @@ namespace FXB.Dialog
             HYData hyData = HYMgr.Instance().AllHYData[hyId];
             ViewHYDlg dlg = new ViewHYDlg(hyData);
             dlg.ShowDialog();
+            UpdateHYGridViewRow(selectRow, hyData);
         }
     }
 }

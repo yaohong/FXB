@@ -93,7 +93,7 @@ namespace FXB.Dialog
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Application.Exit();
+                System.Environment.Exit(0);
             }
         }
 
@@ -123,7 +123,7 @@ namespace FXB.Dialog
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                    Application.Exit();
+                    System.Environment.Exit(0);
                 }
                 
             }
@@ -195,7 +195,7 @@ namespace FXB.Dialog
                     {
                         //父节点是根节点,根节点必须是没有QT级别
                         MessageBox.Show("部门关系错误0");
-                        Application.Exit();
+                        System.Environment.Exit(0);
 
                     }
                     else if (selectDepartment.Layer == 1)
@@ -212,7 +212,7 @@ namespace FXB.Dialog
                         else
                         {
                             MessageBox.Show("部门关系错误1");
-                            Application.Exit();
+                            System.Environment.Exit(0);
                         }
                         
                     }
@@ -226,7 +226,7 @@ namespace FXB.Dialog
                         else
                         {
                             MessageBox.Show("部门关系错误2");
-                            Application.Exit();
+                            System.Environment.Exit(0);
                         }
                         
                     }
@@ -234,7 +234,7 @@ namespace FXB.Dialog
                     {
                         //不会走到这个分支
                         MessageBox.Show("部门关系错误3");
-                        Application.Exit();
+                        System.Environment.Exit(0);
                     }
                 }
                 else

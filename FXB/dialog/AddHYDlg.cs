@@ -69,7 +69,7 @@ namespace FXB.Dialog
             catch (Exception e2)
             {
                 MessageBox.Show(e2.Message);
-                Application.Exit();
+                System.Environment.Exit(0);
                 return;
             }
 

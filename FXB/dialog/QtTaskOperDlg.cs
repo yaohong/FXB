@@ -52,7 +52,7 @@ namespace FXB.Dialog
             catch (Exception ex1)
             {
                 MessageBox.Show(ex1.Message);
-                Application.Exit();
+                System.Environment.Exit(0);
             }
             
         }
@@ -82,30 +82,32 @@ namespace FXB.Dialog
                 return;
             }
 
-            int newLine = dataGridView1.Rows.Add();
-
-            dataGridView1.Rows[newLine].Cells["department"].Value = DepartmentUtil.GetQtDepartmentShowText(qtTask, qtDepartment.Id);
-            dataGridView1.Rows[newLine].Cells["qtlevel"].Value = QtUtil.GetQTLevelString(qtDepartment.QtLevel);
-
-            
-            if (qtDepartment.OwnerJobNumber != "")
+            if (qtDepartment.OwnerJobNumber != "" && !DoubleUtil.Equal(System.Math.Round(qtDepartment.NeedCompleteTaskAmount, 2), 0))
             {
+                int newLine = dataGridView1.Rows.Add();
+
+                dataGridView1.Rows[newLine].Cells["department"].Value = DepartmentUtil.GetQtDepartmentShowText(qtTask, qtDepartment.Id);
+                dataGridView1.Rows[newLine].Cells["qtlevel"].Value = QtUtil.GetQTLevelString(qtDepartment.QtLevel);
+
+
                 EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[qtDepartment.OwnerJobNumber];
                 dataGridView1.Rows[newLine].Cells["owner"].Value = employeeData.Name;
-            }
-            dataGridView1.Rows[newLine].Cells["qtTaskAmount"].Value = System.Math.Round(qtDepartment.NeedCompleteTaskAmount, 2);
-            if (!qtTask.Closing)
-            {
-                //没有结算
-                dataGridView1.Rows[newLine].Cells["ifSettle"].Value = false;
-            }
-            else
-            {
-                dataGridView1.Rows[newLine].Cells["ifSettle"].Value = true;
-                dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = System.Math.Round(qtDepartment.AlreadyCompleteTaskAmount, 2);
-                dataGridView1.Rows[newLine].Cells["prop"].Value = CommissionUtil.GetCommissionPropToStr(qtDepartment);
 
+                dataGridView1.Rows[newLine].Cells["qtTaskAmount"].Value = System.Math.Round(qtDepartment.NeedCompleteTaskAmount, 2);
+                if (!qtTask.Closing)
+                {
+                    //没有结算
+                    dataGridView1.Rows[newLine].Cells["ifSettle"].Value = false;
+                }
+                else
+                {
+                    dataGridView1.Rows[newLine].Cells["ifSettle"].Value = true;
+                    dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = System.Math.Round(qtDepartment.AlreadyCompleteTaskAmount, 2);
+                    dataGridView1.Rows[newLine].Cells["prop"].Value = CommissionUtil.GetCommissionPropToStr(qtDepartment);
+
+                }
             }
+
 
 
 
@@ -185,7 +187,7 @@ namespace FXB.Dialog
                 catch (Exception ex1)
                 {
                     MessageBox.Show(ex1.Message);
-                    Application.Exit();
+                    System.Environment.Exit(0);
                 }
             }
         }
@@ -209,7 +211,7 @@ namespace FXB.Dialog
                 catch (Exception ex1)
                 {
                     MessageBox.Show(ex1.Message);
-                    Application.Exit();
+                    System.Environment.Exit(0);
                 }
             }
         }
@@ -233,7 +235,7 @@ namespace FXB.Dialog
                 catch (Exception ex1)
                 {
                     MessageBox.Show(ex1.Message);
-                    Application.Exit();
+                    System.Environment.Exit(0);
                 }
             }
         }

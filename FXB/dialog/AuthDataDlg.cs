@@ -35,7 +35,6 @@ namespace FXB.Dialog
             TreeNode selectNode = treeView1.SelectedNode;
             if (selectNode != null)
             {
-                Console.WriteLine("selectNodeText:{0}", selectNode.Text);
                 Int64 departmentId = Convert.ToInt64(selectNode.Name);
                 if (!DepartmentUtil.FindEmployeeByDepartment(departmentId, data.JobNumber))
                 {

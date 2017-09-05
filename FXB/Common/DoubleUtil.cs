@@ -20,5 +20,19 @@ namespace FXB.Common
                 return false;
             }
         }
+
+        public static bool Equal(double l, double r)
+        {
+            if (Math.Abs(l - r) < 0.001f)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
+
+
+    
+
 }

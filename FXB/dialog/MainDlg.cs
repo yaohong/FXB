@@ -49,7 +49,7 @@ namespace FXB
                 LoginDlg loginDlg = new LoginDlg();
                 if (DialogResult.OK != loginDlg.ShowDialog())
                 {
-                    Application.Exit();
+                    System.Environment.Exit(0);
                     return;
                 }
 
@@ -119,7 +119,7 @@ namespace FXB
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Application.Exit();
+                System.Environment.Exit(0);
             }
 
         }
@@ -196,7 +196,7 @@ namespace FXB
             else 
             {
                 MessageBox.Show("未知的窗口名字");
-                Application.Exit();
+                System.Environment.Exit(0);
             }
         }
 
@@ -223,7 +223,7 @@ namespace FXB
 
         private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            System.Environment.Exit(0);
         }
 
         private void 修改密码ToolStripMenuItem_Click(object sender, EventArgs e)

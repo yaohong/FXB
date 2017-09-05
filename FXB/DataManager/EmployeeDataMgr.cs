@@ -14,10 +14,19 @@ namespace FXB.DataManager
     class EmployeeDataMgr
     {
         private static EmployeeDataMgr ins;
-        private Dictionary<string, EmployeeData> allEmployeeData;
+        
+        private SortedDictionary<string, EmployeeData> allEmployeeData;
+        private SortedDictionary<string, string> allPhoneToJobnumber;
+
+        public SortedDictionary<string, string> AllPhoneToJobnumber
+        {
+            get { return allPhoneToJobnumber; }
+        }
+
         private EmployeeDataMgr()
         {
-            allEmployeeData = new Dictionary<string, EmployeeData>();
+            allEmployeeData = new SortedDictionary<string, EmployeeData>();
+            allPhoneToJobnumber = new SortedDictionary<string, string>();
         }
 
         public static EmployeeDataMgr Instance()
@@ -74,7 +83,7 @@ namespace FXB.DataManager
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
-                Application.Exit();
+                System.Environment.Exit(0);
             }
             finally
             {
@@ -86,7 +95,7 @@ namespace FXB.DataManager
             }
         }
 
-        public Dictionary<string, EmployeeData> AllEmployeeData
+        public SortedDictionary<string, EmployeeData> AllEmployeeData
         {
             get
             {
@@ -152,7 +161,7 @@ namespace FXB.DataManager
             newEmployeeData.Comment = comment;
             newEmployeeData.QTLevel = qtLevel;
             allEmployeeData.Add(jobNumber, newEmployeeData);
-
+            allPhoneToJobnumber[phoneNumber] = jobNumber;
             //添加到部门
             if (departmentId != 0)
             {
@@ -208,41 +217,119 @@ namespace FXB.DataManager
                 throw new ConditionCheckException("不能够加入部门,员工QT级别和部门QT级别对应不上");
             }
 
+            //SqlTransaction sqlTran = null;
+            //try
+            //{
+            //    sqlTran = SqlMgr.Instance().SqlConnect.BeginTransaction();
+            //    SqlCommand command = new SqlCommand();
+            //    command.Connection = SqlMgr.Instance().SqlConnect;
+            //    command.Transaction = sqlTran;
 
-            //添加新的副本
-            SqlCommand command = new SqlCommand();
-            command.Connection = SqlMgr.Instance().SqlConnect;
-            command.CommandType = CommandType.Text;
-            command.CommandText = @"INSERT INTO employee
+            //    //删除QT部门
+            //    command.CommandType = CommandType.Text;
+            //    command.CommandText = "delete from qttaskdepartment where qtkey=@qtkey";
+            //    command.Parameters.AddWithValue("@qtkey", qtKey);
+            //    command.ExecuteScalar();
+            //    command.Parameters.Clear();
+
+            //    //删除QT员工
+            //    command.CommandType = CommandType.Text;
+            //    command.CommandText = "delete from qttaskemployee where qtkey=@qtkey";
+            //    command.Parameters.AddWithValue("@qtkey", qtKey);
+            //    command.ExecuteScalar();
+            //    command.Parameters.Clear();
+
+            //    ////删除QT订单
+            //    //command.CommandType = CommandType.Text;
+            //    //command.CommandText = "delete from qttaskorder where qtkey=@qtkey";
+            //    //command.Parameters.AddWithValue("@qtkey", qtKey);
+            //    //command.ExecuteScalar();
+            //    //command.Parameters.Clear();
+
+            //    //删除QT数据
+            //    command.CommandType = CommandType.Text;
+            //    command.CommandText = "delete from qttaskindex where qtkey=@qtkey";
+            //    command.Parameters.AddWithValue("@qtkey", qtKey);
+            //    command.ExecuteScalar();
+            //    command.Parameters.Clear();
+
+            //    //回佣
+
+            //    sqlTran.Commit();
+            //    allQtTask.Remove(qtKey);
+            //    OrderMgr.Instance().RemoveOrderByQtTask(qtKey);
+            //}
+            //catch (Exception ex)
+            //{
+            //    if (sqlTran != null)
+            //    {
+            //        sqlTran.Rollback();
+            //    }
+            //    throw new CrashException(ex.Message);
+            //}
+            SqlTransaction sqlTran = null;
+            try
+            {
+                //添加新的副本
+                sqlTran = SqlMgr.Instance().SqlConnect.BeginTransaction();
+                SqlCommand command = new SqlCommand();
+                command.Connection = SqlMgr.Instance().SqlConnect;
+                command.Transaction = sqlTran;
+
+                command.CommandType = CommandType.Text;
+                command.CommandText = @"INSERT INTO employee
                 (gonghao,name,qtlevel,departmentId,isOwner,zhiji,dianhua,ruzhiTime,jobState,
                 lizhiTime,comment,shenfenzheng,shengriTime,sex,mingzujiguan,
                 juzhuaddress,xueli,biyexuexiao,zhuanye,jjlianxiren,jjdianhua,jieshaoren)
                     VALUES(@gonghao,@name,@qtlevel,@departmentId, @isOwner, @zhiji,@dianhua,@ruzhiTime,
                 @jobState,@lizhiTime,@comment,@shenfenzheng,@shengriTime,@sex,@mingzujiguan,
                 @juzhuaddress,@xueli,@biyexuexiao,@zhuanye,@jjlianxiren,@jjdianhua,@jieshaoren)";
-            command.Parameters.AddWithValue("@gonghao", gongHao);
-            command.Parameters.AddWithValue("@name", name);
-            command.Parameters.AddWithValue("@qtlevel", (Int32)qtLevel);
-            command.Parameters.AddWithValue("@departmentId", departmentId);
-            command.Parameters.AddWithValue("@isOwner", isOwner);
-            command.Parameters.AddWithValue("@zhiji", zhiji);
-            command.Parameters.AddWithValue("@dianhua", dianhua);
-            command.Parameters.AddWithValue("@ruzhiTime", (Int32)ruzhiTime);
-            command.Parameters.AddWithValue("@jobState", jobState);
-            command.Parameters.AddWithValue("@lizhiTime", (Int32)lizhiTime);
-            command.Parameters.AddWithValue("@comment", comment);
-            command.Parameters.AddWithValue("@shenfenzheng", shenfenzheng);
-            command.Parameters.AddWithValue("@shengriTime", (Int32)shengriTime);
-            command.Parameters.AddWithValue("@sex", sex);
-            command.Parameters.AddWithValue("@mingzujiguan", mingzujiguan);
-            command.Parameters.AddWithValue("@juzhuaddress", juzhuaddress);
-            command.Parameters.AddWithValue("@xueli", xueli);
-            command.Parameters.AddWithValue("@biyexuexiao", biyexuexiao);
-            command.Parameters.AddWithValue("@zhuanye", zhuanye);
-            command.Parameters.AddWithValue("@jjlianxiren", jjlianxiren);
-            command.Parameters.AddWithValue("@jjdianhua", jjdianhua);
-            command.Parameters.AddWithValue("@jieshaoren", jieshaoren);
-            command.ExecuteScalar();
+                command.Parameters.AddWithValue("@gonghao", gongHao);
+                command.Parameters.AddWithValue("@name", name);
+                command.Parameters.AddWithValue("@qtlevel", (Int32)qtLevel);
+                command.Parameters.AddWithValue("@departmentId", departmentId);
+                command.Parameters.AddWithValue("@isOwner", isOwner);
+                command.Parameters.AddWithValue("@zhiji", zhiji);
+                command.Parameters.AddWithValue("@dianhua", dianhua);
+                command.Parameters.AddWithValue("@ruzhiTime", (Int32)ruzhiTime);
+                command.Parameters.AddWithValue("@jobState", jobState);
+                command.Parameters.AddWithValue("@lizhiTime", (Int32)lizhiTime);
+                command.Parameters.AddWithValue("@comment", comment);
+                command.Parameters.AddWithValue("@shenfenzheng", shenfenzheng);
+                command.Parameters.AddWithValue("@shengriTime", (Int32)shengriTime);
+                command.Parameters.AddWithValue("@sex", sex);
+                command.Parameters.AddWithValue("@mingzujiguan", mingzujiguan);
+                command.Parameters.AddWithValue("@juzhuaddress", juzhuaddress);
+                command.Parameters.AddWithValue("@xueli", xueli);
+                command.Parameters.AddWithValue("@biyexuexiao", biyexuexiao);
+                command.Parameters.AddWithValue("@zhuanye", zhuanye);
+                command.Parameters.AddWithValue("@jjlianxiren", jjlianxiren);
+                command.Parameters.AddWithValue("@jjdianhua", jjdianhua);
+                command.Parameters.AddWithValue("@jieshaoren", jieshaoren);
+                command.ExecuteScalar();
+                command.Parameters.Clear();
+
+                command.CommandType = CommandType.Text;
+                command.CommandText = "INSERT INTO auth(jobnumber,pwd,opermask,prohibit,ifowner,viewlevel) VALUES (@jobnumber,@pwd,@opermask,@prohibit, @ifowner, @viewlevel)";
+                command.Parameters.AddWithValue("@jobnumber", gongHao);
+                command.Parameters.AddWithValue("@pwd", "123456");
+                command.Parameters.AddWithValue("@opermask", 0);
+                command.Parameters.AddWithValue("@prohibit", false);
+                command.Parameters.AddWithValue("@ifowner", false);
+                command.Parameters.AddWithValue("@viewlevel", 2);
+                command.ExecuteScalar();
+                command.Parameters.Clear();
+
+                sqlTran.Commit();
+            }
+            catch (Exception ex)
+            {
+                if (sqlTran != null)
+                {
+                    sqlTran.Rollback();
+                }
+                throw new CrashException(ex.Message);
+            }
 
             EmployeeData newEmployeeData = 
                 AddEmployeeToCache(

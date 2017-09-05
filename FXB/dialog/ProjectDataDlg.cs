@@ -157,7 +157,7 @@ namespace FXB.Dialog
             catch (Exception ex1)
             {
                 MessageBox.Show(ex1.Message);
-                Application.Exit();
+                System.Environment.Exit(0);
             }
         }
     }
