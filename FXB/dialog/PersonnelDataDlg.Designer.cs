@@ -171,6 +171,7 @@
             this.ExportBtn.TabIndex = 12;
             this.ExportBtn.Text = "导出数据";
             this.ExportBtn.UseVisualStyleBackColor = true;
+            this.ExportBtn.Click += new System.EventHandler(this.ExportBtn_Click);
             // 
             // InquireBtn
             // 

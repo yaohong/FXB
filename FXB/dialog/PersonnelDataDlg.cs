@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using FXB.Common;
 using FXB.Data;
 using FXB.DataManager;
+
 namespace FXB.Dialog
 {
     public partial class PersonnelDataDlg : Form, DBUpdateInterface
@@ -453,6 +454,12 @@ namespace FXB.Dialog
             {
                 departmentTreeView.SelectedNode = departmentTreeView.GetNodeAt(e.X, e.Y);
             } 
+        }
+
+        private void ExportBtn_Click(object sender, EventArgs e)
+        {
+            DataExportDlg dlg = new DataExportDlg(dataGridView1);
+            dlg.ShowDialog();
         }
 
 

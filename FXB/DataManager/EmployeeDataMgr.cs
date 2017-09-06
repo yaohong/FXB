@@ -335,7 +335,8 @@ namespace FXB.DataManager
                 AddEmployeeToCache(
                     gongHao, name, departmentId, isOwner, zhiji, qtLevel, dianhua, jobState, ruzhiTime, lizhiTime, shenfenzheng, shengriTime, sex,
                     mingzujiguan, juzhuaddress, xueli, biyexuexiao, zhuanye, jjlianxiren, jjdianhua, jieshaoren, comment);
-
+            AuthData authData = new AuthData(gongHao, "123456", 0, false, false, 2);
+            newEmployeeData.AuthData = authData;
             return newEmployeeData;
 
 
