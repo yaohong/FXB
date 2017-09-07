@@ -395,5 +395,10 @@ namespace FXB.Dialog
             UpdateGridViewRow(selectRow, qtOrder);
 
         }
+
+        private void exportBtn_Click(object sender, EventArgs e)
+        {
+            ExcelUtil.ExportData(dataGridView1);
+        }
     }
 }

@@ -83,20 +83,20 @@ namespace FXB
                         刷新数据ToolStripMenuItem.Visible = false;
                     }
 
-                    if (!curLoginAuth.ShowKaiDanMenu())
-                    {
-                        开单录入ToolStripMenuItem.Visible = false;
-                    }
+                    //if (!curLoginAuth.ShowKaiDanMenu())
+                    //{
+                    //    开单录入ToolStripMenuItem.Visible = false;
+                    //}
 
-                    if (!curLoginAuth.ShowHuiYongMenu())
-                    {
-                        回佣录入ToolStripMenuItem.Visible = false;
-                    }
+                    //if (!curLoginAuth.ShowHuiYongMenu())
+                    //{
+                    //    回佣录入ToolStripMenuItem.Visible = false;
+                    //}
 
-                    if (!curLoginAuth.ShowTuiDanMenu())
-                    {
-                        退单录入ToolStripMenuItem.Visible = false;
-                    }
+                    //if (!curLoginAuth.ShowTuiDanMenu())
+                    //{
+                    //    退单录入ToolStripMenuItem.Visible = false;
+                    //}
 
 
                     if (!curLoginAuth.ShowDixinLuruMenu())
@@ -210,10 +210,10 @@ namespace FXB
             ShowDialog("SalaryDuplicateOperDlg");
         }
 
-        private void 开单录入ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ShowDialog("OrderDataDlg");
-        }
+        //private void 开单录入ToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    ShowDialog("OrderDataDlg");
+        //}
 
         private void 用户权限ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -230,6 +230,11 @@ namespace FXB
         {
             ChangePasswordDlg dlg = new ChangePasswordDlg();
             dlg.ShowDialog();
+        }
+
+        private void 单据录入ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowDialog("OrderDataDlg");
         }
 
     }

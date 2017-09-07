@@ -85,7 +85,27 @@ namespace FXB.Dialog
         private void EditInit()
         {
             this.Text = "编辑";
+            {
+                EmployeeData curEmployee = AuthMgr.Instance().CurLoginEmployee;
+                AuthData authData = curEmployee.AuthData;
+                if (!authData.ShowHYVisibleTab())
+                {
+                    //不显示回佣页签
+                    tabPage3.Parent = null;
+                }
 
+                if (!authData.ShowAddHyBtn())
+                {
+                    addHuiyongBtn.Visible = false;
+                }
+
+                if (!authData.ShowDeleteHyBtn())
+                {
+                    deleteHuiYongBtn.Visible = false;
+                }
+
+
+            }
             //设置录入人
             EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[editQtOrder.EntryPersonJobNumber];
             luruJobNumberLable.Text = employeeData.Name;

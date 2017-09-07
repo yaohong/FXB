@@ -47,11 +47,12 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.orderCheckBtnCb = new System.Windows.Forms.CheckBox();
+            this.removeOrderBtnCb = new System.Windows.Forms.CheckBox();
+            this.addOrderBtnCb = new System.Windows.Forms.CheckBox();
             this.qtTaskMenuCb = new System.Windows.Forms.CheckBox();
             this.generateDxMenuCb = new System.Windows.Forms.CheckBox();
             this.dxluruMenuCb = new System.Windows.Forms.CheckBox();
-            this.tuidanMenuCb = new System.Windows.Forms.CheckBox();
-            this.huyongMenuCb = new System.Windows.Forms.CheckBox();
             this.kaidanMenuCb = new System.Windows.Forms.CheckBox();
             this.refreshMenuCb = new System.Windows.Forms.CheckBox();
             this.userAuthMenuCb = new System.Windows.Forms.CheckBox();
@@ -60,9 +61,10 @@
             this.jobMenuCb = new System.Windows.Forms.CheckBox();
             this.saveBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
-            this.addOrderBtnCb = new System.Windows.Forms.CheckBox();
-            this.removeOrderBtnCb = new System.Windows.Forms.CheckBox();
-            this.orderCheckBtnCb = new System.Windows.Forms.CheckBox();
+            this.addHYCb = new System.Windows.Forms.CheckBox();
+            this.deleteHYCb = new System.Windows.Forms.CheckBox();
+            this.hyIsViewCb = new System.Windows.Forms.CheckBox();
+            this.hyCheckCb = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -247,14 +249,16 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.hyCheckCb);
+            this.tabPage3.Controls.Add(this.hyIsViewCb);
+            this.tabPage3.Controls.Add(this.deleteHYCb);
+            this.tabPage3.Controls.Add(this.addHYCb);
             this.tabPage3.Controls.Add(this.orderCheckBtnCb);
             this.tabPage3.Controls.Add(this.removeOrderBtnCb);
             this.tabPage3.Controls.Add(this.addOrderBtnCb);
             this.tabPage3.Controls.Add(this.qtTaskMenuCb);
             this.tabPage3.Controls.Add(this.generateDxMenuCb);
             this.tabPage3.Controls.Add(this.dxluruMenuCb);
-            this.tabPage3.Controls.Add(this.tuidanMenuCb);
-            this.tabPage3.Controls.Add(this.huyongMenuCb);
             this.tabPage3.Controls.Add(this.kaidanMenuCb);
             this.tabPage3.Controls.Add(this.refreshMenuCb);
             this.tabPage3.Controls.Add(this.userAuthMenuCb);
@@ -269,10 +273,40 @@
             this.tabPage3.Text = "菜单权限";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // orderCheckBtnCb
+            // 
+            this.orderCheckBtnCb.AutoSize = true;
+            this.orderCheckBtnCb.Location = new System.Drawing.Point(133, 59);
+            this.orderCheckBtnCb.Name = "orderCheckBtnCb";
+            this.orderCheckBtnCb.Size = new System.Drawing.Size(72, 16);
+            this.orderCheckBtnCb.TabIndex = 13;
+            this.orderCheckBtnCb.Text = "订单审核";
+            this.orderCheckBtnCb.UseVisualStyleBackColor = true;
+            // 
+            // removeOrderBtnCb
+            // 
+            this.removeOrderBtnCb.AutoSize = true;
+            this.removeOrderBtnCb.Location = new System.Drawing.Point(133, 37);
+            this.removeOrderBtnCb.Name = "removeOrderBtnCb";
+            this.removeOrderBtnCb.Size = new System.Drawing.Size(72, 16);
+            this.removeOrderBtnCb.TabIndex = 12;
+            this.removeOrderBtnCb.Text = "删除开单";
+            this.removeOrderBtnCb.UseVisualStyleBackColor = true;
+            // 
+            // addOrderBtnCb
+            // 
+            this.addOrderBtnCb.AutoSize = true;
+            this.addOrderBtnCb.Location = new System.Drawing.Point(133, 15);
+            this.addOrderBtnCb.Name = "addOrderBtnCb";
+            this.addOrderBtnCb.Size = new System.Drawing.Size(72, 16);
+            this.addOrderBtnCb.TabIndex = 11;
+            this.addOrderBtnCb.Text = "新增开单";
+            this.addOrderBtnCb.UseVisualStyleBackColor = true;
+            // 
             // qtTaskMenuCb
             // 
             this.qtTaskMenuCb.AutoSize = true;
-            this.qtTaskMenuCb.Location = new System.Drawing.Point(133, 15);
+            this.qtTaskMenuCb.Location = new System.Drawing.Point(22, 192);
             this.qtTaskMenuCb.Name = "qtTaskMenuCb";
             this.qtTaskMenuCb.Size = new System.Drawing.Size(60, 16);
             this.qtTaskMenuCb.TabIndex = 10;
@@ -282,7 +316,7 @@
             // generateDxMenuCb
             // 
             this.generateDxMenuCb.AutoSize = true;
-            this.generateDxMenuCb.Location = new System.Drawing.Point(22, 216);
+            this.generateDxMenuCb.Location = new System.Drawing.Point(22, 170);
             this.generateDxMenuCb.Name = "generateDxMenuCb";
             this.generateDxMenuCb.Size = new System.Drawing.Size(96, 16);
             this.generateDxMenuCb.TabIndex = 9;
@@ -292,32 +326,12 @@
             // dxluruMenuCb
             // 
             this.dxluruMenuCb.AutoSize = true;
-            this.dxluruMenuCb.Location = new System.Drawing.Point(22, 193);
+            this.dxluruMenuCb.Location = new System.Drawing.Point(22, 148);
             this.dxluruMenuCb.Name = "dxluruMenuCb";
             this.dxluruMenuCb.Size = new System.Drawing.Size(72, 16);
             this.dxluruMenuCb.TabIndex = 8;
             this.dxluruMenuCb.Text = "底薪录入";
             this.dxluruMenuCb.UseVisualStyleBackColor = true;
-            // 
-            // tuidanMenuCb
-            // 
-            this.tuidanMenuCb.AutoSize = true;
-            this.tuidanMenuCb.Location = new System.Drawing.Point(22, 170);
-            this.tuidanMenuCb.Name = "tuidanMenuCb";
-            this.tuidanMenuCb.Size = new System.Drawing.Size(72, 16);
-            this.tuidanMenuCb.TabIndex = 7;
-            this.tuidanMenuCb.Text = "退单录入";
-            this.tuidanMenuCb.UseVisualStyleBackColor = true;
-            // 
-            // huyongMenuCb
-            // 
-            this.huyongMenuCb.AutoSize = true;
-            this.huyongMenuCb.Location = new System.Drawing.Point(22, 148);
-            this.huyongMenuCb.Name = "huyongMenuCb";
-            this.huyongMenuCb.Size = new System.Drawing.Size(72, 16);
-            this.huyongMenuCb.TabIndex = 6;
-            this.huyongMenuCb.Text = "回佣录入";
-            this.huyongMenuCb.UseVisualStyleBackColor = true;
             // 
             // kaidanMenuCb
             // 
@@ -399,35 +413,45 @@
             this.exitBtn.UseVisualStyleBackColor = true;
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
-            // addOrderBtnCb
+            // addHYCb
             // 
-            this.addOrderBtnCb.AutoSize = true;
-            this.addOrderBtnCb.Location = new System.Drawing.Point(133, 38);
-            this.addOrderBtnCb.Name = "addOrderBtnCb";
-            this.addOrderBtnCb.Size = new System.Drawing.Size(72, 16);
-            this.addOrderBtnCb.TabIndex = 11;
-            this.addOrderBtnCb.Text = "新增开单";
-            this.addOrderBtnCb.UseVisualStyleBackColor = true;
+            this.addHYCb.AutoSize = true;
+            this.addHYCb.Location = new System.Drawing.Point(133, 104);
+            this.addHYCb.Name = "addHYCb";
+            this.addHYCb.Size = new System.Drawing.Size(72, 16);
+            this.addHYCb.TabIndex = 14;
+            this.addHYCb.Text = "添加回佣";
+            this.addHYCb.UseVisualStyleBackColor = true;
             // 
-            // removeOrderBtnCb
+            // deleteHYCb
             // 
-            this.removeOrderBtnCb.AutoSize = true;
-            this.removeOrderBtnCb.Location = new System.Drawing.Point(133, 61);
-            this.removeOrderBtnCb.Name = "removeOrderBtnCb";
-            this.removeOrderBtnCb.Size = new System.Drawing.Size(72, 16);
-            this.removeOrderBtnCb.TabIndex = 12;
-            this.removeOrderBtnCb.Text = "删除开单";
-            this.removeOrderBtnCb.UseVisualStyleBackColor = true;
+            this.deleteHYCb.AutoSize = true;
+            this.deleteHYCb.Location = new System.Drawing.Point(133, 126);
+            this.deleteHYCb.Name = "deleteHYCb";
+            this.deleteHYCb.Size = new System.Drawing.Size(72, 16);
+            this.deleteHYCb.TabIndex = 15;
+            this.deleteHYCb.Text = "删除回佣";
+            this.deleteHYCb.UseVisualStyleBackColor = true;
             // 
-            // orderCheckBtnCb
+            // hyIsViewCb
             // 
-            this.orderCheckBtnCb.AutoSize = true;
-            this.orderCheckBtnCb.Location = new System.Drawing.Point(133, 83);
-            this.orderCheckBtnCb.Name = "orderCheckBtnCb";
-            this.orderCheckBtnCb.Size = new System.Drawing.Size(72, 16);
-            this.orderCheckBtnCb.TabIndex = 13;
-            this.orderCheckBtnCb.Text = "订单审核";
-            this.orderCheckBtnCb.UseVisualStyleBackColor = true;
+            this.hyIsViewCb.AutoSize = true;
+            this.hyIsViewCb.Location = new System.Drawing.Point(133, 81);
+            this.hyIsViewCb.Name = "hyIsViewCb";
+            this.hyIsViewCb.Size = new System.Drawing.Size(96, 16);
+            this.hyIsViewCb.TabIndex = 16;
+            this.hyIsViewCb.Text = "回佣是否可见";
+            this.hyIsViewCb.UseVisualStyleBackColor = true;
+            // 
+            // hyCheckCb
+            // 
+            this.hyCheckCb.AutoSize = true;
+            this.hyCheckCb.Location = new System.Drawing.Point(133, 148);
+            this.hyCheckCb.Name = "hyCheckCb";
+            this.hyCheckCb.Size = new System.Drawing.Size(72, 16);
+            this.hyCheckCb.TabIndex = 17;
+            this.hyCheckCb.Text = "回佣审核";
+            this.hyCheckCb.UseVisualStyleBackColor = true;
             // 
             // AuthEditDlg
             // 
@@ -479,8 +503,6 @@
         private System.Windows.Forms.CheckBox userAuthMenuCb;
         private System.Windows.Forms.CheckBox refreshMenuCb;
         private System.Windows.Forms.CheckBox kaidanMenuCb;
-        private System.Windows.Forms.CheckBox huyongMenuCb;
-        private System.Windows.Forms.CheckBox tuidanMenuCb;
         private System.Windows.Forms.CheckBox dxluruMenuCb;
         private System.Windows.Forms.CheckBox generateDxMenuCb;
         private System.Windows.Forms.CheckBox qtTaskMenuCb;
@@ -489,5 +511,9 @@
         private System.Windows.Forms.CheckBox addOrderBtnCb;
         private System.Windows.Forms.CheckBox removeOrderBtnCb;
         private System.Windows.Forms.CheckBox orderCheckBtnCb;
+        private System.Windows.Forms.CheckBox addHYCb;
+        private System.Windows.Forms.CheckBox deleteHYCb;
+        private System.Windows.Forms.CheckBox hyIsViewCb;
+        private System.Windows.Forms.CheckBox hyCheckCb;
     }
 }

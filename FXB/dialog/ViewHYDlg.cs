@@ -68,6 +68,16 @@ namespace FXB.Dialog
 
         private void ViewHYDlg_Load(object sender, EventArgs e)
         {
+
+            {
+                EmployeeData curEmployee = AuthMgr.Instance().CurLoginEmployee;
+                AuthData authData = curEmployee.AuthData;
+                if (!authData.ShowCheckHyBtn())
+                {
+                    checkBtn.Visible = false;
+                }
+            }
+
             hyIDEdi.Enabled = false;
             hyAmountEdi.Enabled = false;
             hyTime.Enabled = false;

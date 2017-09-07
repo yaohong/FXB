@@ -172,9 +172,9 @@
             // 
             // exitBtn
             // 
-            this.exitBtn.Location = new System.Drawing.Point(326, 205);
+            this.exitBtn.Location = new System.Drawing.Point(296, 205);
             this.exitBtn.Name = "exitBtn";
-            this.exitBtn.Size = new System.Drawing.Size(49, 23);
+            this.exitBtn.Size = new System.Drawing.Size(79, 23);
             this.exitBtn.TabIndex = 14;
             this.exitBtn.Text = "退出";
             this.exitBtn.UseVisualStyleBackColor = true;
@@ -184,7 +184,7 @@
             // 
             this.checkBtn.Location = new System.Drawing.Point(86, 205);
             this.checkBtn.Name = "checkBtn";
-            this.checkBtn.Size = new System.Drawing.Size(49, 23);
+            this.checkBtn.Size = new System.Drawing.Size(79, 23);
             this.checkBtn.TabIndex = 12;
             this.checkBtn.Text = "审核";
             this.checkBtn.UseVisualStyleBackColor = true;

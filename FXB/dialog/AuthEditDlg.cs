@@ -49,14 +49,17 @@ namespace FXB.Dialog
             userAuthMenuCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowYonghuquanxianMenu());
             refreshMenuCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowShuaXinShujuMenu());
             kaidanMenuCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowKaiDanMenu());
-            huyongMenuCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowHuiYongMenu());
-            tuidanMenuCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowTuiDanMenu());
             dxluruMenuCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowDixinLuruMenu());
             generateDxMenuCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowGenerateDixinFubenMenu());
             qtTaskMenuCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowQtTaskMenu());
             addOrderBtnCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowAddOrderBtn());
             removeOrderBtnCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowDeleteOrderBtn());
             orderCheckBtnCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowOrderCheckBtn());
+
+            hyIsViewCb.Checked = authData.ShowHYVisibleTab();
+            addHYCb.Checked = authData.ShowAddHyBtn();
+            deleteHYCb.Checked = authData.ShowDeleteHyBtn();
+            hyCheckCb.Checked = authData.ShowCheckHyBtn();
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -97,15 +100,15 @@ namespace FXB.Dialog
                 newControlMask = (newControlMask | ControlMask.KaiDanMenuMask);
             }
 
-            if (huyongMenuCb.CheckState == CheckState.Checked)
-            {
-                newControlMask = (newControlMask | ControlMask.HuiYongMenuMask);
-            }
+            //if (huyongMenuCb.CheckState == CheckState.Checked)
+            //{
+            //    newControlMask = (newControlMask | ControlMask.HuiYongMenuMask);
+            //}
 
-            if (tuidanMenuCb.CheckState == CheckState.Checked)
-            {
-                newControlMask = (newControlMask | ControlMask.TuiDanMenuMask);
-            }
+            //if (tuidanMenuCb.CheckState == CheckState.Checked)
+            //{
+            //    newControlMask = (newControlMask | ControlMask.TuiDanMenuMask);
+            //}
 
             if (dxluruMenuCb.CheckState == CheckState.Checked)
             {
@@ -136,6 +139,26 @@ namespace FXB.Dialog
             if (orderCheckBtnCb.CheckState == CheckState.Checked)
             {
                 newControlMask = (newControlMask | ControlMask.OrderCheckBtnMask);
+            }
+
+            if (hyIsViewCb.Checked)
+            {
+                newControlMask = (newControlMask | ControlMask.HYVisibleTabMask);
+            }
+
+            if (addHYCb.Checked)
+            {
+                newControlMask = (newControlMask | ControlMask.AddHyBtnMask);
+            }
+
+            if (deleteHYCb.Checked)
+            {
+                newControlMask = (newControlMask | ControlMask.DeleteHyBtnMask);
+            }
+
+            if (hyCheckCb.Checked)
+            {
+                newControlMask = (newControlMask | ControlMask.CheckHyBtnMask);
             }
 
             if (authData.Prohibit != newProhibit ||

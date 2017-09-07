@@ -160,5 +160,10 @@ namespace FXB.Dialog
                 System.Environment.Exit(0);
             }
         }
+
+        private void exportBtn_Click(object sender, EventArgs e)
+        {
+            ExcelUtil.ExportData(dataGridView1);
+        }
     }
 }

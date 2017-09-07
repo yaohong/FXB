@@ -14,14 +14,19 @@ namespace FXB.Data
         public static Int64 YonghuquanxianMenuMask = Convert.ToInt64("1000", 2);
         public static Int64 ShuaXinShujuMenuMask = Convert.ToInt64("10000", 2);
         public static Int64 KaiDanMenuMask = Convert.ToInt64("100000", 2);
-        public static Int64 HuiYongMenuMask = Convert.ToInt64("1000000", 2);
-        public static Int64 TuiDanMenuMask = Convert.ToInt64("10000000", 2);
+        //public static Int64 AddOrderBtnMask = Convert.ToInt64("1000000", 2);            //新增开单
+        //public static Int64 RemoveOrderBtnMask = Convert.ToInt64("10000000", 2);        //删除开单
         public static Int64 DixinLuruMenuMask = Convert.ToInt64("100000000", 2);
         public static Int64 GenerateDixinFubenMenuMask = Convert.ToInt64("1000000000", 2);
         public static Int64 QtTaskMenuMask = Convert.ToInt64("10000000000", 2);
-        public static Int64 AddOrderBtnMask = Convert.ToInt64("100000000000", 2);
-        public static Int64 DeleteOrderBtnMask = Convert.ToInt64("1000000000000", 2);
-        public static Int64 OrderCheckBtnMask = Convert.ToInt64("10000000000000", 2);
+        public static Int64 AddOrderBtnMask = Convert.ToInt64("100000000000", 2);           //新增开单
+        public static Int64 DeleteOrderBtnMask = Convert.ToInt64("1000000000000", 2);       //删除开单
+        public static Int64 OrderCheckBtnMask = Convert.ToInt64("10000000000000", 2);       //订单审核
+
+        public static Int64 HYVisibleTabMask = Convert.ToInt64("100000000000000", 2);       //回佣是否可见
+        public static Int64 AddHyBtnMask = Convert.ToInt64("1000000000000000", 2);       //添加回佣
+        public static Int64 DeleteHyBtnMask = Convert.ToInt64("10000000000000000", 2);       //删除回佣
+        public static Int64 CheckHyBtnMask = Convert.ToInt64("100000000000000000", 2);       //删除审核
     }
     
         
@@ -105,15 +110,6 @@ namespace FXB.Data
             return (operMake & ControlMask.KaiDanMenuMask) == 0 ? false : true;
         }
 
-        public bool ShowHuiYongMenu()
-        {
-            return (operMake & ControlMask.HuiYongMenuMask) == 0 ? false : true;
-        }
-
-        public bool ShowTuiDanMenu()
-        {
-            return (operMake & ControlMask.TuiDanMenuMask) == 0 ? false : true;
-        }
 
         public bool ShowDixinLuruMenu()
         {
@@ -143,6 +139,26 @@ namespace FXB.Data
         public bool ShowOrderCheckBtn()
         {
             return (operMake & ControlMask.OrderCheckBtnMask) == 0 ? false : true;
+        }
+
+        public bool ShowHYVisibleTab()
+        {
+            return (operMake & ControlMask.HYVisibleTabMask) == 0 ? false : true;
+        }
+
+        public bool ShowAddHyBtn()
+        {
+            return (operMake & ControlMask.AddHyBtnMask) == 0 ? false : true;
+        }
+
+        public bool ShowDeleteHyBtn()
+        {
+            return (operMake & ControlMask.DeleteHyBtnMask) == 0 ? false : true;
+        }
+
+        public bool ShowCheckHyBtn()
+        {
+            return (operMake & ControlMask.CheckHyBtnMask) == 0 ? false : true;
         }
     }
 }

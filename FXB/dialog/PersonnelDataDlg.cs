@@ -458,8 +458,7 @@ namespace FXB.Dialog
 
         private void ExportBtn_Click(object sender, EventArgs e)
         {
-            DataExportDlg dlg = new DataExportDlg(dataGridView1);
-            dlg.ShowDialog();
+            ExcelUtil.ExportData(dataGridView1);
         }
 
 

@@ -113,8 +113,7 @@ namespace FXB.Dialog
 
             if (dixinEdi.Text == "")
             {
-                MessageBox.Show("底薪不能为空");
-                return;
+                dixinEdi.Text = "0";
             }
 
             //检测职级是否重复

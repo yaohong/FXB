@@ -38,9 +38,6 @@
             this.用户权限ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.刷新数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.单据录入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.开单录入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.回佣录入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.退单录入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.薪资管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.底薪录入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.生成底薪副本ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,65 +102,43 @@
             // 员工档案ToolStripMenuItem
             // 
             this.员工档案ToolStripMenuItem.Name = "员工档案ToolStripMenuItem";
-            this.员工档案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.员工档案ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.员工档案ToolStripMenuItem.Text = "员工档案";
             this.员工档案ToolStripMenuItem.Click += new System.EventHandler(this.员工档案ToolStripMenuItem_Click);
             // 
             // 职级档案ToolStripMenuItem
             // 
             this.职级档案ToolStripMenuItem.Name = "职级档案ToolStripMenuItem";
-            this.职级档案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.职级档案ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.职级档案ToolStripMenuItem.Text = "职级档案";
             this.职级档案ToolStripMenuItem.Click += new System.EventHandler(this.职级档案ToolStripMenuItem_Click);
             // 
             // 项目档案ToolStripMenuItem
             // 
             this.项目档案ToolStripMenuItem.Name = "项目档案ToolStripMenuItem";
-            this.项目档案ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.项目档案ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.项目档案ToolStripMenuItem.Text = "项目档案";
             this.项目档案ToolStripMenuItem.Click += new System.EventHandler(this.项目档案ToolStripMenuItem_Click);
             // 
             // 用户权限ToolStripMenuItem
             // 
             this.用户权限ToolStripMenuItem.Name = "用户权限ToolStripMenuItem";
-            this.用户权限ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.用户权限ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.用户权限ToolStripMenuItem.Text = "用户权限";
             this.用户权限ToolStripMenuItem.Click += new System.EventHandler(this.用户权限ToolStripMenuItem_Click);
             // 
             // 刷新数据ToolStripMenuItem
             // 
             this.刷新数据ToolStripMenuItem.Name = "刷新数据ToolStripMenuItem";
-            this.刷新数据ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.刷新数据ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.刷新数据ToolStripMenuItem.Text = "刷新数据";
             // 
             // 单据录入ToolStripMenuItem
             // 
-            this.单据录入ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.开单录入ToolStripMenuItem,
-            this.回佣录入ToolStripMenuItem,
-            this.退单录入ToolStripMenuItem});
             this.单据录入ToolStripMenuItem.Name = "单据录入ToolStripMenuItem";
             this.单据录入ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.单据录入ToolStripMenuItem.Text = "单据录入";
-            // 
-            // 开单录入ToolStripMenuItem
-            // 
-            this.开单录入ToolStripMenuItem.Name = "开单录入ToolStripMenuItem";
-            this.开单录入ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.开单录入ToolStripMenuItem.Text = "开单录入";
-            this.开单录入ToolStripMenuItem.Click += new System.EventHandler(this.开单录入ToolStripMenuItem_Click);
-            // 
-            // 回佣录入ToolStripMenuItem
-            // 
-            this.回佣录入ToolStripMenuItem.Name = "回佣录入ToolStripMenuItem";
-            this.回佣录入ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.回佣录入ToolStripMenuItem.Text = "回佣录入";
-            // 
-            // 退单录入ToolStripMenuItem
-            // 
-            this.退单录入ToolStripMenuItem.Name = "退单录入ToolStripMenuItem";
-            this.退单录入ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.退单录入ToolStripMenuItem.Text = "退单录入";
+            this.单据录入ToolStripMenuItem.Click += new System.EventHandler(this.单据录入ToolStripMenuItem_Click);
             // 
             // 薪资管理ToolStripMenuItem
             // 
@@ -299,9 +274,6 @@
         private System.Windows.Forms.ToolStripMenuItem 用户权限ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 刷新数据ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 单据录入ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 开单录入ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 回佣录入ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 退单录入ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 薪资管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 底薪录入ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem QT任务ToolStripMenuItem;

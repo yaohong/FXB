@@ -59,7 +59,7 @@ namespace FXB.Dialog
 
         private void exportBtn_Click(object sender, EventArgs e)
         {
-
+            ExcelUtil.ExportData(dataGridView1);
         }
 
         private void addBtn_Click(object sender, EventArgs e)

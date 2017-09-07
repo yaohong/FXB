@@ -40,6 +40,7 @@
             this.qtCb = new System.Windows.Forms.ComboBox();
             this.qtTaskGenerateBtn = new System.Windows.Forms.Button();
             this.qtTaskTimeSelect = new System.Windows.Forms.DateTimePicker();
+            this.exportBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -57,7 +58,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(686, 499);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(836, 499);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // dataGridView1
@@ -78,11 +79,12 @@
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(680, 436);
+            this.dataGridView1.Size = new System.Drawing.Size(830, 436);
             this.dataGridView1.TabIndex = 1;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.exportBtn);
             this.groupBox1.Controls.Add(this.clearQtPushBtn);
             this.groupBox1.Controls.Add(this.removeQtTaskBtn);
             this.groupBox1.Controls.Add(this.generateQtPushbtn);
@@ -93,7 +95,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(680, 51);
+            this.groupBox1.Size = new System.Drawing.Size(830, 51);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
@@ -163,11 +165,21 @@
             this.qtTaskTimeSelect.Size = new System.Drawing.Size(67, 21);
             this.qtTaskTimeSelect.TabIndex = 0;
             // 
+            // exportBtn
+            // 
+            this.exportBtn.Location = new System.Drawing.Point(679, 19);
+            this.exportBtn.Name = "exportBtn";
+            this.exportBtn.Size = new System.Drawing.Size(75, 23);
+            this.exportBtn.TabIndex = 8;
+            this.exportBtn.Text = "导出";
+            this.exportBtn.UseVisualStyleBackColor = true;
+            this.exportBtn.Click += new System.EventHandler(this.exportBtn_Click);
+            // 
             // QtTaskOperDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 499);
+            this.ClientSize = new System.Drawing.Size(836, 499);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "QtTaskOperDlg";
             this.Text = "QT操作";
@@ -191,5 +203,6 @@
         private System.Windows.Forms.Button generateQtPushbtn;
         private System.Windows.Forms.Button removeQtTaskBtn;
         private System.Windows.Forms.Button clearQtPushBtn;
+        private System.Windows.Forms.Button exportBtn;
     }
 }
