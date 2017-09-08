@@ -64,6 +64,7 @@ namespace FXB.DataManager
                 throw new ConditionCheckException(string.Format("QT任务[{0}]已经结算，请执行 [清除QT提成] 后在执行该操作", order.QtKey));
             }
 
+            //还有回佣不能删
             if (order.AllHYData.Count > 0)
             {
                 throw new ConditionCheckException(string.Format("QT任务[{0}]已经生成回佣,请删除后在进行该操作", order.QtKey));
@@ -76,6 +77,8 @@ namespace FXB.DataManager
             command.CommandText = "delete from qttaskorder where id=@id";
             command.Parameters.AddWithValue("@id", orderId);
             command.ExecuteScalar();
+
+            //删除对应的退单数据
 
 
             qtTask.AllQtOrder.Remove(orderId);
