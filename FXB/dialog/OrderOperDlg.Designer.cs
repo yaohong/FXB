@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.orderGenerateTime = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.zc2QtLevelEdi = new System.Windows.Forms.TextBox();
@@ -98,19 +98,36 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.shenheLable = new System.Windows.Forms.GroupBox();
+            this.tdCheckCb = new System.Windows.Forms.CheckBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.tbCheckTimeEdit = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.tdCheckJobEdit = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tuidanCb = new System.Windows.Forms.CheckBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.tuidanJobEdit = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new FXB.MyControl.MyTableLayoutPanel();
             this.hyDataGridView1 = new FXB.MyControl.MyDataGridView();
             this.addHuiyongBtn = new System.Windows.Forms.Button();
             this.deleteHuiYongBtn = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label31 = new System.Windows.Forms.Label();
+            this.tuidanTimeEdit = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.shenheLable.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hyDataGridView1)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // orderGenerateTime
@@ -347,7 +364,7 @@
             // 
             // buyTime
             // 
-            this.buyTime.Location = new System.Drawing.Point(88, 67);
+            this.buyTime.Location = new System.Drawing.Point(399, 40);
             this.buyTime.Name = "buyTime";
             this.buyTime.Size = new System.Drawing.Size(165, 21);
             this.buyTime.TabIndex = 29;
@@ -363,7 +380,7 @@
             // 
             // daikuanjineEdi
             // 
-            this.daikuanjineEdi.Location = new System.Drawing.Point(399, 148);
+            this.daikuanjineEdi.Location = new System.Drawing.Point(399, 175);
             this.daikuanjineEdi.Name = "daikuanjineEdi";
             this.daikuanjineEdi.Size = new System.Drawing.Size(165, 21);
             this.daikuanjineEdi.TabIndex = 28;
@@ -371,7 +388,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(334, 157);
+            this.label14.Location = new System.Drawing.Point(334, 184);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(59, 12);
             this.label14.TabIndex = 27;
@@ -395,7 +412,7 @@
             // 
             // hetongzhuangtaiEdi
             // 
-            this.hetongzhuangtaiEdi.Location = new System.Drawing.Point(399, 121);
+            this.hetongzhuangtaiEdi.Location = new System.Drawing.Point(399, 94);
             this.hetongzhuangtaiEdi.Name = "hetongzhuangtaiEdi";
             this.hetongzhuangtaiEdi.Size = new System.Drawing.Size(165, 21);
             this.hetongzhuangtaiEdi.TabIndex = 24;
@@ -403,7 +420,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(334, 128);
+            this.label12.Location = new System.Drawing.Point(334, 101);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(59, 12);
             this.label12.TabIndex = 23;
@@ -418,7 +435,7 @@
             // 
             // projectNameSelectBtn
             // 
-            this.projectNameSelectBtn.Location = new System.Drawing.Point(570, 11);
+            this.projectNameSelectBtn.Location = new System.Drawing.Point(259, 38);
             this.projectNameSelectBtn.Name = "projectNameSelectBtn";
             this.projectNameSelectBtn.Size = new System.Drawing.Size(39, 23);
             this.projectNameSelectBtn.TabIndex = 8;
@@ -437,7 +454,7 @@
             // 
             // shoujuEdi
             // 
-            this.shoujuEdi.Location = new System.Drawing.Point(399, 94);
+            this.shoujuEdi.Location = new System.Drawing.Point(88, 94);
             this.shoujuEdi.Name = "shoujuEdi";
             this.shoujuEdi.Size = new System.Drawing.Size(165, 21);
             this.shoujuEdi.TabIndex = 20;
@@ -445,7 +462,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(358, 103);
+            this.label10.Location = new System.Drawing.Point(47, 103);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(35, 12);
             this.label10.TabIndex = 19;
@@ -453,7 +470,7 @@
             // 
             // shenfenzhengEdi
             // 
-            this.shenfenzhengEdi.Location = new System.Drawing.Point(88, 94);
+            this.shenfenzhengEdi.Location = new System.Drawing.Point(399, 67);
             this.shenfenzhengEdi.Name = "shenfenzhengEdi";
             this.shenfenzhengEdi.Size = new System.Drawing.Size(165, 21);
             this.shenfenzhengEdi.TabIndex = 18;
@@ -461,7 +478,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(35, 103);
+            this.label9.Location = new System.Drawing.Point(346, 76);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(47, 12);
             this.label9.TabIndex = 17;
@@ -470,7 +487,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(334, 184);
+            this.label6.Location = new System.Drawing.Point(334, 157);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 12);
             this.label6.TabIndex = 11;
@@ -478,14 +495,14 @@
             // 
             // yongjinzongeEdi
             // 
-            this.yongjinzongeEdi.Location = new System.Drawing.Point(399, 175);
+            this.yongjinzongeEdi.Location = new System.Drawing.Point(399, 148);
             this.yongjinzongeEdi.Name = "yongjinzongeEdi";
             this.yongjinzongeEdi.Size = new System.Drawing.Size(165, 21);
             this.yongjinzongeEdi.TabIndex = 12;
             // 
             // kehudianhuaEdi
             // 
-            this.kehudianhuaEdi.Location = new System.Drawing.Point(399, 67);
+            this.kehudianhuaEdi.Location = new System.Drawing.Point(399, 13);
             this.kehudianhuaEdi.Name = "kehudianhuaEdi";
             this.kehudianhuaEdi.Size = new System.Drawing.Size(165, 21);
             this.kehudianhuaEdi.TabIndex = 16;
@@ -493,7 +510,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(334, 76);
+            this.label8.Location = new System.Drawing.Point(334, 22);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(59, 12);
             this.label8.TabIndex = 15;
@@ -502,7 +519,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(23, 76);
+            this.label7.Location = new System.Drawing.Point(334, 49);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(59, 12);
             this.label7.TabIndex = 13;
@@ -510,7 +527,7 @@
             // 
             // cjZongjiaEdi
             // 
-            this.cjZongjiaEdi.Location = new System.Drawing.Point(399, 40);
+            this.cjZongjiaEdi.Location = new System.Drawing.Point(399, 121);
             this.cjZongjiaEdi.Name = "cjZongjiaEdi";
             this.cjZongjiaEdi.Size = new System.Drawing.Size(165, 21);
             this.cjZongjiaEdi.TabIndex = 10;
@@ -518,7 +535,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(334, 49);
+            this.label5.Location = new System.Drawing.Point(334, 130);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 12);
             this.label5.TabIndex = 9;
@@ -526,7 +543,7 @@
             // 
             // roomNumberEdi
             // 
-            this.roomNumberEdi.Location = new System.Drawing.Point(88, 40);
+            this.roomNumberEdi.Location = new System.Drawing.Point(88, 67);
             this.roomNumberEdi.Name = "roomNumberEdi";
             this.roomNumberEdi.Size = new System.Drawing.Size(165, 21);
             this.roomNumberEdi.TabIndex = 7;
@@ -534,7 +551,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(47, 49);
+            this.label4.Location = new System.Drawing.Point(47, 76);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 12);
             this.label4.TabIndex = 6;
@@ -542,7 +559,7 @@
             // 
             // projectNameEdi
             // 
-            this.projectNameEdi.Location = new System.Drawing.Point(399, 13);
+            this.projectNameEdi.Location = new System.Drawing.Point(88, 40);
             this.projectNameEdi.Name = "projectNameEdi";
             this.projectNameEdi.Size = new System.Drawing.Size(165, 21);
             this.projectNameEdi.TabIndex = 3;
@@ -550,7 +567,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(334, 22);
+            this.label2.Location = new System.Drawing.Point(23, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 12);
             this.label2.TabIndex = 2;
@@ -750,6 +767,148 @@
             this.tabPage3.Text = "回佣";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.shenheLable);
+            this.tabPage4.Controls.Add(this.groupBox2);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(648, 269);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "退单";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // shenheLable
+            // 
+            this.shenheLable.Controls.Add(this.tdCheckCb);
+            this.shenheLable.Controls.Add(this.label28);
+            this.shenheLable.Controls.Add(this.tbCheckTimeEdit);
+            this.shenheLable.Controls.Add(this.label29);
+            this.shenheLable.Controls.Add(this.label30);
+            this.shenheLable.Controls.Add(this.tdCheckJobEdit);
+            this.shenheLable.Location = new System.Drawing.Point(32, 131);
+            this.shenheLable.Name = "shenheLable";
+            this.shenheLable.Size = new System.Drawing.Size(295, 113);
+            this.shenheLable.TabIndex = 14;
+            this.shenheLable.TabStop = false;
+            // 
+            // tdCheckCb
+            // 
+            this.tdCheckCb.AutoSize = true;
+            this.tdCheckCb.Location = new System.Drawing.Point(73, 20);
+            this.tdCheckCb.Name = "tdCheckCb";
+            this.tdCheckCb.Size = new System.Drawing.Size(216, 16);
+            this.tdCheckCb.TabIndex = 8;
+            this.tdCheckCb.Text = "勾选为已审核，没有勾选为没有审核";
+            this.tdCheckCb.UseVisualStyleBackColor = true;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(8, 24);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(59, 12);
+            this.label28.TabIndex = 7;
+            this.label28.Text = "审核状态:";
+            // 
+            // tbCheckTimeEdit
+            // 
+            this.tbCheckTimeEdit.Location = new System.Drawing.Point(73, 70);
+            this.tbCheckTimeEdit.Name = "tbCheckTimeEdit";
+            this.tbCheckTimeEdit.Size = new System.Drawing.Size(192, 21);
+            this.tbCheckTimeEdit.TabIndex = 12;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(20, 52);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(47, 12);
+            this.label29.TabIndex = 9;
+            this.label29.Text = "审核人:";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(8, 79);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(59, 12);
+            this.label30.TabIndex = 11;
+            this.label30.Text = "审核时间:";
+            // 
+            // tdCheckJobEdit
+            // 
+            this.tdCheckJobEdit.Location = new System.Drawing.Point(73, 43);
+            this.tdCheckJobEdit.Name = "tdCheckJobEdit";
+            this.tdCheckJobEdit.Size = new System.Drawing.Size(192, 21);
+            this.tdCheckJobEdit.TabIndex = 10;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.tuidanTimeEdit);
+            this.groupBox2.Controls.Add(this.label31);
+            this.groupBox2.Controls.Add(this.tuidanCb);
+            this.groupBox2.Controls.Add(this.label27);
+            this.groupBox2.Controls.Add(this.label26);
+            this.groupBox2.Controls.Add(this.tuidanJobEdit);
+            this.groupBox2.Location = new System.Drawing.Point(32, 15);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(295, 110);
+            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabStop = false;
+            // 
+            // tuidanCb
+            // 
+            this.tuidanCb.AutoSize = true;
+            this.tuidanCb.Location = new System.Drawing.Point(73, 20);
+            this.tuidanCb.Name = "tuidanCb";
+            this.tuidanCb.Size = new System.Drawing.Size(192, 16);
+            this.tuidanCb.TabIndex = 4;
+            this.tuidanCb.Text = "没有勾选为正常，勾选为已退单";
+            this.tuidanCb.UseVisualStyleBackColor = true;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(8, 24);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(59, 12);
+            this.label27.TabIndex = 3;
+            this.label27.Text = "退单状态:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(20, 52);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(47, 12);
+            this.label26.TabIndex = 5;
+            this.label26.Text = "退单人:";
+            // 
+            // tuidanJobEdit
+            // 
+            this.tuidanJobEdit.Location = new System.Drawing.Point(73, 43);
+            this.tuidanJobEdit.Name = "tuidanJobEdit";
+            this.tuidanJobEdit.Size = new System.Drawing.Size(192, 21);
+            this.tuidanJobEdit.TabIndex = 6;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label23);
+            this.groupBox1.Controls.Add(this.label22);
+            this.groupBox1.Controls.Add(this.luruJobNumberLable);
+            this.groupBox1.Controls.Add(this.checkStateLable);
+            this.groupBox1.Controls.Add(this.label25);
+            this.groupBox1.Controls.Add(this.checkJobNumberLable);
+            this.groupBox1.Controls.Add(this.checkTimeLable);
+            this.groupBox1.Controls.Add(this.label24);
+            this.groupBox1.Location = new System.Drawing.Point(22, 355);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(660, 38);
+            this.groupBox1.TabIndex = 29;
+            this.groupBox1.TabStop = false;
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
@@ -775,8 +934,8 @@
             this.hyDataGridView1.AllowUserToAddRows = false;
             this.hyDataGridView1.AllowUserToResizeColumns = false;
             this.hyDataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige;
-            this.hyDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Beige;
+            this.hyDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.hyDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableLayoutPanel1.SetColumnSpan(this.hyDataGridView1, 3);
             this.hyDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -785,8 +944,8 @@
             this.hyDataGridView1.Name = "hyDataGridView1";
             this.hyDataGridView1.ReadOnly = true;
             this.hyDataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Bisque;
-            this.hyDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Bisque;
+            this.hyDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.hyDataGridView1.RowTemplate.Height = 23;
             this.hyDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.hyDataGridView1.Size = new System.Drawing.Size(636, 228);
@@ -813,31 +972,21 @@
             this.deleteHuiYongBtn.UseVisualStyleBackColor = true;
             this.deleteHuiYongBtn.Click += new System.EventHandler(this.deleteHuiYongBtn_Click);
             // 
-            // groupBox1
+            // label31
             // 
-            this.groupBox1.Controls.Add(this.label23);
-            this.groupBox1.Controls.Add(this.label22);
-            this.groupBox1.Controls.Add(this.luruJobNumberLable);
-            this.groupBox1.Controls.Add(this.checkStateLable);
-            this.groupBox1.Controls.Add(this.label25);
-            this.groupBox1.Controls.Add(this.checkJobNumberLable);
-            this.groupBox1.Controls.Add(this.checkTimeLable);
-            this.groupBox1.Controls.Add(this.label24);
-            this.groupBox1.Location = new System.Drawing.Point(22, 355);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(660, 38);
-            this.groupBox1.TabIndex = 29;
-            this.groupBox1.TabStop = false;
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(9, 80);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(59, 12);
+            this.label31.TabIndex = 7;
+            this.label31.Text = "退单时间:";
             // 
-            // tabPage4
+            // tuidanTimeEdit
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(648, 269);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "退单";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tuidanTimeEdit.Location = new System.Drawing.Point(74, 71);
+            this.tuidanTimeEdit.Name = "tuidanTimeEdit";
+            this.tuidanTimeEdit.Size = new System.Drawing.Size(191, 21);
+            this.tuidanTimeEdit.TabIndex = 8;
             // 
             // OrderOperDlg
             // 
@@ -861,10 +1010,15 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.hyDataGridView1)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.shenheLable.ResumeLayout(false);
+            this.shenheLable.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.hyDataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -945,5 +1099,19 @@
         private FXB.MyControl.MyDataGridView hyDataGridView1;
         private System.Windows.Forms.Button deleteHuiYongBtn;
         private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.CheckBox tuidanCb;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox tuidanJobEdit;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.CheckBox tdCheckCb;
+        private System.Windows.Forms.TextBox tdCheckJobEdit;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox tbCheckTimeEdit;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox shenheLable;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox tuidanTimeEdit;
     }
 }

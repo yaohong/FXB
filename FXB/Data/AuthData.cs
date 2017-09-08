@@ -24,9 +24,13 @@ namespace FXB.Data
         public static Int64 OrderCheckBtnMask = Convert.ToInt64("10000000000000", 2);       //订单审核
 
         public static Int64 HYVisibleTabMask = Convert.ToInt64("100000000000000", 2);       //回佣是否可见
-        public static Int64 AddHyBtnMask = Convert.ToInt64("1000000000000000", 2);       //添加回佣
-        public static Int64 DeleteHyBtnMask = Convert.ToInt64("10000000000000000", 2);       //删除回佣
-        public static Int64 CheckHyBtnMask = Convert.ToInt64("100000000000000000", 2);       //删除审核
+        public static Int64 AddHyBtnMask = Convert.ToInt64("1000000000000000", 2);          //添加回佣
+        public static Int64 DeleteHyBtnMask = Convert.ToInt64("10000000000000000", 2);      //删除回佣
+        public static Int64 CheckHyBtnMask = Convert.ToInt64("100000000000000000", 2);      //回佣审核按钮
+
+        public static Int64 TDVisibleTabMask = Convert.ToInt64("1000000000000000000", 2);   //退单页签是否可见
+        public static Int64 TDCbMask = Convert.ToInt64("10000000000000000000", 2);          //退单选择框是否可点击
+        public static Int64 TDCheckCbMask = Convert.ToInt64("100000000000000000000", 2);    //退单审核是否可点击
     }
     
         
@@ -159,6 +163,26 @@ namespace FXB.Data
         public bool ShowCheckHyBtn()
         {
             return (operMake & ControlMask.CheckHyBtnMask) == 0 ? false : true;
+        }
+
+
+        /// <summary>
+        /// /////////////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <returns></returns>
+        public bool ShowTDVisibleTab()
+        {
+            return (operMake & ControlMask.TDVisibleTabMask) == 0 ? false : true;
+        }
+
+        public bool ShowTDCb()
+        {
+            return (operMake & ControlMask.TDCbMask) == 0 ? false : true;
+        }
+
+        public bool ShowTDCheckCb()
+        {
+            return (operMake & ControlMask.TDCheckCbMask) == 0 ? false : true;
         }
     }
 }

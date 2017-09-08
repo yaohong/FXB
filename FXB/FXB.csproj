@@ -63,6 +63,7 @@
     <Compile Include="DataManager\OrderMgr.cs" />
     <Compile Include="DataManager\ProjectDataMgr.cs" />
     <Compile Include="DataManager\QtMgr.cs" />
+    <Compile Include="DataManager\TDMgr.cs" />
     <Compile Include="Data\AuthData.cs" />
     <Compile Include="Data\Define.cs" />
     <Compile Include="Data\DepartmentData.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Data\QtEmployee.cs" />
     <Compile Include="Data\QtOrder.cs" />
     <Compile Include="Data\QtTask.cs" />
+    <Compile Include="Data\TDData.cs" />
     <Compile Include="Dialog\AddHYDlg.cs">
       <SubType>Form</SubType>
     </Compile>

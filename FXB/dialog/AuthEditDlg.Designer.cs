@@ -47,6 +47,10 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.hyCheckCb = new System.Windows.Forms.CheckBox();
+            this.hyIsViewCb = new System.Windows.Forms.CheckBox();
+            this.deleteHYCb = new System.Windows.Forms.CheckBox();
+            this.addHYCb = new System.Windows.Forms.CheckBox();
             this.orderCheckBtnCb = new System.Windows.Forms.CheckBox();
             this.removeOrderBtnCb = new System.Windows.Forms.CheckBox();
             this.addOrderBtnCb = new System.Windows.Forms.CheckBox();
@@ -61,10 +65,9 @@
             this.jobMenuCb = new System.Windows.Forms.CheckBox();
             this.saveBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
-            this.addHYCb = new System.Windows.Forms.CheckBox();
-            this.deleteHYCb = new System.Windows.Forms.CheckBox();
-            this.hyIsViewCb = new System.Windows.Forms.CheckBox();
-            this.hyCheckCb = new System.Windows.Forms.CheckBox();
+            this.tdIsViewCb = new System.Windows.Forms.CheckBox();
+            this.tdIsOperCb = new System.Windows.Forms.CheckBox();
+            this.tdCheckIsOperCb = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -249,6 +252,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.tdCheckIsOperCb);
+            this.tabPage3.Controls.Add(this.tdIsOperCb);
+            this.tabPage3.Controls.Add(this.tdIsViewCb);
             this.tabPage3.Controls.Add(this.hyCheckCb);
             this.tabPage3.Controls.Add(this.hyIsViewCb);
             this.tabPage3.Controls.Add(this.deleteHYCb);
@@ -272,6 +278,46 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "菜单权限";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // hyCheckCb
+            // 
+            this.hyCheckCb.AutoSize = true;
+            this.hyCheckCb.Location = new System.Drawing.Point(133, 148);
+            this.hyCheckCb.Name = "hyCheckCb";
+            this.hyCheckCb.Size = new System.Drawing.Size(72, 16);
+            this.hyCheckCb.TabIndex = 17;
+            this.hyCheckCb.Text = "回佣审核";
+            this.hyCheckCb.UseVisualStyleBackColor = true;
+            // 
+            // hyIsViewCb
+            // 
+            this.hyIsViewCb.AutoSize = true;
+            this.hyIsViewCb.Location = new System.Drawing.Point(133, 81);
+            this.hyIsViewCb.Name = "hyIsViewCb";
+            this.hyIsViewCb.Size = new System.Drawing.Size(96, 16);
+            this.hyIsViewCb.TabIndex = 16;
+            this.hyIsViewCb.Text = "回佣是否可见";
+            this.hyIsViewCb.UseVisualStyleBackColor = true;
+            // 
+            // deleteHYCb
+            // 
+            this.deleteHYCb.AutoSize = true;
+            this.deleteHYCb.Location = new System.Drawing.Point(133, 126);
+            this.deleteHYCb.Name = "deleteHYCb";
+            this.deleteHYCb.Size = new System.Drawing.Size(72, 16);
+            this.deleteHYCb.TabIndex = 15;
+            this.deleteHYCb.Text = "删除回佣";
+            this.deleteHYCb.UseVisualStyleBackColor = true;
+            // 
+            // addHYCb
+            // 
+            this.addHYCb.AutoSize = true;
+            this.addHYCb.Location = new System.Drawing.Point(133, 104);
+            this.addHYCb.Name = "addHYCb";
+            this.addHYCb.Size = new System.Drawing.Size(72, 16);
+            this.addHYCb.TabIndex = 14;
+            this.addHYCb.Text = "添加回佣";
+            this.addHYCb.UseVisualStyleBackColor = true;
             // 
             // orderCheckBtnCb
             // 
@@ -413,45 +459,35 @@
             this.exitBtn.UseVisualStyleBackColor = true;
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
-            // addHYCb
+            // tdIsViewCb
             // 
-            this.addHYCb.AutoSize = true;
-            this.addHYCb.Location = new System.Drawing.Point(133, 104);
-            this.addHYCb.Name = "addHYCb";
-            this.addHYCb.Size = new System.Drawing.Size(72, 16);
-            this.addHYCb.TabIndex = 14;
-            this.addHYCb.Text = "添加回佣";
-            this.addHYCb.UseVisualStyleBackColor = true;
+            this.tdIsViewCb.AutoSize = true;
+            this.tdIsViewCb.Location = new System.Drawing.Point(244, 14);
+            this.tdIsViewCb.Name = "tdIsViewCb";
+            this.tdIsViewCb.Size = new System.Drawing.Size(96, 16);
+            this.tdIsViewCb.TabIndex = 18;
+            this.tdIsViewCb.Text = "退单是否可见";
+            this.tdIsViewCb.UseVisualStyleBackColor = true;
             // 
-            // deleteHYCb
+            // tdIsOperCb
             // 
-            this.deleteHYCb.AutoSize = true;
-            this.deleteHYCb.Location = new System.Drawing.Point(133, 126);
-            this.deleteHYCb.Name = "deleteHYCb";
-            this.deleteHYCb.Size = new System.Drawing.Size(72, 16);
-            this.deleteHYCb.TabIndex = 15;
-            this.deleteHYCb.Text = "删除回佣";
-            this.deleteHYCb.UseVisualStyleBackColor = true;
+            this.tdIsOperCb.AutoSize = true;
+            this.tdIsOperCb.Location = new System.Drawing.Point(244, 37);
+            this.tdIsOperCb.Name = "tdIsOperCb";
+            this.tdIsOperCb.Size = new System.Drawing.Size(108, 16);
+            this.tdIsOperCb.TabIndex = 19;
+            this.tdIsOperCb.Text = "退单是否可操作";
+            this.tdIsOperCb.UseVisualStyleBackColor = true;
             // 
-            // hyIsViewCb
+            // tdCheckIsOperCb
             // 
-            this.hyIsViewCb.AutoSize = true;
-            this.hyIsViewCb.Location = new System.Drawing.Point(133, 81);
-            this.hyIsViewCb.Name = "hyIsViewCb";
-            this.hyIsViewCb.Size = new System.Drawing.Size(96, 16);
-            this.hyIsViewCb.TabIndex = 16;
-            this.hyIsViewCb.Text = "回佣是否可见";
-            this.hyIsViewCb.UseVisualStyleBackColor = true;
-            // 
-            // hyCheckCb
-            // 
-            this.hyCheckCb.AutoSize = true;
-            this.hyCheckCb.Location = new System.Drawing.Point(133, 148);
-            this.hyCheckCb.Name = "hyCheckCb";
-            this.hyCheckCb.Size = new System.Drawing.Size(72, 16);
-            this.hyCheckCb.TabIndex = 17;
-            this.hyCheckCb.Text = "回佣审核";
-            this.hyCheckCb.UseVisualStyleBackColor = true;
+            this.tdCheckIsOperCb.AutoSize = true;
+            this.tdCheckIsOperCb.Location = new System.Drawing.Point(244, 59);
+            this.tdCheckIsOperCb.Name = "tdCheckIsOperCb";
+            this.tdCheckIsOperCb.Size = new System.Drawing.Size(132, 16);
+            this.tdCheckIsOperCb.TabIndex = 20;
+            this.tdCheckIsOperCb.Text = "退单审核是否可操作";
+            this.tdCheckIsOperCb.UseVisualStyleBackColor = true;
             // 
             // AuthEditDlg
             // 
@@ -515,5 +551,8 @@
         private System.Windows.Forms.CheckBox deleteHYCb;
         private System.Windows.Forms.CheckBox hyIsViewCb;
         private System.Windows.Forms.CheckBox hyCheckCb;
+        private System.Windows.Forms.CheckBox tdIsViewCb;
+        private System.Windows.Forms.CheckBox tdIsOperCb;
+        private System.Windows.Forms.CheckBox tdCheckIsOperCb;
     }
 }

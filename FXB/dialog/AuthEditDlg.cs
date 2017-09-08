@@ -60,6 +60,11 @@ namespace FXB.Dialog
             addHYCb.Checked = authData.ShowAddHyBtn();
             deleteHYCb.Checked = authData.ShowDeleteHyBtn();
             hyCheckCb.Checked = authData.ShowCheckHyBtn();
+
+
+            tdIsViewCb.Checked = authData.ShowTDVisibleTab();
+            tdIsOperCb.Checked = authData.ShowTDCb();
+            tdCheckIsOperCb.Checked = authData.ShowTDCheckCb();
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -160,7 +165,22 @@ namespace FXB.Dialog
             {
                 newControlMask = (newControlMask | ControlMask.CheckHyBtnMask);
             }
+            //////////////////////////
+            if (tdIsViewCb.Checked)
+            {
+                newControlMask = (newControlMask | ControlMask.TDVisibleTabMask);
+            }
 
+            if (tdIsOperCb.Checked)
+            {
+                newControlMask = (newControlMask | ControlMask.TDCbMask);
+            }
+
+            if (tdCheckIsOperCb.Checked)
+            {
+                newControlMask = (newControlMask | ControlMask.TDCheckCbMask);
+            }
+            ///////////////////////////////////////////////
             if (authData.Prohibit != newProhibit ||
                 authData.ViewLevel != newViewLevel ||
                 authData.OperMake != newControlMask)

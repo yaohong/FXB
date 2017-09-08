@@ -43,6 +43,8 @@ namespace FXB.Data
         //private string cbJobNumber;                  //退单人
         //private UInt32 cbTime;                       //退单时间
 
+        private TDData returnData;                  //退单数据
+
         private string entryPersonJobNumber;        //录入人
 
         private string comment;                     //备注
@@ -172,6 +174,12 @@ namespace FXB.Data
         {
             get { return checkTime; }
             set { checkTime = value; }
+        }
+
+        public TDData ReturnData
+        {
+            set { returnData = value; }
+            get { return returnData; }
         }
 
         public string EntryPersonJobNumber

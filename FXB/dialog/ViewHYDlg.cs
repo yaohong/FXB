@@ -72,7 +72,7 @@ namespace FXB.Dialog
             {
                 EmployeeData curEmployee = AuthMgr.Instance().CurLoginEmployee;
                 AuthData authData = curEmployee.AuthData;
-                if (!authData.ShowCheckHyBtn())
+                if (!authData.IfOwner && !authData.ShowCheckHyBtn())
                 {
                     checkBtn.Visible = false;
                 }

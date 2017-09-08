@@ -13,7 +13,7 @@ using FXB.Common;
 namespace FXB.DataManager
 {
     //批量给账号添加权限的SQL语句
-    // insert into auth(pwd, opermask, prohibit,ifowner,viewlevel, jobnumber) select '123456',0, 0, 0,2, gonghao from employee
+    //insert into qtordertd(isreturn, returnjobnumber, returntime,ischeck,checkjobnumber, checktime, orderid) select 0,'', 0, 0,'',0, id from qttaskorder
     class AuthMgr
     {
         private static AuthMgr ins;

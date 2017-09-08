@@ -75,6 +75,8 @@ namespace FXB.Dialog
         private void AddInit()
         {
             tabPage3.Parent = null;
+            tabPage4.Parent = null;
+
             this.Text = "添加";
             shenheBtn.Visible = false;
             checkStateLable.Text = "未审核";
@@ -86,24 +88,41 @@ namespace FXB.Dialog
         {
             this.Text = "编辑";
             {
+                //回佣界面初始化
                 EmployeeData curEmployee = AuthMgr.Instance().CurLoginEmployee;
                 AuthData authData = curEmployee.AuthData;
-                if (!authData.ShowHYVisibleTab())
+                if (!authData.IfOwner && !authData.ShowHYVisibleTab())
                 {
                     //不显示回佣页签
                     tabPage3.Parent = null;
                 }
 
-                if (!authData.ShowAddHyBtn())
+                if (!authData.IfOwner && !authData.ShowAddHyBtn())
                 {
                     addHuiyongBtn.Visible = false;
                 }
 
-                if (!authData.ShowDeleteHyBtn())
+                if (!authData.IfOwner && !authData.ShowDeleteHyBtn())
                 {
                     deleteHuiYongBtn.Visible = false;
                 }
 
+                //退单结算初始化
+                if (!authData.IfOwner && ! authData.ShowTDVisibleTab())
+                {
+                    //不显示退单页签
+                    tabPage4.Parent = null;
+                }
+
+                if (!authData.IfOwner && ! authData.ShowTDCb())
+                {
+                    tuidanCb.Enabled = false;
+                }
+
+                if (!authData.IfOwner && ! authData.ShowTDCheckCb())
+                {
+                    tdCheckCb.Enabled = false;
+                }
 
             }
             //设置录入人
