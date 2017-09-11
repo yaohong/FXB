@@ -15,10 +15,14 @@ namespace FXB.DataManager
     class TDMgr
     {
         private static TDMgr ins;
-
+        private SortedSet<Int64> allTDData;
+        public SortedSet<Int64> AllTDData
+        {
+            get { return allTDData; }
+        }
         private TDMgr()
         {
-           
+            allTDData = new SortedSet<Int64>();
         }
 
         public static TDMgr Instance()
@@ -56,6 +60,7 @@ namespace FXB.DataManager
                     TDData tdData = new TDData(orderid, isreturn, returnjobnumber, returntime, ischeck, checkjobnumber, checktime);
                     QtOrder order = OrderMgr.Instance().AllOrderData[orderid];
                     order.ReturnData = tdData;
+                    allTDData.Add(orderid);
                 }
             }
             catch (Exception e)

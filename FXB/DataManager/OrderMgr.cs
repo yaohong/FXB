@@ -70,19 +70,40 @@ namespace FXB.DataManager
                 throw new ConditionCheckException(string.Format("QT任务[{0}]已经生成回佣,请删除后在进行该操作", order.QtKey));
             }
 
-            //删除订单
-            SqlCommand command = new SqlCommand();
-            command.Connection = SqlMgr.Instance().SqlConnect;
-            command.CommandType = CommandType.Text;
-            command.CommandText = "delete from qttaskorder where id=@id";
-            command.Parameters.AddWithValue("@id", orderId);
-            command.ExecuteScalar();
+            SqlTransaction sqlTran = null;
+            try
+            {
+                sqlTran = SqlMgr.Instance().SqlConnect.BeginTransaction();
+                //删除订单
+                SqlCommand command = new SqlCommand();
+                command.Connection = SqlMgr.Instance().SqlConnect;
+                command.Transaction = sqlTran;
 
-            //删除对应的退单数据
+                command.CommandType = CommandType.Text;
+                command.CommandText = "delete from qttaskorder where id=@id";
+                command.Parameters.AddWithValue("@id", orderId);
+                command.ExecuteScalar();
 
+                //删除对应的退单数据
+                command.Parameters.Clear();
+                command.CommandType = CommandType.Text;
+                command.CommandText = "delete from qtordertd where orderid=@orderid";
+                command.Parameters.AddWithValue("@orderid", orderId);
+                command.ExecuteScalar();
 
-            qtTask.AllQtOrder.Remove(orderId);
-            allOrderData.Remove(orderId);
+                sqlTran.Commit();
+
+                qtTask.AllQtOrder.Remove(orderId);
+                allOrderData.Remove(orderId);
+            }
+            catch (Exception ex)
+            {
+                if (sqlTran != null)
+                {
+                    sqlTran.Rollback();
+                }
+                throw new CrashException(ex.Message);
+            }
         }
 
         public QtOrder AddNewQtOrder(
@@ -132,124 +153,164 @@ namespace FXB.DataManager
                 throw new ConditionCheckException("提成已经生成，本月不能在开单了");
             }
 
-            SqlCommand command = new SqlCommand();
-            command.Connection = SqlMgr.Instance().SqlConnect;
-            command.CommandType = CommandType.Text;
-            command.CommandText = @"INSERT INTO qttaskorder(
-                                    generatetime,
-                                    commissionamount,
-                                    customername,
-                                    projectcode,
-                                    roomnumber,
-                                    closingthedealmoney,
-                                    yxconsultantjobnumber,
-                                    yxqtdepartmentid,
-                                    kyfconsultanjobnumber,
-                                    kyfqtdepartmentid,
-                                    zc1jobnumber,
-                                    zc1qtdepartmentid,
-                                    zc2jobnumber,
-                                    zc2qtdepartmentid,
-                                    checkstate,
-                                    checkpersonjobnumber,
-                                    checktime,
-                                    entrypersonjobnumber,
-                                    comment,
-                                    buytime,    
-                                    customerphone,
-                                    customeridcard,
-                                    receipt,
-                                    roomarea,
-                                    contractstate,
-                                    paymentmethod,
-                                    loansmoney,
-                                    qtkey) output inserted.Id VALUES(
-                                    @generatetime,
-                                    @commissionamount,
-                                    @customername,
-                                    @projectcode,
-                                    @roomnumber,
-                                    @closingthedealmoney,
-                                    @yxconsultantjobnumber,
-                                    @yxqtdepartmentid,
-                                    @kyfconsultanjobnumber,
-                                    @kyfqtdepartmentid,
-                                    @zc1jobnumber,
-                                    @zc1qtdepartmentid,
-                                    @zc2jobnumber,
-                                    @zc2qtdepartmentid,
-                                    @checkstate,
-                                    @checkpersonjobnumber,
-                                    @checktime,
-                                    @entrypersonjobnumber,
-                                    @comment,
-                                    @buytime,    
-                                    @customerphone,
-                                    @customeridcard,
-                                    @receipt,
-                                    @roomarea,
-                                    @contractstate,
-                                    @paymentmethod,
-                                    @loansmoney,
-                                    @qtkey);select @@identity";
-            command.Parameters.AddWithValue("@generatetime", (Int32)generateTime);
-            command.Parameters.AddWithValue("@commissionamount", commissionAmount);
-            command.Parameters.AddWithValue("@customername", customerName);
-            command.Parameters.AddWithValue("@projectcode", projectCode);
-            command.Parameters.AddWithValue("@roomnumber", roomNumber);
-            command.Parameters.AddWithValue("@closingthedealmoney", closingTheDealMoney);
-            command.Parameters.AddWithValue("@yxconsultantjobnumber", yxConsultantJobNumber);
-            command.Parameters.AddWithValue("@yxqtdepartmentid", yxQtDepartmentId);
-            command.Parameters.AddWithValue("@kyfconsultanjobnumber", kyfConsultanJobNumber);
-            command.Parameters.AddWithValue("@kyfqtdepartmentid", kyfQtDepartmentId);
-            command.Parameters.AddWithValue("@zc1jobnumber", zc1JobNumber);
-            command.Parameters.AddWithValue("@zc1qtdepartmentid", zc1QtDepartmentId);
-            command.Parameters.AddWithValue("@zc2jobnumber", zc2JobNumber);
-            command.Parameters.AddWithValue("@zc2qtdepartmentid", zc2QtDepartmentId);
-            command.Parameters.AddWithValue("@checkstate", checkState);
-            command.Parameters.AddWithValue("@checkpersonjobnumber", checkPersonJobNumber);
-            command.Parameters.AddWithValue("@checktime", (Int32)checkTime);
+            SqlTransaction sqlTran = null;
 
-            command.Parameters.AddWithValue("@entrypersonjobnumber", entryPersonJobNumber);
-            command.Parameters.AddWithValue("@comment", comment);
-            command.Parameters.AddWithValue("@buytime", (Int32)buyTime);
-            command.Parameters.AddWithValue("@customerphone", customerPhone);
-            command.Parameters.AddWithValue("@customeridcard", customerIdCard);
-            command.Parameters.AddWithValue("@receipt", receipt);
-            command.Parameters.AddWithValue("@roomarea", roomArea);
-            command.Parameters.AddWithValue("@contractstate", contractState);
-            command.Parameters.AddWithValue("@paymentmethod", paymentMethod);
-            command.Parameters.AddWithValue("@loansmoney", loansMoney);
-            command.Parameters.AddWithValue("@qtkey", qtKey);
-            Int64 orderId = (Int64)command.ExecuteScalar();
+            try
+            {
+                sqlTran = SqlMgr.Instance().SqlConnect.BeginTransaction();
 
-            QtOrder newQtOrder = new QtOrder(
-                orderId,
-                generateTime,
-                commissionAmount,
-                customerName,
-                projectCode,
-                roomNumber,
-                closingTheDealMoney,
-                yxConsultantJobNumber, yxQtDepartmentId,
-                kyfConsultanJobNumber, kyfQtDepartmentId,
-                zc1JobNumber, zc1QtDepartmentId,
-                zc2JobNumber, zc2QtDepartmentId,
-                checkState, checkPersonJobNumber, checkTime,
-                entryPersonJobNumber,
-                comment,
-                buyTime,
-                customerPhone,
-                customerIdCard,
-                receipt,
-                roomArea,
-                contractState,
-                paymentMethod,
-                loansMoney,
-                qtKey);
-            qtTask.AllQtOrder[orderId] = newQtOrder;
-            allOrderData[orderId] = newQtOrder;
-            return newQtOrder;
+                SqlCommand command = new SqlCommand();
+                command.Connection = SqlMgr.Instance().SqlConnect;
+                command.Transaction = sqlTran;
+
+
+                command.CommandType = CommandType.Text;
+                command.CommandText = @"INSERT INTO qttaskorder(
+                                        generatetime,
+                                        commissionamount,
+                                        customername,
+                                        projectcode,
+                                        roomnumber,
+                                        closingthedealmoney,
+                                        yxconsultantjobnumber,
+                                        yxqtdepartmentid,
+                                        kyfconsultanjobnumber,
+                                        kyfqtdepartmentid,
+                                        zc1jobnumber,
+                                        zc1qtdepartmentid,
+                                        zc2jobnumber,
+                                        zc2qtdepartmentid,
+                                        checkstate,
+                                        checkpersonjobnumber,
+                                        checktime,
+                                        entrypersonjobnumber,
+                                        comment,
+                                        buytime,    
+                                        customerphone,
+                                        customeridcard,
+                                        receipt,
+                                        roomarea,
+                                        contractstate,
+                                        paymentmethod,
+                                        loansmoney,
+                                        qtkey) output inserted.Id VALUES(
+                                        @generatetime,
+                                        @commissionamount,
+                                        @customername,
+                                        @projectcode,
+                                        @roomnumber,
+                                        @closingthedealmoney,
+                                        @yxconsultantjobnumber,
+                                        @yxqtdepartmentid,
+                                        @kyfconsultanjobnumber,
+                                        @kyfqtdepartmentid,
+                                        @zc1jobnumber,
+                                        @zc1qtdepartmentid,
+                                        @zc2jobnumber,
+                                        @zc2qtdepartmentid,
+                                        @checkstate,
+                                        @checkpersonjobnumber,
+                                        @checktime,
+                                        @entrypersonjobnumber,
+                                        @comment,
+                                        @buytime,    
+                                        @customerphone,
+                                        @customeridcard,
+                                        @receipt,
+                                        @roomarea,
+                                        @contractstate,
+                                        @paymentmethod,
+                                        @loansmoney,
+                                        @qtkey);select @@identity";
+                command.Parameters.AddWithValue("@generatetime", (Int32)generateTime);
+                command.Parameters.AddWithValue("@commissionamount", commissionAmount);
+                command.Parameters.AddWithValue("@customername", customerName);
+                command.Parameters.AddWithValue("@projectcode", projectCode);
+                command.Parameters.AddWithValue("@roomnumber", roomNumber);
+                command.Parameters.AddWithValue("@closingthedealmoney", closingTheDealMoney);
+                command.Parameters.AddWithValue("@yxconsultantjobnumber", yxConsultantJobNumber);
+                command.Parameters.AddWithValue("@yxqtdepartmentid", yxQtDepartmentId);
+                command.Parameters.AddWithValue("@kyfconsultanjobnumber", kyfConsultanJobNumber);
+                command.Parameters.AddWithValue("@kyfqtdepartmentid", kyfQtDepartmentId);
+                command.Parameters.AddWithValue("@zc1jobnumber", zc1JobNumber);
+                command.Parameters.AddWithValue("@zc1qtdepartmentid", zc1QtDepartmentId);
+                command.Parameters.AddWithValue("@zc2jobnumber", zc2JobNumber);
+                command.Parameters.AddWithValue("@zc2qtdepartmentid", zc2QtDepartmentId);
+                command.Parameters.AddWithValue("@checkstate", checkState);
+                command.Parameters.AddWithValue("@checkpersonjobnumber", checkPersonJobNumber);
+                command.Parameters.AddWithValue("@checktime", (Int32)checkTime);
+
+                command.Parameters.AddWithValue("@entrypersonjobnumber", entryPersonJobNumber);
+                command.Parameters.AddWithValue("@comment", comment);
+                command.Parameters.AddWithValue("@buytime", (Int32)buyTime);
+                command.Parameters.AddWithValue("@customerphone", customerPhone);
+                command.Parameters.AddWithValue("@customeridcard", customerIdCard);
+                command.Parameters.AddWithValue("@receipt", receipt);
+                command.Parameters.AddWithValue("@roomarea", roomArea);
+                command.Parameters.AddWithValue("@contractstate", contractState);
+                command.Parameters.AddWithValue("@paymentmethod", paymentMethod);
+                command.Parameters.AddWithValue("@loansmoney", loansMoney);
+                command.Parameters.AddWithValue("@qtkey", qtKey);
+                Int64 orderId = (Int64)command.ExecuteScalar();
+
+                command.Parameters.Clear();
+                command.CommandType = CommandType.Text;
+                command.CommandText = @"INSERT INTO qtordertd(
+                                        orderid,isreturn,returnjobnumber,returntime,ischeck,checkjobnumber,checktime) 
+                                        values (
+                                        @orderid,@isreturn,@returnjobnumber,@returntime,@ischeck,@checkjobnumber,@checktime)";
+                command.Parameters.AddWithValue("@orderid", orderId);
+                command.Parameters.AddWithValue("@isreturn", false);
+                command.Parameters.AddWithValue("@returnjobnumber", "");
+                command.Parameters.AddWithValue("@returntime", 0);
+                command.Parameters.AddWithValue("@ischeck", false);
+                command.Parameters.AddWithValue("@checkjobnumber", "");
+                command.Parameters.AddWithValue("@checktime", 0);
+                command.ExecuteNonQuery();
+                sqlTran.Commit();
+
+                QtOrder newQtOrder = new QtOrder(
+                    orderId,
+                    generateTime,
+                    commissionAmount,
+                    customerName,
+                    projectCode,
+                    roomNumber,
+                    closingTheDealMoney,
+                    yxConsultantJobNumber, yxQtDepartmentId,
+                    kyfConsultanJobNumber, kyfQtDepartmentId,
+                    zc1JobNumber, zc1QtDepartmentId,
+                    zc2JobNumber, zc2QtDepartmentId,
+                    checkState, checkPersonJobNumber, checkTime,
+                    entryPersonJobNumber,
+                    comment,
+                    buyTime,
+                    customerPhone,
+                    customerIdCard,
+                    receipt,
+                    roomArea,
+                    contractState,
+                    paymentMethod,
+                    loansMoney,
+                    qtKey);
+                qtTask.AllQtOrder[orderId] = newQtOrder;
+                allOrderData[orderId] = newQtOrder;
+
+                //添加退單數據
+                TDData tdData = new TDData(orderId, false, "", 0, false, "", 0);
+                newQtOrder.ReturnData = tdData;
+                //添加到退單管理器
+                TDMgr.Instance().AllTDData.Add(orderId);
+                return newQtOrder;
+            }
+            catch (Exception ex) 
+            {
+                if (sqlTran != null)
+                {
+                    sqlTran.Rollback();
+                }
+                throw new CrashException(ex.Message);
+            }
         }
 
 

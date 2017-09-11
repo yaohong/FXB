@@ -88,6 +88,7 @@ namespace FXB.Dialog
         {
             this.Text = "编辑";
             {
+                //权限设置
                 //回佣界面初始化
                 EmployeeData curEmployee = AuthMgr.Instance().CurLoginEmployee;
                 AuthData authData = curEmployee.AuthData;
@@ -252,6 +253,9 @@ namespace FXB.Dialog
             //设置回佣dataGridView的字段
             SetHYDataGridViewFiled();
             InitHYDataGridView();
+
+
+            InitTDTable();
         }
 
 
@@ -1007,12 +1011,6 @@ namespace FXB.Dialog
             row.Cells["hyTime"].Value = TimeUtil.TimestampToDateTime(data.AddTime).ToShortDateString();
             row.Cells["entryJobNumber"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.EntryJobNumber].Name;
             row.Cells["checkState"].Value = data.CheckState;
-            //if (data.CheckState)
-            //{
-            //    row.Cells["checkJobNumber"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.CheckJobNumber].Name;
-            //    row.Cells["checkTime"].Value = TimeUtil.TimestampToDateTime(data.CheckTime).ToShortDateString();
-            //}
-
             row.Cells["isSettlement"].Value = data.IsSettlement;
         }
 
@@ -1127,5 +1125,50 @@ namespace FXB.Dialog
             dlg.ShowDialog();
             UpdateHYGridViewRow(selectRow, hyData);
         }
+
+
+
+        //初始化退單界面
+        private void InitTDTable()
+        {
+            TDData tdData = editQtOrder.ReturnData;
+            if (tdData.IsReturn) 
+            {
+                tuidanCb.Checked = true;
+                tuidanJobEdit.Text = EmployeeDataMgr.Instance().AllEmployeeData[tdData.ReturnJobnumber].Name;
+                tuidanTimeEdit.Text = TimeUtil.TimestampToDateTime(tdData.ReturnTime).ToString("yyyy-MM-dd HH:mm:ss");
+
+                if (tdData.IsCheck)
+                {
+                    tdCheckCb.Checked = true;
+                    tdCheckJobEdit.Text = EmployeeDataMgr.Instance().AllEmployeeData[tdData.CheckJobnumber].Name;
+                    tdCheckJobEdit.Text = TimeUtil.TimestampToDateTime(tdData.CheckTime).ToString("yyyy-MM-dd HH:mm:ss");
+                }
+            }
+            else
+            {
+                //没有退单的话，审核界面不显示
+                shenheLable.Visible = false;
+            }
+        }
+
+        private void tuidanCb_Click(object sender, EventArgs e)
+        {
+            TDData tdData = editQtOrder.ReturnData;
+            if (tdCheckCb.Checked != tdData.IsReturn)
+            {
+                //退单的状态发生变化了
+                tdData.IsReturn = tdCheckCb.Checked;
+                if (tdData.IsReturn)
+                {
+                    //退单了
+                }
+                else
+                {
+                    //取消退单
+                }
+            }
+        }
+
     }
 }
