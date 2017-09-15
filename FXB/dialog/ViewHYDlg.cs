@@ -81,7 +81,6 @@ namespace FXB.Dialog
             hyIDEdi.Enabled = false;
             hyAmountEdi.Enabled = false;
             hyTime.Enabled = false;
-            jiesuanCb.Enabled = false;
             checkStateEdi.Enabled = false;
 
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -89,7 +88,6 @@ namespace FXB.Dialog
             hyIDEdi.Text = editHyData.Id.ToString();
             hyAmountEdi.Text = editHyData.Amount.ToString();
             hyTime.Value = TimeUtil.TimestampToDateTime(editHyData.AddTime);
-            jiesuanCb.Checked = editHyData.IsSettlement;
             checkStateEdi.Text = editHyData.CheckState ? "已审核" : "未审核";
             if (editHyData.CheckState)
             {

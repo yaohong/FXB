@@ -275,9 +275,8 @@ namespace FXB.DataManager
                     bool checkstate = qtHYReader.GetBoolean(5);
                     string checkjobnumber = qtHYReader.GetString(6);
                     UInt32 checktime = (UInt32)qtHYReader.GetInt32(7);
-                    bool issettlement = qtHYReader.GetBoolean(8);
 
-                    HYData hyData = new HYData(hyId, orderId, amount, addtime, entryjobnumber, checkstate, checkjobnumber, checktime, issettlement);
+                    HYData hyData = new HYData(hyId, orderId, amount, addtime, entryjobnumber, checkstate, checkjobnumber, checktime);
                     HYMgr.Instance().AllHYData[hyId] = hyData;
                 }
                 qtHYReader.Close();

@@ -1011,7 +1011,6 @@ namespace FXB.Dialog
             row.Cells["hyTime"].Value = TimeUtil.TimestampToDateTime(data.AddTime).ToShortDateString();
             row.Cells["entryJobNumber"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.EntryJobNumber].Name;
             row.Cells["checkState"].Value = data.CheckState;
-            row.Cells["isSettlement"].Value = data.IsSettlement;
         }
 
 
@@ -1059,12 +1058,6 @@ namespace FXB.Dialog
             //checkTime.Width = 120;
             //hyDataGridView1.Columns.Add(checkTime);
 
-            DataGridViewCheckBoxColumn isSettlement = new DataGridViewCheckBoxColumn();
-            isSettlement.Name = "isSettlement";
-            isSettlement.HeaderText = "是否结算";
-            isSettlement.Width = 80;
-            hyDataGridView1.Columns.Add(isSettlement);
-
         }
 
         void InitHYDataGridView()
@@ -1087,14 +1080,6 @@ namespace FXB.Dialog
             //只能选择一行
             DataGridViewRow selectRow = hyDataGridView1.SelectedRows[0];
             Int64 hyId = (Int64)selectRow.Cells["id"].Value;
-            HYData hyData = HYMgr.Instance().AllHYData[hyId];
-            if (hyData.IsSettlement)
-            {
-                if (DialogResult.Cancel == MessageBox.Show("回佣已经结算确定要删除?", "警告", MessageBoxButtons.OKCancel))
-                {
-                    return;
-                }
-            }
 
             try
             {
@@ -1168,6 +1153,11 @@ namespace FXB.Dialog
                     //取消退单
                 }
             }
+        }
+
+        private void tuidanCb_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

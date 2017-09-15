@@ -52,6 +52,7 @@
             this.qT查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.生成QT工资ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -144,7 +145,8 @@
             // 
             this.薪资管理ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.底薪录入ToolStripMenuItem,
-            this.生成底薪副本ToolStripMenuItem});
+            this.生成底薪副本ToolStripMenuItem,
+            this.生成QT工资ToolStripMenuItem});
             this.薪资管理ToolStripMenuItem.Name = "薪资管理ToolStripMenuItem";
             this.薪资管理ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.薪资管理ToolStripMenuItem.Text = "薪资管理";
@@ -152,13 +154,14 @@
             // 底薪录入ToolStripMenuItem
             // 
             this.底薪录入ToolStripMenuItem.Name = "底薪录入ToolStripMenuItem";
-            this.底薪录入ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.底薪录入ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.底薪录入ToolStripMenuItem.Text = "底薪录入";
+            this.底薪录入ToolStripMenuItem.Click += new System.EventHandler(this.底薪录入ToolStripMenuItem_Click);
             // 
             // 生成底薪副本ToolStripMenuItem
             // 
             this.生成底薪副本ToolStripMenuItem.Name = "生成底薪副本ToolStripMenuItem";
-            this.生成底薪副本ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.生成底薪副本ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.生成底薪副本ToolStripMenuItem.Text = "生成底薪副本";
             this.生成底薪副本ToolStripMenuItem.Click += new System.EventHandler(this.生成底薪副本ToolStripMenuItem_Click);
             // 
@@ -239,6 +242,13 @@
             this.退出ToolStripMenuItem.Text = "退出";
             this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
             // 
+            // 生成QT工资ToolStripMenuItem
+            // 
+            this.生成QT工资ToolStripMenuItem.Name = "生成QT工资ToolStripMenuItem";
+            this.生成QT工资ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.生成QT工资ToolStripMenuItem.Text = "生成QT工资";
+            this.生成QT工资ToolStripMenuItem.Click += new System.EventHandler(this.生成QT工资ToolStripMenuItem_Click);
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -288,6 +298,7 @@
         private System.Windows.Forms.ToolStripMenuItem 修改密码ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 生成底薪副本ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 生成QT工资ToolStripMenuItem;
     }
 }
 

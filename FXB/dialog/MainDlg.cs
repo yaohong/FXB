@@ -238,5 +238,15 @@ namespace FXB
             ShowDialog("OrderDataDlg");
         }
 
+        private void 生成QT工资ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 底薪录入ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

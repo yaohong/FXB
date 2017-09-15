@@ -34,8 +34,6 @@
             this.hyAmountEdi = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.hyTime = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.jiesuanCb = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.checkStateEdi = new System.Windows.Forms.TextBox();
@@ -108,25 +106,6 @@
             this.hyTime.Size = new System.Drawing.Size(289, 21);
             this.hyTime.TabIndex = 5;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 106);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 12);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "是否结算:";
-            // 
-            // jiesuanCb
-            // 
-            this.jiesuanCb.AutoSize = true;
-            this.jiesuanCb.Location = new System.Drawing.Point(86, 102);
-            this.jiesuanCb.Name = "jiesuanCb";
-            this.jiesuanCb.Size = new System.Drawing.Size(198, 16);
-            this.jiesuanCb.TabIndex = 7;
-            this.jiesuanCb.Text = "选择为结算,没有选择为没有结算";
-            this.jiesuanCb.UseVisualStyleBackColor = true;
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -134,7 +113,7 @@
             this.tabControl1.Location = new System.Drawing.Point(35, 22);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(437, 275);
+            this.tabControl1.Size = new System.Drawing.Size(437, 257);
             this.tabControl1.TabIndex = 8;
             // 
             // tabPage1
@@ -147,10 +126,8 @@
             this.tabPage1.Controls.Add(this.checkJobNumberEdi);
             this.tabPage1.Controls.Add(this.lable10);
             this.tabPage1.Controls.Add(this.hyIDEdi);
-            this.tabPage1.Controls.Add(this.jiesuanCb);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.label9);
-            this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.hyTime);
             this.tabPage1.Controls.Add(this.hyAmountEdi);
@@ -158,21 +135,21 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(429, 249);
+            this.tabPage1.Size = new System.Drawing.Size(429, 231);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "回佣信息";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // checkStateEdi
             // 
-            this.checkStateEdi.Location = new System.Drawing.Point(86, 124);
+            this.checkStateEdi.Location = new System.Drawing.Point(86, 98);
             this.checkStateEdi.Name = "checkStateEdi";
             this.checkStateEdi.Size = new System.Drawing.Size(289, 21);
             this.checkStateEdi.TabIndex = 15;
             // 
             // exitBtn
             // 
-            this.exitBtn.Location = new System.Drawing.Point(296, 205);
+            this.exitBtn.Location = new System.Drawing.Point(296, 179);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(79, 23);
             this.exitBtn.TabIndex = 14;
@@ -182,7 +159,7 @@
             // 
             // checkBtn
             // 
-            this.checkBtn.Location = new System.Drawing.Point(86, 205);
+            this.checkBtn.Location = new System.Drawing.Point(86, 179);
             this.checkBtn.Name = "checkBtn";
             this.checkBtn.Size = new System.Drawing.Size(79, 23);
             this.checkBtn.TabIndex = 12;
@@ -192,7 +169,7 @@
             // 
             // checkTimeEdi
             // 
-            this.checkTimeEdi.Location = new System.Drawing.Point(86, 178);
+            this.checkTimeEdi.Location = new System.Drawing.Point(86, 152);
             this.checkTimeEdi.Name = "checkTimeEdi";
             this.checkTimeEdi.Size = new System.Drawing.Size(289, 21);
             this.checkTimeEdi.TabIndex = 11;
@@ -200,7 +177,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(21, 187);
+            this.label10.Location = new System.Drawing.Point(21, 161);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 12);
             this.label10.TabIndex = 10;
@@ -208,7 +185,7 @@
             // 
             // checkJobNumberEdi
             // 
-            this.checkJobNumberEdi.Location = new System.Drawing.Point(86, 151);
+            this.checkJobNumberEdi.Location = new System.Drawing.Point(86, 125);
             this.checkJobNumberEdi.Name = "checkJobNumberEdi";
             this.checkJobNumberEdi.Size = new System.Drawing.Size(289, 21);
             this.checkJobNumberEdi.TabIndex = 9;
@@ -216,7 +193,7 @@
             // lable10
             // 
             this.lable10.AutoSize = true;
-            this.lable10.Location = new System.Drawing.Point(33, 160);
+            this.lable10.Location = new System.Drawing.Point(33, 134);
             this.lable10.Name = "lable10";
             this.lable10.Size = new System.Drawing.Size(47, 12);
             this.lable10.TabIndex = 2;
@@ -225,7 +202,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 133);
+            this.label9.Location = new System.Drawing.Point(21, 107);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(59, 12);
             this.label9.TabIndex = 0;
@@ -317,7 +294,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(518, 317);
+            this.ClientSize = new System.Drawing.Size(518, 307);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -342,8 +319,6 @@
         private System.Windows.Forms.TextBox hyAmountEdi;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker hyTime;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox jiesuanCb;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;

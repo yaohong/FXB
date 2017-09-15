@@ -66,6 +66,8 @@ namespace FXB.DataManager
                 throw new ConditionCheckException(string.Format("订单id[{0}]未审核不能添加回佣", orderId));
             }
 
+            //HY的时间就不审核了
+
             SqlCommand command = new SqlCommand();
             command.Connection = SqlMgr.Instance().SqlConnect;
             command.CommandType = CommandType.Text;
@@ -76,16 +78,14 @@ namespace FXB.DataManager
                                     entryjobnumber,
                                     checkstate,
                                     checkjobnumber,
-                                    checktime,
-                                    issettlement) output inserted.Id VALUES(
+                                    checktime) output inserted.Id VALUES(
                                     @orderid,
                                     @amount,
                                     @addtime,
                                     @entryjobnumber,
                                     @checkstate,
                                     @checkjobnumber,
-                                    @checktime,
-                                    @issettlement);select @@identity";
+                                    @checktime);select @@identity";
             command.Parameters.AddWithValue("@orderid", orderId);
             command.Parameters.AddWithValue("@amount", amount);
             command.Parameters.AddWithValue("@addtime", (Int32)addTime);
@@ -93,10 +93,9 @@ namespace FXB.DataManager
             command.Parameters.AddWithValue("@checkstate", false);
             command.Parameters.AddWithValue("@checkjobnumber", "");
             command.Parameters.AddWithValue("@checktime", (Int32)0);
-            command.Parameters.AddWithValue("@issettlement", false);
 
             Int64 hyId = (Int64)command.ExecuteScalar();
-            HYData newHyData = new HYData(hyId, orderId, amount, addTime, entryJobNumber, false, "", 0, false);
+            HYData newHyData = new HYData(hyId, orderId, amount, addTime, entryJobNumber, false, "", 0);
 
             allHYData[hyId] = newHyData;
             order.AllHYData[hyId] = newHyData;
@@ -113,10 +112,11 @@ namespace FXB.DataManager
             }
 
             HYData hyData = allHYData[hyId];
-            if (hyData.IsSettlement)
-            {
-                throw new ConditionCheckException(string.Format("回佣id[{0}]已经结算不能变更审核状态", hyId));
-            }
+            //检测回佣对应的工资是否结算,结算了则不能修改
+            //if (hyData.IsSettlement)
+            //{
+            //    throw new ConditionCheckException(string.Format("回佣id[{0}]已经结算不能变更审核状态", hyId));
+            //}
 
             SqlCommand command = new SqlCommand();
             command.Connection = SqlMgr.Instance().SqlConnect;
@@ -142,6 +142,13 @@ namespace FXB.DataManager
             {
                 throw new ConditionCheckException(string.Format("回佣id[{0}]不存在", hyId));
             }
+
+            //检测回佣对应的工资是否结算,结算了则不能删除
+            //if (hyData.IsSettlement)
+            //{
+            //    throw new ConditionCheckException(string.Format("回佣id[{0}]已经结算不能变更审核状态", hyId));
+            //}
+
             HYData hyData = allHYData[hyId];
             QtOrder order = OrderMgr.Instance().AllOrderData[hyData.OrderId];
             SqlCommand command = new SqlCommand();
