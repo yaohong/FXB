@@ -1,7 +1,8 @@
 ﻿2017-09-15:
 删除了表格 qtorderhy 的 结算字段(最后一个)
-开单员需要添加职级字段
-
+qttaskorder添加字段 yxlevelbane(开单员的职级)
+qttaskorder添加外键 yxlevelname jobgrade的levelName字段
+qtordertd添加外键 orderid qttaskorder的id字段
 
 
 

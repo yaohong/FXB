@@ -191,12 +191,12 @@ namespace FXB.Data
                     //没有审核的订单不参与计算
                     continue;
                 }
-
-                //if (qtOrder.IfChargeback)
-                //{
-                //    //已经退单了
-                //    continue;
-                //}
+                
+                if (qtOrder.ReturnData.IsReturn && qtOrder.ReturnData.IsCheck)
+                {
+                    //退单不计算
+                    continue;
+                }
 
                 Int64 departmentId = qtOrder.YxQtDepartmentId;
                 double yxCommission = qtOrder.CommissionAmount;

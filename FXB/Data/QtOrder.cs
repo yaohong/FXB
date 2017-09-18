@@ -24,7 +24,7 @@ namespace FXB.Data
 
         private string yxConsultantJobNumber;        //营销顾问
         private Int64 yxQtDepartmentId;             //营销顾问所属的QT部门
-
+        private string yxLevelName;                 //营销顾问的职级
         private string kyfConsultanJobNumber;       //客源方顾问
         private Int64 kyfQtDepartmentId;            //客源方所属的QT部门
 
@@ -120,6 +120,12 @@ namespace FXB.Data
         {
             get { return yxQtDepartmentId; }
             set { yxQtDepartmentId = value; }
+        }
+
+        public string YxLevelName
+        {
+            get { return yxLevelName; }
+            set { yxLevelName = value; }
         }
 
         public string KyfConsultanJobNumber
@@ -252,7 +258,8 @@ namespace FXB.Data
             double tmpClosingTheDealmoney,
 
             string tmpYxConsultantJobnumber,
-            Int64 tmpYxQtDepartmentId,             
+            Int64 tmpYxQtDepartmentId,          
+            string tmpYxLevelName,
             string tmpKyfConsultanJobnumber,       
             Int64 tmpKyfQtDepartmentId,            
             string tmpZc1JobNumber,                

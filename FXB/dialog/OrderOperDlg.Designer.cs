@@ -950,7 +950,6 @@
             this.tuidanCb.Text = "勾选为已退单";
             this.tuidanCb.UseVisualStyleBackColor = true;
             this.tuidanCb.CheckedChanged += new System.EventHandler(this.tuidanCb_CheckedChanged);
-            this.tuidanCb.Click += new System.EventHandler(this.tuidanCb_Click);
             // 
             // label27
             // 

@@ -115,7 +115,8 @@ namespace FXB.DataManager
             double closingTheDealMoney,     //成交总价
             string yxConsultantJobNumber,   //营销顾问
             Int64 yxQtDepartmentId,         //营销顾问所属的部门ID
-            string kyfConsultanJobNumber,  //客源方顾问
+            string yxLevelName,             //营销顾问的职级(Z2或者Z3来判断是否发放奖励底薪）
+            string kyfConsultanJobNumber,   //客源方顾问
             Int64 kyfQtDepartmentId,        //客源方的部门ID
             string zc1JobNumber,            //驻场1
             Int64 zc1QtDepartmentId,        //驻场1的部门ID
@@ -174,6 +175,7 @@ namespace FXB.DataManager
                                         closingthedealmoney,
                                         yxconsultantjobnumber,
                                         yxqtdepartmentid,
+                                        yxlevelname,
                                         kyfconsultanjobnumber,
                                         kyfqtdepartmentid,
                                         zc1jobnumber,
@@ -202,6 +204,7 @@ namespace FXB.DataManager
                                         @closingthedealmoney,
                                         @yxconsultantjobnumber,
                                         @yxqtdepartmentid,
+                                        @yxlevelname,
                                         @kyfconsultanjobnumber,
                                         @kyfqtdepartmentid,
                                         @zc1jobnumber,
@@ -230,6 +233,7 @@ namespace FXB.DataManager
                 command.Parameters.AddWithValue("@closingthedealmoney", closingTheDealMoney);
                 command.Parameters.AddWithValue("@yxconsultantjobnumber", yxConsultantJobNumber);
                 command.Parameters.AddWithValue("@yxqtdepartmentid", yxQtDepartmentId);
+                command.Parameters.AddWithValue("@yxlevelname", yxLevelName);
                 command.Parameters.AddWithValue("@kyfconsultanjobnumber", kyfConsultanJobNumber);
                 command.Parameters.AddWithValue("@kyfqtdepartmentid", kyfQtDepartmentId);
                 command.Parameters.AddWithValue("@zc1jobnumber", zc1JobNumber);
@@ -277,7 +281,7 @@ namespace FXB.DataManager
                     projectCode,
                     roomNumber,
                     closingTheDealMoney,
-                    yxConsultantJobNumber, yxQtDepartmentId,
+                    yxConsultantJobNumber, yxQtDepartmentId,yxLevelName,
                     kyfConsultanJobNumber, kyfQtDepartmentId,
                     zc1JobNumber, zc1QtDepartmentId,
                     zc2JobNumber, zc2QtDepartmentId,
@@ -324,6 +328,8 @@ namespace FXB.DataManager
             double newClosingTheDealMoney,     //成交总价
             string newYxConsultantJobNumber,   //营销顾问
             Int64 newYxQtDepartmentId,         //营销顾问所属的部门ID
+            string newLevelName,
+
             string newKyfConsultanJobNumber,  //客源方顾问
             Int64 newKyfQtDepartmentId,        //客源方的部门ID
             string newZc1JobNumber,            //驻场1
@@ -366,6 +372,7 @@ namespace FXB.DataManager
                                     closingthedealmoney=@closingthedealmoney,
                                     yxconsultantjobnumber=@yxconsultantjobnumber,
                                     yxqtdepartmentid=@yxqtdepartmentid,
+                                    yxlevelname=@yxlevelname,
                                     kyfconsultanjobnumber=@kyfconsultanjobnumber,
                                     kyfqtdepartmentid=@kyfqtdepartmentid,
                                     zc1jobnumber=@zc1jobnumber,
@@ -388,6 +395,7 @@ namespace FXB.DataManager
             command.Parameters.AddWithValue("@closingthedealmoney", newClosingTheDealMoney);
             command.Parameters.AddWithValue("@yxconsultantjobnumber", newYxConsultantJobNumber);
             command.Parameters.AddWithValue("@yxqtdepartmentid", newYxQtDepartmentId);
+            command.Parameters.AddWithValue("@yxlevelname", newLevelName);
             command.Parameters.AddWithValue("@kyfconsultanjobnumber", newKyfConsultanJobNumber);
             command.Parameters.AddWithValue("@kyfqtdepartmentid", newKyfQtDepartmentId);
             command.Parameters.AddWithValue("@zc1jobnumber", newZc1JobNumber);
@@ -415,6 +423,7 @@ namespace FXB.DataManager
             editQtOrder.ClosingTheDealMoney = newClosingTheDealMoney;
             editQtOrder.YxConsultantJobNumber = newYxConsultantJobNumber;
             editQtOrder.YxQtDepartmentId = newYxQtDepartmentId;
+            editQtOrder.YxLevelName = newLevelName;
             editQtOrder.KyfConsultanJobNumber = newKyfConsultanJobNumber;
             editQtOrder.KyfQtDepartmentId = newKyfQtDepartmentId;
             editQtOrder.Zc1JobNumber = newZc1JobNumber;

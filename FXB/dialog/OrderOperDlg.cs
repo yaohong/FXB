@@ -417,6 +417,7 @@ namespace FXB.Dialog
             try 
             {
                 string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
+                EmployeeData selectEmployeeData = EmployeeDataMgr.Instance().AllEmployeeData[selectGuwen];
                 QtOrder tmpNewOrder = 
                 OrderMgr.Instance().AddNewQtOrder(
                     TimeUtil.DateTimeToTimestamp(orderGenerateTime.Value),
@@ -426,7 +427,8 @@ namespace FXB.Dialog
                     roomNumberEdi.Text,
                     System.Math.Round(Convert.ToDouble(cjZongjiaEdi.Text), 2),
                     selectGuwen,
-                    EmployeeDataMgr.Instance().AllEmployeeData[selectGuwen].DepartmentId,
+                    selectEmployeeData.DepartmentId,
+                    selectEmployeeData.JobGradeName,
                     selectKeyuanfang,
                     selectKeyuanfang == "" ? 0 : EmployeeDataMgr.Instance().AllEmployeeData[selectKeyuanfang].DepartmentId,
                     selectZhuchang1,
@@ -489,7 +491,9 @@ namespace FXB.Dialog
 
                 try
                 {
-                    Int64 newYxDepartmentId = EmployeeDataMgr.Instance().AllEmployeeData[selectGuwen].DepartmentId;
+                    EmployeeData selectEmployeeData = EmployeeDataMgr.Instance().AllEmployeeData[selectGuwen];
+                    Int64 newYxDepartmentId = selectEmployeeData.DepartmentId;
+                    string newLevelName = selectEmployeeData.JobGradeName;
                     Int64 newKyfDepartmentId = 0;
                     Int64 newZc1DepartmentId = 0;
                     Int64 newZc2DepartmentId = 0;
@@ -515,7 +519,7 @@ namespace FXB.Dialog
                         selectProjectCode,
                         roomNumberEdi.Text,
                         System.Math.Round(Convert.ToDouble(cjZongjiaEdi.Text), 2),
-                        selectGuwen, newYxDepartmentId,
+                        selectGuwen, newYxDepartmentId, newLevelName,
                         selectKeyuanfang, newKyfDepartmentId,
                         selectZhuchang1, newZc1DepartmentId,
                         selectZhuchang2, newZc2DepartmentId,
@@ -1137,10 +1141,11 @@ namespace FXB.Dialog
             }
         }
 
-        private void tuidanCb_Click(object sender, EventArgs e)
+
+        private void tuidanCb_CheckedChanged(object sender, EventArgs e)
         {
             TDData tdData = editQtOrder.ReturnData;
-            if (tdCheckCb.Checked != tdData.IsReturn)
+            if (tuidanCb.Checked != tdData.IsReturn)
             {
                 //退单的状态发生变化了
                 tdData.IsReturn = tdCheckCb.Checked;
@@ -1153,11 +1158,6 @@ namespace FXB.Dialog
                     //取消退单
                 }
             }
-        }
-
-        private void tuidanCb_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
     }

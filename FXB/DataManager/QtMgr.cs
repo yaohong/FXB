@@ -191,29 +191,30 @@ namespace FXB.DataManager
                     double closingthedealmoney = qtOrderReader.GetDouble(6);
                     string yxconsultantjobnumber = qtOrderReader.GetString(7);
                     Int64 yxqtdepartmentid = qtOrderReader.GetInt64(8);
-                    string kyfconsultanjobnumber = qtOrderReader.GetString(9);
-                    Int64 kyfqtdepartmentid = qtOrderReader.GetInt64(10);
-                    string zc1jobnumber = qtOrderReader.GetString(11);
-                    Int64 zc1qtdepartmentid = qtOrderReader.GetInt64(12);
-                    string zc2jobnumber = qtOrderReader.GetString(13);
-                    Int64 zc2qtdepartmentid = qtOrderReader.GetInt64(14);
-                    bool checkstate = qtOrderReader.GetBoolean(15);
-                    string checkpersonjobnumber = qtOrderReader.GetString(16);
-                    UInt32 checktime = (UInt32)qtOrderReader.GetInt32(17);
+                    string yxLevelName = qtOrderReader.GetString(9);
+                    string kyfconsultanjobnumber = qtOrderReader.GetString(10);
+                    Int64 kyfqtdepartmentid = qtOrderReader.GetInt64(11);
+                    string zc1jobnumber = qtOrderReader.GetString(12);
+                    Int64 zc1qtdepartmentid = qtOrderReader.GetInt64(13);
+                    string zc2jobnumber = qtOrderReader.GetString(14);
+                    Int64 zc2qtdepartmentid = qtOrderReader.GetInt64(15);
+                    bool checkstate = qtOrderReader.GetBoolean(16);
+                    string checkpersonjobnumber = qtOrderReader.GetString(17);
+                    UInt32 checktime = (UInt32)qtOrderReader.GetInt32(18);
                     //bool ifchargeback = qtOrderReader.GetBoolean(18);
                     //string cbjobnumber = qtOrderReader.GetString(19);
                     //UInt32 cbtime = (UInt32)qtOrderReader.GetInt32(20);
-                    string entrypersonjobnumber = qtOrderReader.GetString(18);
-                    string comment = qtOrderReader.GetString(19);
-                    UInt32 buytime = (UInt32)qtOrderReader.GetInt32(20);
-                    string customerphone = qtOrderReader.GetString(21);
-                    string customeridcard = qtOrderReader.GetString(22);
-                    string receipt = qtOrderReader.GetString(23);
-                    double roomarea = qtOrderReader.GetDouble(24);
-                    string contractstate = qtOrderReader.GetString(25);
-                    string paymentmethod = qtOrderReader.GetString(26);
-                    double loansmoney = qtOrderReader.GetDouble(27);
-                    string qtkey = qtOrderReader.GetString(28);
+                    string entrypersonjobnumber = qtOrderReader.GetString(19);
+                    string comment = qtOrderReader.GetString(20);
+                    UInt32 buytime = (UInt32)qtOrderReader.GetInt32(21);
+                    string customerphone = qtOrderReader.GetString(22);
+                    string customeridcard = qtOrderReader.GetString(23);
+                    string receipt = qtOrderReader.GetString(24);
+                    double roomarea = qtOrderReader.GetDouble(25);
+                    string contractstate = qtOrderReader.GetString(26);
+                    string paymentmethod = qtOrderReader.GetString(27);
+                    double loansmoney = qtOrderReader.GetDouble(28);
+                    string qtkey = qtOrderReader.GetString(29);
 
                     SortedDictionary<Int64, QtOrder> allOrder;
                     if (dbAllQtTaskOrder.ContainsKey(qtkey))
@@ -235,7 +236,7 @@ namespace FXB.DataManager
                         projectcode, 
                         roomnumber, 
                         closingthedealmoney, 
-                        yxconsultantjobnumber, yxqtdepartmentid,
+                        yxconsultantjobnumber, yxqtdepartmentid,yxLevelName,
                         kyfconsultanjobnumber, kyfqtdepartmentid, 
                         zc1jobnumber, zc1qtdepartmentid, 
                         zc2jobnumber, zc2qtdepartmentid, 
