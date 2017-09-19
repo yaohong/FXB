@@ -192,7 +192,7 @@ namespace FXB.Data
                     continue;
                 }
                 
-                if (qtOrder.ReturnData.IsReturn && qtOrder.ReturnData.IsCheck)
+                if (qtOrder.ReturnData.IsReturn)
                 {
                     //退单不计算
                     continue;

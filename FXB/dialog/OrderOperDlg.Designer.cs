@@ -103,13 +103,6 @@
             this.addHuiyongBtn = new System.Windows.Forms.Button();
             this.deleteHuiYongBtn = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.shenheLable = new System.Windows.Forms.GroupBox();
-            this.tdCheckCb = new System.Windows.Forms.CheckBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.tbCheckTimeEdit = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.tdCheckJobEdit = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tuidanTimeEdit = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
@@ -125,7 +118,6 @@
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hyDataGridView1)).BeginInit();
             this.tabPage4.SuspendLayout();
-            this.shenheLable.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -832,7 +824,6 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.shenheLable);
             this.tabPage4.Controls.Add(this.groupBox2);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
@@ -841,73 +832,6 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "退单";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // shenheLable
-            // 
-            this.shenheLable.Controls.Add(this.tdCheckCb);
-            this.shenheLable.Controls.Add(this.label28);
-            this.shenheLable.Controls.Add(this.tbCheckTimeEdit);
-            this.shenheLable.Controls.Add(this.label29);
-            this.shenheLable.Controls.Add(this.label30);
-            this.shenheLable.Controls.Add(this.tdCheckJobEdit);
-            this.shenheLable.Location = new System.Drawing.Point(32, 131);
-            this.shenheLable.Name = "shenheLable";
-            this.shenheLable.Size = new System.Drawing.Size(295, 113);
-            this.shenheLable.TabIndex = 14;
-            this.shenheLable.TabStop = false;
-            // 
-            // tdCheckCb
-            // 
-            this.tdCheckCb.AutoSize = true;
-            this.tdCheckCb.Location = new System.Drawing.Point(73, 20);
-            this.tdCheckCb.Name = "tdCheckCb";
-            this.tdCheckCb.Size = new System.Drawing.Size(84, 16);
-            this.tdCheckCb.TabIndex = 8;
-            this.tdCheckCb.Text = "勾选为审核";
-            this.tdCheckCb.UseVisualStyleBackColor = true;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(8, 24);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(59, 12);
-            this.label28.TabIndex = 7;
-            this.label28.Text = "审核状态:";
-            // 
-            // tbCheckTimeEdit
-            // 
-            this.tbCheckTimeEdit.Location = new System.Drawing.Point(73, 70);
-            this.tbCheckTimeEdit.Name = "tbCheckTimeEdit";
-            this.tbCheckTimeEdit.ReadOnly = true;
-            this.tbCheckTimeEdit.Size = new System.Drawing.Size(192, 21);
-            this.tbCheckTimeEdit.TabIndex = 12;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(20, 52);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(47, 12);
-            this.label29.TabIndex = 9;
-            this.label29.Text = "审核人:";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(8, 79);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(59, 12);
-            this.label30.TabIndex = 11;
-            this.label30.Text = "审核时间:";
-            // 
-            // tdCheckJobEdit
-            // 
-            this.tdCheckJobEdit.Location = new System.Drawing.Point(73, 43);
-            this.tdCheckJobEdit.Name = "tdCheckJobEdit";
-            this.tdCheckJobEdit.ReadOnly = true;
-            this.tdCheckJobEdit.Size = new System.Drawing.Size(192, 21);
-            this.tdCheckJobEdit.TabIndex = 10;
             // 
             // groupBox2
             // 
@@ -1018,8 +942,6 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.hyDataGridView1)).EndInit();
             this.tabPage4.ResumeLayout(false);
-            this.shenheLable.ResumeLayout(false);
-            this.shenheLable.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1108,14 +1030,7 @@
         private System.Windows.Forms.CheckBox tuidanCb;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox tuidanJobEdit;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.CheckBox tdCheckCb;
-        private System.Windows.Forms.TextBox tdCheckJobEdit;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.TextBox tbCheckTimeEdit;
-        private System.Windows.Forms.Label label30;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox shenheLable;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox tuidanTimeEdit;
     }

@@ -53,11 +53,8 @@ namespace FXB.DataManager
                     bool isreturn = reader.GetBoolean(1);
                     string returnjobnumber = reader.GetString(2);
                     UInt32 returntime = (UInt32)reader.GetInt32(3);
-                    bool ischeck = reader.GetBoolean(4);
-                    string checkjobnumber = reader.GetString(5);
-                    UInt32 checktime = (UInt32)reader.GetInt32(6);
 
-                    TDData tdData = new TDData(orderid, isreturn, returnjobnumber, returntime, ischeck, checkjobnumber, checktime);
+                    TDData tdData = new TDData(orderid, isreturn, returnjobnumber, returntime);
                     QtOrder order = OrderMgr.Instance().AllOrderData[orderid];
                     order.ReturnData = tdData;
                     allTDData.Add(orderid);

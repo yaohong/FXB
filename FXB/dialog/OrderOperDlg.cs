@@ -120,10 +120,10 @@ namespace FXB.Dialog
                     tuidanCb.Enabled = false;
                 }
 
-                if (!authData.IfOwner && ! authData.ShowTDCheckCb())
-                {
-                    tdCheckCb.Enabled = false;
-                }
+                //if (!authData.IfOwner && ! authData.ShowTDCheckCb())
+                //{
+                //    tdCheckCb.Enabled = false;
+                //}
 
             }
             //设置录入人
@@ -1127,18 +1127,22 @@ namespace FXB.Dialog
                 tuidanJobEdit.Text = EmployeeDataMgr.Instance().AllEmployeeData[tdData.ReturnJobnumber].Name;
                 tuidanTimeEdit.Text = TimeUtil.TimestampToDateTime(tdData.ReturnTime).ToString("yyyy-MM-dd HH:mm:ss");
 
-                if (tdData.IsCheck)
-                {
-                    tdCheckCb.Checked = true;
-                    tdCheckJobEdit.Text = EmployeeDataMgr.Instance().AllEmployeeData[tdData.CheckJobnumber].Name;
-                    tdCheckJobEdit.Text = TimeUtil.TimestampToDateTime(tdData.CheckTime).ToString("yyyy-MM-dd HH:mm:ss");
-                }
+                //if (tdData.IsCheck)
+                //{
+                //    tdCheckCb.Checked = true;
+                //    tdCheckJobEdit.Text = EmployeeDataMgr.Instance().AllEmployeeData[tdData.CheckJobnumber].Name;
+                //    tdCheckJobEdit.Text = TimeUtil.TimestampToDateTime(tdData.CheckTime).ToString("yyyy-MM-dd HH:mm:ss");
+                //}
             }
             else
             {
-                //没有退单的话，审核界面不显示
-                shenheLable.Visible = false;
+
             }
+            //else
+            //{
+            //    //没有退单的话，审核界面不显示
+            //    shenheLable.Visible = false;
+            //}
         }
 
 
@@ -1148,7 +1152,7 @@ namespace FXB.Dialog
             if (tuidanCb.Checked != tdData.IsReturn)
             {
                 //退单的状态发生变化了
-                tdData.IsReturn = tdCheckCb.Checked;
+
                 if (tdData.IsReturn)
                 {
                     //退单了

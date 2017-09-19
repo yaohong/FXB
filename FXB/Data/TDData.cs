@@ -13,11 +13,6 @@ namespace FXB.Data
         private string returnJobnumber;         //退单人
         private UInt32 returnTime;              //退单时间
 
-
-        private bool isCheck;                   //退单是否审核
-        private string checkJobnumber;          //审核人
-        private UInt32 checkTime;               //审核时间
-
         public Int64 OrderId
         {
             get { return orderId; }
@@ -41,34 +36,15 @@ namespace FXB.Data
             set { returnTime = value; }
         }
 
-        public bool IsCheck
-        {
-            get { return isCheck; }
-            set { isCheck = value; }
-        }
 
-        public string CheckJobnumber
-        {
-            get { return checkJobnumber; }
-            set { checkJobnumber = value; }
-        }
-
-        public UInt32 CheckTime
-        {
-            get { return checkTime; }
-            set { checkTime = value; }
-        }
-
-        public TDData(Int64 tmpOrderId, bool tmpIsReturn, string tmpReturnJobnumber, UInt32 tmpReturnTime, bool tmpIsCheck, string tmpCheckJobnumber, UInt32 tmpCheckTime)
+        public TDData(Int64 tmpOrderId, bool tmpIsReturn, string tmpReturnJobnumber, UInt32 tmpReturnTime)
         {
             orderId = tmpOrderId;
             isReturn = tmpIsReturn;
             returnJobnumber = tmpReturnJobnumber;
             returnTime = tmpReturnTime;
 
-            isCheck = tmpIsCheck;
-            checkJobnumber = tmpCheckJobnumber;
-            checkTime = tmpCheckTime;
+
         }
     }
 }
