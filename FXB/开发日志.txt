@@ -1,9 +1,9 @@
 ﻿2017-09-15:
-删除了表格 qtorderhy 的 结算字段(最后一个)
-qttaskorder添加字段 yxlevelbane(开单员的职级)
-qttaskorder添加外键 yxlevelname jobgrade的levelName字段
-qtordertd添加外键 orderid qttaskorder的id字段
-qtordertd刪除退单审核的字段
+删除了表格 qtorderhy 的 结算字段(最后一个) OK
+qttaskorder添加字段 yxlevelbane(开单员的职级) OK
+qttaskorder添加外键 yxlevelname jobgrade的levelName字段 OK
+qtordertd添加外键 orderid qttaskorder的id字段 OK
+qtordertd刪除退单审核的字段  OK
 新建qtpay表
 
 
