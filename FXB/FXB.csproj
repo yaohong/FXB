@@ -61,6 +61,7 @@
     <Compile Include="DataManager\HYMgr.cs" />
     <Compile Include="DataManager\JobGradeDataMgr.cs" />
     <Compile Include="DataManager\OrderMgr.cs" />
+    <Compile Include="DataManager\PayDataMgr.cs" />
     <Compile Include="DataManager\ProjectDataMgr.cs" />
     <Compile Include="DataManager\QtMgr.cs" />
     <Compile Include="DataManager\TDMgr.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Data\EmployeeData.cs" />
     <Compile Include="Data\HYData.cs" />
     <Compile Include="Data\JobGradeData.cs" />
+    <Compile Include="Data\PayData.cs" />
     <Compile Include="Data\ProjectData.cs" />
     <Compile Include="Data\QtDepartment.cs" />
     <Compile Include="Data\QtEmployee.cs" />

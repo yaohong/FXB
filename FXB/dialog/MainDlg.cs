@@ -22,6 +22,8 @@ namespace FXB
             //bool a = s.Add(1);
             //a = s.Add(2);
             //a = s.Add(1);
+
+            bool a = DoubleUtil.Equal(36.25, 36.25);
         }
 
 
@@ -47,6 +49,7 @@ namespace FXB
                 AuthMgr.Instance().Load();
                 HYMgr.Instance().Init();
                 TDMgr.Instance().Load();
+                PayDataMgr.Instance().Load();
                 LoginDlg loginDlg = new LoginDlg();
                 if (DialogResult.OK != loginDlg.ShowDialog())
                 {

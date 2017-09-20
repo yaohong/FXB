@@ -8,6 +8,7 @@ namespace FXB.Common
 {
     public class DoubleUtil
     {
+        const double DBL_EPSILON  = 2.2204460492503131e-016;
         public static bool Check(string doubleStr)
         {
             try
@@ -23,7 +24,8 @@ namespace FXB.Common
 
         public static bool Equal(double l, double r)
         {
-            if (Math.Abs(l - r) < 0.001f)
+            double v = Math.Abs(l - r);
+            if (v < DoubleUtil.DBL_EPSILON)
             {
                 return true;
             }

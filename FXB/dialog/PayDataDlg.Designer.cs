@@ -76,6 +76,7 @@
             // 
             // monthSelectCb
             // 
+            this.monthSelectCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.monthSelectCb.FormattingEnabled = true;
             this.monthSelectCb.Location = new System.Drawing.Point(74, 21);
             this.monthSelectCb.Name = "monthSelectCb";

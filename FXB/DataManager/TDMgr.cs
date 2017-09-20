@@ -12,7 +12,7 @@ using FXB.Common;
 namespace FXB.DataManager
 {
     // insert into auth(isreturn, returnjobnumber, returntime,ischeck,checkjobnumber, checktime, orderid) select 0,'', 0, 0,'',0 gonghao from employee
-    class TDMgr
+    public class TDMgr
     {
         private static TDMgr ins;
         private SortedSet<Int64> allTDData;
