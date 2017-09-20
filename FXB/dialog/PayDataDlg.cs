@@ -75,7 +75,8 @@ namespace FXB.Dialog
                 return;
             }
 
-            //查找qtkey标示的月份 导入的回佣
+            //查找qtkey标示月份所导入的回佣
+
 
         }
 
