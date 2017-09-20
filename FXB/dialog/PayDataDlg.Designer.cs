@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.myDataGridView1 = new FXB.MyControl.MyDataGridView();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.groupBox1 = new FXB.MyControl.MyGroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.GenerateBtn = new System.Windows.Forms.Button();
+            this.monthSelectCb = new System.Windows.Forms.ComboBox();
+            this.InquireBtn = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new FXB.MyControl.MyTableLayoutPanel();
+            this.myDataGridView1 = new FXB.MyControl.MyDataGridView();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myDataGridView1)).BeginInit();
@@ -45,9 +45,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.GenerateBtn);
+            this.groupBox1.Controls.Add(this.monthSelectCb);
+            this.groupBox1.Controls.Add(this.InquireBtn);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
@@ -55,32 +55,42 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // button1
+            // label1
             // 
-            this.button1.Location = new System.Drawing.Point(229, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "查询";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 12);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "月份选择:";
             // 
-            // comboBox1
+            // GenerateBtn
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(74, 21);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(145, 20);
-            this.comboBox1.TabIndex = 2;
+            this.GenerateBtn.Location = new System.Drawing.Point(308, 19);
+            this.GenerateBtn.Name = "GenerateBtn";
+            this.GenerateBtn.Size = new System.Drawing.Size(75, 23);
+            this.GenerateBtn.TabIndex = 3;
+            this.GenerateBtn.Text = "生成";
+            this.GenerateBtn.UseVisualStyleBackColor = true;
+            this.GenerateBtn.Click += new System.EventHandler(this.GenerateBtn_Click);
             // 
-            // button2
+            // monthSelectCb
             // 
-            this.button2.Location = new System.Drawing.Point(308, 19);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "生成";
-            this.button2.UseVisualStyleBackColor = true;
+            this.monthSelectCb.FormattingEnabled = true;
+            this.monthSelectCb.Location = new System.Drawing.Point(74, 21);
+            this.monthSelectCb.Name = "monthSelectCb";
+            this.monthSelectCb.Size = new System.Drawing.Size(145, 20);
+            this.monthSelectCb.TabIndex = 2;
+            // 
+            // InquireBtn
+            // 
+            this.InquireBtn.Location = new System.Drawing.Point(229, 19);
+            this.InquireBtn.Name = "InquireBtn";
+            this.InquireBtn.Size = new System.Drawing.Size(75, 23);
+            this.InquireBtn.TabIndex = 1;
+            this.InquireBtn.Text = "查询";
+            this.InquireBtn.UseVisualStyleBackColor = true;
+            this.InquireBtn.Click += new System.EventHandler(this.InquireBtn_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -102,8 +112,8 @@
             this.myDataGridView1.AllowUserToAddRows = false;
             this.myDataGridView1.AllowUserToResizeColumns = false;
             this.myDataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Beige;
-            this.myDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige;
+            this.myDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.myDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.myDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.myDataGridView1.Location = new System.Drawing.Point(3, 62);
@@ -111,21 +121,12 @@
             this.myDataGridView1.Name = "myDataGridView1";
             this.myDataGridView1.ReadOnly = true;
             this.myDataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Bisque;
-            this.myDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Bisque;
+            this.myDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.myDataGridView1.RowTemplate.Height = 23;
             this.myDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.myDataGridView1.Size = new System.Drawing.Size(631, 467);
             this.myDataGridView1.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 12);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "月份选择:";
             // 
             // PayDataDlg
             // 
@@ -135,6 +136,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "PayDataDlg";
             this.Text = "QT工资";
+            this.Load += new System.EventHandler(this.PayDataDlg_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -145,11 +147,11 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private MyControl.MyGroupBox groupBox1;
+        private System.Windows.Forms.Button InquireBtn;
+        private System.Windows.Forms.Button GenerateBtn;
+        private System.Windows.Forms.ComboBox monthSelectCb;
+        private MyControl.MyTableLayoutPanel tableLayoutPanel1;
         private MyControl.MyDataGridView myDataGridView1;
         private System.Windows.Forms.Label label1;
     }

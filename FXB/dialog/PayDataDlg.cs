@@ -17,9 +17,20 @@ namespace FXB.Dialog
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void InquireBtn_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void GenerateBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PayDataDlg_Load(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Maximized;
+        }
+
     }
 }

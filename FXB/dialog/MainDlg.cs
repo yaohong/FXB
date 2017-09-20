@@ -194,6 +194,12 @@ namespace FXB
                 dlg.MdiParent = this;
                 dlg.Show();
             }
+            else if (dlgName == "PayDataDlg")
+            {
+                PayDataDlg dlg = new PayDataDlg();
+                dlg.MdiParent = this;
+                dlg.Show();
+            }
             else 
             {
                 MessageBox.Show("未知的窗口名字");
@@ -240,7 +246,7 @@ namespace FXB
 
         private void 生成QT工资ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ShowDialog("PayDataDlg");
         }
 
         private void 底薪录入ToolStripMenuItem_Click(object sender, EventArgs e)
