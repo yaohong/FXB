@@ -50,6 +50,7 @@
     <Compile Include="Common\ExcelUtil.cs" />
     <Compile Include="Common\Interface.cs" />
     <Compile Include="Common\JobGradeUtil.cs" />
+    <Compile Include="Common\PayUtil.cs" />
     <Compile Include="Common\QtUtil.cs" />
     <Compile Include="Common\SqlMgr.cs" />
     <Compile Include="Common\TextException.cs" />
