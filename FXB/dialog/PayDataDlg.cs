@@ -76,7 +76,9 @@ namespace FXB.Dialog
             }
 
             //查找qtkey标示月份所导入的回佣
-
+            SortedDictionary<string, SortedDictionary<Int64, double>> hyPay = new SortedDictionary<string, SortedDictionary<Int64, double>>();
+            SortedDictionary<string, SortedDictionary<string, double>> dxPay = new SortedDictionary<string, SortedDictionary<string, double>>();
+            PayUtil.GeneratePay(qtKey, ref hyPay, ref dxPay);
 
         }
 

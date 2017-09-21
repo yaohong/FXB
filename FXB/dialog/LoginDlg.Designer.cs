@@ -39,11 +39,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 40);
+            this.label1.Location = new System.Drawing.Point(15, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 12);
+            this.label1.Size = new System.Drawing.Size(47, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "工号:";
+            this.label1.Text = "手机号:";
             // 
             // label2
             // 
