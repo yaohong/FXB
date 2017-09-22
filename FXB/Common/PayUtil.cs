@@ -63,8 +63,14 @@ namespace FXB.Common
                 }
 
                 //是当月的回佣
-                SortedDictionary<string, HYCount> jobItem = null;
                 QtOrder order = OrderMgr.Instance().AllOrderData[hyData.OrderId];
+                if (order.ReturnData.IsReturn)
+                {
+                    //所属的订单已经退单了
+                    continue;
+                }
+
+                SortedDictionary<string, HYCount> jobItem = null;
                 if (curStatHy.ContainsKey(order.YxConsultantJobNumber))
                 {
                     jobItem = curStatHy[order.YxConsultantJobNumber];
@@ -93,6 +99,13 @@ namespace FXB.Common
                 }
 
                 QtOrder order = OrderMgr.Instance().AllOrderData[hyData.OrderId];
+
+                if (order.ReturnData.IsReturn)
+                {
+                    //所属的订单已经退单了
+                    continue;
+                }
+
                 if (!curStatHy.ContainsKey(order.YxConsultantJobNumber))
                 {
                     continue;
@@ -164,7 +177,6 @@ namespace FXB.Common
                 dxPay[jobnumber] = tmpDxMap;
             }
 
-
             //查看回佣的提成
             foreach(var hyData in validAllHy)
             {
@@ -172,6 +184,18 @@ namespace FXB.Common
                 //自己拿20%
                 //
                 //if (qtOrder.)
+                QtLevel qtLevel = QtLevel.None;
+                if (!qtTask.AllQtEmployee.ContainsKey(qtOrder.YxConsultantJobNumber))
+                {
+                    qtLevel = QtLevel.Salesman;
+                }
+                else
+                {
+                    QtEmployee qtEmployee = qtTask.AllQtEmployee[qtOrder.YxConsultantJobNumber];
+                    qtLevel = qtEmployee.QtLevel;
+                }
+
+
             }
         }
     }

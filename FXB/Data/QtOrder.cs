@@ -260,6 +260,7 @@ namespace FXB.Data
             string tmpYxConsultantJobnumber,
             Int64 tmpYxQtDepartmentId,          
             string tmpYxLevelName,
+
             string tmpKyfConsultanJobnumber,       
             Int64 tmpKyfQtDepartmentId,            
             string tmpZc1JobNumber,                
@@ -295,6 +296,8 @@ namespace FXB.Data
 
             yxConsultantJobNumber = tmpYxConsultantJobnumber;
             yxQtDepartmentId = tmpYxQtDepartmentId;
+            YxLevelName = tmpYxLevelName;
+
             kyfConsultanJobNumber = tmpKyfConsultanJobnumber;
             kyfQtDepartmentId = tmpKyfQtDepartmentId;
             zc1JobNumber = tmpZc1JobNumber;
