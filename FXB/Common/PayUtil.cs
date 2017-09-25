@@ -25,9 +25,9 @@ namespace FXB.Common
     public class PayUtil
     {
         public static void GeneratePay(
-            string qtKey, 
-            ref SortedDictionary<string, SortedDictionary<Int64, double>> hyPay,        //回佣的工资
-            ref SortedDictionary<string, SortedDictionary<string, double>> dxPay        //奖励底薪
+            string qtKey,                                                               //月份
+            ref SortedDictionary<string, SortedDictionary<Int64, double>> hyPay,        //回佣的工资 工号=>(回佣id=>获取的提成)
+            ref SortedDictionary<string, SortedDictionary<string, double>> dxPay        //奖励底薪  工号=>(QTKey=>奖励底薪)
             )
         {
 
@@ -178,24 +178,50 @@ namespace FXB.Common
             }
 
             //查看回佣的提成
+            //bool ywy = true;
             foreach(var hyData in validAllHy)
             {
-                QtOrder qtOrder = OrderMgr.Instance().AllOrderData[hyData.OrderId];
-                //自己拿20%
-                //
-                //if (qtOrder.)
-                QtLevel qtLevel = QtLevel.None;
-                if (!qtTask.AllQtEmployee.ContainsKey(qtOrder.YxConsultantJobNumber))
-                {
-                    qtLevel = QtLevel.Salesman;
-                }
-                else
-                {
-                    QtEmployee qtEmployee = qtTask.AllQtEmployee[qtOrder.YxConsultantJobNumber];
-                    qtLevel = qtEmployee.QtLevel;
-                }
+                GeneratePayItem(ref hyPay, hyData);
+            }
+        }
 
 
+        static private void GeneratePayItem(ref SortedDictionary<string, SortedDictionary<Int64, double>> allHyPay, HYData hyData)
+        {
+            QtOrder qtOrder = OrderMgr.Instance().AllOrderData[hyData.OrderId];
+            QtTask qtTask = QtMgr.Instance().AllQtTask[qtOrder.QtKey];
+            QtEmployee qtEmployee = qtTask.AllQtEmployee[qtOrder.YxConsultantJobNumber];
+            QtDepartment qtDepartment = qtTask.AllQtDepartment[qtOrder.YxQtDepartmentId];
+            //自己拿20%
+
+            QtLevel qtLevel = QtLevel.None;
+            if (!qtTask.AllQtEmployee.ContainsKey(qtOrder.YxConsultantJobNumber))
+            {
+                //不是QT任务里的人
+                qtLevel = QtLevel.Salesman;
+            }
+            else
+            {
+                //是QT任务里的人
+                
+                qtLevel = qtEmployee.QtLevel;
+            }
+
+
+            if (qtLevel == QtLevel.LargeCharge)
+            {
+                //大主管开的单
+                //拿小主管的提成
+            }
+            else if (qtLevel == QtLevel.Majordomo)
+            {
+                //总监开的单
+                //拿大主管和小主管的提成
+            } 
+            else if (qtLevel == QtLevel.None)
+            {
+                //总经理开的单
+                //拿总监，大主管，小主管的提成
             }
         }
     }

@@ -10,7 +10,7 @@ namespace FXB.Common
     public class CommissionUtil
     {
         //获取各个QT级别获取的提成比例
-        static public string GetCommissionPropToStr(QtDepartment qtDepartment) 
+        static public string GetCommissionPropToStr(QtDepartment qtDepartment, QtEmployee qtEmployee) 
         {
             bool isComplete = qtDepartment.AlreadyCompleteTaskAmount >= qtDepartment.NeedCompleteTaskAmount;
             if (qtDepartment.QtLevel == QtLevel.SmallCharge)
@@ -49,6 +49,52 @@ namespace FXB.Common
                 return "2%";
             }
             else 
+            {
+                throw new CrashException("QT结构的QT属性异常");
+            }
+        }
+
+
+
+        static public double GetCommissionPropToOProp(QtDepartment qtDepartment, QtEmployee qtEmployee)
+        {
+            bool isComplete = qtDepartment.AlreadyCompleteTaskAmount >= qtDepartment.NeedCompleteTaskAmount;
+            if (qtDepartment.QtLevel == QtLevel.SmallCharge)
+            {
+                if (isComplete)
+                {
+                    return 0.06;
+                }
+                else
+                {
+                    return 0.03;
+                }
+            }
+            else if (qtDepartment.QtLevel == QtLevel.LargeCharge)
+            {
+                if (isComplete)
+                {
+                    return 0.04;
+                }
+                else
+                {
+                    return 0.02;
+                }
+            }
+            else if (qtDepartment.QtLevel == QtLevel.Majordomo)
+            {
+                return 0.03;
+            }
+            else if (qtDepartment.QtLevel == QtLevel.None)
+            {
+                if (qtDepartment.ParentDepartmentId != 0)
+                {
+                    throw new CrashException("QT结构的非根目录的QT属性为NONE");
+                }
+                //根目录
+                return 0.02;
+            }
+            else
             {
                 throw new CrashException("QT结构的QT属性异常");
             }

@@ -103,13 +103,12 @@ namespace FXB.Dialog
                 {
                     dataGridView1.Rows[newLine].Cells["ifSettle"].Value = true;
                     dataGridView1.Rows[newLine].Cells["completeTaskAmount"].Value = System.Math.Round(qtDepartment.AlreadyCompleteTaskAmount, 2);
-                    dataGridView1.Rows[newLine].Cells["prop"].Value = CommissionUtil.GetCommissionPropToStr(qtDepartment);
+
+                    QtEmployee qtEmployee = qtTask.AllQtEmployee[qtDepartment.OwnerJobNumber];
+                    dataGridView1.Rows[newLine].Cells["prop"].Value = CommissionUtil.GetCommissionPropToStr(qtDepartment, qtEmployee);
 
                 }
             }
-
-
-
 
 
             foreach (var item in qtDepartment.ChildDepartmentIdSet)
