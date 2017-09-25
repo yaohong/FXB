@@ -203,7 +203,6 @@ namespace FXB.Common
             else
             {
                 //是QT任务里的人
-                
                 qtLevel = qtEmployee.QtLevel;
             }
 
