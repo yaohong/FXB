@@ -301,12 +301,17 @@ namespace FXB.Dialog
             //录入人暂时不填
             row.Cells["entryPersonName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.EntryPersonJobNumber].Name;
 
-            //row.Cells["cbState"].Value = data.IfChargeback;
-            //if (data.IfChargeback)
-            //{
-            //    row.Cells["cbName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.CbJobNumber].Name; ;
-            //    row.Cells["cbTime"].Value = TimeUtil.TimestampToDateTime(data.CbTime).ToString("yyyy-MM-dd HH:mm:ss");
-            //}
+            row.Cells["cbState"].Value = data.ReturnData.IsReturn;
+            if (data.ReturnData.IsReturn)
+            {
+                row.Cells["cbName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.ReturnData.ReturnJobnumber].Name;
+                row.Cells["cbTime"].Value = TimeUtil.TimestampToDateTime(data.ReturnData.ReturnTime).ToString("yyyy-MM-dd HH:mm:ss");
+            } 
+            else
+            {
+                row.Cells["cbName"].Value = "";
+                row.Cells["cbTime"].Value = "";
+            }
 
             row.Cells["comment"].Value = data.Comment;
             row.Cells["buyTime"].Value = TimeUtil.TimestampToDateTime(data.BuyTime).ToString("yyyy-MM-dd HH:mm:ss");

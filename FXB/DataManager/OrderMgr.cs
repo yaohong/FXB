@@ -260,9 +260,8 @@ namespace FXB.DataManager
                 command.Parameters.Clear();
                 command.CommandType = CommandType.Text;
                 command.CommandText = @"INSERT INTO qtordertd(
-                                        orderid,isreturn,returnjobnumber,returntime,ischeck,checkjobnumber,checktime) 
-                                        values (
-                                        @orderid,@isreturn,@returnjobnumber,@returntime,@ischeck,@checkjobnumber,@checktime)";
+                                        orderid,isreturn,returnjobnumber,returntime) 
+                                        values (@orderid,@isreturn,@returnjobnumber,@returntime)";
                 command.Parameters.AddWithValue("@orderid", orderId);
                 command.Parameters.AddWithValue("@isreturn", false);
                 command.Parameters.AddWithValue("@returnjobnumber", "");

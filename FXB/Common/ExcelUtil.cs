@@ -56,6 +56,7 @@ namespace FXB.Common
                         }
 
                     }
+                    
                     //Application.DoEvents();
                 }
 
