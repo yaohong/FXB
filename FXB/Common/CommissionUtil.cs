@@ -55,8 +55,20 @@ namespace FXB.Common
         }
 
 
+        //获取小主管的完成提成
+        static public double GetQTSmallChargeProp()
+        {
+            return 0.06;
+        }
 
-        static public double GetCommissionPropToOProp(QtDepartment qtDepartment, QtEmployee qtEmployee)
+        //获取大主管的完成提成
+        static public double GetQtLargeChargeProp()
+        {
+            return 0.04;
+        }
+
+
+        static public double GetCommissionPropToProp(QtDepartment qtDepartment, QtEmployee qtEmployee)
         {
             bool isComplete = qtDepartment.AlreadyCompleteTaskAmount >= qtDepartment.NeedCompleteTaskAmount;
             if (qtDepartment.QtLevel == QtLevel.SmallCharge)
