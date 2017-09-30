@@ -14,7 +14,8 @@ namespace FXB.Common
         private SqlMgr()
         {
             //connectStr = "uid=yaohong;password=231344781;database=MFXB;Server=172.16.3.25;Connect Timeout=1";
-            connectStr = "user id=yaohong;password=231344781;database=MFXB;Server=127.0.0.1;Connect Timeout=1";
+            connectStr = "uid=yaohong;password=231344781;database=MFXB;Server=61.183.235.222,1499;Connect Timeout=1";
+            //connectStr = "user id=yaohong;password=231344781;database=MFXB;Server=127.0.0.1;Connect Timeout=1";
         }
 
         public static SqlMgr Instance()

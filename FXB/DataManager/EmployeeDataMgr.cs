@@ -211,62 +211,18 @@ namespace FXB.DataManager
             {
                 throw new ConditionCheckException(string.Format("工号重复:{0}", gongHao));
             }
+
+            if (allPhoneToJobnumber.ContainsKey(dianhua))
+            {
+                throw new ConditionCheckException(string.Format("电话重复:{0}", dianhua));
+            }
+
             //检测部门关系
             if (!DepartmentUtil.CheckAddInDepartment(gongHao, qtLevel, departmentId, isOwner))
             {
                 throw new ConditionCheckException("不能够加入部门,员工QT级别和部门QT级别对应不上");
             }
 
-            //SqlTransaction sqlTran = null;
-            //try
-            //{
-            //    sqlTran = SqlMgr.Instance().SqlConnect.BeginTransaction();
-            //    SqlCommand command = new SqlCommand();
-            //    command.Connection = SqlMgr.Instance().SqlConnect;
-            //    command.Transaction = sqlTran;
-
-            //    //删除QT部门
-            //    command.CommandType = CommandType.Text;
-            //    command.CommandText = "delete from qttaskdepartment where qtkey=@qtkey";
-            //    command.Parameters.AddWithValue("@qtkey", qtKey);
-            //    command.ExecuteScalar();
-            //    command.Parameters.Clear();
-
-            //    //删除QT员工
-            //    command.CommandType = CommandType.Text;
-            //    command.CommandText = "delete from qttaskemployee where qtkey=@qtkey";
-            //    command.Parameters.AddWithValue("@qtkey", qtKey);
-            //    command.ExecuteScalar();
-            //    command.Parameters.Clear();
-
-            //    ////删除QT订单
-            //    //command.CommandType = CommandType.Text;
-            //    //command.CommandText = "delete from qttaskorder where qtkey=@qtkey";
-            //    //command.Parameters.AddWithValue("@qtkey", qtKey);
-            //    //command.ExecuteScalar();
-            //    //command.Parameters.Clear();
-
-            //    //删除QT数据
-            //    command.CommandType = CommandType.Text;
-            //    command.CommandText = "delete from qttaskindex where qtkey=@qtkey";
-            //    command.Parameters.AddWithValue("@qtkey", qtKey);
-            //    command.ExecuteScalar();
-            //    command.Parameters.Clear();
-
-            //    //回佣
-
-            //    sqlTran.Commit();
-            //    allQtTask.Remove(qtKey);
-            //    OrderMgr.Instance().RemoveOrderByQtTask(qtKey);
-            //}
-            //catch (Exception ex)
-            //{
-            //    if (sqlTran != null)
-            //    {
-            //        sqlTran.Rollback();
-            //    }
-            //    throw new CrashException(ex.Message);
-            //}
             SqlTransaction sqlTran = null;
             try
             {
@@ -483,6 +439,68 @@ namespace FXB.DataManager
             employeeData.Introducer = newJieshaoren;
             employeeData.Comment = newComment;
             employeeData.QTLevel = newQtLevel;
+        }
+
+
+        public void RemoveEmployeeData(string jobnumber)
+        {
+            SqlTransaction sqlTran = null;
+            EmployeeData emplpyeeData = allEmployeeData[jobnumber];
+            try
+            {
+
+                sqlTran = SqlMgr.Instance().SqlConnect.BeginTransaction();
+                //删除订单
+                SqlCommand command = new SqlCommand();
+                command.Connection = SqlMgr.Instance().SqlConnect;
+                command.Transaction = sqlTran;
+
+                command.CommandType = CommandType.Text;
+                command.CommandText = "delete from auth where jobnumber=@jobnumber";
+                command.Parameters.AddWithValue("@jobnumber", jobnumber);
+                command.ExecuteScalar();
+
+                command.Parameters.Clear();
+
+                command.CommandType = CommandType.Text;
+                command.CommandText = "delete from employee where gonghao=@gonghao";
+                command.Parameters.AddWithValue("@gonghao", jobnumber);
+                command.ExecuteScalar();
+                //删除对应的退单数据
+
+                sqlTran.Commit();
+                allEmployeeData.Remove(jobnumber);
+                allPhoneToJobnumber.Remove(emplpyeeData.PhoneNumber);//[phoneNumber] = jobNumber;
+
+
+                if (emplpyeeData.DepartmentId != 0)
+                {
+                    DepartmentData departmentData = DepartmentDataMgr.Instance().AllDepartmentData[emplpyeeData.DepartmentId];
+                    if (emplpyeeData.IsOwner)
+                    {
+                        if (departmentData.OwnerJobNumber != jobnumber)
+                        {
+                            throw new CrashException("部门主管异常");
+                        }
+                        departmentData.OwnerJobNumber = "";
+                    }
+                    else
+                    {
+                        if (!departmentData.EmployeeSet.Remove(jobnumber))
+                        {
+                            throw new CrashException("从部门里删除员工失败");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (sqlTran != null)
+                {
+                    sqlTran.Rollback();
+                }
+                throw new CrashException(ex.Message);
+            }
         }
 
         public void SetDataGridView(DataGridView gridView)

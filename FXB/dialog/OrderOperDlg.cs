@@ -644,6 +644,7 @@ namespace FXB.Dialog
 
 
         }
+
         private void guwenSelectBtn_Click(object sender, EventArgs e)
         {
             string qtKey = orderGenerateTime.Value.ToString("yyyy-MM");
@@ -1152,17 +1153,39 @@ namespace FXB.Dialog
             if (tuidanCb.Checked != tdData.IsReturn)
             {
                 //退单的状态发生变化了
+                EmployeeData curLoginEmployee = AuthMgr.Instance().CurLoginEmployee;
+                UInt32 timestamp = TimeUtil.DateTimeToTimestamp(DateTime.Now);
+                try
+                {
+                    if (tuidanCb.Checked)
+                    {
+                        //退单了
+                        TDMgr.Instance().UpdateState(tdData.OrderId, true, curLoginEmployee.JobNumber, timestamp);
+                        tuidanJobEdit.Text = curLoginEmployee.Name;
+                        tuidanTimeEdit.Text = TimeUtil.TimestampToDateTime(timestamp).ToString("yyyy-MM-dd HH:mm:ss");
+                    }
+                    else
+                    {
+                        //取消退单
+                        TDMgr.Instance().UpdateState(tdData.OrderId, false, "", 0);
+                        tuidanJobEdit.Text = "";
+                        tuidanTimeEdit.Text = "";
+                    }
+                } 
+                catch (ConditionCheckException ex1)
+                {
+                    MessageBox.Show(ex1.Message);
+                }
+                catch (Exception ex2)
+                {
+                    MessageBox.Show(ex2.Message);
+                    System.Environment.Exit(0);
+                }
 
-                if (tdData.IsReturn)
-                {
-                    //退单了
-                }
-                else
-                {
-                    //取消退单
-                }
             }
         }
+
+
 
     }
 }

@@ -54,8 +54,6 @@ namespace FXB.DataManager
                     string jobNumber = reader.GetString(1);
                     double curPay = reader.GetDouble(2);
                     UInt32 generateTime = (UInt32)reader.GetInt32(3);
-                    double oldPay = reader.GetDouble(4);
-                    UInt32 oldGenerateTime = (UInt32)reader.GetInt32(5);
 
                     SortedDictionary<string, PayData> allPay = null;
                     if (allQtPay.ContainsKey(qtKey))
@@ -67,7 +65,7 @@ namespace FXB.DataManager
                         allQtPay[qtKey] = allPay;
                     }
 
-                    allPay[jobNumber] = new PayData(qtKey, jobNumber, curPay, generateTime, oldPay, oldGenerateTime);
+                    allPay[jobNumber] = new PayData(qtKey, jobNumber, curPay, generateTime);
                 }
             }
             catch (Exception e)
@@ -84,6 +82,55 @@ namespace FXB.DataManager
 
             }
 
+        }
+
+
+        public void GeneratePay(
+            string qtKey, 
+            SortedDictionary<string, SortedDictionary<Int64, List<PayItem>>> hyPay, 
+            SortedDictionary<string, SortedDictionary<string, double>> dxPay)
+        {
+            if (allQtPay.ContainsKey(qtKey))
+            {
+                //工资已经存在了
+                //删除覆盖
+            }
+            else
+            {
+                //工资不存在
+                SortedDictionary<string, PayData> qtPay = new SortedDictionary<string, PayData>();
+                foreach (var jobnumberItem in hyPay)
+                {
+                    string jobnumber = jobnumberItem.Key;
+                    SortedDictionary<Int64, List<PayItem>> hyValueItem = jobnumberItem.Value;
+
+                    //基本工资
+                    double basicPay = 0;
+                    foreach (var hyItem in hyValueItem)
+                    {
+                        foreach (var payItem in hyItem.Value)
+                        {
+                            basicPay += payItem.money;
+                        }
+                    }
+
+                    //查看是否有底薪工资
+                    if (dxPay.ContainsKey(jobnumber))
+                    {
+                        //有底薪奖励
+                        //
+                        foreach (var dxItem in dxPay[jobnumber])
+                        {
+                            basicPay += dxItem.Value;
+                        }
+                    }
+
+                    PayData newPayData = new PayData(qtKey, jobnumber, basicPay, TimeUtil.DateTimeToTimestamp(DateTime.Now));
+                    qtPay[jobnumber] = newPayData;
+                }
+
+                allQtPay[qtKey] = qtPay;
+            }
         }
     }
 }

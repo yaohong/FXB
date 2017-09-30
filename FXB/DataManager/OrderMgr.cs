@@ -79,17 +79,19 @@ namespace FXB.DataManager
                 command.Connection = SqlMgr.Instance().SqlConnect;
                 command.Transaction = sqlTran;
 
+
+                command.CommandType = CommandType.Text;
+                command.CommandText = "delete from qtordertd where orderid=@orderid";
+                command.Parameters.AddWithValue("@orderid", orderId);
+                command.ExecuteScalar();
+                //删除对应的退单数据
+                command.Parameters.Clear();
+
                 command.CommandType = CommandType.Text;
                 command.CommandText = "delete from qttaskorder where id=@id";
                 command.Parameters.AddWithValue("@id", orderId);
                 command.ExecuteScalar();
 
-                //删除对应的退单数据
-                command.Parameters.Clear();
-                command.CommandType = CommandType.Text;
-                command.CommandText = "delete from qtordertd where orderid=@orderid";
-                command.Parameters.AddWithValue("@orderid", orderId);
-                command.ExecuteScalar();
 
                 sqlTran.Commit();
 
@@ -300,7 +302,7 @@ namespace FXB.DataManager
                 TDData tdData = new TDData(orderId, false, "", 0);
                 newQtOrder.ReturnData = tdData;
                 //添加到退單管理器
-                TDMgr.Instance().AllTDData.Add(orderId);
+                //TDMgr.Instance().AllTDData.Add(orderId);
                 return newQtOrder;
             }
             catch (Exception ex) 
@@ -459,7 +461,7 @@ namespace FXB.DataManager
             command.Parameters.AddWithValue("@checkstate", checkState);
             command.Parameters.AddWithValue("@checkpersonjobnumber", checkJobNumber);
             command.Parameters.AddWithValue("@checktime", (Int32)checkTime);
-            command.Parameters.AddWithValue("@id", (Int32)orderId);
+            command.Parameters.AddWithValue("@id", orderId);
             command.ExecuteNonQuery();
 
             editQtOrder.CheckState = checkState;

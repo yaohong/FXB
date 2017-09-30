@@ -15,9 +15,9 @@ namespace FXB.Data
         private string qtKey;               //任务key
         private bool closing;               //QT任务是否结算(点击生成QT提成)
         private QtDepartment rootQtDepartment = null;
-        private SortedDictionary<Int64, QtDepartment> allQtDepartment;
-        private SortedDictionary<string, QtEmployee> allQtEmployee;
-        private SortedDictionary<Int64, QtOrder> allQtOrder;
+        private SortedDictionary<Int64, QtDepartment> allQtDepartment;          //QT部门
+        private SortedDictionary<string, QtEmployee> allQtEmployee;             //计算QT任务的QT员工
+        private SortedDictionary<Int64, QtOrder> allQtOrder;                    //QT任务里的开单
         public static float singleTaskAmount = 10000.0f;
 
         public string QtKey

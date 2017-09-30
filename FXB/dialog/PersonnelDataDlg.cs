@@ -424,6 +424,10 @@ namespace FXB.Dialog
             if (!data.JobState)
             {
                 row.Cells["lizhiTime"].Value = TimeUtil.TimestampToDateTime(data.DimissionTime).ToShortDateString();
+            } 
+            else
+            {
+                row.Cells["lizhiTime"].Value = "";
             }
 
             row.Cells["shenfenzheng"].Value = data.IdCard;
@@ -459,6 +463,70 @@ namespace FXB.Dialog
         private void ExportBtn_Click(object sender, EventArgs e)
         {
             ExcelUtil.ExportData(dataGridView1);
+        }
+
+        private void RemovePersonnelBtn_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            //只能选择一行
+            DataGridViewRow selectRow = dataGridView1.SelectedRows[0];
+            DataGridViewTextBoxCell selectCell = (DataGridViewTextBoxCell)selectRow.Cells["gonghao"];
+            string gonghao = (string)selectCell.Value;
+
+            //检测工号是否能删除
+
+            try
+            {
+                EmployeeData curEmployeeData = AuthMgr.Instance().CurLoginEmployee;
+                if (curEmployeeData.JobNumber == gonghao)
+                {
+                    throw new ConditionCheckException(string.Format("当前登陆用户不能删除"));
+                }
+                foreach (var item in QtMgr.Instance().AllQtTask)
+                {
+                    QtTask qtTask = item.Value;
+                    foreach (var orderItem in qtTask.AllQtOrder)
+                    {
+                        QtOrder qtOrder = orderItem.Value;
+                        if (qtOrder.YxConsultantJobNumber == gonghao)
+                        {
+                            throw new ConditionCheckException(string.Format("工号[{0}]在QT任务[{1}]的订单[{2}]里被指定为营销顾问，不能删除", gonghao, item.Key, orderItem.Key));
+                        }
+
+                        if (qtOrder.KyfConsultanJobNumber == gonghao)
+                        {
+                            throw new ConditionCheckException(string.Format("工号[{0}]在QT任务[{1}]的订单[{2}]里被指定为客源方，不能删除", gonghao, item.Key, orderItem.Key));
+                        }
+
+                        if (qtOrder.Zc1JobNumber == gonghao)
+                        {
+                            throw new ConditionCheckException(string.Format("工号[{0}]在QT任务[{1}]的订单[{2}]里被指定为驻场1，不能删除", gonghao, item.Key, orderItem.Key));
+                        }
+
+                        if (qtOrder.Zc2JobNumber == gonghao)
+                        {
+                            throw new ConditionCheckException(string.Format("工号[{0}]在QT任务[{1}]的订单[{2}]里被指定为驻场2，不能删除", gonghao, item.Key, orderItem.Key));
+                        }
+                    }
+                }
+
+                EmployeeDataMgr.Instance().RemoveEmployeeData(gonghao);
+                dataGridView1.Rows.RemoveAt(selectRow.Index);
+
+            }
+            catch (ConditionCheckException ex1)
+            {
+                MessageBox.Show(ex1.Message);
+            }
+            catch (Exception ex2)
+            {
+                MessageBox.Show(ex2.Message);
+                System.Environment.Exit(0);
+            }
         }
 
 

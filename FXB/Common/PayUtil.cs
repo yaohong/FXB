@@ -22,11 +22,30 @@ namespace FXB.Common
             levelName = tmpLevelName;
         }
     }
+
+    public enum PayType
+    {
+        PT_COMMISSION_PAY = 0,          //提成工资
+        PT_LEVEL_COMMISSION_PAY = 1,    //级别提成工资
+        PT_LEVEL_PAY = 2                //级别工资
+    }
+    public class PayItem
+    {
+
+        public PayType type;
+        public double money;
+        public PayItem(PayType pt, double tmpMoney)
+        {
+            type = pt;
+            money = tmpMoney;
+        }
+    }
+    
     public class PayUtil
     {
         public static void GeneratePay(
             string qtKey,                                                               //月份
-            ref SortedDictionary<string, SortedDictionary<Int64, double>> hyPay,        //回佣的工资 工号=>(回佣id=>获取的提成)
+            ref SortedDictionary<string, SortedDictionary<Int64, List<PayItem>>> hyPay,        //回佣的工资 工号=>(回佣id=>获取的提成)
             ref SortedDictionary<string, SortedDictionary<string, double>> dxPay        //奖励底薪  工号=>(QTKey=>奖励底薪)
             )
         {
@@ -54,6 +73,14 @@ namespace FXB.Common
                     continue;
                 }
 
+                //是当月的回佣
+                QtOrder order = OrderMgr.Instance().AllOrderData[hyData.OrderId];
+                if (order.ReturnData.IsReturn)
+                {
+                    //所属的订单已经退单了
+                    continue;
+                }
+
                 //查看HY的添加时间
                 DateTime dateTime = TimeUtil.TimestampToDateTime(hyData.AddTime);
                 if (dateTime.Month != qtMonth || dateTime.Year != qtYear)
@@ -62,13 +89,7 @@ namespace FXB.Common
                     continue;
                 }
 
-                //是当月的回佣
-                QtOrder order = OrderMgr.Instance().AllOrderData[hyData.OrderId];
-                if (order.ReturnData.IsReturn)
-                {
-                    //所属的订单已经退单了
-                    continue;
-                }
+
 
                 SortedDictionary<string, HYCount> jobItem = null;
                 if (curStatHy.ContainsKey(order.YxConsultantJobNumber))
@@ -186,22 +207,120 @@ namespace FXB.Common
         }
 
 
-        static private void GeneratePayItem(ref SortedDictionary<string, SortedDictionary<Int64, double>> allHyPay, HYData hyData)
+        static private void GeneratePayItem(ref SortedDictionary<string, SortedDictionary<Int64, List<PayItem>>> allHyPay, HYData hyData)
         {
             QtOrder qtOrder = OrderMgr.Instance().AllOrderData[hyData.OrderId];
 
             QtTask qtTask = QtMgr.Instance().AllQtTask[qtOrder.QtKey];
-            QtDepartment qtDepartment = qtTask.AllQtDepartment[qtOrder.YxQtDepartmentId];
+            //QtDepartment qtDepartment = qtTask.AllQtDepartment[qtOrder.YxQtDepartmentId];
             //自己拿20%
             double yxAmount = hyData.Amount;
             if (qtOrder.KyfConsultanJobNumber != "")
             {
                 //有客源方,拿90%
-                yxAmount = yxAmount * 0.9;
+                yxAmount = hyData.Amount * 0.9;
             }
 
+            GenerateJobnumberPay(ref allHyPay, qtTask, qtOrder.YxConsultantJobNumber, qtOrder.YxQtDepartmentId, hyData.Id, yxAmount);
+            if (qtOrder.KyfConsultanJobNumber != "" )
+            {
+                //客源方算10%
+                GenerateJobnumberPay(ref allHyPay, qtTask, qtOrder.KyfConsultanJobNumber, qtOrder.KyfQtDepartmentId, hyData.Id, hyData.Amount * 0.1);
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //计算驻场
             QtLevel qtLevel = QtLevel.None;
-            if (!qtTask.AllQtEmployee.ContainsKey(qtOrder.YxConsultantJobNumber))
+            if (!qtTask.AllQtEmployee.ContainsKey(qtOrder.Zc1JobNumber))
+            {
+                qtLevel = QtLevel.ZhuchangZhuanyuan;
+            } 
+            else
+            {
+                QtEmployee qtEmployee = qtTask.AllQtEmployee[qtOrder.Zc1JobNumber];
+                qtLevel = qtEmployee.QtLevel;
+            }
+
+            double zc1Prop = (qtOrder.Zc2JobNumber != "") ? 0.0035 : 0.007 ;
+
+            //计算驻场1
+            List<PayItem> zc1Pay = new List<PayItem>();
+            if (qtLevel == QtLevel.ZhuchangZhuanyuan)
+            {
+                //驻场专员接单
+                zc1Pay.Add(new PayItem(PayType.PT_COMMISSION_PAY, yxAmount * zc1Prop));
+            }
+            else if (qtLevel == QtLevel.ZhuchangZhuguan)
+            {
+                //驻场主管接单
+                zc1Pay.Add(new PayItem(PayType.PT_COMMISSION_PAY, yxAmount * zc1Prop));
+                zc1Pay.Add(new PayItem(PayType.PT_LEVEL_COMMISSION_PAY, yxAmount * 0.003));
+            }
+            else if (qtLevel == QtLevel.ZhuchangZongjian)
+            {
+                //驻场总监接单
+                zc1Pay.Add(new PayItem(PayType.PT_COMMISSION_PAY, yxAmount * zc1Prop));
+                zc1Pay.Add(new PayItem(PayType.PT_LEVEL_COMMISSION_PAY, yxAmount * 0.003));
+                zc1Pay.Add(new PayItem(PayType.PT_LEVEL_COMMISSION_PAY, yxAmount * 0.003));
+            }
+            else
+            {
+                throw new CrashException(string.Format("驻场的的QT级别错误[{0}]", qtLevel));
+            }
+            AddPay(ref allHyPay, qtOrder.Zc1JobNumber, hyData.Id, zc1Pay);
+            //计算驻场1的上级
+            //查看驻场1缩在的部门
+            QtDepartment zc1Department = qtTask.AllQtDepartment[qtOrder.Zc1QtDepartmentId];
+            Int64 parentQtDepartmentId = (qtLevel == QtLevel.ZhuchangZhuanyuan) ? zc1Department.Id : zc1Department.ParentDepartmentId;
+            while (true)
+            {
+                QtDepartment childQtDepartment = qtTask.AllQtDepartment[parentQtDepartmentId];
+                if (childQtDepartment.OwnerJobNumber != "")
+                {
+                    List<PayItem> levelPay = new List<PayItem>();
+                    levelPay.Add(new PayItem(PayType.PT_LEVEL_PAY, yxAmount * 0.003));
+                    AddPay(ref allHyPay, childQtDepartment.OwnerJobNumber, hyData.Id, levelPay);
+
+                }
+                if (childQtDepartment.QtLevel == QtLevel.ZhuchangZhuguan)
+                {
+                    parentQtDepartmentId = childQtDepartment.ParentDepartmentId;
+                }
+                else if (childQtDepartment.QtLevel == QtLevel.ZhuchangZongjian)
+                {
+                    //结束了跳出去
+                    break;
+                }
+                else
+                {
+                    //出错了
+                    throw new CrashException(string.Format("驻场的组织结构错误[{0}]", childQtDepartment.QtLevel));
+                }
+
+            }
+
+            //计算驻场2的收入
+            if (qtOrder.Zc2JobNumber != "")
+            {
+                List<PayItem> zc2Pay = new List<PayItem>();
+                zc2Pay.Add(new PayItem(PayType.PT_COMMISSION_PAY, yxAmount * 0.0035));
+                AddPay(ref allHyPay, qtOrder.Zc2JobNumber, hyData.Id, zc2Pay);
+            }
+        }
+
+        static private void GenerateJobnumberPay(
+            ref SortedDictionary<string, SortedDictionary<Int64, List<PayItem>>> allHyPay, 
+            QtTask qtTask, 
+            string jobNumber, 
+            Int64 yxQtDepartmentId, 
+            Int64 hyId, 
+            double yxAmount)
+        {
+            //顾问所在的部门（部门一定是QT任务里的部门）
+            QtDepartment qtDepartment = qtTask.AllQtDepartment[yxQtDepartmentId];
+
+            QtLevel qtLevel = QtLevel.None;
+            if (!qtTask.AllQtEmployee.ContainsKey(jobNumber))
             {
                 //不是QT任务里的人,只能是业务员
                 qtLevel = QtLevel.Salesman;
@@ -209,43 +328,44 @@ namespace FXB.Common
             else
             {
                 //是QT任务里的人
-                QtEmployee qtEmployee = qtTask.AllQtEmployee[qtOrder.YxConsultantJobNumber];
+                QtEmployee qtEmployee = qtTask.AllQtEmployee[jobNumber];
                 qtLevel = qtEmployee.QtLevel;
             }
 
-            double totalPay = 0;
+            List<PayItem> totalPay = new List<PayItem>();
             if (qtLevel == QtLevel.Salesman)
             {
                 //业务员开的单
-                totalPay = yxAmount * 0.2;
+                totalPay.Add(new PayItem(PayType.PT_COMMISSION_PAY, yxAmount * 0.2));
             }
             else if (qtLevel == QtLevel.SmallCharge)
             {
                 //小主管开的单
 
                 //业务员提成
-                totalPay = yxAmount * 0.2;
+                totalPay.Add(new PayItem(PayType.PT_COMMISSION_PAY, yxAmount * 0.2));
 
                 //拿小主管的级别提成
-                QtEmployee qtEmployee = qtTask.AllQtEmployee[qtOrder.YxConsultantJobNumber];
+                QtEmployee qtEmployee = qtTask.AllQtEmployee[jobNumber];
                 double smallChargeProp = CommissionUtil.GetCommissionPropToProp(qtDepartment, qtEmployee);
-                totalPay += yxAmount * smallChargeProp;
+                totalPay.Add(new PayItem(PayType.PT_LEVEL_COMMISSION_PAY, yxAmount * smallChargeProp));
+
             }
             else if (qtLevel == QtLevel.LargeCharge)
             {
                 //大主管开的单
 
                 //业务员提成
-                totalPay = yxAmount * 0.2;
+                totalPay.Add(new PayItem(PayType.PT_COMMISSION_PAY, yxAmount * 0.2));
 
                 //小主管的级别提成
                 double smallChargeProp = CommissionUtil.GetQTSmallChargeProp();
-                totalPay += yxAmount * smallChargeProp;
+                totalPay.Add(new PayItem(PayType.PT_LEVEL_COMMISSION_PAY, yxAmount * smallChargeProp));
 
                 //拿大主管的级别提成
-                QtEmployee qtEmployee = qtTask.AllQtEmployee[qtOrder.YxConsultantJobNumber];
+                QtEmployee qtEmployee = qtTask.AllQtEmployee[jobNumber];
                 double largeChargeProp = CommissionUtil.GetCommissionPropToProp(qtDepartment, qtEmployee);
-                totalPay += yxAmount * largeChargeProp;
+                totalPay.Add(new PayItem(PayType.PT_LEVEL_COMMISSION_PAY, yxAmount * largeChargeProp));
 
             }
             else if (qtLevel == QtLevel.Majordomo)
@@ -253,63 +373,71 @@ namespace FXB.Common
                 //总监开的单
 
                 //业务员提成
-                totalPay = yxAmount * 0.2;
+                totalPay.Add(new PayItem(PayType.PT_COMMISSION_PAY, yxAmount * 0.2));
 
                 //小主管的级别提成
                 double smallChargeProp = CommissionUtil.GetQTSmallChargeProp();
-                totalPay += yxAmount * smallChargeProp;
+                totalPay.Add(new PayItem(PayType.PT_LEVEL_COMMISSION_PAY, yxAmount * smallChargeProp));
 
                 //大主管的级别提成
                 double largeChargeProp = CommissionUtil.GetQtLargeChargeProp();
-                totalPay += yxAmount * largeChargeProp;
+                totalPay.Add(new PayItem(PayType.PT_LEVEL_COMMISSION_PAY, yxAmount * largeChargeProp));
 
                 //拿总监的提成
-                QtEmployee qtEmployee = qtTask.AllQtEmployee[qtOrder.YxConsultantJobNumber];
+                QtEmployee qtEmployee = qtTask.AllQtEmployee[jobNumber];
                 double majordomoProp = CommissionUtil.GetCommissionPropToProp(qtDepartment, qtEmployee);
-                totalPay += yxAmount * majordomoProp;
+                totalPay.Add(new PayItem(PayType.PT_LEVEL_COMMISSION_PAY, yxAmount * majordomoProp));
 
-            } 
-            else if (qtLevel == QtLevel.None)
+            }
+            else
             {
                 //总经理不可能开单
-                throw new CrashException("总经理不能开单");
+                throw new CrashException(string.Format("业务员的的QT级别错误[{0}]", qtLevel));
             }
 
-            AddPay(ref allHyPay, qtOrder.YxConsultantJobNumber, hyData.Id, totalPay);
+            AddPay(ref allHyPay, jobNumber, hyId, totalPay);
 
             //给自己的上级加钱
-            Int64 parentQtDepartmentId = qtDepartment.ParentDepartmentId;
+            Int64 parentQtDepartmentId = (qtLevel == QtLevel.Salesman) ? qtDepartment.Id : qtDepartment.ParentDepartmentId;
             while (parentQtDepartmentId != 0)
             {
                 QtDepartment childQtDepartment = qtTask.AllQtDepartment[parentQtDepartmentId];
                 if (childQtDepartment.OwnerJobNumber != "")
                 {
+                    //上级部门有主管
                     QtEmployee childQtEmployee = qtTask.AllQtEmployee[childQtDepartment.OwnerJobNumber];
                     double childPayProp = CommissionUtil.GetCommissionPropToProp(childQtDepartment, childQtEmployee);
-                    AddPay(ref allHyPay, childQtDepartment.OwnerJobNumber, hyData.Id, yxAmount * childPayProp);
+                    List<PayItem> tmpPay = new List<PayItem>();
+                    tmpPay.Add(new PayItem(PayType.PT_LEVEL_PAY, yxAmount * childPayProp));
+                    AddPay(ref allHyPay, childQtDepartment.OwnerJobNumber, hyId, tmpPay);
 
                 }
                 parentQtDepartmentId = childQtDepartment.ParentDepartmentId;
             }
-
-
-
         }
 
-        static private void AddPay(ref SortedDictionary<string, SortedDictionary<Int64, double>> allHyPay, string jobnumber, Int64 hyId, double pay)
+        static private void AddPay(ref SortedDictionary<string, SortedDictionary<Int64, List<PayItem>>> allHyPay, string jobnumber, Int64 hyId, List<PayItem> pay)
         {
-            SortedDictionary<Int64, double> hyPay = null;
+            SortedDictionary<Int64, List<PayItem>> hyPay = null;
             if (allHyPay.ContainsKey(jobnumber))
             {
                 hyPay = allHyPay[jobnumber];
             }
             else
             {
-                hyPay = new SortedDictionary<Int64, double>();
+                hyPay = new SortedDictionary<Int64, List<PayItem>>();
                 allHyPay[jobnumber] = hyPay;
             }
 
-            hyPay[hyId] = pay;
+            if (hyPay.ContainsKey(hyId))
+            {
+                hyPay[hyId].AddRange(pay);
+            }
+            else
+            {
+                hyPay[hyId] = pay;
+            }
+            
         }
     }
 

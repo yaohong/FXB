@@ -34,9 +34,9 @@ namespace FXB.Dialog
                 MessageBox.Show("工资没有生成");
                 return;
             }
-
+            myDataGridView1.Rows.Clear();
             SortedDictionary<string, PayData> allPayData = PayDataMgr.Instance().AllQtPay[qtKey];
-
+            
             foreach (var item in allPayData)
             {
                 PayData data = item.Value;
@@ -49,14 +49,6 @@ namespace FXB.Dialog
                 row.Cells["name"].Value = employeeData.Name;
                 row.Cells["bumen"].Value = DepartmentUtil.GetDepartmentShowText(employeeData.DepartmentId);
                 row.Cells["qtpay"].Value = data.CurPay;
-                if (data.OldGenerateTime == 0 || DoubleUtil.Equal(data.CurPay, data.OldPay))
-                {
-                    //什么都不做
-                } 
-                else
-                {
-                    row.Cells["qtpay2"].Value = data.OldPay;
-                }
             }
         }
 
@@ -76,12 +68,13 @@ namespace FXB.Dialog
             }
 
             //查找qtkey标示月份所导入的回佣
-            SortedDictionary<string, SortedDictionary<Int64, double>> hyPay = new SortedDictionary<string, SortedDictionary<Int64, double>>();
+            SortedDictionary<string, SortedDictionary<Int64, List<PayItem>>> hyPay = new SortedDictionary<string, SortedDictionary<Int64, List<PayItem>>>();
             SortedDictionary<string, SortedDictionary<string, double>> dxPay = new SortedDictionary<string, SortedDictionary<string, double>>();
 
             try
             {
                 PayUtil.GeneratePay(qtKey, ref hyPay, ref dxPay);
+                PayDataMgr.Instance().GeneratePay(qtKey, hyPay, dxPay);
             }
             catch (ConditionCheckException ex1)
             {
@@ -142,8 +135,14 @@ namespace FXB.Dialog
             DataGridViewTextBoxColumn bumen = new DataGridViewTextBoxColumn();
             bumen.Name = "bumen";
             bumen.HeaderText = "部门";
-            bumen.Width = 100;
+            bumen.Width = 200;
             myDataGridView1.Columns.Add(bumen);
+
+            DataGridViewTextBoxColumn qtlevel = new DataGridViewTextBoxColumn();
+            qtlevel.Name = "qtlevel";
+            qtlevel.HeaderText = "QT级别";
+            qtlevel.Width = 100;
+            myDataGridView1.Columns.Add(qtlevel);
 
             DataGridViewTextBoxColumn qtpay = new DataGridViewTextBoxColumn();
             qtpay.Name = "qtpay";
@@ -151,12 +150,6 @@ namespace FXB.Dialog
             qtpay.Width = 100;
             myDataGridView1.Columns.Add(qtpay);
 
-
-            DataGridViewTextBoxColumn qtpay2 = new DataGridViewTextBoxColumn();
-            qtpay2.Name = "qtpay2";
-            qtpay2.HeaderText = "QT工资2";
-            qtpay2.Width = 100;
-            myDataGridView1.Columns.Add(qtpay2);
         }
     }
 }

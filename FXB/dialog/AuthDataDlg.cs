@@ -140,15 +140,25 @@ namespace FXB.Dialog
             }
 
             //只能选择一行
-            DataGridViewTextBoxCell selectCell = (DataGridViewTextBoxCell)dataGridView1.SelectedRows[0].Cells["jobnumber"];
+            DataGridViewRow selectRow = dataGridView1.SelectedRows[0];
+            DataGridViewTextBoxCell selectCell = (DataGridViewTextBoxCell)selectRow.Cells["jobnumber"];
             string jobnumber = (string)selectCell.Value;
 
-            EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[jobnumber];
-            AuthEditDlg authEditDlg = new AuthEditDlg(employeeData);
-            if (authEditDlg.ShowDialog() == DialogResult.OK)
+            
+            if (!EmployeeDataMgr.Instance().AllEmployeeData.ContainsKey(jobnumber))
             {
-
+                dataGridView1.Rows.RemoveAt(selectRow.Index);
             }
+            else
+            {
+                EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[jobnumber];
+                AuthEditDlg authEditDlg = new AuthEditDlg(employeeData);
+                if (authEditDlg.ShowDialog() == DialogResult.OK)
+                {
+
+                }
+            }
+
         }
 
         private void ExportBtn_Click(object sender, EventArgs e)

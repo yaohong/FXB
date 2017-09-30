@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rootTableLayoutPanel = new FXB.MyControl.MyTableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.AddDepartmentBtn = new System.Windows.Forms.Button();
@@ -53,6 +53,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.departmentTreeView = new FXB.MyControl.MyTreeView();
             this.dataGridView1 = new FXB.MyControl.MyDataGridView();
+            this.RemovePersonnelBtn = new System.Windows.Forms.Button();
             this.rootTableLayoutPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -123,6 +124,7 @@
             // groupBox1
             // 
             this.rootTableLayoutPanel.SetColumnSpan(this.groupBox1, 3);
+            this.groupBox1.Controls.Add(this.RemovePersonnelBtn);
             this.groupBox1.Controls.Add(this.AddPersonnelBtn);
             this.groupBox1.Controls.Add(this.gonghaoEdi);
             this.groupBox1.Controls.Add(this.ExportBtn);
@@ -292,8 +294,8 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Beige;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rootTableLayoutPanel.SetColumnSpan(this.dataGridView1, 2);
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -302,14 +304,24 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Bisque;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Bisque;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.rootTableLayoutPanel.SetRowSpan(this.dataGridView1, 2);
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1161, 712);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
+            // 
+            // RemovePersonnelBtn
+            // 
+            this.RemovePersonnelBtn.Location = new System.Drawing.Point(1271, 21);
+            this.RemovePersonnelBtn.Name = "RemovePersonnelBtn";
+            this.RemovePersonnelBtn.Size = new System.Drawing.Size(75, 23);
+            this.RemovePersonnelBtn.TabIndex = 14;
+            this.RemovePersonnelBtn.Text = "删除员工";
+            this.RemovePersonnelBtn.UseVisualStyleBackColor = true;
+            this.RemovePersonnelBtn.Click += new System.EventHandler(this.RemovePersonnelBtn_Click);
             // 
             // PersonnelDataDlg
             // 
@@ -355,6 +367,7 @@
         private System.Windows.Forms.Button RemoveDepartmentBtn;
         private FXB.MyControl.MyTreeView departmentTreeView;
         private FXB.MyControl.MyDataGridView dataGridView1;
+        private System.Windows.Forms.Button RemovePersonnelBtn;
 
     }
 }

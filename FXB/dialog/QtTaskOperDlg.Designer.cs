@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new FXB.MyControl.MyTableLayoutPanel();
             this.dataGridView1 = new FXB.MyControl.MyDataGridView();
             this.groupBox1 = new FXB.MyControl.MyGroupBox();
+            this.exportBtn = new System.Windows.Forms.Button();
             this.clearQtPushBtn = new System.Windows.Forms.Button();
             this.removeQtTaskBtn = new System.Windows.Forms.Button();
             this.generateQtPushbtn = new System.Windows.Forms.Button();
@@ -40,7 +41,6 @@
             this.qtCb = new System.Windows.Forms.ComboBox();
             this.qtTaskGenerateBtn = new System.Windows.Forms.Button();
             this.qtTaskTimeSelect = new System.Windows.Forms.DateTimePicker();
-            this.exportBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -66,8 +66,8 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Beige;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 60);
@@ -75,8 +75,8 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Bisque;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Bisque;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(830, 436);
@@ -98,6 +98,16 @@
             this.groupBox1.Size = new System.Drawing.Size(830, 51);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // exportBtn
+            // 
+            this.exportBtn.Location = new System.Drawing.Point(698, 19);
+            this.exportBtn.Name = "exportBtn";
+            this.exportBtn.Size = new System.Drawing.Size(75, 23);
+            this.exportBtn.TabIndex = 8;
+            this.exportBtn.Text = "导出";
+            this.exportBtn.UseVisualStyleBackColor = true;
+            this.exportBtn.Click += new System.EventHandler(this.exportBtn_Click);
             // 
             // clearQtPushBtn
             // 
@@ -164,16 +174,6 @@
             this.qtTaskTimeSelect.Name = "qtTaskTimeSelect";
             this.qtTaskTimeSelect.Size = new System.Drawing.Size(67, 21);
             this.qtTaskTimeSelect.TabIndex = 0;
-            // 
-            // exportBtn
-            // 
-            this.exportBtn.Location = new System.Drawing.Point(679, 19);
-            this.exportBtn.Name = "exportBtn";
-            this.exportBtn.Size = new System.Drawing.Size(75, 23);
-            this.exportBtn.TabIndex = 8;
-            this.exportBtn.Text = "导出";
-            this.exportBtn.UseVisualStyleBackColor = true;
-            this.exportBtn.Click += new System.EventHandler(this.exportBtn_Click);
             // 
             // QtTaskOperDlg
             // 
