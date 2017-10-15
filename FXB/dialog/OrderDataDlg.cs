@@ -50,10 +50,30 @@ namespace FXB.Dialog
                 if (paramEdi.Text != "")
                 {
                     //过滤查询关键字
-                    if (qtOrder.RoomNumber.IndexOf(paramEdi.Text) == -1 &&
-                        qtOrder.ProjectCode.IndexOf(paramEdi.Text) == -1)
+                    string buyTimeStr = TimeUtil.TimestampToDateTime(qtOrder.BuyTime).ToString("yyyy-MM-dd HH:mm:ss");
+                    if (qtOrder.CustomerName.IndexOf(paramEdi.Text) == -1 && 
+                        qtOrder.CustomerPhone.IndexOf(paramEdi.Text) == -1 && 
+                        qtOrder.CustomerIdCard.IndexOf(paramEdi.Text) == -1 &&
+                        qtOrder.RoomNumber.IndexOf(paramEdi.Text) == -1 &&
+                        buyTimeStr.IndexOf(paramEdi.Text) == -1)
                     {
-                        continue;
+                        string zc1Name = EmployeeDataMgr.Instance().AllEmployeeData[qtOrder.Zc1JobNumber].Name;
+                        if (zc1Name.IndexOf(paramEdi.Text) == -1)
+                        {
+                            if (qtOrder.Zc2JobNumber == "")
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                string zc2Name = EmployeeDataMgr.Instance().AllEmployeeData[qtOrder.Zc2JobNumber].Name;
+                                if (zc2Name.IndexOf(paramEdi.Text) == -1)
+                                {
+                                    continue;
+                                }
+                            }
+                            
+                        }
                     }
                 }
 

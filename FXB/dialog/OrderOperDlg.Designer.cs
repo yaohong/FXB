@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.orderGenerateTime = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.zc2QtLevelEdi = new System.Windows.Forms.TextBox();
@@ -61,9 +61,7 @@
             this.beizhuEdi = new System.Windows.Forms.TextBox();
             this.daikuanjineEdi = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.fukuanTypeEdi = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.hetongzhuangtaiEdi = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.mianjiEdi = new System.Windows.Forms.TextBox();
             this.projectNameSelectBtn = new System.Windows.Forms.Button();
@@ -96,8 +94,13 @@
             this.luruJobNumberLable = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.fukuanTypeCb = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new FXB.MyControl.MyTableLayoutPanel();
+            this.hyDataGridView1 = new FXB.MyControl.MyDataGridView();
+            this.addHuiyongBtn = new System.Windows.Forms.Button();
+            this.deleteHuiYongBtn = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tuidanTimeEdit = new System.Windows.Forms.TextBox();
@@ -107,19 +110,16 @@
             this.label26 = new System.Windows.Forms.Label();
             this.tuidanJobEdit = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel1 = new FXB.MyControl.MyTableLayoutPanel();
-            this.hyDataGridView1 = new FXB.MyControl.MyDataGridView();
-            this.addHuiyongBtn = new System.Windows.Forms.Button();
-            this.deleteHuiYongBtn = new System.Windows.Forms.Button();
+            this.hetongzhuangtaiCb = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.hyDataGridView1)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.hyDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // orderGenerateTime
@@ -386,13 +386,6 @@
             this.label14.TabIndex = 27;
             this.label14.Text = "贷款金额:";
             // 
-            // fukuanTypeEdi
-            // 
-            this.fukuanTypeEdi.Location = new System.Drawing.Point(88, 148);
-            this.fukuanTypeEdi.Name = "fukuanTypeEdi";
-            this.fukuanTypeEdi.Size = new System.Drawing.Size(165, 21);
-            this.fukuanTypeEdi.TabIndex = 26;
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -401,13 +394,6 @@
             this.label13.Size = new System.Drawing.Size(59, 12);
             this.label13.TabIndex = 25;
             this.label13.Text = "付款方式:";
-            // 
-            // hetongzhuangtaiEdi
-            // 
-            this.hetongzhuangtaiEdi.Location = new System.Drawing.Point(399, 94);
-            this.hetongzhuangtaiEdi.Name = "hetongzhuangtaiEdi";
-            this.hetongzhuangtaiEdi.Size = new System.Drawing.Size(165, 21);
-            this.hetongzhuangtaiEdi.TabIndex = 24;
             // 
             // label12
             // 
@@ -677,6 +663,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.hetongzhuangtaiCb);
+            this.tabPage1.Controls.Add(this.fukuanTypeCb);
             this.tabPage1.Controls.Add(this.label19);
             this.tabPage1.Controls.Add(this.kehuNameEdi);
             this.tabPage1.Controls.Add(this.buyTime);
@@ -687,11 +675,9 @@
             this.tabPage1.Controls.Add(this.projectNameEdi);
             this.tabPage1.Controls.Add(this.label14);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.fukuanTypeEdi);
             this.tabPage1.Controls.Add(this.roomNumberEdi);
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.hetongzhuangtaiEdi);
             this.tabPage1.Controls.Add(this.cjZongjiaEdi);
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.label7);
@@ -713,6 +699,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "订单信息";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // fukuanTypeCb
+            // 
+            this.fukuanTypeCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.fukuanTypeCb.FormattingEnabled = true;
+            this.fukuanTypeCb.Location = new System.Drawing.Point(88, 148);
+            this.fukuanTypeCb.Name = "fukuanTypeCb";
+            this.fukuanTypeCb.Size = new System.Drawing.Size(165, 20);
+            this.fukuanTypeCb.TabIndex = 30;
             // 
             // tabPage2
             // 
@@ -758,6 +753,69 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "回佣";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.61682F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.61682F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.92212F));
+            this.tableLayoutPanel1.Controls.Add(this.hyDataGridView1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.addHuiyongBtn, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.deleteHuiYongBtn, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.40684F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88.59315F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(642, 263);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // hyDataGridView1
+            // 
+            this.hyDataGridView1.AllowUserToAddRows = false;
+            this.hyDataGridView1.AllowUserToResizeColumns = false;
+            this.hyDataGridView1.AllowUserToResizeRows = false;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Beige;
+            this.hyDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.hyDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableLayoutPanel1.SetColumnSpan(this.hyDataGridView1, 3);
+            this.hyDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hyDataGridView1.Location = new System.Drawing.Point(3, 32);
+            this.hyDataGridView1.MultiSelect = false;
+            this.hyDataGridView1.Name = "hyDataGridView1";
+            this.hyDataGridView1.ReadOnly = true;
+            this.hyDataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Bisque;
+            this.hyDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.hyDataGridView1.RowTemplate.Height = 23;
+            this.hyDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.hyDataGridView1.Size = new System.Drawing.Size(636, 228);
+            this.hyDataGridView1.TabIndex = 1;
+            this.hyDataGridView1.DoubleClick += new System.EventHandler(this.hyDataGridView1_DoubleClick);
+            // 
+            // addHuiyongBtn
+            // 
+            this.addHuiyongBtn.Location = new System.Drawing.Point(3, 3);
+            this.addHuiyongBtn.Name = "addHuiyongBtn";
+            this.addHuiyongBtn.Size = new System.Drawing.Size(74, 23);
+            this.addHuiyongBtn.TabIndex = 0;
+            this.addHuiyongBtn.Text = "添加回佣";
+            this.addHuiyongBtn.UseVisualStyleBackColor = true;
+            this.addHuiyongBtn.Click += new System.EventHandler(this.addHuiyongBtn_Click);
+            // 
+            // deleteHuiYongBtn
+            // 
+            this.deleteHuiYongBtn.Location = new System.Drawing.Point(83, 3);
+            this.deleteHuiYongBtn.Name = "deleteHuiYongBtn";
+            this.deleteHuiYongBtn.Size = new System.Drawing.Size(74, 23);
+            this.deleteHuiYongBtn.TabIndex = 2;
+            this.deleteHuiYongBtn.Text = "删除回佣";
+            this.deleteHuiYongBtn.UseVisualStyleBackColor = true;
+            this.deleteHuiYongBtn.Click += new System.EventHandler(this.deleteHuiYongBtn_Click);
             // 
             // tabPage4
             // 
@@ -854,68 +912,14 @@
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             // 
-            // tableLayoutPanel1
+            // hetongzhuangtaiCb
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.61682F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.61682F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.92212F));
-            this.tableLayoutPanel1.Controls.Add(this.hyDataGridView1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.addHuiyongBtn, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.deleteHuiYongBtn, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.40684F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88.59315F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(642, 263);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // hyDataGridView1
-            // 
-            this.hyDataGridView1.AllowUserToAddRows = false;
-            this.hyDataGridView1.AllowUserToResizeColumns = false;
-            this.hyDataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige;
-            this.hyDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.hyDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableLayoutPanel1.SetColumnSpan(this.hyDataGridView1, 3);
-            this.hyDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hyDataGridView1.Location = new System.Drawing.Point(3, 32);
-            this.hyDataGridView1.MultiSelect = false;
-            this.hyDataGridView1.Name = "hyDataGridView1";
-            this.hyDataGridView1.ReadOnly = true;
-            this.hyDataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Bisque;
-            this.hyDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.hyDataGridView1.RowTemplate.Height = 23;
-            this.hyDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.hyDataGridView1.Size = new System.Drawing.Size(636, 228);
-            this.hyDataGridView1.TabIndex = 1;
-            this.hyDataGridView1.DoubleClick += new System.EventHandler(this.hyDataGridView1_DoubleClick);
-            // 
-            // addHuiyongBtn
-            // 
-            this.addHuiyongBtn.Location = new System.Drawing.Point(3, 3);
-            this.addHuiyongBtn.Name = "addHuiyongBtn";
-            this.addHuiyongBtn.Size = new System.Drawing.Size(74, 23);
-            this.addHuiyongBtn.TabIndex = 0;
-            this.addHuiyongBtn.Text = "添加回佣";
-            this.addHuiyongBtn.UseVisualStyleBackColor = true;
-            this.addHuiyongBtn.Click += new System.EventHandler(this.addHuiyongBtn_Click);
-            // 
-            // deleteHuiYongBtn
-            // 
-            this.deleteHuiYongBtn.Location = new System.Drawing.Point(83, 3);
-            this.deleteHuiYongBtn.Name = "deleteHuiYongBtn";
-            this.deleteHuiYongBtn.Size = new System.Drawing.Size(74, 23);
-            this.deleteHuiYongBtn.TabIndex = 2;
-            this.deleteHuiYongBtn.Text = "删除回佣";
-            this.deleteHuiYongBtn.UseVisualStyleBackColor = true;
-            this.deleteHuiYongBtn.Click += new System.EventHandler(this.deleteHuiYongBtn_Click);
+            this.hetongzhuangtaiCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.hetongzhuangtaiCb.FormattingEnabled = true;
+            this.hetongzhuangtaiCb.Location = new System.Drawing.Point(399, 95);
+            this.hetongzhuangtaiCb.Name = "hetongzhuangtaiCb";
+            this.hetongzhuangtaiCb.Size = new System.Drawing.Size(165, 20);
+            this.hetongzhuangtaiCb.TabIndex = 31;
             // 
             // OrderOperDlg
             // 
@@ -939,13 +943,13 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.hyDataGridView1)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.hyDataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -975,9 +979,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox mianjiEdi;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox hetongzhuangtaiEdi;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox fukuanTypeEdi;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox daikuanjineEdi;
         private System.Windows.Forms.TextBox guwenEdi;
@@ -1033,5 +1035,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox tuidanTimeEdit;
+        private System.Windows.Forms.ComboBox fukuanTypeCb;
+        private System.Windows.Forms.ComboBox hetongzhuangtaiCb;
     }
 }

@@ -190,14 +190,14 @@ namespace FXB.DataManager
                     string roomnumber = qtOrderReader.GetString(5);
                     double closingthedealmoney = qtOrderReader.GetDouble(6);
                     string yxconsultantjobnumber = qtOrderReader.GetString(7);
-                    Int64 yxqtdepartmentid = qtOrderReader.GetInt64(8);
-                    string yxLevelName = qtOrderReader.GetString(9);
+                    //Int64 yxqtdepartmentid = qtOrderReader.GetInt64(8);
+                    //string yxLevelName = qtOrderReader.GetString(9);
                     string kyfconsultanjobnumber = qtOrderReader.GetString(10);
-                    Int64 kyfqtdepartmentid = qtOrderReader.GetInt64(11);
+                    //Int64 kyfqtdepartmentid = qtOrderReader.GetInt64(11);
                     string zc1jobnumber = qtOrderReader.GetString(12);
-                    Int64 zc1qtdepartmentid = qtOrderReader.GetInt64(13);
+                    //Int64 zc1qtdepartmentid = qtOrderReader.GetInt64(13);
                     string zc2jobnumber = qtOrderReader.GetString(14);
-                    Int64 zc2qtdepartmentid = qtOrderReader.GetInt64(15);
+                    //Int64 zc2qtdepartmentid = qtOrderReader.GetInt64(15);
                     bool checkstate = qtOrderReader.GetBoolean(16);
                     string checkpersonjobnumber = qtOrderReader.GetString(17);
                     UInt32 checktime = (UInt32)qtOrderReader.GetInt32(18);
@@ -236,10 +236,10 @@ namespace FXB.DataManager
                         projectcode, 
                         roomnumber, 
                         closingthedealmoney, 
-                        yxconsultantjobnumber, yxqtdepartmentid,yxLevelName,
-                        kyfconsultanjobnumber, kyfqtdepartmentid, 
-                        zc1jobnumber, zc1qtdepartmentid, 
-                        zc2jobnumber, zc2qtdepartmentid, 
+                        yxconsultantjobnumber,
+                        kyfconsultanjobnumber,
+                        zc1jobnumber,
+                        zc2jobnumber,
                         checkstate, checkpersonjobnumber,checktime, 
                         entrypersonjobnumber, 
                         comment, 
@@ -525,6 +525,41 @@ namespace FXB.DataManager
             }
         }
 
+
+        //添加新的业务员到QtTask
+        public void AddNewEmployeeToQtTask(EmployeeData employeeData, QtTask qtTask)
+        {
+            if (qtTask.AllQtEmployee.ContainsKey(employeeData.JobNumber))
+            {
+                //已经存在了
+                throw new CrashException(string.Format("顾问[{0}]已经存在与QT任务[{1}]里", employeeData.JobNumber, qtTask.QtKey));
+            }
+            QtEmployee qtEmployee = employeeData.GenerateQtEmployee();
+            qtTask.AllQtEmployee.Add(qtEmployee.JobNumber, qtEmployee);
+
+            try
+            {
+
+                SqlCommand command = new SqlCommand();
+                command.Connection = SqlMgr.Instance().SqlConnect;
+                command.CommandType = CommandType.Text;
+                command.CommandText = @"INSERT INTO qttaskemployee(jobnumber,jobgradename,departmentid,qtlevel,isowner,qtkey) 
+                                            VALUES(@jobnumber,@jobgradename, @departmentid, @qtlevel, @isowner, @qtkey)";
+                command.Parameters.AddWithValue("@jobnumber", qtEmployee.JobNumber);
+                command.Parameters.AddWithValue("@jobgradename", qtEmployee.JobGradeName);
+                command.Parameters.AddWithValue("@departmentid", qtEmployee.DepartmentId);
+                command.Parameters.AddWithValue("@qtlevel", (Int32)qtEmployee.QtLevel);
+                command.Parameters.AddWithValue("@isowner", qtEmployee.IsOwner);
+                command.Parameters.AddWithValue("@qtkey", qtTask.QtKey);
+                command.ExecuteNonQuery();
+                command.Parameters.Clear();
+                
+            }
+            catch (Exception ex)
+            {
+                throw new CrashException(ex.Message);
+            }
+        }
 
 
 

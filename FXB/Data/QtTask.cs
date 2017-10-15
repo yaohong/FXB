@@ -119,14 +119,22 @@ namespace FXB.Data
             if (departmentData.OwnerJobNumber != "")
             {
                 EmployeeData ownerEmployeeData = EmployeeDataMgr.Instance().AllEmployeeData[departmentData.OwnerJobNumber];
-                allQtEmployee[departmentData.OwnerJobNumber] = ownerEmployeeData.GenerateQtEmployee();
+                if (ownerEmployeeData.JobState)
+                {
+                    //在职的才添加
+                    allQtEmployee[departmentData.OwnerJobNumber] = ownerEmployeeData.GenerateQtEmployee();
+                }
+                
             }
 
             //添加员工
             foreach (var employeeJobNumber in departmentData.EmployeeSet)
             {
                 EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[employeeJobNumber];
-                allQtEmployee[employeeJobNumber] = employeeData.GenerateQtEmployee();
+                if (employeeData.JobState)
+                {
+                    allQtEmployee[employeeJobNumber] = employeeData.GenerateQtEmployee();
+                }
             }
         }
 
@@ -197,8 +205,8 @@ namespace FXB.Data
                     //退单不计算
                     continue;
                 }
-
-                Int64 departmentId = qtOrder.YxQtDepartmentId;
+                QtTask qtTask = QtMgr.Instance().AllQtTask[qtOrder.QtKey];
+                Int64 departmentId = QtTaskUtil.GetJobDepartmentIdByQtTask(qtTask, qtOrder.YxConsultantJobNumber);
                 double yxCommission = qtOrder.CommissionAmount;
                 if (qtOrder.KyfConsultanJobNumber != "")
                 {
@@ -206,7 +214,7 @@ namespace FXB.Data
                     yxCommission = qtOrder.CommissionAmount * 0.9;
                     double kyfCommission = qtOrder.CommissionAmount * 0.1;
                     //给客源方加业绩
-                    Int64 kyfDepartmentId = qtOrder.KyfQtDepartmentId;
+                    Int64 kyfDepartmentId = QtTaskUtil.GetJobDepartmentIdByQtTask(qtTask, qtOrder.KyfConsultanJobNumber);
                     while (kyfDepartmentId != 0)
                     {
                         QtDepartment kyfQtDepartment = allQtDepartment[kyfDepartmentId];

@@ -23,15 +23,15 @@ namespace FXB.Data
 
 
         private string yxConsultantJobNumber;        //营销顾问
-        private Int64 yxQtDepartmentId;             //营销顾问所属的QT部门
-        private string yxLevelName;                 //营销顾问的职级
+//        private Int64 yxQtDepartmentId;             //营销顾问所属的QT部门
+//        private string yxLevelName;                 //营销顾问的职级
         private string kyfConsultanJobNumber;       //客源方顾问
-        private Int64 kyfQtDepartmentId;            //客源方所属的QT部门
+//        private Int64 kyfQtDepartmentId;            //客源方所属的QT部门
 
         private string zc1JobNumber;                 //驻场1
-        private Int64 zc1QtDepartmentId;            //驻场1的QT部门ID
+//        private Int64 zc1QtDepartmentId;            //驻场1的QT部门ID
         private string zc2JobNumber;                 //驻场2
-        private Int64 zc2QtDepartmentId;            //驻场2的QT部门ID
+//        private Int64 zc2QtDepartmentId;            //驻场2的QT部门ID
 
 
 
@@ -116,17 +116,17 @@ namespace FXB.Data
             set { yxConsultantJobNumber = value; }
         }
 
-        public Int64 YxQtDepartmentId
-        {
-            get { return yxQtDepartmentId; }
-            set { yxQtDepartmentId = value; }
-        }
+        //public Int64 YxQtDepartmentId
+        //{
+        //    get { return yxQtDepartmentId; }
+        //    set { yxQtDepartmentId = value; }
+        //}
 
-        public string YxLevelName
-        {
-            get { return yxLevelName; }
-            set { yxLevelName = value; }
-        }
+        //public string YxLevelName
+        //{
+        //    get { return yxLevelName; }
+        //    set { yxLevelName = value; }
+        //}
 
         public string KyfConsultanJobNumber
         {
@@ -134,11 +134,11 @@ namespace FXB.Data
             set { kyfConsultanJobNumber = value; }
         }
 
-        public Int64 KyfQtDepartmentId
-        {
-            get { return kyfQtDepartmentId; }
-            set { kyfQtDepartmentId = value; }
-        }
+        //public Int64 KyfQtDepartmentId
+        //{
+        //    get { return kyfQtDepartmentId; }
+        //    set { kyfQtDepartmentId = value; }
+        //}
 
         public string Zc1JobNumber
         {
@@ -146,11 +146,11 @@ namespace FXB.Data
             set { zc1JobNumber = value; }
         }
 
-        public Int64 Zc1QtDepartmentId
-        {
-            get { return zc1QtDepartmentId; }
-            set { zc1QtDepartmentId = value; }
-        }
+        //public Int64 Zc1QtDepartmentId
+        //{
+        //    get { return zc1QtDepartmentId; }
+        //    set { zc1QtDepartmentId = value; }
+        //}
 
         public string Zc2JobNumber
         {
@@ -158,11 +158,11 @@ namespace FXB.Data
             set { zc2JobNumber = value; }
         }
 
-        public Int64 Zc2QtDepartmentId
-        {
-            get { return zc2QtDepartmentId; }
-            set { zc2QtDepartmentId = value; }
-        }
+        //public Int64 Zc2QtDepartmentId
+        //{
+        //    get { return zc2QtDepartmentId; }
+        //    set { zc2QtDepartmentId = value; }
+        //}
 
         public bool CheckState
         {
@@ -258,15 +258,15 @@ namespace FXB.Data
             double tmpClosingTheDealmoney,
 
             string tmpYxConsultantJobnumber,
-            Int64 tmpYxQtDepartmentId,          
-            string tmpYxLevelName,
+            //Int64 tmpYxQtDepartmentId,          
+            //string tmpYxLevelName,
 
             string tmpKyfConsultanJobnumber,       
-            Int64 tmpKyfQtDepartmentId,            
+            //Int64 tmpKyfQtDepartmentId,            
             string tmpZc1JobNumber,                
-            Int64 tmpZc1QtDepartmentId,            
+            //Int64 tmpZc1QtDepartmentId,            
             string tmpZc2JobNumber,                
-            Int64 tmpZc2QtDepartmentId,    
+            //Int64 tmpZc2QtDepartmentId,    
         
             bool tmpCheckState,
             string tmpCheckPersonJobnumber,
@@ -295,15 +295,15 @@ namespace FXB.Data
             closingTheDealMoney = tmpClosingTheDealmoney;
 
             yxConsultantJobNumber = tmpYxConsultantJobnumber;
-            yxQtDepartmentId = tmpYxQtDepartmentId;
-            YxLevelName = tmpYxLevelName;
+            //yxQtDepartmentId = tmpYxQtDepartmentId;
+            //YxLevelName = tmpYxLevelName;
 
             kyfConsultanJobNumber = tmpKyfConsultanJobnumber;
-            kyfQtDepartmentId = tmpKyfQtDepartmentId;
+            //kyfQtDepartmentId = tmpKyfQtDepartmentId;
             zc1JobNumber = tmpZc1JobNumber;
-            zc1QtDepartmentId = tmpZc1QtDepartmentId;
+            //zc1QtDepartmentId = tmpZc1QtDepartmentId;
             zc2JobNumber = tmpZc2JobNumber;
-            zc2QtDepartmentId = tmpZc2QtDepartmentId;
+            //zc2QtDepartmentId = tmpZc2QtDepartmentId;
 
             checkState = tmpCheckState;
             checkPersonJobNumber = tmpCheckPersonJobnumber;
