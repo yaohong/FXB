@@ -58,8 +58,8 @@ namespace FXB.Common
 
             string[] ym = qtKey.Split('-');
 
-            Int32 qtYear = Convert.ToInt32(ym[0]);
-            Int32 qtMonth = Convert.ToInt32(ym[1]);
+            Int32 curQtYear = Convert.ToInt32(ym[0]);
+            Int32 curQtMonth = Convert.ToInt32(ym[1]);
 
             //查找当月回佣
 
@@ -83,8 +83,8 @@ namespace FXB.Common
                 }
 
                 //查看HY的添加时间
-                DateTime dateTime = TimeUtil.TimestampToDateTime(hyData.AddTime);
-                if (dateTime.Month != qtMonth || dateTime.Year != qtYear)
+                DateTime hyDateTime = TimeUtil.TimestampToDateTime(hyData.AddTime);
+                if (hyDateTime.Month != curQtMonth || hyDateTime.Year != curQtYear)
                 {
                     //不是计算工资的年和月份
                     continue;
@@ -141,21 +141,21 @@ namespace FXB.Common
                 }
 
                 HYCount hyCount = jobItem[order.QtKey];
-                DateTime dateTime = TimeUtil.TimestampToDateTime(hyData.AddTime);
-                if (dateTime.Month == qtMonth && dateTime.Year == qtYear)
+                DateTime hyDateTime = TimeUtil.TimestampToDateTime(hyData.AddTime);
+                if (hyDateTime.Month == curQtMonth && hyDateTime.Year == curQtYear)
                 {
                     //当月回佣
                     hyCount.curHyId.Add(hyData.Id);
                 }
                 else
                 {
-                    //跨月回佣
-                    string[] childYM = order.QtKey.Split('-');
-                    Int32 childQtYear = Convert.ToInt32(childYM[0]);
-                    Int32 childQtMonth = Convert.ToInt32(childYM[1]);
+                    //之前的回佣
+                    string[] startChildYM = order.QtKey.Split('-');
+                    Int32 startChildQtYear = Convert.ToInt32(startChildYM[0]);
+                    Int32 startChildQtMonth = Convert.ToInt32(startChildYM[1]);
 
-                    if (((dateTime.Year > childQtYear) || (dateTime.Year == childQtYear && dateTime.Month >= childQtMonth)) &&
-                        ((dateTime.Year < qtYear) || (dateTime.Year == qtYear && dateTime.Month < qtMonth)))
+                    if (((hyDateTime.Year > startChildQtYear) || (hyDateTime.Year == startChildQtYear && hyDateTime.Month >= startChildQtMonth)) &&
+                        ((hyDateTime.Year < curQtYear) || (hyDateTime.Year == curQtYear && hyDateTime.Month < curQtMonth)))
                     {
                         hyCount.oldHyId.Add(hyData.Id);
                     }

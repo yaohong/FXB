@@ -6,7 +6,7 @@ qtordertd添加外键 orderid qttaskorder的id字段 OK
 qtordertd刪除退单审核的字段  OK
 新建qtpay表
 
-删除订单表和职级的外键关系 NO
+删除订单表和职级的外键关系 OK
 
 
 
