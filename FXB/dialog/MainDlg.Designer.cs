@@ -41,18 +41,13 @@
             this.薪资管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.底薪录入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.生成底薪副本ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.生成QT工资ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.QT任务ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.报表查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.员工查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.工资查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.回佣明细表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.提成明细记录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.回佣提成汇总表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.业绩提成汇总表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.qT查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改密码ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.生成QT工资ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -165,6 +160,13 @@
             this.生成底薪副本ToolStripMenuItem.Text = "生成底薪副本";
             this.生成底薪副本ToolStripMenuItem.Click += new System.EventHandler(this.生成底薪副本ToolStripMenuItem_Click);
             // 
+            // 生成QT工资ToolStripMenuItem
+            // 
+            this.生成QT工资ToolStripMenuItem.Name = "生成QT工资ToolStripMenuItem";
+            this.生成QT工资ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.生成QT工资ToolStripMenuItem.Text = "生成QT工资";
+            this.生成QT工资ToolStripMenuItem.Click += new System.EventHandler(this.生成QT工资ToolStripMenuItem_Click);
+            // 
             // QT任务ToolStripMenuItem
             // 
             this.QT任务ToolStripMenuItem.Name = "QT任务ToolStripMenuItem";
@@ -175,58 +177,25 @@
             // 报表查询ToolStripMenuItem
             // 
             this.报表查询ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.员工查询ToolStripMenuItem,
             this.工资查询ToolStripMenuItem,
-            this.回佣明细表ToolStripMenuItem,
-            this.提成明细记录ToolStripMenuItem,
-            this.回佣提成汇总表ToolStripMenuItem,
-            this.业绩提成汇总表ToolStripMenuItem,
-            this.qT查询ToolStripMenuItem});
+            this.回佣明细表ToolStripMenuItem});
             this.报表查询ToolStripMenuItem.Name = "报表查询ToolStripMenuItem";
             this.报表查询ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.报表查询ToolStripMenuItem.Text = "报表查询";
             // 
-            // 员工查询ToolStripMenuItem
-            // 
-            this.员工查询ToolStripMenuItem.Name = "员工查询ToolStripMenuItem";
-            this.员工查询ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.员工查询ToolStripMenuItem.Text = "员工查询";
-            // 
             // 工资查询ToolStripMenuItem
             // 
             this.工资查询ToolStripMenuItem.Name = "工资查询ToolStripMenuItem";
-            this.工资查询ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.工资查询ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.工资查询ToolStripMenuItem.Text = "工资查询";
+            this.工资查询ToolStripMenuItem.Click += new System.EventHandler(this.工资查询ToolStripMenuItem_Click);
             // 
             // 回佣明细表ToolStripMenuItem
             // 
             this.回佣明细表ToolStripMenuItem.Name = "回佣明细表ToolStripMenuItem";
-            this.回佣明细表ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.回佣明细表ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.回佣明细表ToolStripMenuItem.Text = "回佣明细表";
-            // 
-            // 提成明细记录ToolStripMenuItem
-            // 
-            this.提成明细记录ToolStripMenuItem.Name = "提成明细记录ToolStripMenuItem";
-            this.提成明细记录ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.提成明细记录ToolStripMenuItem.Text = "提成明细记录";
-            // 
-            // 回佣提成汇总表ToolStripMenuItem
-            // 
-            this.回佣提成汇总表ToolStripMenuItem.Name = "回佣提成汇总表ToolStripMenuItem";
-            this.回佣提成汇总表ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.回佣提成汇总表ToolStripMenuItem.Text = "回佣提成汇总表";
-            // 
-            // 业绩提成汇总表ToolStripMenuItem
-            // 
-            this.业绩提成汇总表ToolStripMenuItem.Name = "业绩提成汇总表ToolStripMenuItem";
-            this.业绩提成汇总表ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.业绩提成汇总表ToolStripMenuItem.Text = "业绩提成汇总表";
-            // 
-            // qT查询ToolStripMenuItem
-            // 
-            this.qT查询ToolStripMenuItem.Name = "qT查询ToolStripMenuItem";
-            this.qT查询ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.qT查询ToolStripMenuItem.Text = "QT查询";
+            this.回佣明细表ToolStripMenuItem.Click += new System.EventHandler(this.回佣明细表ToolStripMenuItem_Click);
             // 
             // 修改密码ToolStripMenuItem
             // 
@@ -241,13 +210,6 @@
             this.退出ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.退出ToolStripMenuItem.Text = "退出";
             this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
-            // 
-            // 生成QT工资ToolStripMenuItem
-            // 
-            this.生成QT工资ToolStripMenuItem.Name = "生成QT工资ToolStripMenuItem";
-            this.生成QT工资ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.生成QT工资ToolStripMenuItem.Text = "生成QT工资";
-            this.生成QT工资ToolStripMenuItem.Click += new System.EventHandler(this.生成QT工资ToolStripMenuItem_Click);
             // 
             // main
             // 
@@ -288,13 +250,8 @@
         private System.Windows.Forms.ToolStripMenuItem 底薪录入ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem QT任务ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 报表查询ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 员工查询ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 工资查询ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 回佣明细表ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 提成明细记录ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 回佣提成汇总表ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 业绩提成汇总表ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem qT查询ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 修改密码ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 生成底薪副本ToolStripMenuItem;

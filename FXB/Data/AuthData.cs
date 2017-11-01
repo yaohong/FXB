@@ -31,6 +31,8 @@ namespace FXB.Data
         public static Int64 TDVisibleTabMask = Convert.ToInt64("1000000000000000000", 2);   //退单页签是否可见
         public static Int64 TDCbMask = Convert.ToInt64("10000000000000000000", 2);          //退单选择框是否可点击
         public static Int64 TDCheckCbMask = Convert.ToInt64("100000000000000000000", 2);    //退单审核是否可点击
+
+        public static Int64 GenerateQtGongziMenuMask = Convert.ToInt64("1000000000000000000000", 2);    //生成QT工资
     }
     
         
@@ -123,6 +125,11 @@ namespace FXB.Data
         public bool ShowGenerateDixinFubenMenu()
         {
             return (operMake & ControlMask.GenerateDixinFubenMenuMask) == 0 ? false : true;
+        }
+
+        public bool ShowGenerateQtGongziMenu()
+        {
+            return (operMake & ControlMask.GenerateQtGongziMenuMask) == 0 ? false : true;
         }
 
         public bool ShowQtTaskMenu()

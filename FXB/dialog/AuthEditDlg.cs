@@ -51,6 +51,7 @@ namespace FXB.Dialog
             kaidanMenuCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowKaiDanMenu());
             dxluruMenuCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowDixinLuruMenu());
             generateDxMenuCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowGenerateDixinFubenMenu());
+            generateQtGongziMenuCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowGenerateQtGongziMenu());
             qtTaskMenuCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowQtTaskMenu());
             addOrderBtnCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowAddOrderBtn());
             removeOrderBtnCb.CheckState = CheckBoxUtil.boolToCbState(authData.ShowDeleteOrderBtn());
@@ -123,6 +124,11 @@ namespace FXB.Dialog
             if (generateDxMenuCb.CheckState == CheckState.Checked)
             {
                 newControlMask = (newControlMask | ControlMask.GenerateDixinFubenMenuMask);
+            }
+
+            if (generateQtGongziMenuCb.CheckState == CheckState.Checked)
+            {
+                newControlMask = (newControlMask | ControlMask.GenerateQtGongziMenuMask);
             }
 
             if (qtTaskMenuCb.CheckState == CheckState.Checked)

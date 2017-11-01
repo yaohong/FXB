@@ -47,6 +47,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tdCheckIsOperCb = new System.Windows.Forms.CheckBox();
+            this.tdIsOperCb = new System.Windows.Forms.CheckBox();
+            this.tdIsViewCb = new System.Windows.Forms.CheckBox();
             this.hyCheckCb = new System.Windows.Forms.CheckBox();
             this.hyIsViewCb = new System.Windows.Forms.CheckBox();
             this.deleteHYCb = new System.Windows.Forms.CheckBox();
@@ -65,9 +68,7 @@
             this.jobMenuCb = new System.Windows.Forms.CheckBox();
             this.saveBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
-            this.tdIsViewCb = new System.Windows.Forms.CheckBox();
-            this.tdIsOperCb = new System.Windows.Forms.CheckBox();
-            this.tdCheckIsOperCb = new System.Windows.Forms.CheckBox();
+            this.generateQtGongziMenuCb = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -252,6 +253,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.generateQtGongziMenuCb);
             this.tabPage3.Controls.Add(this.tdCheckIsOperCb);
             this.tabPage3.Controls.Add(this.tdIsOperCb);
             this.tabPage3.Controls.Add(this.tdIsViewCb);
@@ -278,6 +280,36 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "菜单权限";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tdCheckIsOperCb
+            // 
+            this.tdCheckIsOperCb.AutoSize = true;
+            this.tdCheckIsOperCb.Location = new System.Drawing.Point(244, 59);
+            this.tdCheckIsOperCb.Name = "tdCheckIsOperCb";
+            this.tdCheckIsOperCb.Size = new System.Drawing.Size(132, 16);
+            this.tdCheckIsOperCb.TabIndex = 20;
+            this.tdCheckIsOperCb.Text = "退单审核是否可操作";
+            this.tdCheckIsOperCb.UseVisualStyleBackColor = true;
+            // 
+            // tdIsOperCb
+            // 
+            this.tdIsOperCb.AutoSize = true;
+            this.tdIsOperCb.Location = new System.Drawing.Point(244, 37);
+            this.tdIsOperCb.Name = "tdIsOperCb";
+            this.tdIsOperCb.Size = new System.Drawing.Size(108, 16);
+            this.tdIsOperCb.TabIndex = 19;
+            this.tdIsOperCb.Text = "退单是否可操作";
+            this.tdIsOperCb.UseVisualStyleBackColor = true;
+            // 
+            // tdIsViewCb
+            // 
+            this.tdIsViewCb.AutoSize = true;
+            this.tdIsViewCb.Location = new System.Drawing.Point(244, 14);
+            this.tdIsViewCb.Name = "tdIsViewCb";
+            this.tdIsViewCb.Size = new System.Drawing.Size(96, 16);
+            this.tdIsViewCb.TabIndex = 18;
+            this.tdIsViewCb.Text = "退单是否可见";
+            this.tdIsViewCb.UseVisualStyleBackColor = true;
             // 
             // hyCheckCb
             // 
@@ -352,7 +384,7 @@
             // qtTaskMenuCb
             // 
             this.qtTaskMenuCb.AutoSize = true;
-            this.qtTaskMenuCb.Location = new System.Drawing.Point(22, 192);
+            this.qtTaskMenuCb.Location = new System.Drawing.Point(22, 214);
             this.qtTaskMenuCb.Name = "qtTaskMenuCb";
             this.qtTaskMenuCb.Size = new System.Drawing.Size(60, 16);
             this.qtTaskMenuCb.TabIndex = 10;
@@ -459,35 +491,15 @@
             this.exitBtn.UseVisualStyleBackColor = true;
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
-            // tdIsViewCb
+            // generateQtGongziMenuCb
             // 
-            this.tdIsViewCb.AutoSize = true;
-            this.tdIsViewCb.Location = new System.Drawing.Point(244, 14);
-            this.tdIsViewCb.Name = "tdIsViewCb";
-            this.tdIsViewCb.Size = new System.Drawing.Size(96, 16);
-            this.tdIsViewCb.TabIndex = 18;
-            this.tdIsViewCb.Text = "退单是否可见";
-            this.tdIsViewCb.UseVisualStyleBackColor = true;
-            // 
-            // tdIsOperCb
-            // 
-            this.tdIsOperCb.AutoSize = true;
-            this.tdIsOperCb.Location = new System.Drawing.Point(244, 37);
-            this.tdIsOperCb.Name = "tdIsOperCb";
-            this.tdIsOperCb.Size = new System.Drawing.Size(108, 16);
-            this.tdIsOperCb.TabIndex = 19;
-            this.tdIsOperCb.Text = "退单是否可操作";
-            this.tdIsOperCb.UseVisualStyleBackColor = true;
-            // 
-            // tdCheckIsOperCb
-            // 
-            this.tdCheckIsOperCb.AutoSize = true;
-            this.tdCheckIsOperCb.Location = new System.Drawing.Point(244, 59);
-            this.tdCheckIsOperCb.Name = "tdCheckIsOperCb";
-            this.tdCheckIsOperCb.Size = new System.Drawing.Size(132, 16);
-            this.tdCheckIsOperCb.TabIndex = 20;
-            this.tdCheckIsOperCb.Text = "退单审核是否可操作";
-            this.tdCheckIsOperCb.UseVisualStyleBackColor = true;
+            this.generateQtGongziMenuCb.AutoSize = true;
+            this.generateQtGongziMenuCb.Location = new System.Drawing.Point(22, 193);
+            this.generateQtGongziMenuCb.Name = "generateQtGongziMenuCb";
+            this.generateQtGongziMenuCb.Size = new System.Drawing.Size(84, 16);
+            this.generateQtGongziMenuCb.TabIndex = 21;
+            this.generateQtGongziMenuCb.Text = "生成QT工资";
+            this.generateQtGongziMenuCb.UseVisualStyleBackColor = true;
             // 
             // AuthEditDlg
             // 
@@ -554,5 +566,6 @@
         private System.Windows.Forms.CheckBox tdIsViewCb;
         private System.Windows.Forms.CheckBox tdIsOperCb;
         private System.Windows.Forms.CheckBox tdCheckIsOperCb;
+        private System.Windows.Forms.CheckBox generateQtGongziMenuCb;
     }
 }

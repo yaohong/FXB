@@ -61,6 +61,7 @@
     <Compile Include="DataManager\DxDuplicateMgr.cs" />
     <Compile Include="DataManager\EmployeeDataMgr.cs" />
     <Compile Include="DataManager\HYMgr.cs" />
+    <Compile Include="DataManager\ImportSalaryMgr.cs" />
     <Compile Include="DataManager\JobGradeDataMgr.cs" />
     <Compile Include="DataManager\OrderMgr.cs" />
     <Compile Include="DataManager\PayDataMgr.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Data\DxDuplicate.cs" />
     <Compile Include="Data\EmployeeData.cs" />
     <Compile Include="Data\HYData.cs" />
+    <Compile Include="Data\ImportSalary.cs" />
     <Compile Include="Data\JobGradeData.cs" />
     <Compile Include="Data\PayData.cs" />
     <Compile Include="Data\ProjectData.cs" />
@@ -171,6 +173,12 @@
     <Compile Include="Dialog\OrderOperDlg.Designer.cs">
       <DependentUpon>OrderOperDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\PageSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\PageSelect.Designer.cs">
+      <DependentUpon>PageSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\PayDataDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,6 +226,12 @@
     </Compile>
     <Compile Include="Dialog\SalaryDuplicateOperDlg.Designer.cs">
       <DependentUpon>SalaryDuplicateOperDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\SalaryImportDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\SalaryImportDlg.Designer.cs">
+      <DependentUpon>SalaryImportDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\ViewHYDlg.cs">
       <SubType>Form</SubType>
@@ -287,6 +301,9 @@
     <EmbeddedResource Include="Dialog\OrderOperDlg.resx">
       <DependentUpon>OrderOperDlg.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\PageSelect.resx">
+      <DependentUpon>PageSelect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\PayDataDlg.resx">
       <DependentUpon>PayDataDlg.cs</DependentUpon>
     </EmbeddedResource>
@@ -310,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\SalaryDuplicateOperDlg.resx">
       <DependentUpon>SalaryDuplicateOperDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\SalaryImportDlg.resx">
+      <DependentUpon>SalaryImportDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\ViewHYDlg.resx">
       <DependentUpon>ViewHYDlg.cs</DependentUpon>

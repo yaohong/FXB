@@ -50,6 +50,7 @@ namespace FXB
                 HYMgr.Instance().Init();
                 TDMgr.Instance().Load();
                 PayDataMgr.Instance().Load();
+                ImportSalaryMgr.Instance().Load();
                 LoginDlg loginDlg = new LoginDlg();
                 if (DialogResult.OK != loginDlg.ShowDialog())
                 {
@@ -87,10 +88,10 @@ namespace FXB
                         刷新数据ToolStripMenuItem.Visible = false;
                     }
 
-                    //if (!curLoginAuth.ShowKaiDanMenu())
-                    //{
-                    //    开单录入ToolStripMenuItem.Visible = false;
-                    //}
+                    if (!curLoginAuth.ShowKaiDanMenu())
+                    {
+                        单据录入ToolStripMenuItem.Visible = false;
+                    }
 
                     //if (!curLoginAuth.ShowHuiYongMenu())
                     //{
@@ -111,6 +112,11 @@ namespace FXB
                     if (!curLoginAuth.ShowGenerateDixinFubenMenu())
                     {
                         生成底薪副本ToolStripMenuItem.Visible = false;
+                    }
+
+                    if (!curLoginAuth.ShowGenerateQtGongziMenu())
+                    {
+                        生成QT工资ToolStripMenuItem.Visible = false;
                     }
 
                     if (!curLoginAuth.ShowQtTaskMenu())
@@ -203,6 +209,12 @@ namespace FXB
                 dlg.MdiParent = this;
                 dlg.Show();
             }
+            else if (dlgName == "SalaryImportDlg")
+            {
+                SalaryImportDlg dlg = new SalaryImportDlg();
+                dlg.MdiParent = this;
+                dlg.Show();
+            }
             else 
             {
                 MessageBox.Show("未知的窗口名字");
@@ -253,6 +265,16 @@ namespace FXB
         }
 
         private void 底薪录入ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowDialog("SalaryImportDlg");
+        }
+
+        private void 工资查询ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 回佣明细表ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
