@@ -115,7 +115,8 @@ namespace FXB.DataManager
             string projectCode,             //项目编码
             string roomNumber,              //房间编号
             double closingTheDealMoney,     //成交总价
-            string yxConsultantJobNumber,   //营销顾问
+            QtJob yxJob,
+            //string yxConsultantJobNumber,   //营销顾问
             string kyfConsultanJobNumber,   //客源方顾问
             string zc1JobNumber,            //驻场1
             string zc2JobNumber,            //驻场2
@@ -228,7 +229,7 @@ namespace FXB.DataManager
                 command.Parameters.AddWithValue("@projectcode", projectCode);
                 command.Parameters.AddWithValue("@roomnumber", roomNumber);
                 command.Parameters.AddWithValue("@closingthedealmoney", closingTheDealMoney);
-                command.Parameters.AddWithValue("@yxconsultantjobnumber", yxConsultantJobNumber);
+                command.Parameters.AddWithValue("@yxconsultantjobnumber", yxJob.Encode());
                 command.Parameters.AddWithValue("@yxqtdepartmentid", 0);
                 command.Parameters.AddWithValue("@yxlevelname", "");
                 command.Parameters.AddWithValue("@kyfconsultanjobnumber", kyfConsultanJobNumber);
@@ -274,7 +275,7 @@ namespace FXB.DataManager
                     projectCode,
                     roomNumber,
                     closingTheDealMoney,
-                    yxConsultantJobNumber,
+                    yxJob.Encode(),
                     kyfConsultanJobNumber,
                     zc1JobNumber,
                     zc2JobNumber,
@@ -319,7 +320,7 @@ namespace FXB.DataManager
             string newProjectCode,             //项目编码
             string newRoomNumber,              //房间编号
             double newClosingTheDealMoney,     //成交总价
-            string newYxConsultantJobNumber,   //营销顾问
+            QtJob  yxJob,   //营销顾问
 
             string newKyfConsultanJobNumber,  //客源方顾问
             string newZc1JobNumber,            //驻场1
@@ -376,7 +377,7 @@ namespace FXB.DataManager
             command.Parameters.AddWithValue("@projectcode", newProjectCode);
             command.Parameters.AddWithValue("@roomnumber", newRoomNumber);
             command.Parameters.AddWithValue("@closingthedealmoney", newClosingTheDealMoney);
-            command.Parameters.AddWithValue("@yxconsultantjobnumber", newYxConsultantJobNumber);
+            command.Parameters.AddWithValue("@yxconsultantjobnumber", yxJob.Encode());
             command.Parameters.AddWithValue("@kyfconsultanjobnumber", newKyfConsultanJobNumber);
             command.Parameters.AddWithValue("@zc1jobnumber", newZc1JobNumber);
             command.Parameters.AddWithValue("@zc2jobnumber", newZc2JobNumber);
@@ -399,7 +400,7 @@ namespace FXB.DataManager
             editQtOrder.ProjectCode = newProjectCode;
             editQtOrder.RoomNumber = newRoomNumber;
             editQtOrder.ClosingTheDealMoney = newClosingTheDealMoney;
-            editQtOrder.YxConsultantJobNumber = newYxConsultantJobNumber;
+            editQtOrder.YxJob = yxJob;
             editQtOrder.KyfConsultanJobNumber = newKyfConsultanJobNumber;
             editQtOrder.Zc1JobNumber = newZc1JobNumber;
             editQtOrder.Zc2JobNumber = newZc2JobNumber;

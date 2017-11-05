@@ -103,33 +103,10 @@ namespace FXB.Dialog
             checkJobNumberEdi.Enabled = false;
             checkTimeEdi.Enabled = false;
 
-            ywyEdi.Enabled = false;
-            ywyGZEdi.Enabled = false;
-            kyfEdi.Enabled = false;
-            kyfGZEdi.Enabled = false;
             //显示预发工资
 
-            QtOrder order = OrderMgr.Instance().AllOrderData[editHyData.OrderId];//editHyData.OrderId
-            QtTask qtTask = QtMgr.Instance().AllQtTask[order.QtKey];
-
-            //姓名不能修改，直接从employeeMgr里面取
-            string yxName = EmployeeDataMgr.Instance().AllEmployeeData[order.YxConsultantJobNumber].Name;
-            double yxYFGongzi = editHyData.Amount * 0.1;
-            string kyfName = "";
-            double kyfYFGongzi = 0.0f;
-            if (order.KyfConsultanJobNumber != "")
-            {
-                kyfName = EmployeeDataMgr.Instance().AllEmployeeData[order.KyfConsultanJobNumber].Name;
-
-                yxYFGongzi = (editHyData.Amount * 0.9) * 0.1;
-                kyfYFGongzi = (editHyData.Amount * 0.1) * 0.1;
-
-                kyfEdi.Text = kyfName;
-                kyfGZEdi.Text = System.Math.Round(kyfYFGongzi, 2).ToString();
-            }
-
-            ywyEdi.Text = yxName;
-            ywyGZEdi.Text = System.Math.Round(yxYFGongzi, 2).ToString();
+            //QtOrder order = OrderMgr.Instance().AllOrderData[editHyData.OrderId];//editHyData.OrderId
+            //QtTask qtTask = QtMgr.Instance().AllQtTask[order.QtKey];
 
 
         }

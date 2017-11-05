@@ -47,6 +47,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.generateQtGongziMenuCb = new System.Windows.Forms.CheckBox();
             this.tdCheckIsOperCb = new System.Windows.Forms.CheckBox();
             this.tdIsOperCb = new System.Windows.Forms.CheckBox();
             this.tdIsViewCb = new System.Windows.Forms.CheckBox();
@@ -68,7 +69,6 @@
             this.jobMenuCb = new System.Windows.Forms.CheckBox();
             this.saveBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
-            this.generateQtGongziMenuCb = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -281,6 +281,16 @@
             this.tabPage3.Text = "菜单权限";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // generateQtGongziMenuCb
+            // 
+            this.generateQtGongziMenuCb.AutoSize = true;
+            this.generateQtGongziMenuCb.Location = new System.Drawing.Point(22, 171);
+            this.generateQtGongziMenuCb.Name = "generateQtGongziMenuCb";
+            this.generateQtGongziMenuCb.Size = new System.Drawing.Size(84, 16);
+            this.generateQtGongziMenuCb.TabIndex = 21;
+            this.generateQtGongziMenuCb.Text = "生成QT工资";
+            this.generateQtGongziMenuCb.UseVisualStyleBackColor = true;
+            // 
             // tdCheckIsOperCb
             // 
             this.tdCheckIsOperCb.AutoSize = true;
@@ -384,7 +394,7 @@
             // qtTaskMenuCb
             // 
             this.qtTaskMenuCb.AutoSize = true;
-            this.qtTaskMenuCb.Location = new System.Drawing.Point(22, 214);
+            this.qtTaskMenuCb.Location = new System.Drawing.Point(22, 192);
             this.qtTaskMenuCb.Name = "qtTaskMenuCb";
             this.qtTaskMenuCb.Size = new System.Drawing.Size(60, 16);
             this.qtTaskMenuCb.TabIndex = 10;
@@ -394,7 +404,7 @@
             // generateDxMenuCb
             // 
             this.generateDxMenuCb.AutoSize = true;
-            this.generateDxMenuCb.Location = new System.Drawing.Point(22, 170);
+            this.generateDxMenuCb.Location = new System.Drawing.Point(22, 148);
             this.generateDxMenuCb.Name = "generateDxMenuCb";
             this.generateDxMenuCb.Size = new System.Drawing.Size(96, 16);
             this.generateDxMenuCb.TabIndex = 9;
@@ -404,7 +414,7 @@
             // dxluruMenuCb
             // 
             this.dxluruMenuCb.AutoSize = true;
-            this.dxluruMenuCb.Location = new System.Drawing.Point(22, 148);
+            this.dxluruMenuCb.Location = new System.Drawing.Point(22, 126);
             this.dxluruMenuCb.Name = "dxluruMenuCb";
             this.dxluruMenuCb.Size = new System.Drawing.Size(72, 16);
             this.dxluruMenuCb.TabIndex = 8;
@@ -414,12 +424,13 @@
             // kaidanMenuCb
             // 
             this.kaidanMenuCb.AutoSize = true;
-            this.kaidanMenuCb.Location = new System.Drawing.Point(22, 126);
+            this.kaidanMenuCb.Location = new System.Drawing.Point(379, 249);
             this.kaidanMenuCb.Name = "kaidanMenuCb";
             this.kaidanMenuCb.Size = new System.Drawing.Size(72, 16);
             this.kaidanMenuCb.TabIndex = 5;
             this.kaidanMenuCb.Text = "开单录入";
             this.kaidanMenuCb.UseVisualStyleBackColor = true;
+            this.kaidanMenuCb.Visible = false;
             // 
             // refreshMenuCb
             // 
@@ -490,16 +501,6 @@
             this.exitBtn.Text = "退出";
             this.exitBtn.UseVisualStyleBackColor = true;
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
-            // 
-            // generateQtGongziMenuCb
-            // 
-            this.generateQtGongziMenuCb.AutoSize = true;
-            this.generateQtGongziMenuCb.Location = new System.Drawing.Point(22, 193);
-            this.generateQtGongziMenuCb.Name = "generateQtGongziMenuCb";
-            this.generateQtGongziMenuCb.Size = new System.Drawing.Size(84, 16);
-            this.generateQtGongziMenuCb.TabIndex = 21;
-            this.generateQtGongziMenuCb.Text = "生成QT工资";
-            this.generateQtGongziMenuCb.UseVisualStyleBackColor = true;
             // 
             // AuthEditDlg
             // 

@@ -44,18 +44,8 @@
             this.checkJobNumberEdi = new System.Windows.Forms.TextBox();
             this.lable10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.kyfGZEdi = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.kyfEdi = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.ywyGZEdi = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.ywyEdi = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -109,7 +99,6 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(35, 22);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -208,88 +197,6 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "审核状态:";
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.kyfGZEdi);
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.kyfEdi);
-            this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.ywyGZEdi);
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.ywyEdi);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(429, 249);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "预发工资";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // kyfGZEdi
-            // 
-            this.kyfGZEdi.Location = new System.Drawing.Point(272, 43);
-            this.kyfGZEdi.Name = "kyfGZEdi";
-            this.kyfGZEdi.Size = new System.Drawing.Size(122, 21);
-            this.kyfGZEdi.TabIndex = 7;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(207, 52);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(59, 12);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "预发工资:";
-            // 
-            // kyfEdi
-            // 
-            this.kyfEdi.Location = new System.Drawing.Point(68, 43);
-            this.kyfEdi.Name = "kyfEdi";
-            this.kyfEdi.Size = new System.Drawing.Size(122, 21);
-            this.kyfEdi.TabIndex = 5;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 52);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 12);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "客源方:";
-            // 
-            // ywyGZEdi
-            // 
-            this.ywyGZEdi.Location = new System.Drawing.Point(272, 15);
-            this.ywyGZEdi.Name = "ywyGZEdi";
-            this.ywyGZEdi.Size = new System.Drawing.Size(122, 21);
-            this.ywyGZEdi.TabIndex = 3;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(207, 24);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 12);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "预发工资:";
-            // 
-            // ywyEdi
-            // 
-            this.ywyEdi.Location = new System.Drawing.Point(68, 15);
-            this.ywyEdi.Name = "ywyEdi";
-            this.ywyEdi.Size = new System.Drawing.Size(122, 21);
-            this.ywyEdi.TabIndex = 1;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 24);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 12);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "业务员:";
-            // 
             // ViewHYDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -305,8 +212,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -321,15 +226,6 @@
         private System.Windows.Forms.DateTimePicker hyTime;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox ywyEdi;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox ywyGZEdi;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox kyfEdi;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox kyfGZEdi;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lable10;
         private System.Windows.Forms.TextBox checkJobNumberEdi;

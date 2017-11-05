@@ -44,9 +44,9 @@ namespace FXB.Common
     public class PayUtil
     {
         public static void GeneratePay(
-            string qtKey,                                                               //月份
-            ref SortedDictionary<string, SortedDictionary<Int64, List<PayItem>>> hyPay,        //回佣的工资 工号=>(回佣id=>获取的提成)
-            ref SortedDictionary<string, SortedDictionary<string, double>> dxPay        //奖励底薪  工号=>(QTKey=>奖励底薪)
+            string qtKey,                                                                       //月份
+            ref SortedDictionary<string, SortedDictionary<Int64, List<PayItem>>> hyPay         //回佣的工资 工号=>(回佣id=>获取的提成)
+            //ref SortedDictionary<string, SortedDictionary<string, double>> dxPay                //奖励底薪  工号=>(QTKey=>奖励底薪)
             )
         {
             //要计算的那个月
@@ -65,7 +65,7 @@ namespace FXB.Common
 
             //第一轮循环查找满足条件的QT任务(需要计算底薪奖励的QT任务)
             List<HYData> validAllHy = new List<HYData>();
-            SortedDictionary<string, SortedDictionary<string, HYCount>> curStatHy = new SortedDictionary<string, SortedDictionary<string, HYCount>>();
+            //SortedDictionary<string, SortedDictionary<string, HYCount>> curStatHy = new SortedDictionary<string, SortedDictionary<string, HYCount>>();
             foreach (var hyItem in HYMgr.Instance().AllHYData)
             {
                 HYData hyData = hyItem.Value;
@@ -92,112 +92,112 @@ namespace FXB.Common
 
 
 
-                SortedDictionary<string, HYCount> jobItem = null;
-                if (curStatHy.ContainsKey(order.YxConsultantJobNumber))
-                {
-                    jobItem = curStatHy[order.YxConsultantJobNumber];
-                }
-                else
-                {
-                    jobItem = new SortedDictionary<string, HYCount>();
-                    curStatHy[order.YxConsultantJobNumber] = jobItem;
-                }
+                //SortedDictionary<string, HYCount> jobItem = null;
+                //if (curStatHy.ContainsKey(order.YxConsultantJobNumber))
+                //{
+                //    jobItem = curStatHy[order.YxConsultantJobNumber];
+                //}
+                //else
+                //{
+                //    jobItem = new SortedDictionary<string, HYCount>();
+                //    curStatHy[order.YxConsultantJobNumber] = jobItem;
+                //}
 
-                if (!jobItem.ContainsKey(order.QtKey))
-                {
-                    QtTask orderBelongQtTask = QtMgr.Instance().AllQtTask[order.QtKey];
-                    //获取开单顾问的职级(从订单所属的QT任务里获取)
-                    string jobLevelName = QtTaskUtil.GetJobLevelNameByQtTask(orderBelongQtTask, order.YxConsultantJobNumber);
-                    jobItem[order.QtKey] = new HYCount(jobLevelName);
-                }
+                //if (!jobItem.ContainsKey(order.QtKey))
+                //{
+                //    QtTask orderBelongQtTask = QtMgr.Instance().AllQtTask[order.QtKey];
+                //    //获取开单顾问的职级(从订单所属的QT任务里获取)
+                //    string jobLevelName = QtTaskUtil.GetJobLevelNameByQtTask(orderBelongQtTask, order.YxConsultantJobNumber);
+                //    jobItem[order.QtKey] = new HYCount(jobLevelName);
+                //}
                 validAllHy.Add(hyData);
             }
 
             //计算这个月要发放的奖励底薪
-            foreach (var hyItem in HYMgr.Instance().AllHYData)
-            {
-                HYData hyData = hyItem.Value;
-                if (!hyData.CheckState)
-                {
-                    //没有审核
-                    continue;
-                }
+            //foreach (var hyItem in HYMgr.Instance().AllHYData)
+            //{
+            //    HYData hyData = hyItem.Value;
+            //    if (!hyData.CheckState)
+            //    {
+            //        //没有审核
+            //        continue;
+            //    }
 
-                QtOrder order = OrderMgr.Instance().AllOrderData[hyData.OrderId];
-                if (order.ReturnData.IsReturn)
-                {
-                    //所属的订单已经退单了
-                    continue;
-                }
+            //    QtOrder order = OrderMgr.Instance().AllOrderData[hyData.OrderId];
+            //    if (order.ReturnData.IsReturn)
+            //    {
+            //        //所属的订单已经退单了
+            //        continue;
+            //    }
 
-                if (!curStatHy.ContainsKey(order.YxConsultantJobNumber))
-                {
-                    continue;
-                }
-                SortedDictionary<string, HYCount> jobItem = curStatHy[order.YxConsultantJobNumber];
-                if (!jobItem.ContainsKey(order.QtKey))
-                {
-                    continue;
-                }
+            //    if (!curStatHy.ContainsKey(order.YxConsultantJobNumber))
+            //    {
+            //        continue;
+            //    }
+            //    SortedDictionary<string, HYCount> jobItem = curStatHy[order.YxConsultantJobNumber];
+            //    if (!jobItem.ContainsKey(order.QtKey))
+            //    {
+            //        continue;
+            //    }
 
-                HYCount hyCount = jobItem[order.QtKey];
-                DateTime hyDateTime = TimeUtil.TimestampToDateTime(hyData.AddTime);
-                if (hyDateTime.Month == curQtMonth && hyDateTime.Year == curQtYear)
-                {
-                    //当月回佣
-                    hyCount.curHyId.Add(hyData.Id);
-                }
-                else
-                {
-                    //之前的回佣
-                    string[] startChildYM = order.QtKey.Split('-');
-                    Int32 startChildQtYear = Convert.ToInt32(startChildYM[0]);
-                    Int32 startChildQtMonth = Convert.ToInt32(startChildYM[1]);
+            //    HYCount hyCount = jobItem[order.QtKey];
+            //    DateTime hyDateTime = TimeUtil.TimestampToDateTime(hyData.AddTime);
+            //    if (hyDateTime.Month == curQtMonth && hyDateTime.Year == curQtYear)
+            //    {
+            //        //当月回佣
+            //        hyCount.curHyId.Add(hyData.Id);
+            //    }
+            //    else
+            //    {
+            //        //之前的回佣
+            //        string[] startChildYM = order.QtKey.Split('-');
+            //        Int32 startChildQtYear = Convert.ToInt32(startChildYM[0]);
+            //        Int32 startChildQtMonth = Convert.ToInt32(startChildYM[1]);
 
-                    if (((hyDateTime.Year > startChildQtYear) || (hyDateTime.Year == startChildQtYear && hyDateTime.Month >= startChildQtMonth)) &&
-                        ((hyDateTime.Year < curQtYear) || (hyDateTime.Year == curQtYear && hyDateTime.Month < curQtMonth)))
-                    {
-                        hyCount.oldHyId.Add(hyData.Id);
-                    }
-                }
-            }
+            //        if (((hyDateTime.Year > startChildQtYear) || (hyDateTime.Year == startChildQtYear && hyDateTime.Month >= startChildQtMonth)) &&
+            //            ((hyDateTime.Year < curQtYear) || (hyDateTime.Year == curQtYear && hyDateTime.Month < curQtMonth)))
+            //        {
+            //            hyCount.oldHyId.Add(hyData.Id);
+            //        }
+            //    }
+            //}
 
-            foreach (var jobitem in curStatHy)
-            {
-                string jobnumber = jobitem.Key;
-                SortedDictionary<string, HYCount> hyData = jobitem.Value;
+            //foreach (var jobitem in curStatHy)
+            //{
+            //    string jobnumber = jobitem.Key;
+            //    SortedDictionary<string, HYCount> hyData = jobitem.Value;
 
-                SortedDictionary<string, double> tmpDxMap = new SortedDictionary<string, double>();
-                foreach (var hyitem in hyData)
-                {
-                    string jobqtkey = hyitem.Key;
-                    HYCount jobHyData = hyitem.Value;
+            //    SortedDictionary<string, double> tmpDxMap = new SortedDictionary<string, double>();
+            //    foreach (var hyitem in hyData)
+            //    {
+            //        string jobqtkey = hyitem.Key;
+            //        HYCount jobHyData = hyitem.Value;
 
-                    if (jobHyData.levelName == "Z2")
-                    {
-                        //一个回佣就可以了
-                        if (jobHyData.oldHyId.Count == 0 && jobHyData.curHyId.Count >= 1)
-                        {
-                            //可以发放了
-                            tmpDxMap[jobqtkey] = 1000; 
-                        }
-                    }
-                    else if (jobHyData.levelName == "Z3")
-                    {
+            //        if (jobHyData.levelName == "Z2")
+            //        {
+            //            //一个回佣就可以了
+            //            if (jobHyData.oldHyId.Count == 0 && jobHyData.curHyId.Count >= 1)
+            //            {
+            //                //可以发放了
+            //                tmpDxMap[jobqtkey] = 1000; 
+            //            }
+            //        }
+            //        else if (jobHyData.levelName == "Z3")
+            //        {
                         
-                        if ((jobHyData.oldHyId.Count == 0 && jobHyData.curHyId.Count >= 2) || (jobHyData.oldHyId.Count == 1 && jobHyData.curHyId.Count >= 1))
-                        {
-                            //可以发放了
-                            tmpDxMap[jobqtkey] = 1000;
-                        }
-                    }
-                    else
-                    {
-                        //不算底薪
-                    }
-                }
-                dxPay[jobnumber] = tmpDxMap;
-            }
+            //            if ((jobHyData.oldHyId.Count == 0 && jobHyData.curHyId.Count >= 2) || (jobHyData.oldHyId.Count == 1 && jobHyData.curHyId.Count >= 1))
+            //            {
+            //                //可以发放了
+            //                tmpDxMap[jobqtkey] = 1000;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            //不算底薪
+            //        }
+            //    }
+            //    dxPay[jobnumber] = tmpDxMap;
+            //}
 
             //查看回佣的提成
             //bool ywy = true;
@@ -216,14 +216,19 @@ namespace FXB.Common
             //QtDepartment qtDepartment = qtTask.AllQtDepartment[qtOrder.YxQtDepartmentId];
             //自己拿20%
             double yxAmount = hyData.Amount;
-            if (qtOrder.KyfConsultanJobNumber != "")
+           
+
+            //计算业务员拿的提成
+            QtJob qtJob = qtOrder.YxJob;
+            foreach (var item in qtJob.Jobs)
             {
-                //有客源方,拿90%
-                yxAmount = hyData.Amount * 0.9;
+                string yxJobnumber = item.Key;
+                Int32 yxProp = item.Value;
+
+                Int64 yxQtDepartmentId = QtTaskUtil.GetJobDepartmentIdByQtTask(qtTask, yxJobnumber);
+                GenerateJobnumberPay(ref allHyPay, qtTask, yxJobnumber, yxQtDepartmentId, hyData.Id, (yxAmount * yxProp) / 10000);
             }
 
-            Int64 yxQtDepartmentId = QtTaskUtil.GetJobDepartmentIdByQtTask(qtTask, qtOrder.YxConsultantJobNumber);
-            GenerateJobnumberPay(ref allHyPay, qtTask, qtOrder.YxConsultantJobNumber, yxQtDepartmentId, hyData.Id, yxAmount);
             if (qtOrder.KyfConsultanJobNumber != "" )
             {
                 //客源方算10%

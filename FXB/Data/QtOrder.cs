@@ -3,9 +3,163 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
+using FXB.Common;
 namespace FXB.Data
 {
+    public class QtJob
+    {
+        private SortedDictionary<string, Int32> jobs;
+
+        public SortedDictionary<string, Int32> Jobs
+        {
+            get { return jobs; }
+        }
+
+        public QtJob()
+        {
+            jobs = new SortedDictionary<string, Int32>();
+        }
+
+        public QtJob Clone()
+        {
+            QtJob newQtJob = new QtJob();
+            foreach (var item in jobs)
+            {
+                newQtJob.Jobs[item.Key] = item.Value; 
+            }
+
+            return newQtJob;
+        }
+
+
+        public bool Exist(string job)
+        {
+            return jobs.ContainsKey(job);
+        }
+
+        public Int32 GetProp(string job)
+        {
+            return jobs[job];
+        }
+
+        public void SetProp(string job, Int32 newProp)
+        {
+            if (!jobs.ContainsKey(job))
+            {
+                throw new CrashException("不能修改比例,指定的业务顾问不存在," + job);
+            }
+
+            jobs[job] = newProp;
+
+        }
+
+
+
+        public void Add(string job, Int32 prop)
+        {
+            if (jobs.ContainsKey(job))
+            {
+                throw new CrashException("重复添加");
+            }
+
+            jobs[job] = prop;
+        }
+        public void Remove(string job)
+        {
+            jobs.Remove(job);
+        }
+
+        public string Encode()
+        {
+            int len = jobs.Count();
+            string [] items = new string[len];
+            int index = 0;
+            foreach (var item in jobs)
+            {
+                string kv = string.Format("{0}:{1}", item.Key, item.Value);
+                items[index++] = kv;
+            }
+
+            return string.Join("|", items);
+        }
+
+
+        //jobnumber1:pro1-jobnumber2:pro2
+        public QtJob(string rawStr, bool kyf)
+        {
+            jobs = new SortedDictionary<string, Int32>();
+            if (-1 == rawStr.IndexOf(":"))
+            {
+                //老版的jobnumber
+                if (kyf)
+                {
+                    jobs[rawStr] = 9000;         //900/1000
+                }
+                else
+                {
+                    jobs[rawStr] = 10000;
+                }
+            }
+            else
+            {
+                //新版的
+                try
+                {
+                    string[] jps = rawStr.Split('|');
+                    foreach(string jp in jps)
+                    {
+                        string[] items = jp.Split(':');
+                        if (items.Count<string>() != 2 )
+                        {
+                            throw new Exception(string.Format("yxJob format error, {0}", rawStr));
+                        }
+
+                        string jobnumber = items[0];
+                        string strProp = items[1];          //千分比
+                        Int32 intProp = Convert.ToInt32(strProp);
+
+                        if (jobs.ContainsKey(jobnumber))
+                        {
+                            throw new Exception(string.Format("yxJob format error, {0}", rawStr));
+                        }
+
+                        jobs[jobnumber] = intProp; 
+                    }
+
+                    if (!Check(kyf))
+                    {
+                        //检测错误
+                        throw new Exception(string.Format("yxJob format error, {0}", rawStr));
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new CrashException(e.Message);
+                }
+
+            }
+        }
+
+        public bool Check(bool kyf)
+        {
+            Int32 totoal = 0;
+            foreach (var item in jobs)
+            {
+                totoal += item.Value;
+            }
+
+            if (kyf)
+            {
+                return totoal == 9000;
+            }
+            else
+            {
+                return totoal == 10000;
+            }
+        }
+    }
+
     public class QtOrder
     {
         private Int64 orderId;                  //开单的ID
@@ -21,8 +175,8 @@ namespace FXB.Data
 
 
 
-
-        private string yxConsultantJobNumber;        //营销顾问
+//        private string yxConsultantJobNumber;
+        private QtJob yxJobNumber;               //营销顾问
 //        private Int64 yxQtDepartmentId;             //营销顾问所属的QT部门
 //        private string yxLevelName;                 //营销顾问的职级
         private string kyfConsultanJobNumber;       //客源方顾问
@@ -38,10 +192,6 @@ namespace FXB.Data
         private bool checkState;                    //审核状态
         private string checkPersonJobNumber;        //审核人
         private UInt32 checkTime;                   //审核日期
-
-        //private bool ifchargeback;                   //是否退单
-        //private string cbJobNumber;                  //退单人
-        //private UInt32 cbTime;                       //退单时间
 
         private TDData returnData;                  //退单数据
 
@@ -110,10 +260,10 @@ namespace FXB.Data
             set { closingTheDealMoney = value; }
         }
 
-        public string YxConsultantJobNumber
+        public QtJob YxJob
         {
-            get { return yxConsultantJobNumber; }
-            set { yxConsultantJobNumber = value; }
+            get { return yxJobNumber; }
+            set { yxJobNumber = value; }
         }
 
         //public Int64 YxQtDepartmentId
@@ -127,6 +277,8 @@ namespace FXB.Data
         //    get { return yxLevelName; }
         //    set { yxLevelName = value; }
         //}
+
+ 
 
         public string KyfConsultanJobNumber
         {
@@ -257,7 +409,7 @@ namespace FXB.Data
             string tmpRoomNumber,
             double tmpClosingTheDealmoney,
 
-            string tmpYxConsultantJobnumber,
+            string rawConsultantJobnumber,
             //Int64 tmpYxQtDepartmentId,          
             //string tmpYxLevelName,
 
@@ -294,7 +446,7 @@ namespace FXB.Data
             roomNumber = tmpRoomNumber;
             closingTheDealMoney = tmpClosingTheDealmoney;
 
-            yxConsultantJobNumber = tmpYxConsultantJobnumber;
+            yxJobNumber = new QtJob(rawConsultantJobnumber, tmpKyfConsultanJobnumber != "");
             //yxQtDepartmentId = tmpYxQtDepartmentId;
             //YxLevelName = tmpYxLevelName;
 

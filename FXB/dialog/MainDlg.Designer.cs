@@ -158,6 +158,7 @@
             this.生成底薪副本ToolStripMenuItem.Name = "生成底薪副本ToolStripMenuItem";
             this.生成底薪副本ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.生成底薪副本ToolStripMenuItem.Text = "生成底薪副本";
+            this.生成底薪副本ToolStripMenuItem.Visible = false;
             this.生成底薪副本ToolStripMenuItem.Click += new System.EventHandler(this.生成底薪副本ToolStripMenuItem_Click);
             // 
             // 生成QT工资ToolStripMenuItem

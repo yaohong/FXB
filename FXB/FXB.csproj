@@ -125,6 +125,12 @@
     <Compile Include="Dialog\DepartmentSelectDlg.Designer.cs">
       <DependentUpon>DepartmentSelectDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\SingleJobEditDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\SingleJobEditDlg.Designer.cs">
+      <DependentUpon>SingleJobEditDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\EmployeeOperDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,12 @@
     </Compile>
     <Compile Include="Dialog\EmployeeSelectDlg.Designer.cs">
       <DependentUpon>EmployeeSelectDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\JobEditDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\JobEditDlg.Designer.cs">
+      <DependentUpon>JobEditDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\JobGradeDataDlg.cs">
       <SubType>Form</SubType>
@@ -277,11 +289,17 @@
     <EmbeddedResource Include="Dialog\DepartmentSelectDlg.resx">
       <DependentUpon>DepartmentSelectDlg.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\SingleJobEditDlg.resx">
+      <DependentUpon>SingleJobEditDlg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\EmployeeOperDlg.resx">
       <DependentUpon>EmployeeOperDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\EmployeeSelectDlg.resx">
       <DependentUpon>EmployeeSelectDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\JobEditDlg.resx">
+      <DependentUpon>JobEditDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\JobGradeDataDlg.resx">
       <DependentUpon>JobGradeDataDlg.cs</DependentUpon>

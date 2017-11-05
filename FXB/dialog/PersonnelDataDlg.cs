@@ -492,7 +492,7 @@ namespace FXB.Dialog
                     foreach (var orderItem in qtTask.AllQtOrder)
                     {
                         QtOrder qtOrder = orderItem.Value;
-                        if (qtOrder.YxConsultantJobNumber == gonghao)
+                        if (qtOrder.YxJob.Exist(gonghao))
                         {
                             throw new ConditionCheckException(string.Format("工号[{0}]在QT任务[{1}]的订单[{2}]里被指定为营销顾问，不能删除", gonghao, item.Key, orderItem.Key));
                         }

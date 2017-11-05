@@ -206,37 +206,30 @@ namespace FXB.Data
                     continue;
                 }
                 QtTask qtTask = QtMgr.Instance().AllQtTask[qtOrder.QtKey];
-                Int64 departmentId = QtTaskUtil.GetJobDepartmentIdByQtTask(qtTask, qtOrder.YxConsultantJobNumber);
-                double yxCommission = qtOrder.CommissionAmount;
-                if (qtOrder.KyfConsultanJobNumber != "")
+
+                foreach (var childJob in qtOrder.YxJob.Jobs)
                 {
-                    //有客源方
-                    yxCommission = qtOrder.CommissionAmount * 0.9;
-                    double kyfCommission = qtOrder.CommissionAmount * 0.1;
-                    //给客源方加业绩
-                    Int64 kyfDepartmentId = QtTaskUtil.GetJobDepartmentIdByQtTask(qtTask, qtOrder.KyfConsultanJobNumber);
-                    while (kyfDepartmentId != 0)
-                    {
-                        QtDepartment kyfQtDepartment = allQtDepartment[kyfDepartmentId];
-                        //if (kyfQtDepartment.OwnerJobNumber != "")
-                        //{
-                            kyfQtDepartment.AlreadyCompleteTaskAmount += kyfCommission;
-                        //}
-                        kyfDepartmentId = kyfQtDepartment.ParentDepartmentId;
-                    }
+                    string yxJobnumber = childJob.Key;
+                    Int32 yxProp = childJob.Value;
+                    CalcDepartmentCommission(qtTask, yxJobnumber, qtOrder.CommissionAmount * (yxProp / 10000));
                 }
 
-                //给自身添加业绩
-                while (departmentId != 0)
-                {
-                    QtDepartment qtDepartment = allQtDepartment[departmentId];
-                    //if (qtDepartment.OwnerJobNumber != "")
-                    //{
-                    qtDepartment.AlreadyCompleteTaskAmount += yxCommission;
-                    //}
-                    departmentId = qtDepartment.ParentDepartmentId;
-                }
+            }
+        }
 
+        private void CalcDepartmentCommission(QtTask task, string jobnumber, double amount)
+        {
+            //double kyfCommission = qtOrder.CommissionAmount * 0.1;
+            //给客源方加业绩
+            Int64 departmentId = QtTaskUtil.GetJobDepartmentIdByQtTask(task, jobnumber);
+            while (departmentId != 0)
+            {
+                QtDepartment kyfQtDepartment = allQtDepartment[departmentId];
+                //if (kyfQtDepartment.OwnerJobNumber != "")
+                //{
+                kyfQtDepartment.AlreadyCompleteTaskAmount += amount;
+                //}
+                departmentId = kyfQtDepartment.ParentDepartmentId;
             }
         }
 

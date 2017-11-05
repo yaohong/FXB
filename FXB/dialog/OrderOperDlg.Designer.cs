@@ -28,31 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.orderGenerateTime = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.zc2QtLevelEdi = new System.Windows.Forms.TextBox();
-            this.zc1QtLevelEdi = new System.Windows.Forms.TextBox();
-            this.kyfQtLevelEdi = new System.Windows.Forms.TextBox();
-            this.yxQtLevelEdi = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.zc2BumenEdi = new System.Windows.Forms.TextBox();
-            this.zc1BumenEdi = new System.Windows.Forms.TextBox();
-            this.kyfBumenEdi = new System.Windows.Forms.TextBox();
-            this.yxBumenEdi = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.zhuchang2SelectBtn = new System.Windows.Forms.Button();
-            this.zhuchang2Edi = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.zhuchang1SelectBtn = new System.Windows.Forms.Button();
-            this.zhuchang1Edi = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.keyuanSelectBtn = new System.Windows.Forms.Button();
-            this.keyuanEdi = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.guwenSelectBtn = new System.Windows.Forms.Button();
-            this.guwenEdi = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.saveBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
@@ -94,8 +74,25 @@
             this.luruJobNumberLable = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.hetongzhuangtaiCb = new System.Windows.Forms.ComboBox();
             this.fukuanTypeCb = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.myGroupBox1 = new FXB.MyControl.MyGroupBox();
+            this.zc2QtLevelEdi = new System.Windows.Forms.TextBox();
+            this.zhuchang1SelectBtn = new System.Windows.Forms.Button();
+            this.zc1QtLevelEdi = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.zhuchang2Edi = new System.Windows.Forms.TextBox();
+            this.kyfQtLevelEdi = new System.Windows.Forms.TextBox();
+            this.zhuchang2SelectBtn = new System.Windows.Forms.Button();
+            this.zhuchang1Edi = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.zc2BumenEdi = new System.Windows.Forms.TextBox();
+            this.keyuanSelectBtn = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.kyfBumenEdi = new System.Windows.Forms.TextBox();
+            this.zc1BumenEdi = new System.Windows.Forms.TextBox();
+            this.keyuanEdi = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new FXB.MyControl.MyTableLayoutPanel();
             this.hyDataGridView1 = new FXB.MyControl.MyDataGridView();
@@ -110,10 +107,10 @@
             this.label26 = new System.Windows.Forms.Label();
             this.tuidanJobEdit = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.hetongzhuangtaiCb = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.myGroupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.hyDataGridView1)).BeginInit();
@@ -139,182 +136,15 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "开单日期:";
             // 
-            // zc2QtLevelEdi
-            // 
-            this.zc2QtLevelEdi.Location = new System.Drawing.Point(518, 123);
-            this.zc2QtLevelEdi.Name = "zc2QtLevelEdi";
-            this.zc2QtLevelEdi.ReadOnly = true;
-            this.zc2QtLevelEdi.Size = new System.Drawing.Size(100, 21);
-            this.zc2QtLevelEdi.TabIndex = 38;
-            // 
-            // zc1QtLevelEdi
-            // 
-            this.zc1QtLevelEdi.Location = new System.Drawing.Point(518, 96);
-            this.zc1QtLevelEdi.Name = "zc1QtLevelEdi";
-            this.zc1QtLevelEdi.ReadOnly = true;
-            this.zc1QtLevelEdi.Size = new System.Drawing.Size(100, 21);
-            this.zc1QtLevelEdi.TabIndex = 37;
-            // 
-            // kyfQtLevelEdi
-            // 
-            this.kyfQtLevelEdi.Location = new System.Drawing.Point(518, 69);
-            this.kyfQtLevelEdi.Name = "kyfQtLevelEdi";
-            this.kyfQtLevelEdi.ReadOnly = true;
-            this.kyfQtLevelEdi.Size = new System.Drawing.Size(100, 21);
-            this.kyfQtLevelEdi.TabIndex = 36;
-            // 
-            // yxQtLevelEdi
-            // 
-            this.yxQtLevelEdi.Location = new System.Drawing.Point(518, 42);
-            this.yxQtLevelEdi.Name = "yxQtLevelEdi";
-            this.yxQtLevelEdi.ReadOnly = true;
-            this.yxQtLevelEdi.Size = new System.Drawing.Size(100, 21);
-            this.yxQtLevelEdi.TabIndex = 35;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(516, 23);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(47, 12);
-            this.label21.TabIndex = 34;
-            this.label21.Text = "QT级别:";
-            // 
-            // zc2BumenEdi
-            // 
-            this.zc2BumenEdi.Location = new System.Drawing.Point(300, 123);
-            this.zc2BumenEdi.Name = "zc2BumenEdi";
-            this.zc2BumenEdi.ReadOnly = true;
-            this.zc2BumenEdi.Size = new System.Drawing.Size(212, 21);
-            this.zc2BumenEdi.TabIndex = 29;
-            // 
-            // zc1BumenEdi
-            // 
-            this.zc1BumenEdi.Location = new System.Drawing.Point(300, 96);
-            this.zc1BumenEdi.Name = "zc1BumenEdi";
-            this.zc1BumenEdi.ReadOnly = true;
-            this.zc1BumenEdi.Size = new System.Drawing.Size(212, 21);
-            this.zc1BumenEdi.TabIndex = 28;
-            // 
-            // kyfBumenEdi
-            // 
-            this.kyfBumenEdi.Location = new System.Drawing.Point(300, 69);
-            this.kyfBumenEdi.Name = "kyfBumenEdi";
-            this.kyfBumenEdi.ReadOnly = true;
-            this.kyfBumenEdi.Size = new System.Drawing.Size(212, 21);
-            this.kyfBumenEdi.TabIndex = 27;
-            // 
-            // yxBumenEdi
-            // 
-            this.yxBumenEdi.Location = new System.Drawing.Point(300, 42);
-            this.yxBumenEdi.Name = "yxBumenEdi";
-            this.yxBumenEdi.ReadOnly = true;
-            this.yxBumenEdi.Size = new System.Drawing.Size(212, 21);
-            this.yxBumenEdi.TabIndex = 26;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(298, 23);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(59, 12);
-            this.label20.TabIndex = 25;
-            this.label20.Text = "所属部门:";
-            // 
-            // zhuchang2SelectBtn
-            // 
-            this.zhuchang2SelectBtn.Location = new System.Drawing.Point(255, 122);
-            this.zhuchang2SelectBtn.Name = "zhuchang2SelectBtn";
-            this.zhuchang2SelectBtn.Size = new System.Drawing.Size(39, 23);
-            this.zhuchang2SelectBtn.TabIndex = 24;
-            this.zhuchang2SelectBtn.Text = "..";
-            this.zhuchang2SelectBtn.UseVisualStyleBackColor = true;
-            this.zhuchang2SelectBtn.Click += new System.EventHandler(this.zhuchang2SelectBtn_Click);
-            // 
-            // zhuchang2Edi
-            // 
-            this.zhuchang2Edi.Location = new System.Drawing.Point(84, 123);
-            this.zhuchang2Edi.Name = "zhuchang2Edi";
-            this.zhuchang2Edi.Size = new System.Drawing.Size(165, 21);
-            this.zhuchang2Edi.TabIndex = 22;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(37, 132);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(41, 12);
-            this.label18.TabIndex = 23;
-            this.label18.Text = "驻场2:";
-            // 
-            // zhuchang1SelectBtn
-            // 
-            this.zhuchang1SelectBtn.Location = new System.Drawing.Point(255, 95);
-            this.zhuchang1SelectBtn.Name = "zhuchang1SelectBtn";
-            this.zhuchang1SelectBtn.Size = new System.Drawing.Size(38, 23);
-            this.zhuchang1SelectBtn.TabIndex = 21;
-            this.zhuchang1SelectBtn.Text = "..";
-            this.zhuchang1SelectBtn.UseVisualStyleBackColor = true;
-            this.zhuchang1SelectBtn.Click += new System.EventHandler(this.zhuchang1SelectBtn_Click);
-            // 
-            // zhuchang1Edi
-            // 
-            this.zhuchang1Edi.Location = new System.Drawing.Point(84, 96);
-            this.zhuchang1Edi.Name = "zhuchang1Edi";
-            this.zhuchang1Edi.Size = new System.Drawing.Size(165, 21);
-            this.zhuchang1Edi.TabIndex = 20;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(37, 105);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(41, 12);
-            this.label17.TabIndex = 19;
-            this.label17.Text = "驻场1:";
-            // 
-            // keyuanSelectBtn
-            // 
-            this.keyuanSelectBtn.Location = new System.Drawing.Point(255, 68);
-            this.keyuanSelectBtn.Name = "keyuanSelectBtn";
-            this.keyuanSelectBtn.Size = new System.Drawing.Size(39, 23);
-            this.keyuanSelectBtn.TabIndex = 18;
-            this.keyuanSelectBtn.Text = "..";
-            this.keyuanSelectBtn.UseVisualStyleBackColor = true;
-            this.keyuanSelectBtn.Click += new System.EventHandler(this.keyuanSelectBtn_Click);
-            // 
-            // keyuanEdi
-            // 
-            this.keyuanEdi.Location = new System.Drawing.Point(84, 69);
-            this.keyuanEdi.Name = "keyuanEdi";
-            this.keyuanEdi.Size = new System.Drawing.Size(165, 21);
-            this.keyuanEdi.TabIndex = 16;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(31, 78);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(47, 12);
-            this.label16.TabIndex = 17;
-            this.label16.Text = "客源方:";
-            // 
             // guwenSelectBtn
             // 
-            this.guwenSelectBtn.Location = new System.Drawing.Point(255, 41);
+            this.guwenSelectBtn.Location = new System.Drawing.Point(84, 41);
             this.guwenSelectBtn.Name = "guwenSelectBtn";
-            this.guwenSelectBtn.Size = new System.Drawing.Size(39, 23);
+            this.guwenSelectBtn.Size = new System.Drawing.Size(165, 23);
             this.guwenSelectBtn.TabIndex = 15;
-            this.guwenSelectBtn.Text = "..";
+            this.guwenSelectBtn.Text = "添加/查看";
             this.guwenSelectBtn.UseVisualStyleBackColor = true;
             this.guwenSelectBtn.Click += new System.EventHandler(this.guwenSelectBtn_Click);
-            // 
-            // guwenEdi
-            // 
-            this.guwenEdi.Location = new System.Drawing.Point(84, 42);
-            this.guwenEdi.Name = "guwenEdi";
-            this.guwenEdi.Size = new System.Drawing.Size(165, 21);
-            this.guwenEdi.TabIndex = 13;
             // 
             // label15
             // 
@@ -660,6 +490,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(656, 295);
             this.tabControl1.TabIndex = 28;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -700,6 +531,15 @@
             this.tabPage1.Text = "订单信息";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // hetongzhuangtaiCb
+            // 
+            this.hetongzhuangtaiCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.hetongzhuangtaiCb.FormattingEnabled = true;
+            this.hetongzhuangtaiCb.Location = new System.Drawing.Point(399, 95);
+            this.hetongzhuangtaiCb.Name = "hetongzhuangtaiCb";
+            this.hetongzhuangtaiCb.Size = new System.Drawing.Size(165, 20);
+            this.hetongzhuangtaiCb.TabIndex = 31;
+            // 
             // fukuanTypeCb
             // 
             this.fukuanTypeCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -711,30 +551,11 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.zc2QtLevelEdi);
+            this.tabPage2.Controls.Add(this.myGroupBox1);
             this.tabPage2.Controls.Add(this.guwenSelectBtn);
-            this.tabPage2.Controls.Add(this.zc1QtLevelEdi);
             this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.kyfQtLevelEdi);
             this.tabPage2.Controls.Add(this.orderGenerateTime);
-            this.tabPage2.Controls.Add(this.yxQtLevelEdi);
             this.tabPage2.Controls.Add(this.label15);
-            this.tabPage2.Controls.Add(this.label21);
-            this.tabPage2.Controls.Add(this.guwenEdi);
-            this.tabPage2.Controls.Add(this.zc2BumenEdi);
-            this.tabPage2.Controls.Add(this.label16);
-            this.tabPage2.Controls.Add(this.zc1BumenEdi);
-            this.tabPage2.Controls.Add(this.keyuanEdi);
-            this.tabPage2.Controls.Add(this.kyfBumenEdi);
-            this.tabPage2.Controls.Add(this.keyuanSelectBtn);
-            this.tabPage2.Controls.Add(this.yxBumenEdi);
-            this.tabPage2.Controls.Add(this.label17);
-            this.tabPage2.Controls.Add(this.label20);
-            this.tabPage2.Controls.Add(this.zhuchang1Edi);
-            this.tabPage2.Controls.Add(this.zhuchang2SelectBtn);
-            this.tabPage2.Controls.Add(this.zhuchang1SelectBtn);
-            this.tabPage2.Controls.Add(this.zhuchang2Edi);
-            this.tabPage2.Controls.Add(this.label18);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -742,6 +563,155 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "操作人员信息";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // myGroupBox1
+            // 
+            this.myGroupBox1.Controls.Add(this.zc2QtLevelEdi);
+            this.myGroupBox1.Controls.Add(this.zhuchang1SelectBtn);
+            this.myGroupBox1.Controls.Add(this.zc1QtLevelEdi);
+            this.myGroupBox1.Controls.Add(this.label18);
+            this.myGroupBox1.Controls.Add(this.zhuchang2Edi);
+            this.myGroupBox1.Controls.Add(this.kyfQtLevelEdi);
+            this.myGroupBox1.Controls.Add(this.zhuchang2SelectBtn);
+            this.myGroupBox1.Controls.Add(this.zhuchang1Edi);
+            this.myGroupBox1.Controls.Add(this.label17);
+            this.myGroupBox1.Controls.Add(this.zc2BumenEdi);
+            this.myGroupBox1.Controls.Add(this.keyuanSelectBtn);
+            this.myGroupBox1.Controls.Add(this.label16);
+            this.myGroupBox1.Controls.Add(this.kyfBumenEdi);
+            this.myGroupBox1.Controls.Add(this.zc1BumenEdi);
+            this.myGroupBox1.Controls.Add(this.keyuanEdi);
+            this.myGroupBox1.Location = new System.Drawing.Point(21, 68);
+            this.myGroupBox1.Name = "myGroupBox1";
+            this.myGroupBox1.Size = new System.Drawing.Size(616, 112);
+            this.myGroupBox1.TabIndex = 39;
+            this.myGroupBox1.TabStop = false;
+            // 
+            // zc2QtLevelEdi
+            // 
+            this.zc2QtLevelEdi.Location = new System.Drawing.Point(501, 74);
+            this.zc2QtLevelEdi.Name = "zc2QtLevelEdi";
+            this.zc2QtLevelEdi.ReadOnly = true;
+            this.zc2QtLevelEdi.Size = new System.Drawing.Size(100, 21);
+            this.zc2QtLevelEdi.TabIndex = 38;
+            // 
+            // zhuchang1SelectBtn
+            // 
+            this.zhuchang1SelectBtn.Location = new System.Drawing.Point(238, 46);
+            this.zhuchang1SelectBtn.Name = "zhuchang1SelectBtn";
+            this.zhuchang1SelectBtn.Size = new System.Drawing.Size(38, 23);
+            this.zhuchang1SelectBtn.TabIndex = 21;
+            this.zhuchang1SelectBtn.Text = "..";
+            this.zhuchang1SelectBtn.UseVisualStyleBackColor = true;
+            this.zhuchang1SelectBtn.Click += new System.EventHandler(this.zhuchang1SelectBtn_Click);
+            // 
+            // zc1QtLevelEdi
+            // 
+            this.zc1QtLevelEdi.Location = new System.Drawing.Point(501, 47);
+            this.zc1QtLevelEdi.Name = "zc1QtLevelEdi";
+            this.zc1QtLevelEdi.ReadOnly = true;
+            this.zc1QtLevelEdi.Size = new System.Drawing.Size(100, 21);
+            this.zc1QtLevelEdi.TabIndex = 37;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(20, 83);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(41, 12);
+            this.label18.TabIndex = 23;
+            this.label18.Text = "驻场2:";
+            // 
+            // zhuchang2Edi
+            // 
+            this.zhuchang2Edi.Location = new System.Drawing.Point(67, 74);
+            this.zhuchang2Edi.Name = "zhuchang2Edi";
+            this.zhuchang2Edi.Size = new System.Drawing.Size(165, 21);
+            this.zhuchang2Edi.TabIndex = 22;
+            // 
+            // kyfQtLevelEdi
+            // 
+            this.kyfQtLevelEdi.Location = new System.Drawing.Point(501, 20);
+            this.kyfQtLevelEdi.Name = "kyfQtLevelEdi";
+            this.kyfQtLevelEdi.ReadOnly = true;
+            this.kyfQtLevelEdi.Size = new System.Drawing.Size(100, 21);
+            this.kyfQtLevelEdi.TabIndex = 36;
+            // 
+            // zhuchang2SelectBtn
+            // 
+            this.zhuchang2SelectBtn.Location = new System.Drawing.Point(238, 73);
+            this.zhuchang2SelectBtn.Name = "zhuchang2SelectBtn";
+            this.zhuchang2SelectBtn.Size = new System.Drawing.Size(39, 23);
+            this.zhuchang2SelectBtn.TabIndex = 24;
+            this.zhuchang2SelectBtn.Text = "..";
+            this.zhuchang2SelectBtn.UseVisualStyleBackColor = true;
+            this.zhuchang2SelectBtn.Click += new System.EventHandler(this.zhuchang2SelectBtn_Click);
+            // 
+            // zhuchang1Edi
+            // 
+            this.zhuchang1Edi.Location = new System.Drawing.Point(67, 47);
+            this.zhuchang1Edi.Name = "zhuchang1Edi";
+            this.zhuchang1Edi.Size = new System.Drawing.Size(165, 21);
+            this.zhuchang1Edi.TabIndex = 20;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(20, 56);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(41, 12);
+            this.label17.TabIndex = 19;
+            this.label17.Text = "驻场1:";
+            // 
+            // zc2BumenEdi
+            // 
+            this.zc2BumenEdi.Location = new System.Drawing.Point(283, 74);
+            this.zc2BumenEdi.Name = "zc2BumenEdi";
+            this.zc2BumenEdi.ReadOnly = true;
+            this.zc2BumenEdi.Size = new System.Drawing.Size(212, 21);
+            this.zc2BumenEdi.TabIndex = 29;
+            // 
+            // keyuanSelectBtn
+            // 
+            this.keyuanSelectBtn.Location = new System.Drawing.Point(238, 20);
+            this.keyuanSelectBtn.Name = "keyuanSelectBtn";
+            this.keyuanSelectBtn.Size = new System.Drawing.Size(39, 23);
+            this.keyuanSelectBtn.TabIndex = 18;
+            this.keyuanSelectBtn.Text = "..";
+            this.keyuanSelectBtn.UseVisualStyleBackColor = true;
+            this.keyuanSelectBtn.Click += new System.EventHandler(this.keyuanSelectBtn_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(14, 29);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(47, 12);
+            this.label16.TabIndex = 17;
+            this.label16.Text = "客源方:";
+            // 
+            // kyfBumenEdi
+            // 
+            this.kyfBumenEdi.Location = new System.Drawing.Point(283, 20);
+            this.kyfBumenEdi.Name = "kyfBumenEdi";
+            this.kyfBumenEdi.ReadOnly = true;
+            this.kyfBumenEdi.Size = new System.Drawing.Size(212, 21);
+            this.kyfBumenEdi.TabIndex = 27;
+            // 
+            // zc1BumenEdi
+            // 
+            this.zc1BumenEdi.Location = new System.Drawing.Point(283, 47);
+            this.zc1BumenEdi.Name = "zc1BumenEdi";
+            this.zc1BumenEdi.ReadOnly = true;
+            this.zc1BumenEdi.Size = new System.Drawing.Size(212, 21);
+            this.zc1BumenEdi.TabIndex = 28;
+            // 
+            // keyuanEdi
+            // 
+            this.keyuanEdi.Location = new System.Drawing.Point(67, 20);
+            this.keyuanEdi.Name = "keyuanEdi";
+            this.keyuanEdi.Size = new System.Drawing.Size(165, 21);
+            this.keyuanEdi.TabIndex = 16;
             // 
             // tabPage3
             // 
@@ -779,8 +749,8 @@
             this.hyDataGridView1.AllowUserToAddRows = false;
             this.hyDataGridView1.AllowUserToResizeColumns = false;
             this.hyDataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Beige;
-            this.hyDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige;
+            this.hyDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.hyDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableLayoutPanel1.SetColumnSpan(this.hyDataGridView1, 3);
             this.hyDataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -789,8 +759,8 @@
             this.hyDataGridView1.Name = "hyDataGridView1";
             this.hyDataGridView1.ReadOnly = true;
             this.hyDataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Bisque;
-            this.hyDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Bisque;
+            this.hyDataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.hyDataGridView1.RowTemplate.Height = 23;
             this.hyDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.hyDataGridView1.Size = new System.Drawing.Size(636, 228);
@@ -912,15 +882,6 @@
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             // 
-            // hetongzhuangtaiCb
-            // 
-            this.hetongzhuangtaiCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.hetongzhuangtaiCb.FormattingEnabled = true;
-            this.hetongzhuangtaiCb.Location = new System.Drawing.Point(399, 95);
-            this.hetongzhuangtaiCb.Name = "hetongzhuangtaiCb";
-            this.hetongzhuangtaiCb.Size = new System.Drawing.Size(165, 20);
-            this.hetongzhuangtaiCb.TabIndex = 31;
-            // 
             // OrderOperDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -942,6 +903,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.myGroupBox1.ResumeLayout(false);
+            this.myGroupBox1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.hyDataGridView1)).EndInit();
@@ -982,7 +945,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox daikuanjineEdi;
-        private System.Windows.Forms.TextBox guwenEdi;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button guwenSelectBtn;
         private System.Windows.Forms.TextBox keyuanEdi;
@@ -1000,16 +962,12 @@
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.Button exitBtn;
         private System.Windows.Forms.DateTimePicker buyTime;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox yxBumenEdi;
         private System.Windows.Forms.TextBox zc2BumenEdi;
         private System.Windows.Forms.TextBox zc1BumenEdi;
         private System.Windows.Forms.TextBox kyfBumenEdi;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox zc2QtLevelEdi;
         private System.Windows.Forms.TextBox zc1QtLevelEdi;
         private System.Windows.Forms.TextBox kyfQtLevelEdi;
-        private System.Windows.Forms.TextBox yxQtLevelEdi;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label checkStateLable;
         private System.Windows.Forms.Label label23;
@@ -1037,5 +995,6 @@
         private System.Windows.Forms.TextBox tuidanTimeEdit;
         private System.Windows.Forms.ComboBox fukuanTypeCb;
         private System.Windows.Forms.ComboBox hetongzhuangtaiCb;
+        private MyControl.MyGroupBox myGroupBox1;
     }
 }

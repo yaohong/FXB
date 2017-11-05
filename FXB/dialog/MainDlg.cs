@@ -36,6 +36,8 @@ namespace FXB
 
         private void main_Load(object sender, EventArgs e)
         {
+            double a = 189.23;
+            double b = (189.23 * 8000) / 10000;
             //初始化操作
             try 
             {
@@ -88,10 +90,10 @@ namespace FXB
                         刷新数据ToolStripMenuItem.Visible = false;
                     }
 
-                    if (!curLoginAuth.ShowKaiDanMenu())
-                    {
-                        单据录入ToolStripMenuItem.Visible = false;
-                    }
+                    //if (!curLoginAuth.ShowKaiDanMenu())
+                    //{
+                    //    单据录入ToolStripMenuItem.Visible = false;
+                    //}
 
                     //if (!curLoginAuth.ShowHuiYongMenu())
                     //{
@@ -109,10 +111,10 @@ namespace FXB
                         底薪录入ToolStripMenuItem.Visible = false;
                     }
 
-                    if (!curLoginAuth.ShowGenerateDixinFubenMenu())
-                    {
+                    //if (!curLoginAuth.ShowGenerateDixinFubenMenu())
+                    //{
                         生成底薪副本ToolStripMenuItem.Visible = false;
-                    }
+                    //}
 
                     if (!curLoginAuth.ShowGenerateQtGongziMenu())
                     {

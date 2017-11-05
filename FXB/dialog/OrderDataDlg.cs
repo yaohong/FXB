@@ -41,7 +41,7 @@ namespace FXB.Dialog
             foreach (var item in qtTask.AllQtOrder)
             {
                 QtOrder qtOrder = item.Value;
-                if (selectJobNumber != "" && qtOrder.YxConsultantJobNumber != selectJobNumber)
+                if (selectJobNumber != "" && !qtOrder.YxJob.Exist(selectJobNumber))
                 {
                     //过滤营销顾问
                     continue;
@@ -302,7 +302,7 @@ namespace FXB.Dialog
             row.Cells["closingTheDealMoney"].Value = data.ClosingTheDealMoney;
             row.Cells["commissionAmount"].Value = data.CommissionAmount;
 
-            row.Cells["yxConsultantName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.YxConsultantJobNumber].Name;
+            //row.Cells["yxConsultantName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.YxConsultantJobNumber].Name;
             row.Cells["kyfConsultanName"].Value = data.KyfConsultanJobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.KyfConsultanJobNumber].Name : "";
             row.Cells["zhuchang1Name"].Value = data.Zc1JobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.Zc1JobNumber].Name : "";
             row.Cells["zhuchang2Name"].Value = data.Zc2JobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.Zc2JobNumber].Name : "";

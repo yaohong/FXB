@@ -87,8 +87,7 @@ namespace FXB.DataManager
 
         public void GeneratePay(
             string qtKey, 
-            SortedDictionary<string, SortedDictionary<Int64, List<PayItem>>> hyPay, 
-            SortedDictionary<string, SortedDictionary<string, double>> dxPay)
+            SortedDictionary<string, SortedDictionary<Int64, List<PayItem>>> hyPay)
         {
             if (allQtPay.ContainsKey(qtKey))
             {
@@ -114,16 +113,16 @@ namespace FXB.DataManager
                         }
                     }
 
-                    //查看是否有底薪工资
-                    if (dxPay.ContainsKey(jobnumber))
-                    {
-                        //有底薪奖励
-                        //
-                        foreach (var dxItem in dxPay[jobnumber])
-                        {
-                            basicPay += dxItem.Value;
-                        }
-                    }
+                    ////查看是否有底薪工资
+                    //if (dxPay.ContainsKey(jobnumber))
+                    //{
+                    //    //有底薪奖励
+                    //    //
+                    //    foreach (var dxItem in dxPay[jobnumber])
+                    //    {
+                    //        basicPay += dxItem.Value;
+                    //    }
+                    //}
 
                     PayData newPayData = new PayData(qtKey, jobnumber, basicPay, TimeUtil.DateTimeToTimestamp(DateTime.Now));
                     qtPay[jobnumber] = newPayData;
