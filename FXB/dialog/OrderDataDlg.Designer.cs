@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.myTableLayoutPanel1 = new FXB.MyControl.MyTableLayoutPanel();
             this.groupBox1 = new FXB.MyControl.MyGroupBox();
             this.qtCbSelect = new System.Windows.Forms.ComboBox();
@@ -44,6 +44,7 @@
             this.paramEdi = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new FXB.MyControl.MyDataGridView();
+            this.noCheckCb = new System.Windows.Forms.CheckBox();
             this.myTableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -66,6 +67,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.noCheckCb);
             this.groupBox1.Controls.Add(this.qtCbSelect);
             this.groupBox1.Controls.Add(this.removeOrderBtn);
             this.groupBox1.Controls.Add(this.addOrderBtn);
@@ -95,7 +97,7 @@
             // 
             // removeOrderBtn
             // 
-            this.removeOrderBtn.Location = new System.Drawing.Point(973, 15);
+            this.removeOrderBtn.Location = new System.Drawing.Point(1060, 14);
             this.removeOrderBtn.Name = "removeOrderBtn";
             this.removeOrderBtn.Size = new System.Drawing.Size(75, 23);
             this.removeOrderBtn.TabIndex = 12;
@@ -105,7 +107,7 @@
             // 
             // addOrderBtn
             // 
-            this.addOrderBtn.Location = new System.Drawing.Point(895, 15);
+            this.addOrderBtn.Location = new System.Drawing.Point(982, 14);
             this.addOrderBtn.Name = "addOrderBtn";
             this.addOrderBtn.Size = new System.Drawing.Size(75, 23);
             this.addOrderBtn.TabIndex = 11;
@@ -115,7 +117,7 @@
             // 
             // exportBtn
             // 
-            this.exportBtn.Location = new System.Drawing.Point(794, 15);
+            this.exportBtn.Location = new System.Drawing.Point(881, 14);
             this.exportBtn.Name = "exportBtn";
             this.exportBtn.Size = new System.Drawing.Size(75, 23);
             this.exportBtn.TabIndex = 10;
@@ -125,7 +127,7 @@
             // 
             // inquireBtn
             // 
-            this.inquireBtn.Location = new System.Drawing.Point(716, 15);
+            this.inquireBtn.Location = new System.Drawing.Point(800, 14);
             this.inquireBtn.Name = "inquireBtn";
             this.inquireBtn.Size = new System.Drawing.Size(75, 23);
             this.inquireBtn.TabIndex = 9;
@@ -135,7 +137,7 @@
             // 
             // salesmanSelectBtn
             // 
-            this.salesmanSelectBtn.Location = new System.Drawing.Point(640, 15);
+            this.salesmanSelectBtn.Location = new System.Drawing.Point(584, 15);
             this.salesmanSelectBtn.Name = "salesmanSelectBtn";
             this.salesmanSelectBtn.Size = new System.Drawing.Size(46, 23);
             this.salesmanSelectBtn.TabIndex = 8;
@@ -145,7 +147,7 @@
             // 
             // salesmanEdi
             // 
-            this.salesmanEdi.Location = new System.Drawing.Point(534, 16);
+            this.salesmanEdi.Location = new System.Drawing.Point(478, 16);
             this.salesmanEdi.Name = "salesmanEdi";
             this.salesmanEdi.ReadOnly = true;
             this.salesmanEdi.Size = new System.Drawing.Size(100, 21);
@@ -154,7 +156,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(469, 22);
+            this.label4.Location = new System.Drawing.Point(413, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 12);
             this.label4.TabIndex = 6;
@@ -190,8 +192,8 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Beige;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Beige;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 53);
@@ -199,13 +201,23 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Bisque;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Bisque;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1221, 559);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
+            // 
+            // noCheckCb
+            // 
+            this.noCheckCb.AutoSize = true;
+            this.noCheckCb.Location = new System.Drawing.Point(657, 20);
+            this.noCheckCb.Name = "noCheckCb";
+            this.noCheckCb.Size = new System.Drawing.Size(96, 16);
+            this.noCheckCb.TabIndex = 14;
+            this.noCheckCb.Text = "有未审核回佣";
+            this.noCheckCb.UseVisualStyleBackColor = true;
             // 
             // OrderDataDlg
             // 
@@ -240,5 +252,6 @@
         private MyControl.MyTableLayoutPanel myTableLayoutPanel1;
         private MyControl.MyDataGridView dataGridView1;
         private System.Windows.Forms.ComboBox qtCbSelect;
+        private System.Windows.Forms.CheckBox noCheckCb;
     }
 }

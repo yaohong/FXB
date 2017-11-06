@@ -12,6 +12,7 @@ using System.Data.OleDb;
 using Excel = Microsoft.Office.Interop.Excel;
 using FXB.DataManager;
 using FXB.Data;
+using FXB.Common;
 namespace FXB.Dialog
 {
     public partial class SalaryImportDlg : Form
@@ -207,12 +208,18 @@ namespace FXB.Dialog
 
                 }
 
-
+                //数据插入DB
+                ImportSalaryMgr.Instance().AddNewImportSalaryToDb(qtkey);
                 ShowImportSalary(qtkey);
             }
-            catch (Exception e1)
+            catch (CrashException e1)
             {
                 MessageBox.Show(e1.Message);
+                System.Environment.Exit(0);
+            }
+            catch (Exception e2)
+            {
+                MessageBox.Show(e2.Message);
             }
             finally
             {
@@ -242,14 +249,28 @@ namespace FXB.Dialog
 
             if (!ImportSalaryMgr.Instance().AllImportSalary.ContainsKey(deleteQtKey))
             {
-                MessageBox.Show("没有导入工资了");
+                MessageBox.Show("要删除的导入工资[{0}]不存在");
                 return;
             }
 
-            ImportSalaryMgr.Instance().AllImportSalary.Remove(deleteQtKey);
+            try
+            {
+                ImportSalaryMgr.Instance().DeleteImportSalaryByTb(deleteQtKey);
+                ImportSalaryMgr.Instance().AllImportSalary.Remove(deleteQtKey);
+                myDataGridView1.Rows.Clear();
+            }
+            catch (CrashException e1)
+            {
+                MessageBox.Show(e1.Message);
+                System.Environment.Exit(0);
+            }
+            catch (Exception e2)
+            {
+                MessageBox.Show(e2.Message);
+            }
 
-            //qtCb.Items.Remove(qtkey);
-            myDataGridView1.Rows.Clear();
+            
+            
         }
 
         private void SalaryImportDlg_Load(object sender, EventArgs e)

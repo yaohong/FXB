@@ -461,6 +461,7 @@ namespace FXB.DataManager
                 throw new CrashException(ex.Message);
             }
 
+
             return newQtTask;
         }
 

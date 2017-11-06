@@ -102,6 +102,7 @@
             // 
             // qtCb
             // 
+            this.qtCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.qtCb.FormattingEnabled = true;
             this.qtCb.Location = new System.Drawing.Point(11, 20);
             this.qtCb.Name = "qtCb";

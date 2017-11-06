@@ -77,6 +77,26 @@ namespace FXB.Dialog
                     }
                 }
 
+                if (noCheckCb.Checked)
+                {
+                    //要有未审核的回佣
+                    bool c = true;
+                    foreach (var item1 in qtOrder.AllHYData)
+                    {
+                        HYData hyData = item1.Value;
+                        if (!hyData.CheckState)
+                        {
+                            c = false;
+                            break;
+                        }
+                    }
+
+                    if (c)
+                    {
+                        continue;
+                    }
+                }
+
                 int lineIndex = dataGridView1.Rows.Add();
                 UpdateGridViewRow(dataGridView1.Rows[lineIndex], qtOrder);
             }

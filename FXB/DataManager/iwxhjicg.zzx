@@ -38,9 +38,9 @@ namespace FXB.DataManager
 
         public void AddNewImportSalaryToDb(string qtKey)
         {
-            if (!allSingleImportSalary.ContainsKey(qtKey))
+            if (allSingleImportSalary.ContainsKey(qtKey))
             {
-                throw new CrashException(string.Format("指定的导入工资[{0}]不存在", qtKey));
+                throw new CrashException(string.Format("指定的导入工资[{0}]已经存在", qtKey));
             }
 
             SingleImportSalary single = allSingleImportSalary[qtKey];
@@ -57,7 +57,7 @@ namespace FXB.DataManager
                 command.Parameters.Clear();
                 foreach (var item in single.AllImportSalaryData)
                 {
-                    ImportSalaryData salayData = item.Value;
+                    QtDepartment qtDepartment = item.Value;
                     command.CommandType = CommandType.Text;
                     command.CommandText = @"INSERT INTO importsalary(
                                             jobnumber,
@@ -99,29 +99,28 @@ namespace FXB.DataManager
                                             @qitakoukuan,
                                             @gongzizonge,
                                             @beizhu)";
-                    command.Parameters.AddWithValue("@jobnumber", salayData.Jobnumber);
-                    command.Parameters.AddWithValue("@qtkey", salayData.QtKey);
-                    command.Parameters.AddWithValue("@dixinjishu", salayData.dixinjishu);
-                    command.Parameters.AddWithValue("@qitabuzhu", salayData.qitabuzhu);
-                    command.Parameters.AddWithValue("@jixintianshu", salayData.jixintianshu);
-                    command.Parameters.AddWithValue("@shijia", salayData.shijia);
-                    command.Parameters.AddWithValue("@bingjia", salayData.bingjia);
-                    command.Parameters.AddWithValue("@shijidixin", salayData.shijidixin);
-                    command.Parameters.AddWithValue("@jianglidixin", salayData.jianglidixin);
-                    command.Parameters.AddWithValue("@duankoubuzhu", salayData.duankoubuzhu);
-                    command.Parameters.AddWithValue("@gonglinggongzi", salayData.gonglinggongzi);
-                    command.Parameters.AddWithValue("@tuidankoubuzhu", salayData.tuidankoubuzhu);
-                    command.Parameters.AddWithValue("@jiangongzhuang", salayData.decGongzhuang);
-                    command.Parameters.AddWithValue("@jiangongpailingdai", salayData.decGongpailingdai);
-                    command.Parameters.AddWithValue("@jiangongjijin", salayData.decGongjijin);
-                    command.Parameters.AddWithValue("@jianshebao", salayData.decShebao);
-                    command.Parameters.AddWithValue("@qitakoukuan", salayData.otherkoukuan);
-                    command.Parameters.AddWithValue("@gongzizonge", salayData.gongzizonge);
-                    command.Parameters.AddWithValue("@beizhu", salayData.beizhu);
+                    command.Parameters.AddWithValue("@jobnumber", qtDepartment.Id);
+                    command.Parameters.AddWithValue("@qtkey", (Int32)qtDepartment.QtLevel);
+                    command.Parameters.AddWithValue("@dixinjishu", qtDepartment.OwnerJobNumber);
+                    command.Parameters.AddWithValue("@qitabuzhu", qtDepartment.DepartmentName);
+                    command.Parameters.AddWithValue("@jixintianshu", qtDepartment.ParentDepartmentId);
+                    command.Parameters.AddWithValue("@shijia", qtDepartment.NeedCompleteTaskAmount);
+                    command.Parameters.AddWithValue("@bingjia", qtDepartment.AlreadyCompleteTaskAmount);
+                    command.Parameters.AddWithValue("@shijidixin", newQtTask.QtKey);
+                    command.Parameters.AddWithValue("@jianglidixin", newQtTask.QtKey);
+                    command.Parameters.AddWithValue("@duankoubuzhu", newQtTask.QtKey);
+                    command.Parameters.AddWithValue("@gonglinggongzi", newQtTask.QtKey);
+                    command.Parameters.AddWithValue("@tuidankoubuzhu", newQtTask.QtKey);
+                    command.Parameters.AddWithValue("@jiangongzhuang", newQtTask.QtKey);
+                    command.Parameters.AddWithValue("@jiangongpailingdai", newQtTask.QtKey);
+                    command.Parameters.AddWithValue("@jiangongjijin", newQtTask.QtKey);
+                    command.Parameters.AddWithValue("@jianshebao", newQtTask.QtKey);
+                    command.Parameters.AddWithValue("@qitakoukuan", newQtTask.QtKey);
+                    command.Parameters.AddWithValue("@gongzizonge", newQtTask.QtKey);
+                    command.Parameters.AddWithValue("@beizhu", newQtTask.QtKey);
                     command.ExecuteNonQuery();
                     command.Parameters.Clear();
                 }
-                sqlTran.Commit();
             }
             catch (Exception e1)
             {
@@ -131,43 +130,12 @@ namespace FXB.DataManager
                 }
                 throw new CrashException(e1.Message);
             }
-            
+
         }
 
         public void DeleteImportSalaryByTb(string qtKey)
         {
-            if (!allSingleImportSalary.ContainsKey(qtKey))
-            {
-                throw new CrashException(string.Format("要删除的导入工资[{0}]不存在", qtKey));
-            }
 
-            SingleImportSalary single = allSingleImportSalary[qtKey];
-
-            SqlTransaction sqlTran = null;
-
-            try
-            {
-                sqlTran = SqlMgr.Instance().SqlConnect.BeginTransaction();
-                SqlCommand command = new SqlCommand();
-                command.Connection = SqlMgr.Instance().SqlConnect;
-                command.Transaction = sqlTran;
-
-                command.CommandType = CommandType.Text;
-                command.CommandText = "delete from importsalary where qtkey=@qtkey";
-                command.Parameters.AddWithValue("@qtkey", qtKey);
-                command.ExecuteScalar();
-                command.Parameters.Clear();
-
-                sqlTran.Commit();
-            }
-            catch (Exception ex)
-            {
-                if (sqlTran != null)
-                {
-                    sqlTran.Rollback();
-                }
-                throw new CrashException(ex.Message);
-            }
         }
 
         public void Load()

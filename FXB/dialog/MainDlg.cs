@@ -36,8 +36,8 @@ namespace FXB
 
         private void main_Load(object sender, EventArgs e)
         {
-            double a = 189.23;
-            double b = (189.23 * 8000) / 10000;
+//            double a = 189.23;
+//            double b = (189.23 * 8000) / 10000;
             //初始化操作
             try 
             {
