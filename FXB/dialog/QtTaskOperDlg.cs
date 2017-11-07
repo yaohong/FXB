@@ -167,6 +167,10 @@ namespace FXB.Dialog
         {
             if (qtCb.SelectedItem != null)
             {
+                if (MessageBox.Show("确认要删除QT任务?", "警告", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                {
+                    return;
+                }
                 string qtKey = (string)qtCb.SelectedItem;
 
 

@@ -349,7 +349,7 @@ namespace FXB.DataManager
             {
                 throw new ConditionCheckException(string.Format("订单[{0}]所属的QT任务[{1}]已经结算，不能修改.", orderId, editQtOrder.QtKey));
             }
-
+            EmployeeData curEmployeeData = AuthMgr.Instance().CurLoginEmployee;
             SqlCommand command = new SqlCommand();
             command.Connection = SqlMgr.Instance().SqlConnect;
             command.CommandType = CommandType.Text;
@@ -363,6 +363,7 @@ namespace FXB.DataManager
                                     kyfconsultanjobnumber=@kyfconsultanjobnumber,
                                     zc1jobnumber=@zc1jobnumber,
                                     zc2jobnumber=@zc2jobnumber,
+                                    entrypersonjobnumber=@entrypersonjobnumber,
                                     comment=@comment,
                                     buytime=@buytime,
                                     customerphone=@customerphone,
@@ -381,7 +382,7 @@ namespace FXB.DataManager
             command.Parameters.AddWithValue("@kyfconsultanjobnumber", newKyfConsultanJobNumber);
             command.Parameters.AddWithValue("@zc1jobnumber", newZc1JobNumber);
             command.Parameters.AddWithValue("@zc2jobnumber", newZc2JobNumber);
-
+            command.Parameters.AddWithValue("@entrypersonjobnumber", curEmployeeData.JobNumber);
             command.Parameters.AddWithValue("@comment", newComment);
 
             command.Parameters.AddWithValue("@buytime", (Int32)newBuyTime);
@@ -404,6 +405,7 @@ namespace FXB.DataManager
             editQtOrder.KyfConsultanJobNumber = newKyfConsultanJobNumber;
             editQtOrder.Zc1JobNumber = newZc1JobNumber;
             editQtOrder.Zc2JobNumber = newZc2JobNumber;
+            editQtOrder.EntryPersonJobNumber = curEmployeeData.JobNumber;
             editQtOrder.Comment = newComment;
             editQtOrder.BuyTime = newBuyTime;
             editQtOrder.CustomerPhone = newCustomerPhone;

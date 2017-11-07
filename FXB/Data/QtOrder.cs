@@ -343,6 +343,7 @@ namespace FXB.Data
         public string EntryPersonJobNumber
         {
             get { return entryPersonJobNumber; }
+            set { entryPersonJobNumber = value; }
         }
 
         public string Comment

@@ -50,11 +50,13 @@ namespace FXB.Dialog
                 if (paramEdi.Text != "")
                 {
                     //过滤查询关键字
+                    string projectName = ProjectDataMgr.Instance().AllProjectData[qtOrder.ProjectCode].Name;
                     string buyTimeStr = TimeUtil.TimestampToDateTime(qtOrder.BuyTime).ToString("yyyy-MM-dd HH:mm:ss");
                     if (qtOrder.CustomerName.IndexOf(paramEdi.Text) == -1 && 
                         qtOrder.CustomerPhone.IndexOf(paramEdi.Text) == -1 && 
                         qtOrder.CustomerIdCard.IndexOf(paramEdi.Text) == -1 &&
                         qtOrder.RoomNumber.IndexOf(paramEdi.Text) == -1 &&
+                        projectName.IndexOf(paramEdi.Text) == -1 &&
                         buyTimeStr.IndexOf(paramEdi.Text) == -1)
                     {
                         string zc1Name = EmployeeDataMgr.Instance().AllEmployeeData[qtOrder.Zc1JobNumber].Name;
@@ -178,11 +180,24 @@ namespace FXB.Dialog
             commissionAmount.Width = 80;
             dataGridView1.Columns.Add(commissionAmount);
 
-            DataGridViewTextBoxColumn yxConsultantName = new DataGridViewTextBoxColumn();
-            yxConsultantName.Name = "yxConsultantName";
-            yxConsultantName.HeaderText = "营销顾问";
-            yxConsultantName.Width = 80;
-            dataGridView1.Columns.Add(yxConsultantName);
+            DataGridViewTextBoxColumn yxConsultantName1 = new DataGridViewTextBoxColumn();
+            yxConsultantName1.Name = "yxConsultantName1";
+            yxConsultantName1.HeaderText = "营销顾问1";
+            yxConsultantName1.Width = 100;
+            dataGridView1.Columns.Add(yxConsultantName1);
+
+            DataGridViewTextBoxColumn yxConsultantName2 = new DataGridViewTextBoxColumn();
+            yxConsultantName2.Name = "yxConsultantName2";
+            yxConsultantName2.HeaderText = "营销顾问2";
+            yxConsultantName2.Width = 100;
+            dataGridView1.Columns.Add(yxConsultantName2);
+
+            DataGridViewTextBoxColumn yxConsultantName3 = new DataGridViewTextBoxColumn();
+            yxConsultantName3.Name = "yxConsultantName3";
+            yxConsultantName3.HeaderText = "营销顾问3";
+            yxConsultantName3.Width = 100;
+            dataGridView1.Columns.Add(yxConsultantName3);
+
 
             DataGridViewTextBoxColumn kyfConsultanName = new DataGridViewTextBoxColumn();
             kyfConsultanName.Name = "kyfConsultanName";
@@ -322,8 +337,19 @@ namespace FXB.Dialog
             row.Cells["closingTheDealMoney"].Value = data.ClosingTheDealMoney;
             row.Cells["commissionAmount"].Value = data.CommissionAmount;
 
-            //row.Cells["yxConsultantName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.YxConsultantJobNumber].Name;
-            row.Cells["kyfConsultanName"].Value = data.KyfConsultanJobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.KyfConsultanJobNumber].Name : "";
+            //显示营销顾问
+            int i = 0;
+            foreach (var item in data.YxJob.Jobs)
+            {
+                row.Cells["yxConsultantName" + (i+1).ToString()].Value = EmployeeDataMgr.Instance().AllEmployeeData[item.Key].Name;
+                i++;
+                if (i == 3)
+                {
+                    break;
+                }
+            }
+                //row.Cells["yxConsultantName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.YxConsultantJobNumber].Name;
+             row.Cells["kyfConsultanName"].Value = data.KyfConsultanJobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.KyfConsultanJobNumber].Name : "";
             row.Cells["zhuchang1Name"].Value = data.Zc1JobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.Zc1JobNumber].Name : "";
             row.Cells["zhuchang2Name"].Value = data.Zc2JobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.Zc2JobNumber].Name : "";
             row.Cells["checkState"].Value = data.CheckState;

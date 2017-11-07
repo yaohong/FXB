@@ -22,10 +22,17 @@ namespace FXB.Dialog
         {
             get { return job; }
         }
-        public JobEditDlg(QtTask tmpQtTask)
+        public JobEditDlg(QtTask tmpQtTask, QtJob tmpJob)
         {
             qtTask = tmpQtTask;
-            job = new QtJob();
+            if (tmpJob== null)
+            {
+                job = new QtJob();
+            }
+            else
+            {
+                job = tmpJob.Clone();
+            }
             InitializeComponent();
         }
 

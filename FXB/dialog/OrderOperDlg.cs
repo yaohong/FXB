@@ -351,7 +351,7 @@ namespace FXB.Dialog
             {
                 if (selectQtJob.Exist(selectKeyuanfang))
                 {
-                    MessageBox.Show("顾问[{0}]不能同时指定为客源方", selectKeyuanfang);
+                    MessageBox.Show(string.Format("顾问[{0}]不能同时指定为客源方", selectKeyuanfang));
                     return;
                 }
             }
@@ -639,14 +639,14 @@ namespace FXB.Dialog
             }
             else
             {
-                dlg = new JobEditDlg(qtTask);
+                dlg = new JobEditDlg(qtTask, selectQtJob);
                 if (DialogResult.OK == dlg.ShowDialog())
                 {
                     selectQtJob = dlg.Job;
                 }
                 else
                 {
-                    selectQtJob = null;
+
                 }
             }
 

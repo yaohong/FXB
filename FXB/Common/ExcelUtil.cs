@@ -52,7 +52,7 @@ namespace FXB.Common
                         }
                         else
                         {
-                            workSheet.Cells[r + 2, i + 1] = exportView.Rows[r].Cells[i].Value;
+                            workSheet.Cells[r + 2, i + 1] = exportView.Rows[r].Cells[i].Value.ToString();
                         }
 
                     }
