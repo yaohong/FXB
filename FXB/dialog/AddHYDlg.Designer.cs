@@ -34,6 +34,10 @@
             this.hyAmountEdi = new System.Windows.Forms.TextBox();
             this.addHYBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
+            this.shouxufeiEdi = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.shuifeiEdi = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -70,7 +74,7 @@
             // 
             // addHYBtn
             // 
-            this.addHYBtn.Location = new System.Drawing.Point(91, 99);
+            this.addHYBtn.Location = new System.Drawing.Point(91, 159);
             this.addHYBtn.Name = "addHYBtn";
             this.addHYBtn.Size = new System.Drawing.Size(75, 23);
             this.addHYBtn.TabIndex = 4;
@@ -80,7 +84,7 @@
             // 
             // exitBtn
             // 
-            this.exitBtn.Location = new System.Drawing.Point(186, 99);
+            this.exitBtn.Location = new System.Drawing.Point(186, 159);
             this.exitBtn.Name = "exitBtn";
             this.exitBtn.Size = new System.Drawing.Size(75, 23);
             this.exitBtn.TabIndex = 5;
@@ -88,11 +92,47 @@
             this.exitBtn.UseVisualStyleBackColor = true;
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
+            // shouxufeiEdi
+            // 
+            this.shouxufeiEdi.Location = new System.Drawing.Point(91, 90);
+            this.shouxufeiEdi.Name = "shouxufeiEdi";
+            this.shouxufeiEdi.Size = new System.Drawing.Size(170, 21);
+            this.shouxufeiEdi.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(38, 99);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 12);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "手续费:";
+            // 
+            // shuifeiEdi
+            // 
+            this.shuifeiEdi.Location = new System.Drawing.Point(91, 118);
+            this.shuifeiEdi.Name = "shuifeiEdi";
+            this.shuifeiEdi.Size = new System.Drawing.Size(170, 21);
+            this.shuifeiEdi.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(50, 127);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 12);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "税费:";
+            // 
             // AddHYDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(304, 134);
+            this.ClientSize = new System.Drawing.Size(304, 194);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.shuifeiEdi);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.shouxufeiEdi);
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.addHYBtn);
             this.Controls.Add(this.hyAmountEdi);
@@ -118,5 +158,9 @@
         private System.Windows.Forms.TextBox hyAmountEdi;
         private System.Windows.Forms.Button addHYBtn;
         private System.Windows.Forms.Button exitBtn;
+        private System.Windows.Forms.TextBox shouxufeiEdi;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox shuifeiEdi;
+        private System.Windows.Forms.Label label4;
     }
 }

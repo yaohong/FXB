@@ -146,12 +146,12 @@ namespace FXB.Dialog
 
                 //将控件变灰
                 EnableControl(false);
-                shenheBtn.Text = "取消审核(订单)";
+                shenheBtn.Text = "取消审核";
             }
             else
             {
                 checkStateLable.Text = "未审核";
-                shenheBtn.Text = "审核(订单)";
+                shenheBtn.Text = "审核";
             }
 
             //编辑模式下订单生成时间不允许修改
@@ -490,7 +490,7 @@ namespace FXB.Dialog
                         System.Math.Round(Convert.ToDouble(mianjiEdi.Text), 2),
                         hetongzhuangtaiCb.Text,
                         fukuanTypeCb.Text,
-                        daikuanjineEdi.Text == "" ? 0 : System.Math.Round(Convert.ToDouble(daikuanjineEdi.Text), 2));
+                        daikuanjineEdi.Text == "" ? 0.0f : System.Math.Round(Convert.ToDouble(daikuanjineEdi.Text), 2));
 
 
                     DialogResult = DialogResult.OK;
@@ -622,11 +622,11 @@ namespace FXB.Dialog
                 return;
             }
             QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
-            //if (qtTask.Closing)
-            //{
-            //    MessageBox.Show(string.Format("QT任务:{0} 已经结算", qtKey));
-            //    return;
-            //}
+            if (qtTask.Closing)
+            {
+                MessageBox.Show(string.Format("QT任务:{0} 已经结算", qtKey));
+                return;
+            }
 
             JobEditDlg dlg = null;
             if (mod == EditMode.EM_EDIT)
@@ -735,20 +735,8 @@ namespace FXB.Dialog
                             return;
                         }
 
-                        DepartmentSelectDlg dlg = new DepartmentSelectDlg(qtKey, QtLevel.SmallCharge);
-                        if (dlg.ShowDialog() != DialogResult.OK)
-                        {
-                            return;
-                        }
-
-                        if (dlg.SelectQtDepartment.QtLevel != QtLevel.SmallCharge)
-                        {
-                            MessageBox.Show("只能选择小主管级别的部门");
-                            return;
-                        }
-
                         //插入数据到QT任务
-                        QtMgr.Instance().AddNewEmployeeToQtTask(employee, dlg.SelectQtDepartment.Id, qtTask);
+                        QtMgr.Instance().AddNewEmployeeToQtTask(employee, qtTask);
                     }
 
                     selectKeyuanfang = jobNumber;
@@ -829,20 +817,8 @@ namespace FXB.Dialog
                             return;
                         }
 
-                        DepartmentSelectDlg dlg = new DepartmentSelectDlg(qtKey, QtLevel.ZhuchangZhuguan);
-                        if (dlg.ShowDialog() != DialogResult.OK)
-                        {
-                            return;
-                        }
-
-                        if (dlg.SelectQtDepartment.QtLevel != QtLevel.ZhuchangZhuguan)
-                        {
-                            MessageBox.Show("只能选择驻场主管级别的部门");
-                            return;
-                        }
-
                         //插入数据到QT任务
-                        QtMgr.Instance().AddNewEmployeeToQtTask(employee, dlg.SelectQtDepartment.Id,  qtTask);
+                        QtMgr.Instance().AddNewEmployeeToQtTask(employee, qtTask);
                     }
 
                     selectZhuchang1 = jobNumber;
@@ -920,20 +896,8 @@ namespace FXB.Dialog
                             return;
                         }
 
-                        DepartmentSelectDlg dlg = new DepartmentSelectDlg(qtKey, QtLevel.ZhuchangZhuguan);
-                        if (dlg.ShowDialog() != DialogResult.OK)
-                        {
-                            return;
-                        }
-
-                        if (dlg.SelectQtDepartment.QtLevel != QtLevel.ZhuchangZhuguan)
-                        {
-                            MessageBox.Show("只能选择驻场主管级别的部门");
-                            return;
-                        }
-
                         //插入数据到QT任务
-                        QtMgr.Instance().AddNewEmployeeToQtTask(employee, dlg.SelectDepartment.Id, qtTask);
+                        QtMgr.Instance().AddNewEmployeeToQtTask(employee, qtTask);
                     }
 
                     selectZhuchang2 = jobNumber;
@@ -970,7 +934,7 @@ namespace FXB.Dialog
                     checkStateLable.Text = "未审核";
                     checkJobNumberLable.Text = "";
                     checkTimeLable.Text = "";
-                    shenheBtn.Text = "审核(订单)";
+                    shenheBtn.Text = "审核";
                 }
                 else
                 {
@@ -985,7 +949,7 @@ namespace FXB.Dialog
                     checkStateLable.Text = "已审核";
                     checkJobNumberLable.Text = curEmployee.Name;
                     checkTimeLable.Text = TimeUtil.TimestampToDateTime(editQtOrder.CheckTime).ToString("yyyy-MM-dd HH:mm:ss");
-                    shenheBtn.Text = "取消审核(订单)";
+                    shenheBtn.Text = "取消审核";
                 }
             }
             catch (ConditionCheckException ex)
@@ -1020,9 +984,7 @@ namespace FXB.Dialog
         private void UpdateHYGridViewRow(DataGridViewRow row, HYData data)
         {
             row.Cells["id"].Value = data.Id;
-            row.Cells["hyAmount"].Value = DoubleUtil.Show(data.Amount);
-            row.Cells["shouxufei"].Value = DoubleUtil.Show(data.Shouxufei);
-            row.Cells["shuifei"].Value = DoubleUtil.Show(data.Shuifei);
+            row.Cells["hyAmount"].Value = data.Amount;
             row.Cells["hyTime"].Value = TimeUtil.TimestampToDateTime(data.AddTime).ToShortDateString();
             row.Cells["entryJobNumber"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.EntryJobNumber].Name;
             row.Cells["checkState"].Value = data.CheckState;
@@ -1072,6 +1034,18 @@ namespace FXB.Dialog
             checkState.HeaderText = "是否审核";
             checkState.Width = 80;
             hyDataGridView1.Columns.Add(checkState);
+
+            //DataGridViewTextBoxColumn checkJobNumber = new DataGridViewTextBoxColumn();
+            //checkJobNumber.Name = "checkJobNumber";
+            //checkJobNumber.HeaderText = "审核人";
+            //checkJobNumber.Width = 100;
+            //hyDataGridView1.Columns.Add(checkJobNumber);
+
+            //DataGridViewTextBoxColumn checkTime = new DataGridViewTextBoxColumn();
+            //checkTime.Name = "checkTime";
+            //checkTime.HeaderText = "审核时间";
+            //checkTime.Width = 120;
+            //hyDataGridView1.Columns.Add(checkTime);
 
         }
 

@@ -525,6 +525,10 @@ namespace FXB.DataManager
                 {
                     gridView.Rows[lineIndex].Cells["lizhiTime"].Value = TimeUtil.TimestampToDateTime(item.Value.DimissionTime).ToShortDateString();
                 }
+                else
+                {
+                    gridView.Rows[lineIndex].Cells["lizhiTime"].Value = "";
+                }
                 
                 
                 

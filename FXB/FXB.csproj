@@ -125,6 +125,24 @@
     <Compile Include="Dialog\DepartmentSelectDlg.Designer.cs">
       <DependentUpon>DepartmentSelectDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\HYSalaryViewDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\HYSalaryViewDlg.Designer.cs">
+      <DependentUpon>HYSalaryViewDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\HyTotalViewDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\HyTotalViewDlg.Designer.cs">
+      <DependentUpon>HyTotalViewDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\OrderTotalViewDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\OrderTotalViewDlg.Designer.cs">
+      <DependentUpon>OrderTotalViewDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\SingleJobEditDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +269,12 @@
     <Compile Include="Dialog\ViewHYDlg.Designer.cs">
       <DependentUpon>ViewHYDlg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\ZcTotalViewDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\ZcTotalViewDlg.Designer.cs">
+      <DependentUpon>ZcTotalViewDlg.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyControl\MyDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -288,6 +312,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\DepartmentSelectDlg.resx">
       <DependentUpon>DepartmentSelectDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\HYSalaryViewDlg.resx">
+      <DependentUpon>HYSalaryViewDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\HyTotalViewDlg.resx">
+      <DependentUpon>HyTotalViewDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\OrderTotalViewDlg.resx">
+      <DependentUpon>OrderTotalViewDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\SingleJobEditDlg.resx">
       <DependentUpon>SingleJobEditDlg.cs</DependentUpon>
@@ -351,6 +384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\ViewHYDlg.resx">
       <DependentUpon>ViewHYDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\ZcTotalViewDlg.resx">
+      <DependentUpon>ZcTotalViewDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

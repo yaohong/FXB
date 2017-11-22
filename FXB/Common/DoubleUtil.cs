@@ -32,6 +32,12 @@ namespace FXB.Common
 
             return false;
         }
+
+
+        public static string Show(double v)
+        {
+            return v.ToString("0.00");
+        }
     }
 
 

@@ -52,7 +52,21 @@ namespace FXB.Common
                         }
                         else
                         {
-                            workSheet.Cells[r + 2, i + 1] = exportView.Rows[r].Cells[i].Value.ToString();
+                            string v = exportView.Rows[r].Cells[i].Value.ToString();
+                            if (v.Length > 15)
+                            {
+                                v = "'" + v;
+                            }
+                            else
+                            {
+                                if (exportView.Columns[i].HeaderText == "房号")
+                                {
+                                    v = "'" + v;
+                                }
+                            }
+
+
+                            workSheet.Cells[r + 2, i + 1] = v;
                         }
 
                     }

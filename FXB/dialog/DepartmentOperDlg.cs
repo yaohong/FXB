@@ -163,19 +163,16 @@ namespace FXB.Dialog
                 if (dlg.SelectDepartment.IsMaxLayer())
                 {
                     MessageBox.Show("只能有四层部门");
-                    dlg.SelectDepartment = null;
                     return;
                 }
 
                 if (dlg.SelectDepartment.QTLevel == QtLevel.ZhuchangZhuguan)
                 {
                     MessageBox.Show("驻场只能有三层部门");
-                    dlg.SelectDepartment = null;
                     return;
                 }
 
                 selectDepartment = dlg.SelectDepartment;
-                dlg.SelectDepartment = null;
 
                 AddInit();
             }

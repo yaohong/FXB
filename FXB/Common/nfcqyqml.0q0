@@ -46,9 +46,9 @@ namespace FXB.Common
         PT_COMMISSION_Majordomo_PAY = 4,     //业务员总监
 
         PT_KYF_COMMISSION_PAY = 5,          //客源方的提成工资
-        PT_KYF_COMMISSION_SmallCharge_PAY = 6,   //客源方小主管提成
-        PT_KYF_COMMISSION_LargeCharge_PAY = 7,   //客源方大主管提成
-        PT_KYF_COMMISSION_Majordomo_PAY = 8,     //客源方总监
+        PT_KYF_COMMISSION_SmallCharge_PAY = 6,   //业务员小主管提成
+        PT_KYF_COMMISSION_LargeCharge_PAY = 7,   //业务员大主管提成
+        PT_KYF_COMMISSION_Majordomo_PAY = 8,     //业务员总监
 
         PT_None_COMMISSION_PAY = 9,         //总经理
 
@@ -158,9 +158,7 @@ namespace FXB.Common
                             List<PayItem> deleteItemList = new List<PayItem>();
                             foreach (var payItem in payItemList)
                             {
-                                if (payItem.type != PayType.PT_COMMISSION_PAY &&
-                                    payItem.type != PayType.PT_KYF_COMMISSION_PAY &&
-                                    payItem.type != PayType.PT_ZhuchangZhuanyuan_COMMISSION_PAY)
+                                if (payItem.type != PayType.PT_COMMISSION_PAY && payItem.type != PayType.PT_ZhuchangZhuanyuan_COMMISSION_PAY)
                                 {
                                     deleteItemList.Add(payItem);
                                 }
@@ -197,14 +195,14 @@ namespace FXB.Common
                 Int32 yxProp = item.Value;
 
                 Int64 yxQtDepartmentId = QtTaskUtil.GetJobDepartmentIdByQtTask(qtTask, yxJobnumber);
-                GenerateJobnumberPay(ref allHyPay, qtTask, yxJobnumber, yxQtDepartmentId, hyData.Id, (yxAmount * yxProp) / 10000, false);
+                GenerateJobnumberPay(ref allHyPay, qtTask, yxJobnumber, yxQtDepartmentId, hyData.Id, (yxAmount * yxProp) / 10000);
             }
 
             if (qtOrder.KyfConsultanJobNumber != "" )
             {
                 //客源方算10%
                 Int64 kyxQtDepartmentId = QtTaskUtil.GetJobDepartmentIdByQtTask(qtTask, qtOrder.KyfConsultanJobNumber);
-                GenerateJobnumberPay(ref allHyPay, qtTask, qtOrder.KyfConsultanJobNumber, kyxQtDepartmentId, hyData.Id, yxAmount * 0.1, true);
+                GenerateJobnumberPay(ref allHyPay, qtTask, qtOrder.KyfConsultanJobNumber, kyxQtDepartmentId, hyData.Id, yxAmount * 0.1);
             }
 
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -296,9 +294,8 @@ namespace FXB.Common
             QtTask qtTask, 
             string jobNumber, 
             Int64 yxQtDepartmentId, 
-            Int64 hyId,
-            double yxAmount, 
-            bool isKyf)
+            Int64 hyId, 
+            double yxAmount)
         {
             //顾问所在的部门（部门一定是QT任务里的部门）
             QtDepartment qtDepartment = qtTask.AllQtDepartment[yxQtDepartmentId];
@@ -309,19 +306,19 @@ namespace FXB.Common
             if (qtLevel == QtLevel.Salesman)
             {
                 //业务员开的单
-                totalPay.Add(new PayItem(isKyf ?  PayType.PT_KYF_COMMISSION_PAY : PayType.PT_COMMISSION_PAY, yxAmount * 0.2));
+                totalPay.Add(new PayItem(PayType.PT_COMMISSION_PAY, yxAmount * 0.2));
             }
             else if (qtLevel == QtLevel.SmallCharge)
             {
                 //小主管开的单
 
                 //业务员提成
-                totalPay.Add(new PayItem(isKyf ? PayType.PT_KYF_COMMISSION_PAY : PayType.PT_COMMISSION_PAY, yxAmount * 0.2));
+                totalPay.Add(new PayItem(PayType.PT_COMMISSION_PAY, yxAmount * 0.2));
 
                 //拿小主管的级别提成
                 QtEmployee qtEmployee = qtTask.AllQtEmployee[jobNumber];
                 double smallChargeProp = CommissionUtil.GetCommissionPropToProp(qtDepartment, qtEmployee);
-                totalPay.Add(new PayItem(isKyf ? PayType.PT_KYF_COMMISSION_SmallCharge_PAY : PayType.PT_COMMISSION_SmallCharge_PAY, yxAmount * smallChargeProp));
+                totalPay.Add(new PayItem(PayType.PT_SmallCharge_COMMISSION_PAY, yxAmount * smallChargeProp));
 
             }
             else if (qtLevel == QtLevel.LargeCharge)
@@ -329,16 +326,16 @@ namespace FXB.Common
                 //大主管开的单
 
                 //业务员提成
-                totalPay.Add(new PayItem(isKyf ? PayType.PT_KYF_COMMISSION_PAY : PayType.PT_COMMISSION_PAY, yxAmount * 0.2));
+                totalPay.Add(new PayItem(PayType.PT_COMMISSION_PAY, yxAmount * 0.2));
 
                 //小主管的级别提成
                 double smallChargeProp = CommissionUtil.GetQTSmallChargeProp();
-                totalPay.Add(new PayItem(isKyf ? PayType.PT_KYF_COMMISSION_SmallCharge_PAY : PayType.PT_COMMISSION_SmallCharge_PAY, yxAmount * smallChargeProp));
+                totalPay.Add(new PayItem(PayType.PT_SmallCharge_COMMISSION_PAY, yxAmount * smallChargeProp));
 
                 //拿大主管的级别提成
                 QtEmployee qtEmployee = qtTask.AllQtEmployee[jobNumber];
                 double largeChargeProp = CommissionUtil.GetCommissionPropToProp(qtDepartment, qtEmployee);
-                totalPay.Add(new PayItem(isKyf ? PayType.PT_KYF_COMMISSION_LargeCharge_PAY : PayType.PT_COMMISSION_LargeCharge_PAY, yxAmount * largeChargeProp));
+                totalPay.Add(new PayItem(PayType.PT_LargeCharge_COMMISSION_PAY, yxAmount * largeChargeProp));
 
             }
             else if (qtLevel == QtLevel.Majordomo)
@@ -346,20 +343,20 @@ namespace FXB.Common
                 //总监开的单
 
                 //业务员提成
-                totalPay.Add(new PayItem(isKyf ? PayType.PT_KYF_COMMISSION_PAY : PayType.PT_COMMISSION_PAY, yxAmount * 0.2));
+                totalPay.Add(new PayItem(PayType.PT_COMMISSION_PAY, yxAmount * 0.2));
 
                 //小主管的级别提成
                 double smallChargeProp = CommissionUtil.GetQTSmallChargeProp();
-                totalPay.Add(new PayItem(isKyf ? PayType.PT_KYF_COMMISSION_SmallCharge_PAY : PayType.PT_COMMISSION_SmallCharge_PAY, yxAmount * smallChargeProp));
+                totalPay.Add(new PayItem(PayType.PT_SmallCharge_COMMISSION_PAY, yxAmount * smallChargeProp));
 
                 //大主管的级别提成
                 double largeChargeProp = CommissionUtil.GetQtLargeChargeProp();
-                totalPay.Add(new PayItem(isKyf ? PayType.PT_KYF_COMMISSION_LargeCharge_PAY : PayType.PT_COMMISSION_LargeCharge_PAY, yxAmount * largeChargeProp));
+                totalPay.Add(new PayItem(PayType.PT_LargeCharge_COMMISSION_PAY, yxAmount * largeChargeProp));
 
                 //拿总监的提成
                 QtEmployee qtEmployee = qtTask.AllQtEmployee[jobNumber];
                 double majordomoProp = CommissionUtil.GetCommissionPropToProp(qtDepartment, qtEmployee);
-                totalPay.Add(new PayItem(isKyf ? PayType.PT_KYF_COMMISSION_Majordomo_PAY : PayType.PT_COMMISSION_Majordomo_PAY, yxAmount * majordomoProp));
+                totalPay.Add(new PayItem(PayType.PT_Majordomo_COMMISSION_PAY, yxAmount * majordomoProp));
 
             }
             else
@@ -384,15 +381,15 @@ namespace FXB.Common
                     List<PayItem> tmpPay = new List<PayItem>();
                     if (childQtDepartment.QtLevel == QtLevel.SmallCharge)
                     {
-                        tmpPay.Add(new PayItem(isKyf ? PayType.PT_KYF_COMMISSION_SmallCharge_PAY : PayType.PT_COMMISSION_SmallCharge_PAY, yxAmount * childPayProp));
+                        tmpPay.Add(new PayItem(PayType.PT_SmallCharge_COMMISSION_PAY, yxAmount * childPayProp));
                     }
                     else if (childQtDepartment.QtLevel == QtLevel.LargeCharge)
                     {
-                        tmpPay.Add(new PayItem(isKyf ? PayType.PT_KYF_COMMISSION_LargeCharge_PAY : PayType.PT_COMMISSION_LargeCharge_PAY, yxAmount * childPayProp));
+                        tmpPay.Add(new PayItem(PayType.PT_LargeCharge_COMMISSION_PAY, yxAmount * childPayProp));
                     }
                     else if (childQtDepartment.QtLevel == QtLevel.Majordomo)
                     {
-                        tmpPay.Add(new PayItem(isKyf ? PayType.PT_KYF_COMMISSION_Majordomo_PAY : PayType.PT_COMMISSION_Majordomo_PAY, yxAmount * childPayProp));
+                        tmpPay.Add(new PayItem(PayType.PT_Majordomo_COMMISSION_PAY, yxAmount * childPayProp));
                     }
                     else if (childQtEmployee.QtLevel == QtLevel.None)
                     {

@@ -112,8 +112,20 @@ namespace FXB.Dialog
                             return;
                         }
 
+                        DepartmentSelectDlg dlg = new DepartmentSelectDlg(curQtTask.QtKey, QtLevel.SmallCharge);
+                        if (dlg.ShowDialog() != DialogResult.OK)
+                        {
+                            return;
+                        }
+
+                        if (dlg.SelectQtDepartment.QtLevel != QtLevel.SmallCharge)
+                        {
+                            MessageBox.Show("只能选择小主管级别的部门");
+                            return;
+                        }
+
                         //插入数据到QT任务
-                        QtMgr.Instance().AddNewEmployeeToQtTask(employee, curQtTask);
+                        QtMgr.Instance().AddNewEmployeeToQtTask(employee, dlg.SelectQtDepartment.Id, curQtTask);
                     }
 
                     editJobnumber = jobNumber;

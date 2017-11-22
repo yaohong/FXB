@@ -175,7 +175,14 @@ namespace FXB.Dialog
 
         private void AddPersonnelBtn_Click(object sender, EventArgs e)
         {
-            EmployeeOperDlg dlg = new EmployeeOperDlg();
+            Int64 selectDepartmentId = 0;
+            TreeNode n = departmentTreeView.SelectedNode;
+            if (n != null)
+            {
+                selectDepartmentId = Convert.ToInt64(n.Name);
+            }
+
+            EmployeeOperDlg dlg = new EmployeeOperDlg(selectDepartmentId);
             if (dlg.ShowDialog()  == DialogResult.OK)
             {
                 if (dlg.NewEmployeeId != "")

@@ -54,7 +54,50 @@ namespace FXB.Common
             
         }
 
+        public static string GetQtDepartmentSimShowText(QtTask qtTask, Int64 departmentId)
+        {
+            if (departmentId == 0)
+            {
+                return "";
+            }
+            else
+            {
 
+                string departmentName = "";
+                while (true)
+                {
+                    QtDepartment departmentData = qtTask.AllQtDepartment[departmentId];
+                    if (departmentData.ParentDepartmentId == 0)
+                    {
+                        //跟部门了
+                        if (departmentName == "")
+                        {
+                            return departmentData.DepartmentName;
+                        }
+                        else
+                        {
+                            //return string.Format("{0}|{1}", departmentData.DepartmentName, departmentName);
+                            return string.Format("{0}", departmentName);
+                        }
+
+                    }
+                    else
+                    {
+                        if (departmentName == "")
+                        {
+                            departmentName = departmentData.DepartmentName;
+                        }
+                        else
+                        {
+                            departmentName = string.Format("{0}|{1}", departmentData.DepartmentName, departmentName);
+                        }
+
+                        departmentId = departmentData.ParentDepartmentId;
+                    }
+                }
+            }
+
+        }
         public static string GetQtDepartmentShowText(QtTask qtTask, Int64 departmentId)
         {
             if (departmentId == 0)

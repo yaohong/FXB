@@ -212,6 +212,133 @@ namespace FXB.Data
 
         private SortedDictionary<Int64, HYData> allHYData;     //回佣数据
 
+        public double CalcMonthHyWhenCheck(string qtKey)
+        {
+            string[] ym = qtKey.Split('-');
+
+            Int32 qtYear = Convert.ToInt32(ym[0]);
+            Int32 qtMonth = Convert.ToInt32(ym[1]);
+            double totoal = 0;
+            foreach (var item in allHYData)
+            {
+                HYData data = item.Value;
+                DateTime hyDateTime = TimeUtil.TimestampToDateTime(data.AddTime);
+                if (data.CheckState)
+                {
+                    if (hyDateTime.Month == qtMonth && hyDateTime.Year == qtYear)
+                    {
+                        //不是计算工资的年和月份
+                        totoal += data.Amount;
+                    }
+                }
+            }
+
+
+            return totoal;
+        }
+
+        public double CalcMonthShuifeishouxufeiWhenCheck(string qtKey)
+        {
+            string[] ym = qtKey.Split('-');
+
+            Int32 qtYear = Convert.ToInt32(ym[0]);
+            Int32 qtMonth = Convert.ToInt32(ym[1]);
+            double totoal = 0;
+            foreach (var item in allHYData)
+            {
+                HYData data = item.Value;
+                DateTime hyDateTime = TimeUtil.TimestampToDateTime(data.AddTime);
+                if (data.CheckState)
+                {
+                    if (hyDateTime.Month == qtMonth && hyDateTime.Year == qtYear)
+                    {
+                        //不是计算工资的年和月份
+                        totoal += (data.Shuifei + data.Shouxufei);
+                    }
+                }
+            }
+
+
+            return totoal;
+        }
+
+        //计算累计回佣(已审核)
+        public double CalcAllHyWhenCheck()
+        {
+            double total = 0;
+            foreach (var item in allHYData)
+            {
+                HYData data = item.Value;
+                if (data.CheckState)
+                {
+                    total += data.Amount;
+                }
+            }
+
+            return total;
+        }
+
+        public double CalcAllHyWhenNoCheck()
+        {
+            double total = 0;
+            foreach (var item in allHYData)
+            {
+                HYData data = item.Value;
+                if (!data.CheckState)
+                {
+                    total += data.Amount;
+                }
+            }
+
+            return total;
+        }
+
+        public double CalcAllShouxufei()
+        {
+            double total = 0;
+            foreach (var item in allHYData)
+            {
+                HYData data = item.Value;
+                if (data.CheckState)
+                {
+                    total += data.Shouxufei;
+                }
+            }
+
+            return total;
+        }
+
+        public double CalcAllShuifei()
+        {
+            double total = 0;
+            foreach (var item in allHYData)
+            {
+                HYData data = item.Value;
+                if (data.CheckState)
+                {
+                    total += data.Shuifei;
+                }
+            }
+
+            return total;
+        }
+
+        //计算有效回佣(减去手续费和税费的回佣)
+        public double CalcYouxiaohuiyong()
+        {
+            double total = 0;
+            foreach (var item in allHYData)
+            {
+                HYData data = item.Value;
+                if (data.CheckState)
+                {
+                    total += (data.Amount - data.Shouxufei - data.Shuifei);
+                }
+            }
+
+            return total;
+        }
+
         public SortedDictionary<Int64, HYData> AllHYData
         {
             get { return allHYData; }

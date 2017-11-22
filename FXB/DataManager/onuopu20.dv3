@@ -72,7 +72,7 @@ namespace FXB.DataManager
 
             if (order.CheckState)
             {
-                throw new ConditionCheckException(string.Format("订单已经审核,不能删除"));
+                throw new ConditionCheckException(string.Format("QT任务[{0}]已经生成回佣,请删除后在进行该操作", order.QtKey));
             }
 
             SqlTransaction sqlTran = null;

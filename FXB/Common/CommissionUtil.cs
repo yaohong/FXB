@@ -37,7 +37,22 @@ namespace FXB.Common
             }
             else if (qtDepartment.QtLevel == QtLevel.Majordomo)
             {
-                return "3%";
+                if (qtEmployee.JobGradeName == "总监")
+                {
+                    return "3%";
+                }
+                else if (qtEmployee.JobGradeName == "区域总监")
+                {
+                    return "3.5%";
+                }
+                else if (qtEmployee.JobGradeName == "大区总监")
+                {
+                    return "4%";
+                }
+                {
+                    throw new CrashException(string.Format("QT级别为总监的职级不对[{0}]", qtEmployee.JobGradeName));
+
+                }
             }
             else if (qtDepartment.QtLevel == QtLevel.None)
             {
@@ -95,7 +110,23 @@ namespace FXB.Common
             }
             else if (qtDepartment.QtLevel == QtLevel.Majordomo)
             {
-                return 0.03;
+                if (qtEmployee.JobGradeName == "总监")
+                {
+                    return 0.03;
+                }
+                else if (qtEmployee.JobGradeName == "区域总监")
+                {
+                    return 0.035;
+                }
+                else if (qtEmployee.JobGradeName == "大区总监")
+                {
+                    return 0.04;
+                }
+                else
+                {
+                    throw new CrashException(string.Format("QT级别为总监的职级不对[{0}]", qtEmployee.JobGradeName));
+
+                }
             }
             else if (qtDepartment.QtLevel == QtLevel.None)
             {

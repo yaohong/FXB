@@ -12,6 +12,11 @@ namespace FXB.Data
         private Int64 orderId;          //所属的订单ID
         private double amount;          //回佣金额
         private UInt32 addTime;         //回佣添加时间
+        private double shouxufei;       //手续费
+        private double shuifei;         //税费
+
+
+
         private string entryJobNumber;  //录入人
 
         private bool checkState;        //是否审核
@@ -31,16 +36,32 @@ namespace FXB.Data
         public double Amount
         {
             get { return amount; }
+            set { amount = value; }
         }
 
         public UInt32 AddTime
         {
             get { return addTime; }
+            set { addTime = value; }
         }
 
+
+
+        public double Shouxufei
+        {
+            get { return shouxufei; }
+            set { shouxufei = value; }
+        }
+
+        public double Shuifei
+        {
+            get { return shuifei; }
+            set { shuifei = value; }
+        }
         public string EntryJobNumber
         {
             get { return entryJobNumber; }
+            set { entryJobNumber = value; }
         }
 
         public bool CheckState
@@ -62,13 +83,30 @@ namespace FXB.Data
         }
 
 
-        public HYData(Int64 tmpId, Int64 tmpOrderId, double tmpAmount, UInt32 tmpAddTime, string tmpEntryJobNumber, bool tmpCheckState, string tmpCheckJobNumber, UInt32 tmpCheckTime)
+        public HYData(
+            Int64 tmpId, 
+            Int64 tmpOrderId, 
+            double tmpAmount, 
+            UInt32 tmpAddTime, 
+            string tmpEntryJobNumber, 
+            double tmpShouxufei,
+            double tmpShuifei,
+
+            bool tmpCheckState, 
+            string tmpCheckJobNumber, 
+            UInt32 tmpCheckTime)
         {
             id = tmpId;
             orderId = tmpOrderId;
             amount = tmpAmount;
             addTime = tmpAddTime;
+            shouxufei = tmpShouxufei;
+            shuifei = tmpShuifei;
+
+
             entryJobNumber = tmpEntryJobNumber;
+
+
             checkState = tmpCheckState;
             checkJobNumber = tmpCheckJobNumber;
             checkTime = tmpCheckTime;

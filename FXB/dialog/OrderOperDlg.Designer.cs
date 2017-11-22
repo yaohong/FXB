@@ -299,7 +299,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 12);
             this.label6.TabIndex = 11;
-            this.label6.Text = "佣金总额:";
+            this.label6.Text = "公司佣金:";
             // 
             // yongjinzongeEdi
             // 
@@ -399,9 +399,9 @@
             // 
             // shenheBtn
             // 
-            this.shenheBtn.Location = new System.Drawing.Point(402, 326);
+            this.shenheBtn.Location = new System.Drawing.Point(22, 326);
             this.shenheBtn.Name = "shenheBtn";
-            this.shenheBtn.Size = new System.Drawing.Size(75, 23);
+            this.shenheBtn.Size = new System.Drawing.Size(115, 23);
             this.shenheBtn.TabIndex = 16;
             this.shenheBtn.Text = "审核";
             this.shenheBtn.UseVisualStyleBackColor = true;

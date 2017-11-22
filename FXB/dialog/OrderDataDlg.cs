@@ -36,6 +36,7 @@ namespace FXB.Dialog
                 return;
             }
 
+            double totalValue = 0;
 
             QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
             foreach (var item in qtTask.AllQtOrder)
@@ -101,8 +102,14 @@ namespace FXB.Dialog
 
                 int lineIndex = dataGridView1.Rows.Add();
                 UpdateGridViewRow(dataGridView1.Rows[lineIndex], qtOrder);
+                if (!qtOrder.ReturnData.IsReturn)
+                {
+                    totalValue += qtOrder.CommissionAmount;
+                }
             }
 
+
+            Console.WriteLine("totoal=[{0}]", totalValue);
         }
 
         private void OrderDataDlg_Load(object sender, EventArgs e)
@@ -176,9 +183,39 @@ namespace FXB.Dialog
 
             DataGridViewTextBoxColumn commissionAmount = new DataGridViewTextBoxColumn();
             commissionAmount.Name = "commissionAmount";
-            commissionAmount.HeaderText = "佣金总额";
+            commissionAmount.HeaderText = "公司佣金";
             commissionAmount.Width = 80;
             dataGridView1.Columns.Add(commissionAmount);
+
+            DataGridViewTextBoxColumn youxiaohuiyong = new DataGridViewTextBoxColumn();
+            youxiaohuiyong.Name = "youxiaohuiyong";
+            youxiaohuiyong.HeaderText = "有效回佣";
+            youxiaohuiyong.Width = 80;
+            dataGridView1.Columns.Add(youxiaohuiyong);
+
+            DataGridViewTextBoxColumn leijihuiyongy = new DataGridViewTextBoxColumn();
+            leijihuiyongy.Name = "leijihuiyongy";
+            leijihuiyongy.HeaderText = "累计回佣(审核)";
+            leijihuiyongy.Width = 120;
+            dataGridView1.Columns.Add(leijihuiyongy);
+
+            DataGridViewTextBoxColumn leijihuiyongn = new DataGridViewTextBoxColumn();
+            leijihuiyongn.Name = "leijihuiyongn";
+            leijihuiyongn.HeaderText = "累计回佣(未审核)";
+            leijihuiyongn.Width = 130;
+            dataGridView1.Columns.Add(leijihuiyongn);
+
+            DataGridViewTextBoxColumn leijishouxufei = new DataGridViewTextBoxColumn();
+            leijishouxufei.Name = "leijishouxufei";
+            leijishouxufei.HeaderText = "手续费";
+            leijishouxufei.Width = 100;
+            dataGridView1.Columns.Add(leijishouxufei);
+
+            DataGridViewTextBoxColumn leijishuifei = new DataGridViewTextBoxColumn();
+            leijishuifei.Name = "leijishuifei";
+            leijishuifei.HeaderText = "税费";
+            leijishuifei.Width = 80;
+            dataGridView1.Columns.Add(leijishuifei);
 
             DataGridViewTextBoxColumn yxConsultantName1 = new DataGridViewTextBoxColumn();
             yxConsultantName1.Name = "yxConsultantName1";
@@ -334,8 +371,18 @@ namespace FXB.Dialog
             row.Cells["projectName"].Value = ProjectDataMgr.Instance().AllProjectData[data.ProjectCode].Name ;
             row.Cells["roomNumber"].Value = data.RoomNumber;
 
-            row.Cells["closingTheDealMoney"].Value = data.ClosingTheDealMoney;
-            row.Cells["commissionAmount"].Value = data.CommissionAmount;
+            row.Cells["closingTheDealMoney"].Value = DoubleUtil.Show(data.ClosingTheDealMoney);
+            row.Cells["commissionAmount"].Value = DoubleUtil.Show(data.CommissionAmount);
+
+            //显示回佣相关的数据
+            {
+                //youxiaohuiyong
+                row.Cells["youxiaohuiyong"].Value = DoubleUtil.Show(data.CalcYouxiaohuiyong());
+                row.Cells["leijihuiyongy"].Value = DoubleUtil.Show(data.CalcAllHyWhenCheck());
+                row.Cells["leijihuiyongn"].Value = DoubleUtil.Show(data.CalcAllHyWhenNoCheck());
+                row.Cells["leijishouxufei"].Value = DoubleUtil.Show(data.CalcAllShouxufei());
+                row.Cells["leijishuifei"].Value = DoubleUtil.Show(data.CalcAllShuifei());
+            }
 
             //显示营销顾问
             int i = 0;
@@ -348,8 +395,13 @@ namespace FXB.Dialog
                     break;
                 }
             }
+
+            for (int itemI = i; itemI < 3; itemI++)
+            {
+                row.Cells["yxConsultantName" + (itemI + 1).ToString()].Value = "";
+            }
                 //row.Cells["yxConsultantName"].Value = EmployeeDataMgr.Instance().AllEmployeeData[data.YxConsultantJobNumber].Name;
-             row.Cells["kyfConsultanName"].Value = data.KyfConsultanJobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.KyfConsultanJobNumber].Name : "";
+            row.Cells["kyfConsultanName"].Value = data.KyfConsultanJobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.KyfConsultanJobNumber].Name : "";
             row.Cells["zhuchang1Name"].Value = data.Zc1JobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.Zc1JobNumber].Name : "";
             row.Cells["zhuchang2Name"].Value = data.Zc2JobNumber != "" ? EmployeeDataMgr.Instance().AllEmployeeData[data.Zc2JobNumber].Name : "";
             row.Cells["checkState"].Value = data.CheckState;
@@ -387,7 +439,7 @@ namespace FXB.Dialog
             row.Cells["roomArea"].Value = data.RoomArea;
             row.Cells["contractState"].Value = data.ContractState;
             row.Cells["paymentMethod"].Value = data.PaymentMethod;
-            row.Cells["loansMoney"].Value = data.LoansMoney;
+            row.Cells["loansMoney"].Value = DoubleUtil.Show(data.LoansMoney);
         }
 
         private void salesmanSelectBtn_Click(object sender, EventArgs e)
@@ -417,6 +469,10 @@ namespace FXB.Dialog
                 return;
             }
 
+            if (DialogResult.OK != MessageBox.Show("订单删除之后无法恢复,确认删除?", "警告", MessageBoxButtons.OKCancel))
+            {
+                return;
+            }
             //只能选择一行
             DataGridViewRow selectRow = dataGridView1.SelectedRows[0];
 

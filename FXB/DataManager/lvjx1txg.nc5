@@ -71,9 +71,6 @@ namespace FXB.DataManager
             }
 
             if (order.CheckState)
-            {
-                throw new ConditionCheckException(string.Format("订单已经审核,不能删除"));
-            }
 
             SqlTransaction sqlTran = null;
             try

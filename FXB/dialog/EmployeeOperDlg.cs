@@ -28,9 +28,10 @@ namespace FXB.Dialog
         {
             get { return newEmployeeId; }
         }
-        public EmployeeOperDlg()
+        public EmployeeOperDlg(Int64 departmentId = 0)
         {
             mode = EditMode.EM_ADD;
+            selectDepartmentId = departmentId;
             InitializeComponent();
         }
 
@@ -51,6 +52,10 @@ namespace FXB.Dialog
             xingbieSelect.Items.Insert(0, "女");
             xingbieSelect.Items.Insert(1, "男");
             xingbieSelect.SelectedIndex = 0;
+            if (selectDepartmentId != 0)
+            {
+                bumenEdit.Text = DepartmentUtil.GetDepartmentShowText(selectDepartmentId);
+            }
             if (mode == EditMode.EM_ADD)
             {
                 AddInit();

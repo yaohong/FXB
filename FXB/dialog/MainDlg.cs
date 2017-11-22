@@ -217,6 +217,30 @@ namespace FXB
                 dlg.MdiParent = this;
                 dlg.Show();
             }
+            else if (dlgName == "HYSalaryViewDlg")
+            {
+                HYSalaryViewDlg dlg = new HYSalaryViewDlg();
+                dlg.MdiParent = this;
+                dlg.Show();
+            }
+            else if (dlgName == "HyTotalViewDlg")
+            {
+                HyTotalViewDlg dlg = new HyTotalViewDlg();
+                dlg.MdiParent = this;
+                dlg.Show();
+            }
+            else if (dlgName == "ZcTotalViewDlg")
+            {
+                ZcTotalViewDlg dlg = new ZcTotalViewDlg();
+                dlg.MdiParent = this;
+                dlg.Show();
+            }
+            else if (dlgName == "OrderTotalViewDlg")
+            {
+                OrderTotalViewDlg dlg = new OrderTotalViewDlg();
+                dlg.MdiParent = this;
+                dlg.Show();
+            }
             else 
             {
                 MessageBox.Show("未知的窗口名字");
@@ -278,7 +302,22 @@ namespace FXB
 
         private void 回佣明细表ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ShowDialog("HYSalaryViewDlg");
+        }
 
+        private void 回佣总表ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowDialog("HyTotalViewDlg");
+        }
+
+        private void 驻场提成表ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowDialog("ZcTotalViewDlg");
+        }
+
+        private void 成交报告ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowDialog("OrderTotalViewDlg");
         }
 
     }

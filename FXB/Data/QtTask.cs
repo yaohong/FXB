@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FXB.DataManager;
 using FXB.Common;
+using System.Windows.Forms;
 namespace FXB.Data
 {
 
@@ -211,9 +212,13 @@ namespace FXB.Data
                 {
                     string yxJobnumber = childJob.Key;
                     Int32 yxProp = childJob.Value;
-                    CalcDepartmentCommission(qtTask, yxJobnumber, qtOrder.CommissionAmount * (yxProp / 10000));
+                    CalcDepartmentCommission(qtTask, yxJobnumber, (qtOrder.CommissionAmount * yxProp) / 10000);
                 }
 
+                if (qtOrder.KyfConsultanJobNumber != "")
+                {
+                    CalcDepartmentCommission(qtTask, qtOrder.KyfConsultanJobNumber, qtOrder.CommissionAmount * 0.1);
+                }
             }
         }
 
@@ -250,5 +255,25 @@ namespace FXB.Data
             }
         }
 
+
+        static public void SetTreeView(QtTask qtTask, TreeView view)
+        {
+            QtDepartment rootDepartment = qtTask.RootQtDepartment;
+            view.Nodes.Clear();
+            TreeNode rootNode = view.Nodes.Add(rootDepartment.Id.ToString(), rootDepartment.DepartmentName);
+            foreach (var item in rootDepartment.ChildDepartmentIdSet)
+            {
+                AddDepartmentToTreeView(rootNode, item, qtTask.AllQtDepartment);
+            }
+        }
+        static private void AddDepartmentToTreeView(TreeNode tn, Int64 departmentId, SortedDictionary<Int64, QtDepartment> allQtDepartment)
+        {
+            QtDepartment department = allQtDepartment[departmentId];
+            TreeNode newNode = tn.Nodes.Add(department.Id.ToString(), department.DepartmentName);
+            foreach (var item in department.ChildDepartmentIdSet)
+            {
+                AddDepartmentToTreeView(newNode, item, allQtDepartment);
+            }
+        }
     }
 }

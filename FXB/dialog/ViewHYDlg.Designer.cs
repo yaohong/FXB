@@ -36,6 +36,11 @@
             this.hyTime = new System.Windows.Forms.DateTimePicker();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.saveBtn = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.shuifeiEdi = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.shouxufeiEdi = new System.Windows.Forms.TextBox();
             this.checkStateEdi = new System.Windows.Forms.TextBox();
             this.exitBtn = new System.Windows.Forms.Button();
             this.checkBtn = new System.Windows.Forms.Button();
@@ -83,7 +88,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 80);
+            this.label3.Location = new System.Drawing.Point(21, 135);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 12);
             this.label3.TabIndex = 4;
@@ -91,7 +96,7 @@
             // 
             // hyTime
             // 
-            this.hyTime.Location = new System.Drawing.Point(86, 71);
+            this.hyTime.Location = new System.Drawing.Point(86, 126);
             this.hyTime.Name = "hyTime";
             this.hyTime.Size = new System.Drawing.Size(289, 21);
             this.hyTime.TabIndex = 5;
@@ -102,11 +107,16 @@
             this.tabControl1.Location = new System.Drawing.Point(35, 22);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(437, 257);
+            this.tabControl1.Size = new System.Drawing.Size(437, 310);
             this.tabControl1.TabIndex = 8;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.saveBtn);
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.shuifeiEdi);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.shouxufeiEdi);
             this.tabPage1.Controls.Add(this.checkStateEdi);
             this.tabPage1.Controls.Add(this.exitBtn);
             this.tabPage1.Controls.Add(this.checkBtn);
@@ -124,23 +134,65 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(429, 231);
+            this.tabPage1.Size = new System.Drawing.Size(429, 284);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "回佣信息";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // saveBtn
+            // 
+            this.saveBtn.Location = new System.Drawing.Point(243, 234);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(63, 23);
+            this.saveBtn.TabIndex = 20;
+            this.saveBtn.Text = "保存";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(45, 108);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 12);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "税费:";
+            // 
+            // shuifeiEdi
+            // 
+            this.shuifeiEdi.Location = new System.Drawing.Point(86, 99);
+            this.shuifeiEdi.Name = "shuifeiEdi";
+            this.shuifeiEdi.Size = new System.Drawing.Size(289, 21);
+            this.shuifeiEdi.TabIndex = 18;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(33, 81);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 12);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "手续费:";
+            // 
+            // shouxufeiEdi
+            // 
+            this.shouxufeiEdi.Location = new System.Drawing.Point(86, 72);
+            this.shouxufeiEdi.Name = "shouxufeiEdi";
+            this.shouxufeiEdi.Size = new System.Drawing.Size(289, 21);
+            this.shouxufeiEdi.TabIndex = 16;
+            // 
             // checkStateEdi
             // 
-            this.checkStateEdi.Location = new System.Drawing.Point(86, 98);
+            this.checkStateEdi.Location = new System.Drawing.Point(86, 153);
             this.checkStateEdi.Name = "checkStateEdi";
             this.checkStateEdi.Size = new System.Drawing.Size(289, 21);
             this.checkStateEdi.TabIndex = 15;
             // 
             // exitBtn
             // 
-            this.exitBtn.Location = new System.Drawing.Point(296, 179);
+            this.exitBtn.Location = new System.Drawing.Point(312, 234);
             this.exitBtn.Name = "exitBtn";
-            this.exitBtn.Size = new System.Drawing.Size(79, 23);
+            this.exitBtn.Size = new System.Drawing.Size(63, 23);
             this.exitBtn.TabIndex = 14;
             this.exitBtn.Text = "退出";
             this.exitBtn.UseVisualStyleBackColor = true;
@@ -148,9 +200,9 @@
             // 
             // checkBtn
             // 
-            this.checkBtn.Location = new System.Drawing.Point(86, 179);
+            this.checkBtn.Location = new System.Drawing.Point(86, 234);
             this.checkBtn.Name = "checkBtn";
-            this.checkBtn.Size = new System.Drawing.Size(79, 23);
+            this.checkBtn.Size = new System.Drawing.Size(114, 23);
             this.checkBtn.TabIndex = 12;
             this.checkBtn.Text = "审核";
             this.checkBtn.UseVisualStyleBackColor = true;
@@ -158,7 +210,7 @@
             // 
             // checkTimeEdi
             // 
-            this.checkTimeEdi.Location = new System.Drawing.Point(86, 152);
+            this.checkTimeEdi.Location = new System.Drawing.Point(86, 207);
             this.checkTimeEdi.Name = "checkTimeEdi";
             this.checkTimeEdi.Size = new System.Drawing.Size(289, 21);
             this.checkTimeEdi.TabIndex = 11;
@@ -166,7 +218,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(21, 161);
+            this.label10.Location = new System.Drawing.Point(21, 216);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 12);
             this.label10.TabIndex = 10;
@@ -174,7 +226,7 @@
             // 
             // checkJobNumberEdi
             // 
-            this.checkJobNumberEdi.Location = new System.Drawing.Point(86, 125);
+            this.checkJobNumberEdi.Location = new System.Drawing.Point(86, 180);
             this.checkJobNumberEdi.Name = "checkJobNumberEdi";
             this.checkJobNumberEdi.Size = new System.Drawing.Size(289, 21);
             this.checkJobNumberEdi.TabIndex = 9;
@@ -182,7 +234,7 @@
             // lable10
             // 
             this.lable10.AutoSize = true;
-            this.lable10.Location = new System.Drawing.Point(33, 134);
+            this.lable10.Location = new System.Drawing.Point(33, 189);
             this.lable10.Name = "lable10";
             this.lable10.Size = new System.Drawing.Size(47, 12);
             this.lable10.TabIndex = 2;
@@ -191,7 +243,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 107);
+            this.label9.Location = new System.Drawing.Point(21, 162);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(59, 12);
             this.label9.TabIndex = 0;
@@ -201,7 +253,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(518, 307);
+            this.ClientSize = new System.Drawing.Size(517, 380);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -234,5 +286,10 @@
         private System.Windows.Forms.Button checkBtn;
         private System.Windows.Forms.Button exitBtn;
         private System.Windows.Forms.TextBox checkStateEdi;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox shouxufeiEdi;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox shuifeiEdi;
+        private System.Windows.Forms.Button saveBtn;
     }
 }

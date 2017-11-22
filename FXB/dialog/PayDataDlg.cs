@@ -36,10 +36,10 @@ namespace FXB.Dialog
             }
             myDataGridView1.Rows.Clear();
             SortedDictionary<string, PayData> allPayData = PayDataMgr.Instance().AllQtPay[qtKey];
-            
-            foreach (var item in allPayData)
+            QtTask qtTask = QtMgr.Instance().AllQtTask[qtKey];
+            foreach (var item in qtTask.AllQtEmployee)
             {
-                PayData data = item.Value;
+                QtEmployee data = item.Value;
                 int lineIndex = myDataGridView1.Rows.Add();
                 DataGridViewRow row = myDataGridView1.Rows[lineIndex];
                 row.Cells["qtkey"].Value = qtKey;
@@ -47,8 +47,17 @@ namespace FXB.Dialog
 
                 EmployeeData employeeData = EmployeeDataMgr.Instance().AllEmployeeData[item.Key];
                 row.Cells["name"].Value = employeeData.Name;
-                row.Cells["bumen"].Value = DepartmentUtil.GetDepartmentShowText(employeeData.DepartmentId);
-                row.Cells["qtpay"].Value = data.CurPay;
+                row.Cells["bumen"].Value = DepartmentUtil.GetQtDepartmentShowText(qtTask, QtTaskUtil.GetJobDepartmentIdByQtTask(qtTask, item.Key));
+                if (allPayData.ContainsKey(item.Key))
+                {
+                    PayData patData = allPayData[item.Key];
+                    row.Cells["qtpay"].Value = DoubleUtil.Show(patData.CurPay);
+                }
+                else
+                {
+                    row.Cells["qtpay"].Value = DoubleUtil.Show(0);
+                }
+                
             }
         }
 

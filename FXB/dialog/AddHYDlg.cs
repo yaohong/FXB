@@ -33,6 +33,8 @@ namespace FXB.Dialog
         private void AddHYDlg_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            shouxufeiEdi.Text = "0";
+            shuifeiEdi.Text = "0";
         }
 
         private void addHYBtn_Click(object sender, EventArgs e)
@@ -42,21 +44,56 @@ namespace FXB.Dialog
                 MessageBox.Show("回佣金额不能为空");
                 return;
             }
-            else
+            
+            if (shouxufeiEdi.Text == "")
             {
-                if (!DoubleUtil.Check(hyAmountEdi.Text))
-                {
-                    MessageBox.Show("回佣金额格式错误");
-                    return;
-                }
+                MessageBox.Show("手续费不能为空");
+                return;
             }
 
+            if (shuifeiEdi.Text == "")
+            {
+                MessageBox.Show("税费不能为空");
+                return;
+            }
+
+
+            if (!DoubleUtil.Check(hyAmountEdi.Text))
+            {
+                MessageBox.Show("回佣金额格式错误");
+                return;
+            }
+
+            if (!DoubleUtil.Check(shouxufeiEdi.Text))
+            {
+                MessageBox.Show("手续费格式错误");
+                return;
+            }
+
+            if (!DoubleUtil.Check(shuifeiEdi.Text))
+            {
+                MessageBox.Show("税费格式错误");
+                return;
+            }
+
+
+            
+
             double hyAmount = System.Math.Round(Convert.ToDouble(hyAmountEdi.Text), 2);
+            double shouxufei = System.Math.Round(Convert.ToDouble(shouxufeiEdi.Text), 2);
+            double shuifei = System.Math.Round(Convert.ToDouble(shuifeiEdi.Text), 2);
+
             EmployeeData curEmplyee = AuthMgr.Instance().CurLoginEmployee;
 
             try
             {
-                HYData data = HYMgr.Instance().AddNewHY(orderId, hyAmount, TimeUtil.DateTimeToTimestamp(hyAddTime.Value), curEmplyee.JobNumber);
+                HYData data = HYMgr.Instance().AddNewHY(
+                    orderId, 
+                    hyAmount, 
+                    TimeUtil.DateTimeToTimestamp(hyAddTime.Value),
+                    curEmplyee.JobNumber, 
+                    shouxufei, 
+                    shuifei);
                 newHYId = data.Id;
                 DialogResult = DialogResult.OK;
                 return;

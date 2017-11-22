@@ -178,12 +178,16 @@ namespace FXB.Data
         }
 
 
+        //外部指定QT部门
+        public QtEmployee GenerateQtEmployee(Int64 tmpDepartmentId)
+        {
+            return new QtEmployee(jobNumber, jobGradeName, tmpDepartmentId, qtLevel, isOwner);
+        }
+
         public QtEmployee GenerateQtEmployee()
         {
             return new QtEmployee(jobNumber, jobGradeName, departmentId, qtLevel, isOwner);
         }
-
-
         ////////////////////////////////////////////////////////////////////////////////////////////
     }
 }

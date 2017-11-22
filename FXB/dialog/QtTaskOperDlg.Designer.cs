@@ -101,7 +101,7 @@
             // 
             // exportBtn
             // 
-            this.exportBtn.Location = new System.Drawing.Point(698, 19);
+            this.exportBtn.Location = new System.Drawing.Point(734, 19);
             this.exportBtn.Name = "exportBtn";
             this.exportBtn.Size = new System.Drawing.Size(75, 23);
             this.exportBtn.TabIndex = 8;
@@ -121,7 +121,7 @@
             // 
             // removeQtTaskBtn
             // 
-            this.removeQtTaskBtn.Location = new System.Drawing.Point(572, 19);
+            this.removeQtTaskBtn.Location = new System.Drawing.Point(612, 19);
             this.removeQtTaskBtn.Name = "removeQtTaskBtn";
             this.removeQtTaskBtn.Size = new System.Drawing.Size(75, 23);
             this.removeQtTaskBtn.TabIndex = 6;
