@@ -197,6 +197,9 @@ namespace FXB.Dialog
             }
 
             SetDataGridViewColumn();
+
+            selectJobEdi.Visible = false;
+            selectBtn.Visible = false;
         }
 
 

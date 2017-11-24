@@ -69,6 +69,9 @@
             this.jobMenuCb = new System.Windows.Forms.CheckBox();
             this.saveBtn = new System.Windows.Forms.Button();
             this.exitBtn = new System.Windows.Forms.Button();
+            this.tichengmingxiCb = new System.Windows.Forms.CheckBox();
+            this.chengjiaobaogaoCb = new System.Windows.Forms.CheckBox();
+            this.zhuchangtichengCb = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -253,6 +256,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.zhuchangtichengCb);
+            this.tabPage3.Controls.Add(this.chengjiaobaogaoCb);
+            this.tabPage3.Controls.Add(this.tichengmingxiCb);
             this.tabPage3.Controls.Add(this.generateQtGongziMenuCb);
             this.tabPage3.Controls.Add(this.tdCheckIsOperCb);
             this.tabPage3.Controls.Add(this.tdIsOperCb);
@@ -502,6 +508,36 @@
             this.exitBtn.UseVisualStyleBackColor = true;
             this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
+            // tichengmingxiCb
+            // 
+            this.tichengmingxiCb.AutoSize = true;
+            this.tichengmingxiCb.Location = new System.Drawing.Point(244, 82);
+            this.tichengmingxiCb.Name = "tichengmingxiCb";
+            this.tichengmingxiCb.Size = new System.Drawing.Size(84, 16);
+            this.tichengmingxiCb.TabIndex = 22;
+            this.tichengmingxiCb.Text = "提成明细表";
+            this.tichengmingxiCb.UseVisualStyleBackColor = true;
+            // 
+            // chengjiaobaogaoCb
+            // 
+            this.chengjiaobaogaoCb.AutoSize = true;
+            this.chengjiaobaogaoCb.Location = new System.Drawing.Point(244, 103);
+            this.chengjiaobaogaoCb.Name = "chengjiaobaogaoCb";
+            this.chengjiaobaogaoCb.Size = new System.Drawing.Size(72, 16);
+            this.chengjiaobaogaoCb.TabIndex = 23;
+            this.chengjiaobaogaoCb.Text = "成交报告";
+            this.chengjiaobaogaoCb.UseVisualStyleBackColor = true;
+            // 
+            // zhuchangtichengCb
+            // 
+            this.zhuchangtichengCb.AutoSize = true;
+            this.zhuchangtichengCb.Location = new System.Drawing.Point(244, 125);
+            this.zhuchangtichengCb.Name = "zhuchangtichengCb";
+            this.zhuchangtichengCb.Size = new System.Drawing.Size(84, 16);
+            this.zhuchangtichengCb.TabIndex = 24;
+            this.zhuchangtichengCb.Text = "驻场提成表";
+            this.zhuchangtichengCb.UseVisualStyleBackColor = true;
+            // 
             // AuthEditDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -568,5 +604,8 @@
         private System.Windows.Forms.CheckBox tdIsOperCb;
         private System.Windows.Forms.CheckBox tdCheckIsOperCb;
         private System.Windows.Forms.CheckBox generateQtGongziMenuCb;
+        private System.Windows.Forms.CheckBox tichengmingxiCb;
+        private System.Windows.Forms.CheckBox chengjiaobaogaoCb;
+        private System.Windows.Forms.CheckBox zhuchangtichengCb;
     }
 }

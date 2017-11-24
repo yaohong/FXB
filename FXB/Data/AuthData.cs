@@ -33,6 +33,10 @@ namespace FXB.Data
         public static Int64 TDCheckCbMask = Convert.ToInt64("100000000000000000000", 2);    //退单审核是否可点击
 
         public static Int64 GenerateQtGongziMenuMask = Convert.ToInt64("1000000000000000000000", 2);    //生成QT工资
+
+        public static Int64 TichengmingxibiaoMenuMask = Convert.ToInt64("10000000000000000000000", 2);    //生成QT工资
+        public static Int64 ChengjiaobaogaoMenuMask = Convert.ToInt64("100000000000000000000000", 2);    //生成QT工资
+        public static Int64 ZhuchangtichengMenuMask = Convert.ToInt64("1000000000000000000000000", 2);    //生成QT工资
     }
     
         
@@ -190,6 +194,25 @@ namespace FXB.Data
         public bool ShowTDCheckCb()
         {
             return (operMake & ControlMask.TDCheckCbMask) == 0 ? false : true;
+        }
+
+        /// <summary>
+        /// ////////////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <returns></returns>
+        public bool ShowTichengmingxibiaoMenu()
+        {
+            return (operMake & ControlMask.TichengmingxibiaoMenuMask) == 0 ? false : true;
+        }
+
+        public bool ShowChengjiaobaogaoMenu()
+        {
+            return (operMake & ControlMask.ChengjiaobaogaoMenuMask) == 0 ? false : true;
+        }
+
+        public bool ShowZhuchangtichengMenu()
+        {
+            return (operMake & ControlMask.ZhuchangtichengMenuMask) == 0 ? false : true;
         }
     }
 }

@@ -66,6 +66,10 @@ namespace FXB.Dialog
             tdIsViewCb.Checked = authData.ShowTDVisibleTab();
             tdIsOperCb.Checked = authData.ShowTDCb();
             tdCheckIsOperCb.Checked = authData.ShowTDCheckCb();
+
+            tichengmingxiCb.Checked = authData.ShowTichengmingxibiaoMenu();
+            chengjiaobaogaoCb.Checked = authData.ShowChengjiaobaogaoMenu();
+            zhuchangtichengCb.Checked = authData.ShowZhuchangtichengMenu();
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -185,6 +189,21 @@ namespace FXB.Dialog
             if (tdCheckIsOperCb.Checked)
             {
                 newControlMask = (newControlMask | ControlMask.TDCheckCbMask);
+            }
+            ////
+            if (tichengmingxiCb.Checked)
+            {
+                newControlMask = (newControlMask | ControlMask.TichengmingxibiaoMenuMask);
+            }
+
+            if (chengjiaobaogaoCb.Checked)
+            {
+                newControlMask = (newControlMask | ControlMask.ChengjiaobaogaoMenuMask);
+            }
+
+            if (zhuchangtichengCb.Checked)
+            {
+                newControlMask = (newControlMask | ControlMask.ZhuchangtichengMenuMask);
             }
             ///////////////////////////////////////////////
             if (authData.Prohibit != newProhibit ||

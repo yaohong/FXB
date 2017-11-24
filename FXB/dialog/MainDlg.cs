@@ -125,6 +125,21 @@ namespace FXB
                     {
                         QT任务ToolStripMenuItem.Visible = false;
                     }
+
+                    if (!curLoginAuth.ShowTichengmingxibiaoMenu())
+                    {
+                        回佣总表ToolStripMenuItem.Visible = false;
+                    }
+
+                    if (!curLoginAuth.ShowChengjiaobaogaoMenu())
+                    {
+                        成交报告ToolStripMenuItem.Visible = false;
+                    }
+
+                    if (!curLoginAuth.ShowZhuchangtichengMenu())
+                    {
+                        驻场提成表ToolStripMenuItem.Visible = false;
+                    }
                 }
 
             }
